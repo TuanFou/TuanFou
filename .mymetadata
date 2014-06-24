@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="TuanFou"
+  id="myeclipse.1403605569940"
+  context-root="/TuanFou"
+  j2ee-spec="6.0"
+  archive="TuanFou.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
