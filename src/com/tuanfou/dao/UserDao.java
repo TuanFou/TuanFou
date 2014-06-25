@@ -11,6 +11,7 @@ import com.tuanfou.utils.HibernateUtil;
 
 public class UserDao {
 	Session session = null;
+	
 	/*
 	 * 添加一个用户
 	 */

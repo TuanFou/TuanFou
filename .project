@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>TuanFou</name>
+	<name>TuanFou1.0</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -52,8 +52,8 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.genuitec.eclipse.hibernate.hibernatenature</nature>
 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+		<nature>com.genuitec.eclipse.hibernate.hibernatenature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>com.genuitec.eclipse.j2eedt.core.webnature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
