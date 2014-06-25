@@ -4,10 +4,20 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014/6/24 23:18:51
+Date: 2014/6/25 15:54:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for t_account
+-- ----------------------------
+DROP TABLE IF EXISTS `t_account`;
+CREATE TABLE `t_account` (
+  `id` int(11) NOT NULL auto_increment,
+  `balance` int(11) NOT NULL COMMENT '余额',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 -- Table structure for t_admin
 -- ----------------------------
@@ -24,7 +34,7 @@ CREATE TABLE `t_admin` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_area`;
 CREATE TABLE `t_area` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `areaName` varchar(20) NOT NULL COMMENT '域区名',
   `cityId` int(11) NOT NULL COMMENT '所属城市id',
   PRIMARY KEY  (`id`)
@@ -37,10 +47,11 @@ DROP TABLE IF EXISTS `t_cinema`;
 CREATE TABLE `t_cinema` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(20) NOT NULL COMMENT '影院名字',
-  `phoneNumber` varchar(11) default NULL COMMENT '电话',
+  `phoneNumber` varchar(11) NOT NULL COMMENT '电话',
   `description` varchar(300) NOT NULL,
   `cityId` int(11) NOT NULL COMMENT '所属城市id',
   `areaId` int(11) NOT NULL COMMENT '区域id',
+  `address` varchar(100) NOT NULL COMMENT '影院详细地址',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -60,7 +71,7 @@ CREATE TABLE `t_city` (
 DROP TABLE IF EXISTS `t_comment`;
 CREATE TABLE `t_comment` (
   `id` int(11) NOT NULL auto_increment,
-  `filmId` int(11) NOT NULL COMMENT '团购电影id',
+  `groupFilmId` int(11) NOT NULL COMMENT '团购电影id',
   `userId` int(11) NOT NULL COMMENT '会员id',
   `createTime` datetime NOT NULL COMMENT '论评时间',
   `content` varchar(200) NOT NULL COMMENT '评论内容',
@@ -73,10 +84,11 @@ CREATE TABLE `t_comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_complaint`;
 CREATE TABLE `t_complaint` (
-  `id` int(11) default NULL,
-  `groupFilmId` int(11) NOT NULL COMMENT '投诉团购id',
-  `userId` int(11) default NULL COMMENT '会员id',
-  `reason` varchar(200) default NULL COMMENT '投诉原因'
+  `id` int(11) NOT NULL auto_increment,
+  `filmId` int(11) NOT NULL COMMENT '投诉团购id',
+  `userId` int(11) NOT NULL COMMENT '会员id',
+  `reason` varchar(200) NOT NULL COMMENT '投诉原因',
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -85,7 +97,8 @@ CREATE TABLE `t_complaint` (
 DROP TABLE IF EXISTS `t_film`;
 CREATE TABLE `t_film` (
   `id` int(11) NOT NULL auto_increment,
-  `filmName` varchar(30) default NULL,
+  `merchantId` int(11) default NULL COMMENT '商家id',
+  `filmName` varchar(30) default NULL COMMENT '电影名称',
   `releaseDate` date default NULL COMMENT '映放日期',
   `version` varchar(10) default NULL COMMENT '版本',
   `country` varchar(20) default NULL COMMENT '地区，美国，中国，香港等等',
@@ -94,16 +107,30 @@ CREATE TABLE `t_film` (
   `director` varchar(30) default NULL COMMENT '导演',
   `actors` varchar(100) default NULL COMMENT '演员',
   `star` int(11) default NULL COMMENT '星评，0,1,2,3,4,5',
+  `status` int(1) NOT NULL COMMENT '状态 0：审核中 1：审核通过 2：审核未通过',
+  `applicateTime` time default NULL COMMENT '申请时间',
+  `auditResult` int(1) default NULL COMMENT '审核状态  1：审核通过 2：审核未通过',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for t_film_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `t_film_tag`;
+CREATE TABLE `t_film_tag` (
+  `filmId` int(11) NOT NULL COMMENT '影电id',
+  `tagId` int(11) NOT NULL COMMENT '签标id',
+  PRIMARY KEY  (`filmId`,`tagId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_group_film
 -- ----------------------------
 DROP TABLE IF EXISTS `t_group_film`;
 CREATE TABLE `t_group_film` (
-  `id` int(11) NOT NULL default '0',
+  `id` int(11) NOT NULL auto_increment,
   `filmId` int(11) NOT NULL COMMENT '电影id',
+  `merchantId` int(11) default NULL COMMENT '商家Id',
   `cityId` int(11) NOT NULL COMMENT '城市id',
   `areaId` int(11) NOT NULL COMMENT '区域id',
   `cinemaId` int(11) NOT NULL COMMENT '电影院id',
@@ -112,8 +139,8 @@ CREATE TABLE `t_group_film` (
   `startDate` datetime default NULL COMMENT '有效期开始时间',
   `endDate` datetime default NULL COMMENT '有效期结束时间',
   `status` int(11) NOT NULL COMMENT '0:申请中，1：已上架，2：已下架',
-  `comment` varchar(300) default NULL COMMENT '备注',
-  `type` int(11) NOT NULL COMMENT '电影类型，0：已经上映，1：未上映',
+  `remark` varchar(300) default NULL COMMENT '备注',
+  `type` int(11) NOT NULL COMMENT '电影类型，0：已经上映，1：即将上映 2：下架',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -152,7 +179,7 @@ CREATE TABLE `t_message` (
   `receiverId` int(11) default NULL COMMENT '收信人id',
   `content` varchar(300) default NULL COMMENT '内容',
   `time` datetime default NULL COMMENT '时间',
-  `type` int(11) default NULL COMMENT '0:代表管理员信息  1:代表会员信息，',
+  `type` int(11) default NULL COMMENT '0:理员管-商家  1:管理员-会员 2：会员-会员',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -162,13 +189,24 @@ CREATE TABLE `t_message` (
 DROP TABLE IF EXISTS `t_order`;
 CREATE TABLE `t_order` (
   `id` int(11) NOT NULL auto_increment,
-  `filmId` int(11) default NULL,
+  `groupFilmId` int(11) default NULL COMMENT '团购电影id',
   `userId` int(11) default NULL,
   `createTime` datetime default NULL COMMENT '订单日期',
   `expiredTime` datetime default NULL COMMENT '效时间失，超过40分为付款即为失效',
   `status` int(11) default NULL COMMENT '订单状态,0：失效，1：未支付，2：已经支付',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for t_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `t_tag`;
+CREATE TABLE `t_tag` (
+  `id` int(11) NOT NULL auto_increment,
+  `tagName` varchar(4) character set latin1 NOT NULL COMMENT '标签名称',
+  `filmNum` int(11) NOT NULL COMMENT '拥有该标签的电影数量',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_user
