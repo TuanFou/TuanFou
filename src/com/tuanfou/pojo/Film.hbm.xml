@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <!-- 产品信息字段配置信息 -->
+ <hibernate-mapping>
+ 	<class name="com.tuanfou.pojo.Film" table="t_film">
+ 		<!-- id值 -->
+ 		<id name="id" column="id" type="int">
+			<generator class="native"/>
+		</id>
+
+		<property name="merchantId" type="int" >
+			<column name="merchantId"/>
+		</property>
+
+		<property name="filmName" type="String" length="30">
+			<column name="filmName"/>
+		</property>
+		
+		<property name="releaseDate" type="Date" >
+			<column name="releaseDate"/>
+		</property>
+		
+		<property name="version" type="String" length="10">
+			<column name="version"/>
+		</property>		
+		
+		<property name="country" type="String" length="20">
+			<column name="country"/>
+		</property>		
+		
+		<property name="period" type="int" >
+			<column name="period"/>
+		</property>			
+		
+		<property name="description" type="String" length="500">
+			<column name="description"/>
+		</property>
+		
+		<property name="director" type="String" length="30">
+			<column name="director"/>
+		</property>	
+		
+		<property name="actors" type="String" length="100">
+			<column name="actors"/>
+		</property>
+		
+		<property name="star" type="int" >
+			<column name="star"/>
+		</property>	
+		
+		<property name="status" type="int" >
+			<column name="status"/>
+		</property>		
+		
+		<property name="applicationTime" type="Time" >
+			<column name="applicationTime"/>
+		</property>		
+						
+		<property name="auditResult" type="int" >
+			<column name="auditResult"/>
+		</property>														
+ 	</class>
+ </hibernate-mapping>

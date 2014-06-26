@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <!-- 产品信息字段配置信息 -->
+ <hibernate-mapping>
+ 	<class name="com.tuanfou.pojo.Cinema" table="t_cinema">
+ 		<!-- id值 -->
+ 		<id name="id" column="id" type="int">
+			<generator class="native"/>
+		</id>
+		
+		<property name="cinemaName" type="string" length="20">
+			<column name="cinemaName"/>
+		</property>
+		
+		<property name="phoneNumber" type="string" length="11">
+			<column name="phoneNumber"/>
+		</property>
+		
+		<property name="description" type="string" length="300">
+			<column name="description"/>
+		</property>
+		
+		<property name="cityId" type="int" >
+			<column name="cityId"/>
+		</property>
+
+		<property name="areaId" type="int" >
+			<column name="areaId"/>
+		</property>
+				
+		<property name="address" type="String" length="100">
+			<column name="address"/>
+		</property>
+ 	</class>
+ </hibernate-mapping>

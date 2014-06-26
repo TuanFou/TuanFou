@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <!-- 产品信息字段配置信息 -->
+ <hibernate-mapping>
+ 	<class name="com.tuanfou.pojo.Complaint" table="t_complaint">
+ 		<!-- id值 -->
+ 		<id name="id" column="id" type="int">
+			<generator class="native"/>
+		</id>
+
+		<property name="filmId" type="int" >
+			<column name="filmId"/>
+		</property>
+		
+		<property name="userId" type="int" >
+			<column name="userId"/>
+		</property>
+
+		<property name="reason" type="String" length="200">
+			<column name="reason"/>
+		</property>
+ 	</class>
+ </hibernate-mapping>
