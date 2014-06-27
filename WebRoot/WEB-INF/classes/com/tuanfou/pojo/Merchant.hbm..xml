@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <!-- 产品信息字段配置信息 -->
+ <hibernate-mapping>
+ 	<class name="com.tuanfou.pojo.Merchant" table="t_merchant">
+ 		<!-- id值 -->
+ 		<id name="id" column="id" type="int">
+			<generator class="native"/>
+		</id>
+		<!-- 产品名称 -->
+		<property name="merchantName" type="string" length="20">
+			<column name="name"/>
+		</property>
+		<!-- 产品价格 -->
+		<property name="password" type="string" length="16">
+			<column name="password"/>
+		</property>
+		<property name="idNumber" type="int" >
+			<column name="idNumber"/>
+		</property>
+		<property name="photoUrl" type="string" length="300">
+			<column name="photoUrl"/>
+		</property>
+		<property name="cinemaId" type="int">
+			<column name="cinemaId"/>
+		</property>
+ 	</class>
+ </hibernate-mapping>

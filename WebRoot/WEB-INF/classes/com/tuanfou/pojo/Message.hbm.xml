@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <!-- 产品信息字段配置信息 -->
+ <hibernate-mapping>
+ 	<class name="com.tuanfou.pojo.Message" table="t_message">
+ 		<!-- id值 -->
+ 		<id name="id" column="id" type="int">
+			<generator class="native"/>
+		</id>
+		<!-- 产品名称 -->
+		<property name="senderId" type="int">
+			<column name="senderId"/>
+		</property>
+		<!-- 产品价格 -->
+		<property name="receiverId" type="int">
+			<column name="receiverId"/>
+		</property>
+		<property name="content" type="string" length="300">
+			<column name="content"/>
+		</property>
+		<property name="time" type="date">
+			<column name="time"/>
+		</property>
+		<property name="type" type="int">
+			<column name="type"></column>
+		</property>
+ 	</class>
+ </hibernate-mapping>
