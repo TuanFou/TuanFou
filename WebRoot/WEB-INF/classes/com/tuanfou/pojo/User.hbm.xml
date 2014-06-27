@@ -17,34 +17,37 @@
 			<column name="password"/>
 		</property>
 		<!-- 账户 -->
-		<many-to-one name="account" unique="true" class="com.tuanfou.pojo.Account" cascade="true" column="accountId"></many-to-one>
+		<many-to-one name="account" unique="true" class="com.tuanfou.pojo.Account" cascade="all" column="accountId"></many-to-one>
 		<!-- 城市 -->
-		<many-to-one name="city" unique="true" class="com.tuanfou.pojo.City" cascade="true" column="cityId" ></many-to-one>
+		<many-to-one name="city" unique="true" class="com.tuanfou.pojo.City" cascade="all" column="cityId" ></many-to-one>
 		<!-- email -->
 		<property name="email" type="string" length="80">
 			<column name="email"/>
 		</property>
 		<!-- 简介 -->
 		<property name="description" type="string" length="500">
-			<column name="password"/>
+			<column name="description"/>
 		</property>
 		<!-- 头像路径 -->
 		<property name="photoUrl" type="string" length="300">
 			<column name="photoUrl"/>
 		</property>
 		
-		<set name="groupFilms" inverse="true">
+		<set name="comments" inverse="true">
 			<key column="userId"></key>
 			<one-to-many class="com.tuanfou.pojo.Comment"/>
 		</set>	
+		
 		<set name="complaints" inverse="true">
 			<key column="userId"></key>
 			<one-to-many class="com.tuanfou.pojo.Complaint"/>
 		</set>	
-		<set name="heartGroupFilm" inverse="true">
+		
+	    <set name="heartGroupFilm" table="t_heart">
 			<key column="userId"></key>
-			<one-to-many class="com.tuanfou.pojo.GroupFilm"/>
+			<many-to-many class="com.tuanfou.pojo.GroupFilm" column="groupFilmId"/>
 		</set>	
+		
 		<set name="orders" inverse="true">
 			<key column="userId"></key>
 			<one-to-many class="com.tuanfou.pojo.Order"/>

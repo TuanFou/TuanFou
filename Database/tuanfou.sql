@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014/6/27 15:03:21
+Date: 2014/6/27 21:08:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -14,7 +14,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `t_account`;
 CREATE TABLE `t_account` (
   `id` int(11) NOT NULL auto_increment,
-  `balance` float(11,0) NOT NULL COMMENT '余额',
+  `balance` float(11,0) default '0' COMMENT '余额',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -61,7 +61,7 @@ CREATE TABLE `t_cinema` (
 DROP TABLE IF EXISTS `t_city`;
 CREATE TABLE `t_city` (
   `id` int(11) NOT NULL auto_increment,
-  `cityName` varchar(20) NOT NULL COMMENT '城市名',
+  `cityName` varchar(20) character set utf8 NOT NULL COMMENT '城市名',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -87,7 +87,7 @@ CREATE TABLE `t_complaint` (
   `id` int(11) NOT NULL auto_increment,
   `groupFilmId` int(11) NOT NULL COMMENT '投诉团购id',
   `userId` int(11) NOT NULL COMMENT '会员id',
-  `reason` varchar(200) NOT NULL COMMENT '投诉原因',
+  `reason` varchar(200) character set utf8 NOT NULL COMMENT '投诉原因',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -212,7 +212,7 @@ CREATE TABLE `t_tag` (
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
   `id` int(11) NOT NULL auto_increment COMMENT '员会id',
-  `acountId` int(11) NOT NULL COMMENT '户账id',
+  `accountId` int(11) NOT NULL COMMENT '户账id',
   `username` char(30) NOT NULL COMMENT '用户名',
   `password` char(20) NOT NULL COMMENT '密码',
   `email` char(80) default NULL COMMENT '邮箱',
@@ -225,3 +225,9 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `t_account` VALUES ('1', '10');
+INSERT INTO `t_account` VALUES ('2', '12');
+INSERT INTO `t_city` VALUES ('2', 'wuhan');
+INSERT INTO `t_city` VALUES ('6', 'wuhan');
+INSERT INTO `t_user` VALUES ('1', '1', 'kdf', '123', 'kdf@163.com', '2', 'hello', 'kdf.jpg');
+INSERT INTO `t_user` VALUES ('2', '2', 'kongdefei', '123', 'kdf5000@163.com', '6', 'hello', 'photo.jpg');

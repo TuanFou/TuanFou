@@ -9,15 +9,15 @@
 			<generator class="native"/>
 		</id>
 		<!-- groupFilm 多对一映射 -->
-		<many-to-one name="groupFilm">
+		<many-to-one name="groupFilm" class="com.tuanfou.pojo.GroupFilm">
 			<column name="groupFilmId"></column>
 		</many-to-one>
 		<!-- 用户多对一  -->
-		<many-to-one name="user">
+		<many-to-one name="user" class="com.tuanfou.pojo.User">
 			<column name="userId"></column>
 		</many-to-one>
 		
-		<property name="reason" type="String" length="200">
+		<property name="reason" type="string" length="200">
 			<column name="reason"/>
 		</property>
  	</class>

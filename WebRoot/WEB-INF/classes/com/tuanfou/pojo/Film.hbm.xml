@@ -14,19 +14,19 @@
 			<column name="merchantId"></column>
 		</many-to-one>
 		<!-- 电影名字  -->
-		<property name="filmName" type="String" length="30">
+		<property name="filmName" type="string" length="30">
 			<column name="filmName"/>
 		</property>
 		<!-- 发布日期  -->
-		<property name="releaseDate" type="Date" >
+		<property name="releaseDate" type="date" >
 			<column name="releaseDate"/>
 		</property>
 		<!-- 版本  -->
-		<property name="version" type="String" length="10">
+		<property name="version" type="string" length="10">
 			<column name="version"/>
 		</property>		
 		<!-- 影片产地 -->
-		<property name="country" type="String" length="20">
+		<property name="country" type="string" length="20">
 			<column name="country"/>
 		</property>		
 		<!-- 时长 -->
@@ -34,15 +34,15 @@
 			<column name="period"/>
 		</property>			
 		<!-- 电影描述 -->
-		<property name="description" type="String" length="500">
+		<property name="description" type="string" length="500">
 			<column name="description"/>
 		</property>
 		<!-- 导演  -->
-		<property name="director" type="String" length="30">
+		<property name="director" type="string" length="30">
 			<column name="director"/>
 		</property>	
 		<!-- 主演  -->
-		<property name="actors" type="String" length="100">
+		<property name="actors" type="string" length="100">
 			<column name="actors"/>
 		</property>
 		<!-- 星级 -->
@@ -54,8 +54,8 @@
 			<column name="status"/>
 		</property>		
 		<!-- 申请时间 -->
-		<property name="applicationTime" type="Date" >
-			<column name="applicationTime"/>
+		<property name="applicateTime" type="date" >
+			<column name="applicateTime"/>
 		</property>		
 		<!-- 审核结果 -->				
 		<property name="auditResult" type="int" >

@@ -14,15 +14,15 @@
 			<column name="groupFilmId"></column>
 		</many-to-one>
 		<!--  用户多对一  -->
-		<many-to-one name="user">
+		<many-to-one name="user" class="com.tuanfou.pojo.User">
 			<column name="userId"></column>
 		</many-to-one>
 		
-		<property name="createTime" type="Date" >
+		<property name="createTime" type="date" >
 			<column name="createTime"/>
 		</property>
 
-		<property name="content" type="String" length="200">
+		<property name="content" type="string" length="200">
 			<column name="content"/>
 		</property>
 		

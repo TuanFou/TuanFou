@@ -3,13 +3,13 @@
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
  <!-- 产品信息字段配置信息 -->
  <hibernate-mapping>
- 	<class name="com.tuanfou.pojo.Group_film" table="t_group_film">
+ 	<class name="com.tuanfou.pojo.GroupFilm" table="t_group_film">
  		<!-- id值 -->
  		<id name="id" column="id" type="int">
 			<generator class="native"/>
 		</id>
 		<!-- 多对一关联的电影 -->
-		<many-to-one name="film" class="com.tuanfou.Film">
+		<many-to-one name="film" class="com.tuanfou.pojo.Film">
 			<column name="filmId"></column>
 		</many-to-one>
 		<!-- 多对一单向关联地区 -->

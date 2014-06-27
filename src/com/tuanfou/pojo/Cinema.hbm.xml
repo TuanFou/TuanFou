@@ -25,7 +25,7 @@
 			<column name="areaId"/>
 		</many-to-one>
 				
-		<property name="address" type="String" length="100">
+		<property name="address" type="string" length="100">
 			<column name="address"/>
 		</property>
 		<many-to-one name="merchant" class="com.tuanfou.pojo.Merchant">

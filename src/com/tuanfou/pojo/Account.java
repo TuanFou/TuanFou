@@ -2,7 +2,7 @@ package com.tuanfou.pojo;
 
 public class Account {
 	private int id;
-	private int balance;
+	private float balance;
 	
 	public int getId() {
 		return id;
@@ -10,10 +10,10 @@ public class Account {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getBalance() {
+	public float getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(float balance) {
 		this.balance = balance;
 	}
 }

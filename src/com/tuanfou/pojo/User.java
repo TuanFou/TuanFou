@@ -11,7 +11,7 @@ public class User {
 	private City city;//城市
 	private String description;
 	private String photoUrl;
-	private Set<Comment> commeents;
+	private Set<Comment> comments;
 	private Set<Complaint> complaints;
 	private Set<GroupFilm> heartGroupFilm;//想看的电影
 	private Set<Order> orders;
@@ -64,11 +64,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Set<Comment> getCommeents() {
-		return commeents;
+	public Set<Comment> getComments() {
+		return comments;
 	}
-	public void setCommeents(Set<Comment> commeents) {
-		this.commeents = commeents;
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 	public Set<Complaint> getComplaints() {
 		return complaints;

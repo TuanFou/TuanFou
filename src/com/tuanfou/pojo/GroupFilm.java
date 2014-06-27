@@ -10,7 +10,7 @@ public class GroupFilm {
 	private Area area;
 	private Cinema cinema;
 	private float currentPrice;//打折后的价格
-	private float orginalPrice;//打折前的价格
+	private float originalPrice;//打折前的价格
 	private Date startDate;
 	private Date endDate;
 	private int status;  //0:申请中，1:已上架，2：下架
@@ -56,12 +56,8 @@ public class GroupFilm {
 	public void setCurrentPrice(float currentPrice) {
 		this.currentPrice = currentPrice;
 	}
-	public float getOrginalPrice() {
-		return orginalPrice;
-	}
-	public void setOrginalPrice(float orginalPrice) {
-		this.orginalPrice = orginalPrice;
-	}
+	
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -109,5 +105,11 @@ public class GroupFilm {
 	}
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
+	}
+	public float getOriginalPrice() {
+		return originalPrice;
+	}
+	public void setOriginalPrice(float originalPrice) {
+		this.originalPrice = originalPrice;
 	}
 }

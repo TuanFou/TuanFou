@@ -36,6 +36,7 @@ public class UserAction extends ActionSupport {
 	 */
 	public String login(){
 		UserService service = new UserService();
+
 		if(service.addUser(user)){
 			return SUCCESS;
 		}else{
