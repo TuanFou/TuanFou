@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014/6/25 15:54:26
+Date: 2014/6/27 15:03:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -14,7 +14,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `t_account`;
 CREATE TABLE `t_account` (
   `id` int(11) NOT NULL auto_increment,
-  `balance` int(11) NOT NULL COMMENT '余额',
+  `balance` float(11,0) NOT NULL COMMENT '余额',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -46,10 +46,10 @@ CREATE TABLE `t_area` (
 DROP TABLE IF EXISTS `t_cinema`;
 CREATE TABLE `t_cinema` (
   `id` int(11) NOT NULL auto_increment,
+  `merchantId` int(11) NOT NULL,
   `name` varchar(20) NOT NULL COMMENT '影院名字',
   `phoneNumber` varchar(11) NOT NULL COMMENT '电话',
   `description` varchar(300) NOT NULL,
-  `cityId` int(11) NOT NULL COMMENT '所属城市id',
   `areaId` int(11) NOT NULL COMMENT '区域id',
   `address` varchar(100) NOT NULL COMMENT '影院详细地址',
   PRIMARY KEY  (`id`)
@@ -85,7 +85,7 @@ CREATE TABLE `t_comment` (
 DROP TABLE IF EXISTS `t_complaint`;
 CREATE TABLE `t_complaint` (
   `id` int(11) NOT NULL auto_increment,
-  `filmId` int(11) NOT NULL COMMENT '投诉团购id',
+  `groupFilmId` int(11) NOT NULL COMMENT '投诉团购id',
   `userId` int(11) NOT NULL COMMENT '会员id',
   `reason` varchar(200) NOT NULL COMMENT '投诉原因',
   PRIMARY KEY  (`id`)
@@ -118,9 +118,10 @@ CREATE TABLE `t_film` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_film_tag`;
 CREATE TABLE `t_film_tag` (
+  `id` int(11) NOT NULL,
   `filmId` int(11) NOT NULL COMMENT '影电id',
   `tagId` int(11) NOT NULL COMMENT '签标id',
-  PRIMARY KEY  (`filmId`,`tagId`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -130,8 +131,6 @@ DROP TABLE IF EXISTS `t_group_film`;
 CREATE TABLE `t_group_film` (
   `id` int(11) NOT NULL auto_increment,
   `filmId` int(11) NOT NULL COMMENT '电影id',
-  `merchantId` int(11) default NULL COMMENT '商家Id',
-  `cityId` int(11) NOT NULL COMMENT '城市id',
   `areaId` int(11) NOT NULL COMMENT '区域id',
   `cinemaId` int(11) NOT NULL COMMENT '电影院id',
   `currentPrice` float NOT NULL COMMENT '折后打价格',
@@ -150,7 +149,7 @@ CREATE TABLE `t_group_film` (
 DROP TABLE IF EXISTS `t_heart`;
 CREATE TABLE `t_heart` (
   `id` int(11) NOT NULL auto_increment,
-  `filmId` int(11) default NULL COMMENT '电影id',
+  `groupFilmId` int(11) default NULL COMMENT '购团电影id',
   `userId` int(11) default NULL COMMENT '会员id',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -165,7 +164,6 @@ CREATE TABLE `t_merchant` (
   `password` varchar(16) NOT NULL COMMENT '码密',
   `idNumber` varchar(18) NOT NULL COMMENT '身份证号',
   `photoUrl` varchar(300) NOT NULL COMMENT '照片路径',
-  `cinemaId` int(11) default NULL COMMENT '电影院id',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -214,11 +212,11 @@ CREATE TABLE `t_tag` (
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
   `id` int(11) NOT NULL auto_increment COMMENT '员会id',
-  `acountId` int(11) default NULL COMMENT '户账id',
+  `acountId` int(11) NOT NULL COMMENT '户账id',
   `username` char(30) NOT NULL COMMENT '用户名',
   `password` char(20) NOT NULL COMMENT '密码',
   `email` char(80) default NULL COMMENT '邮箱',
-  `cityId` int(11) default NULL,
+  `cityId` int(11) NOT NULL,
   `description` varchar(500) default NULL COMMENT '简介',
   `photoUrl` varchar(300) default NULL COMMENT '头像图片路径',
   PRIMARY KEY  (`id`)
@@ -227,10 +225,3 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('1', null, 'kdf', '123456', null, null, null, null);
-INSERT INTO `t_user` VALUES ('2', null, 'kdf', '123456', null, null, null, null);
-INSERT INTO `t_user` VALUES ('3', null, 'kdf', '123456', null, null, null, null);
-INSERT INTO `t_user` VALUES ('4', null, 'kdf', '123456', null, null, null, null);
-INSERT INTO `t_user` VALUES ('5', null, 'kdfd', '123456', null, null, null, null);
-INSERT INTO `t_user` VALUES ('6', null, 'kdf', '123456', null, null, null, null);
-INSERT INTO `t_user` VALUES ('7', null, 'kongdefei', '123456', null, null, null, null);
