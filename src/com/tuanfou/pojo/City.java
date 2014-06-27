@@ -1,8 +1,12 @@
 package com.tuanfou.pojo;
 
+import java.util.Set;
+
 public class City {
 	private int id;
 	private String cityName;
+    private Set<Area> areas;
+    
 	public int getId() {
 		return id;
 	}
@@ -14,5 +18,11 @@ public class City {
 	}
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+	public Set<Area> getAreas() {
+		return areas;
+	}
+	public void setAreas(Set<Area> areas) {
+		this.areas = areas;
 	}
 }

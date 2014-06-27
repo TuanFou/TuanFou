@@ -22,8 +22,9 @@
 		<property name="photoUrl" type="string" length="300">
 			<column name="photoUrl"/>
 		</property>
-		<property name="cinemaId" type="int">
-			<column name="cinemaId"/>
-		</property>
+		<set name="cinemas" inverse="true">
+			<key column="merchantId"></key>
+			<one-to-many class="com.tuanfou.pojo.Cinema"/>
+		</set>
  	</class>
  </hibernate-mapping>

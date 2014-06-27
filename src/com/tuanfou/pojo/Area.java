@@ -3,7 +3,8 @@ package com.tuanfou.pojo;
 public class Area {
 	private int id;
 	private String areaName;
-	private int cityId;
+	private City city;
+	
 	public int getId() {
 		return id;
 	}
@@ -16,10 +17,10 @@ public class Area {
 	public void setAreaName(String areaName) {
 		this.areaName = areaName;
 	}
-	public int getCityId() {
-		return cityId;
+	public City getCity() {
+		return city;
 	}
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
+	public void setCity(City city) {
+		this.city = city;
 	}
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <!-- 产品信息字段配置信息 -->
+ <hibernate-mapping>
+ 	<class name="com.tuanfou.pojo.Group_film" table="t_group_film">
+ 		<!-- id值 -->
+ 		<id name="id" column="id" type="int">
+			<generator class="native"/>
+		</id>
+		<!-- 多对一关联的电影 -->
+		<many-to-one name="film" class="com.tuanfou.Film">
+			<column name="filmId"></column>
+		</many-to-one>
+		<!-- 多对一单向关联地区 -->
+		<many-to-one name="area" class="com.tuanfou.pojo.Area">
+			<column name="areaId"></column>
+		</many-to-one>
+		<!-- 多对一关联剧院 -->
+		<many-to-one name="cinema" class="com.tuanfou.pojo.Cinema">
+			<column name="cinemaId"></column>
+		</many-to-one>
+		<!-- 产品价格 -->
+		<property name="currentPrice" type="float">
+			<column name="currentPrice"/>
+		</property>
+		<property name="originalPrice" type="float">
+			<column name="originalPrice"/>
+		</property>
+		<property name="startDate" type="date">
+			<column name="startDate"></column>
+		</property>
+		<property name="endDate" type="date">
+			<column name="endDate"></column>
+		</property>	
+		<property name="status" type="int">
+			<column name="status"></column>
+		</property>		
+		<property name="remark" type="string">
+			<column name="remark"></column>
+		</property>	
+		<property name="type" type="int">
+			<column name="type"></column>
+		</property>	
+		<!-- 我想看一对多-->
+		<set name="users" table="t_heart">
+			<key column="groupFilmId"></key>
+			<many-to-many class="com.tuanfou.pojo.User" column="userId"></many-to-many>
+		</set>
+		<set name="comments" inverse="true">
+			<key column="groupFilmId"></key>
+			<one-to-many class="com.tuanfou.pojo.Comment"/>
+		</set>
+		<set name="complaints" inverse="true">
+			<key column="groupFilmId"></key>
+			<one-to-many class="com.tuanfou.pojo.Complaint"/>
+		</set>	
+ 	</class>
+ </hibernate-mapping>

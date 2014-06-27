@@ -1,13 +1,23 @@
 package com.tuanfou.pojo;
 
+import java.util.Set;
+
 public class Cinema {
 	private int id;
 	private String cinemaName;
 	private String phoneNumber;
 	private String description;
-	private int cityId;
-	private int areaId;
+	private Area area;
 	private String address;
+	private Merchant merchant;
+	private Set<GroupFilm> groupFilms;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getCinemaName() {
 		return cinemaName;
 	}
@@ -26,23 +36,11 @@ public class Cinema {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getId() {
-		return id;
+	public Area getArea() {
+		return area;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getCityId() {
-		return cityId;
-	}
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
-	}
-	public int getAreaId() {
-		return areaId;
-	}
-	public void setAreaId(int areaId) {
-		this.areaId = areaId;
+	public void setArea(Area area) {
+		this.area = area;
 	}
 	public String getAddress() {
 		return address;
@@ -50,4 +48,16 @@ public class Cinema {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public Merchant getMerchant() {
+		return merchant;
+	}
+	public void setMerchant(Merchant merchant) {
+		this.merchant = merchant;
+	}
+	public Set<GroupFilm> getGroupFilms() {
+		return groupFilms;
+	}
+	public void setGroupFilms(Set<GroupFilm> groupFilms) {
+		this.groupFilms = groupFilms;
+	}	
 }

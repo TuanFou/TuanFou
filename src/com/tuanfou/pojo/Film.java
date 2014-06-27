@@ -1,27 +1,31 @@
 package com.tuanfou.pojo;
 
 import java.sql.Date;
-import java.sql.Time;
+import java.util.Set;
 
 public class Film {
-	private int merchantId;
+	private int id;
+	//private int merchantId;
+	private Merchant merchant;
 	private String filmName;
 	private Date releaseDate;
 	private String version;
 	private String country;
-	private int period;
+	private int period; //∑÷÷”
 	private String description;
 	private String director;
 	private String actors;
-	private int star;
-	private int status;
-	private Time applicateTime;
-	private int auditResult;
-	public int getMerchantId() {
-		return merchantId;
+	private int star; //0,1,2,3,4,5
+	private int status;//0£∫…Û∫À÷–£¨1£∫…Û∫À÷–£¨2£∫…Û∫ÀŒ¥Õ®π˝
+	private Date applicateTime;//2014-09-12 12:00:00
+	private int auditResult; //…Û∫À◊¥Ã¨£∫1£¨…Û∫ÀÕ®π˝£¨2£∫…Û∫ÀŒ¥Õ®π˝
+	private Set<Tag> tags;
+	private Set<GroupFilm> groupFilms;
+	public Merchant getMerchant() {
+		return merchant;
 	}
-	public void setMerchantId(int merchantId) {
-		this.merchantId = merchantId;
+	public void setMerchant(Merchant merchant) {
+		this.merchant = merchant;
 	}
 	public String getFilmName() {
 		return filmName;
@@ -35,17 +39,17 @@ public class Film {
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
 	public String getVersion() {
 		return version;
 	}
 	public void setVersion(String version) {
 		this.version = version;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	public int getPeriod() {
 		return period;
@@ -83,10 +87,10 @@ public class Film {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public Time getApplicateTime() {
+	public Date getApplicateTime() {
 		return applicateTime;
 	}
-	public void setApplicateTime(Time applicateTime) {
+	public void setApplicateTime(Date applicateTime) {
 		this.applicateTime = applicateTime;
 	}
 	public int getAuditResult() {
@@ -94,5 +98,23 @@ public class Film {
 	}
 	public void setAuditResult(int auditResult) {
 		this.auditResult = auditResult;
+	}
+	public Set<Tag> getTags() {
+		return tags;
+	}
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Set<GroupFilm> getGroupFilms() {
+		return groupFilms;
+	}
+	public void setGroupFilms(Set<GroupFilm> groupFilms) {
+		this.groupFilms = groupFilms;
 	}
 }

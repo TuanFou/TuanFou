@@ -3,18 +3,18 @@
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
  <!-- 产品信息字段配置信息 -->
  <hibernate-mapping>
- 	<class name="com.tuanfou.pojo.Heart" table="t_heart">
+ 	<class name="com.tuanfou.pojo.City" table="t_city">
  		<!-- id值 -->
  		<id name="id" column="id" type="int">
 			<generator class="native"/>
 		</id>
-		<!-- 产品名称 -->
-		<property name="filmId" type="int">
-			<column name="filmId"/>
+
+		<property name="cityName" type="string" length="20">
+			<column name="cityName"/>
 		</property>
-		<!-- 产品价格 -->
-		<property name="userId" type="int">
-			<column name="userId"/>
-		</property>
+		<set name="areas" inverse="true">
+			<key column="cityId"></key>
+			<one-to-many class="com.tuanfou.pojo.Area"/>
+		</set>
  	</class>
  </hibernate-mapping>

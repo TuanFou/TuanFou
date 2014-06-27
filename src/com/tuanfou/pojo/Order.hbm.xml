@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
- <!-- 产品信息字段配置信息 -->
+ <!-- 订单信息字段配置信息 -->
  <hibernate-mapping>
  	<class name="com.tuanfou.pojo.Order" table="t_order">
  		<!-- id值 -->
  		<id name="id" column="id" type="int">
 			<generator class="native"/>
 		</id>
-		<!-- 产品名称 -->
-		<property name="groupFilmId" type="int">
-			<column name="groupFilmId"/>
-		</property>
-		<!-- 产品价格 -->
-		<property name="userId" type="int">
-			<column name="userId"/>
-		</property>
+		<!-- 团购电影多对一 -->
+		<many-to-one name="groupFilm" class="com.tuanfou.pojo.GroupFilm">
+			<column name="groupFilmId"></column>
+		</many-to-one>
+		<!-- 会员多对一  -->
+		<many-to-one name="user" class="com.tuanfou.pojo.User">
+			<column name="userId"></column>
+		</many-to-one>
 		<property name="createTime" type="date" >
 			<column name="createTime"/>
 		</property>

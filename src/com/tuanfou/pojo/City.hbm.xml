@@ -12,6 +12,9 @@
 		<property name="cityName" type="string" length="20">
 			<column name="cityName"/>
 		</property>
-
+		<set name="areas" inverse="true">
+			<key column="cityId"></key>
+			<one-to-many class="com.tuanfou.pojo.Area"/>
+		</set>
  	</class>
  </hibernate-mapping>

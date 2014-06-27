@@ -3,6 +3,7 @@ package com.tuanfou.pojo;
 public class Account {
 	private int id;
 	private int balance;
+	
 	public int getId() {
 		return id;
 	}
@@ -15,5 +16,4 @@ public class Account {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-
 }

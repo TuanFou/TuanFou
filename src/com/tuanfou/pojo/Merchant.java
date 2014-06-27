@@ -1,13 +1,15 @@
 package com.tuanfou.pojo;
 
+import java.util.Set;
+
 public class Merchant {
 	private int id;
 	private String merchantName;
 	private String password;
 	private String idNumber;
 	private String photoUrl;
-	private int cinemaId;
-	
+	private Set<Film> films;
+	private Set<Cinema> cinemas;
 	public int getId() {
 		return id;
 	}
@@ -39,11 +41,16 @@ public class Merchant {
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
 	}
-	public int getCinemaId() {
-		return cinemaId;
+	public Set<Film> getFilms() {
+		return films;
 	}
-	public void setCinemaId(int cinemaId) {
-		this.cinemaId = cinemaId;
+	public void setFilms(Set<Film> films) {
+		this.films = films;
 	}
-	
+	public Set<Cinema> getCinemas() {
+		return cinemas;
+	}
+	public void setCinemas(Set<Cinema> cinemas) {
+		this.cinemas = cinemas;
+	}
 }

@@ -1,14 +1,14 @@
 package com.tuanfou.pojo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Order {
 	private int id;
-	private int groupFilmId;
-	private int userId;
+	private GroupFilm groupFilm;
+	private User user;
 	private Date createTime;
 	private Date expiredTime;
-	private int status;
+	private int status;  //订单状态，0：失效，1：未支付，2：已经支付
 	
 	public int getId() {
 		return id;
@@ -16,17 +16,17 @@ public class Order {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getGroupFilmId() {
-		return groupFilmId;
+	public GroupFilm getGroupFilm() {
+		return groupFilm;
 	}
-	public void setGroupFilmId(int groupFilmId) {
-		this.groupFilmId = groupFilmId;
+	public void setGroupFilm(GroupFilm groupFilm) {
+		this.groupFilm = groupFilm;
 	}
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public Date getCreateTime() {
 		return createTime;
@@ -46,6 +46,4 @@ public class Order {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
 }

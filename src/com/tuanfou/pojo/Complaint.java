@@ -2,26 +2,27 @@ package com.tuanfou.pojo;
 
 public class Complaint {
 	private int id;
-	private int filmId;
-	private int userId;
+	private GroupFilm groupFilm;
+	private User user;
 	private String reason;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
+	public GroupFilm getGroupFilm() {
+		return groupFilm;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setGroupFilm(GroupFilm groupFilm) {
+		this.groupFilm = groupFilm;
 	}
-	public int getFilmId() {
-		return filmId;
+	public User getUser() {
+		return user;
 	}
-	public void setFilmId(int filmId) {
-		this.filmId = filmId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getReason() {
 		return reason;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
- <!-- 产品信息字段配置信息 -->
+ <!-- 管理员信息字段配置信息 -->
  <hibernate-mapping>
  	<class name="com.tuanfou.pojo.Admin" table="t_admin">
  		<!-- id值 -->
@@ -16,7 +16,6 @@
 		<property name="password" type="string" length="16">
 			<column name="password"/>
 		</property>
-
  	</class>
  </hibernate-mapping>
 

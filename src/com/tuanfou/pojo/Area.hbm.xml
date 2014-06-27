@@ -13,8 +13,8 @@
 			<column name="areaName"/>
 		</property>
 		
-		<property name="cityId" type="int">
+		<many-to-one name="city" class="com.tuanfou.pojo.City">
 			<column name="cityId"/>
-		</property>
+		</many-to-one>
  	</class>
  </hibernate-mapping>

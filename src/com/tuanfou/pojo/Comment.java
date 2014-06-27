@@ -4,28 +4,35 @@ import java.sql.Date;
 
 public class Comment {
 	private int id;
-	private int groupFilmId;
-	private int userId;
+	private GroupFilm groupFilm;
+	private User user;
 	private Date createTime;	//此处Date类型对应mysql中datetime
 	private String content;
 	private int star;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getGroupFilmId() {
-		return groupFilmId;
+	public GroupFilm getGroupFilm() {
+		return groupFilm;
 	}
-	public void setGroupFilmId(int groupFilmId) {
-		this.groupFilmId = groupFilmId;
+	public void setGroupFilm(GroupFilm groupFilm) {
+		this.groupFilm = groupFilm;
 	}
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	public String getContent() {
 		return content;
@@ -39,11 +46,4 @@ public class Comment {
 	public void setStar(int star) {
 		this.star = star;
 	}
-	public Date getCreateTime() {
-		return createTime;
-	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
 }

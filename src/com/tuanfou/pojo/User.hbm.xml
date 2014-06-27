@@ -8,14 +8,47 @@
  		<id name="id" column="id" type="int">
 			<generator class="native"/>
 		</id>
-		<!-- 产品名称 -->
+		<!--用户名-->
 		<property name="userName" type="string" length="30">
 			<column name="username"/>
 		</property>
-		<!-- 产品价格 -->
+		<!-- 密码-->
 		<property name="password" type="string" length="20">
 			<column name="password"/>
 		</property>
+		<!-- 账户 -->
+		<many-to-one name="account" unique="true" class="com.tuanfou.pojo.Account" cascade="true" column="accountId"></many-to-one>
+		<!-- 城市 -->
+		<many-to-one name="city" unique="true" class="com.tuanfou.pojo.City" cascade="true" column="cityId" ></many-to-one>
+		<!-- email -->
+		<property name="email" type="string" length="80">
+			<column name="email"/>
+		</property>
+		<!-- 简介 -->
+		<property name="description" type="string" length="500">
+			<column name="password"/>
+		</property>
+		<!-- 头像路径 -->
+		<property name="photoUrl" type="string" length="300">
+			<column name="photoUrl"/>
+		</property>
+		
+		<set name="groupFilms" inverse="true">
+			<key column="userId"></key>
+			<one-to-many class="com.tuanfou.pojo.Comment"/>
+		</set>	
+		<set name="complaints" inverse="true">
+			<key column="userId"></key>
+			<one-to-many class="com.tuanfou.pojo.Complaint"/>
+		</set>	
+		<set name="heartGroupFilm" inverse="true">
+			<key column="userId"></key>
+			<one-to-many class="com.tuanfou.pojo.GroupFilm"/>
+		</set>	
+		<set name="orders" inverse="true">
+			<key column="userId"></key>
+			<one-to-many class="com.tuanfou.pojo.Order"/>
+		</set>	
  	</class>
  </hibernate-mapping>
 
