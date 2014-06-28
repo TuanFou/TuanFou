@@ -6,17 +6,18 @@ import com.tuanfou.pojo.City;
 
 public class AreaDaoTest {
 	public static void main(String[] args) {
-		addAreaTest();
-	}
-	
-	public static void addAreaTest(){
+
 		Area area = new Area();
 		City city = new City();
-		city.setId(6);
+		city.setId(2);
 		area.setCity(city);
-		area.setAreaName("hongshan");
+		area.setAreaName("ÇàÉ½Çø");
 		AreaDao areaDao = new AreaDao();
-		areaDao.addArea(area);
-		System.out.println(area.getAreaName());
+		if(areaDao.addArea(area)){
+			System.out.println(area.getAreaName());
+		}else{
+			System.out.println("failed");
+		}
+		
 	}
 }

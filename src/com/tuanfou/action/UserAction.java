@@ -27,6 +27,8 @@ public class UserAction extends ActionSupport {
 	private HttpServletRequest req;
 	private HttpServletResponse response;
 	private UserService userService;
+	@SuppressWarnings("unused")
+	private List<User>  userList;
 	public User getUser() {
 		return user;
 	}
@@ -48,14 +50,14 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 	}
 	/*
-	 * 获取用户列表
+	 * 获取用户列表href="UserAction!getUserList"
 	 */
 	public void getUserList() throws IOException{
-		List<User>  userList = new ArrayList<User>();
+		userList = new ArrayList<User>();
 		response =  ServletActionContext.getResponse();
 		userService = new UserService();
 		userList = userService.getUserList();
 		PrintWriter  out = response.getWriter();
-		out.print(userList);
+		out.print("hello");
 	}
 }

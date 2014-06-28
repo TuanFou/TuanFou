@@ -2,6 +2,7 @@ package com.tuanfou.pojo;
 
 import java.sql.Date;
 
+
 public class Comment {
 	private int id;
 	private GroupFilm groupFilm;
@@ -31,8 +32,8 @@ public class Comment {
 	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreateTime(Date date) {
+		this.createTime = date;
 	}
 	public String getContent() {
 		return content;

@@ -12,4 +12,4 @@
 hs_err_pid*
 
 # to change get the merge started--FROM YOGIMAN
-WebRoot/WEB-INF/classes/com/tuanfou/pojo/
+WebRoot/WEB-INF/classes/

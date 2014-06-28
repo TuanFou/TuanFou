@@ -16,7 +16,7 @@ public class UserDaoTest {
 		City city = new City();
 		Account account = new Account();
 		account.setBalance(10);
-		city.setCityName("wuhan");
+		city.setId(2);
 		user.setAccount(account);
 		user.setCity(city);
 		user.setEmail("kdf@163.com");

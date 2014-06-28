@@ -6,26 +6,26 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.tuanfou.pojo.User;
+import com.tuanfou.pojo.Order;
 import com.tuanfou.utils.HibernateUtil;
 
-public class UserDao {
-	private Session session = null;
+public class OrderDao {
+	Session session = null;
 	
 	/*
-	 * 添加一个用户
+	 * 添加一个订单
 	 */
-	public boolean addUser(User user){
+	public boolean addOrder(Order order){
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
 			session.beginTransaction();//开始事物
-			session.save(user);
+			session.save(order);
 			session.getTransaction().commit();//提交事物
 			res = true;
 		}catch(Exception e){
 			session.getTransaction().rollback();//回滚事物
-			System.out.println("添加用户失败");
+			System.out.println("添加订单失败");
 			e.printStackTrace();
 			res = false;
 		}finally{
@@ -34,22 +34,22 @@ public class UserDao {
 		return res;
 	}
 	/*
-	 * 获取用户列表
+	 * 获取订单列表
 	 */
 	@SuppressWarnings("unchecked")
-	public List<User> getUserList(){
-		List<User> userList = new ArrayList<User>();
+	public List<Order> getOrderList(){
+		List<Order> orderList = new ArrayList<Order>();
 		try{
 			session = HibernateUtil.getSession();
-			String hql = "from User user";
+			String hql = "from Order order";
 			Query q = session.createQuery(hql);
-			userList = q.list();
+			orderList = q.list();
 		}catch(Exception e){
 			System.out.println("查询失败");
 			e.printStackTrace();
 		}finally{
 			HibernateUtil.closeSession();
 		}
-		return userList;	
+		return orderList;	
 	}
 }
