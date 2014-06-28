@@ -1,6 +1,13 @@
 package com.tuanfou.action;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.pojo.User;
@@ -16,15 +23,10 @@ public class UserAction extends ActionSupport {
 	 * @return 是否成功
 	 */
 	private User user;
-	private List<User> userList;
-	
-	public List<User> getUserList() {
-		return userList;
-	}
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
-	
+	@SuppressWarnings("unused")
+	private HttpServletRequest req;
+	private HttpServletResponse response;
+	private UserService userService;
 	public User getUser() {
 		return user;
 	}
@@ -36,24 +38,24 @@ public class UserAction extends ActionSupport {
 	 */
 	public String login(){
 		UserService service = new UserService();
-
 		if(service.addUser(user)){
 			return SUCCESS;
 		}else{
 			return ERROR;
 		}
-
 	}
 	public String regist(){
 		return SUCCESS;
 	}
-	
 	/*
 	 * 获取用户列表
 	 */
-	public String listUsers(){
-		UserService service = new UserService();
-		userList = service.getUserList();
-		return SUCCESS;
+	public void getUserList() throws IOException{
+		List<User>  userList = new ArrayList<User>();
+		response =  ServletActionContext.getResponse();
+		userService = new UserService();
+		userList = userService.getUserList();
+		PrintWriter  out = response.getWriter();
+		out.print(userList);
 	}
 }
