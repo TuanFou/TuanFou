@@ -51,7 +51,7 @@
 			<key column="groupFilmId"></key>
 			<one-to-many class="com.tuanfou.pojo.Comment"/>
 		</set>
-		<set name="complaints" inverse="true">
+		<set name="complaints" inverse="true" cascade="all">
 			<key column="groupFilmId"></key>
 			<one-to-many class="com.tuanfou.pojo.Complaint"/>
 		</set>	
