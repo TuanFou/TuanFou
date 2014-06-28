@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014/6/27 21:08:32
+Date: 2014/6/28 11:47:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `t_film`;
 CREATE TABLE `t_film` (
   `id` int(11) NOT NULL auto_increment,
   `merchantId` int(11) default NULL COMMENT '商家id',
-  `filmName` varchar(30) default NULL COMMENT '电影名称',
+  `filmName` varchar(50) default NULL COMMENT '电影名称',
   `releaseDate` date default NULL COMMENT '映放日期',
   `version` varchar(10) default NULL COMMENT '版本',
   `country` varchar(20) default NULL COMMENT '地区，美国，中国，香港等等',
@@ -175,7 +175,7 @@ CREATE TABLE `t_message` (
   `id` int(11) NOT NULL auto_increment,
   `senderId` int(11) default NULL COMMENT '信发人id',
   `receiverId` int(11) default NULL COMMENT '收信人id',
-  `content` varchar(300) default NULL COMMENT '内容',
+  `content` varchar(300) character set utf8 default NULL COMMENT '内容',
   `time` datetime default NULL COMMENT '时间',
   `type` int(11) default NULL COMMENT '0:理员管-商家  1:管理员-会员 2：会员-会员',
   PRIMARY KEY  (`id`)
@@ -201,7 +201,7 @@ CREATE TABLE `t_order` (
 DROP TABLE IF EXISTS `t_tag`;
 CREATE TABLE `t_tag` (
   `id` int(11) NOT NULL auto_increment,
-  `tagName` varchar(4) character set latin1 NOT NULL COMMENT '标签名称',
+  `tagName` varchar(20) character set utf8 collate utf8_bin NOT NULL COMMENT '标签名称',
   `filmNum` int(11) NOT NULL COMMENT '拥有该标签的电影数量',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -227,7 +227,15 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 INSERT INTO `t_account` VALUES ('1', '10');
 INSERT INTO `t_account` VALUES ('2', '12');
+INSERT INTO `t_account` VALUES ('3', '100');
+INSERT INTO `t_admin` VALUES ('1', null, 'admin');
 INSERT INTO `t_city` VALUES ('2', 'wuhan');
 INSERT INTO `t_city` VALUES ('6', 'wuhan');
+INSERT INTO `t_film` VALUES ('1', '1', 'love', '2014-06-28', null, null, null, null, null, null, null, '1', null, null);
+INSERT INTO `t_message` VALUES ('5', '1', '1', 'hhhh', '3914-07-28 00:00:00', '1');
+INSERT INTO `t_message` VALUES ('6', '1', '1', '你好', '3914-07-28 00:00:00', '1');
+INSERT INTO `t_message` VALUES ('7', '1', '1', '投诉信息', '2014-06-28 00:00:00', '1');
+INSERT INTO `t_tag` VALUES ('1', '喜剧', '0');
+INSERT INTO `t_tag` VALUES ('2', '爱情', '0');
 INSERT INTO `t_user` VALUES ('1', '1', 'kdf', '123', 'kdf@163.com', '2', 'hello', 'kdf.jpg');
 INSERT INTO `t_user` VALUES ('2', '2', 'kongdefei', '123', 'kdf5000@163.com', '6', 'hello', 'photo.jpg');
