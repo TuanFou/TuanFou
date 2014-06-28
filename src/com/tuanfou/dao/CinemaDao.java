@@ -13,7 +13,7 @@ public class CinemaDao {
 	 * @param cinema
 	 * @return
 	 */
-	public boolean addFilm(Cinema cinema){
+	public boolean addCinema(Cinema cinema){
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();

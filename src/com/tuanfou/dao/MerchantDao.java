@@ -31,4 +31,6 @@ public class MerchantDao {
 		}
 		return res;
 	}
+	
+
 }

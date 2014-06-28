@@ -16,7 +16,7 @@
 		<property name="password" type="string" length="16">
 			<column name="password"/>
 		</property>
-		<property name="idNumber" type="int" >
+		<property name="idNumber" type="string" >
 			<column name="idNumber"/>
 		</property>
 		<property name="photoUrl" type="string" length="300">
