@@ -10,7 +10,7 @@
 		</id>
 		
 		<property name="cinemaName" type="string" length="20">
-			<column name="cinemaName"/>
+			<column name="name"/>
 		</property>
 		
 		<property name="phoneNumber" type="string" length="11">

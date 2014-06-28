@@ -12,7 +12,7 @@ public class AccountDaoTest {
 		account.setBalance(100);
 		
 		AccountDao accountDao = new AccountDao();
-		accountDao.add(account);
+		accountDao.update(account);
 		
 	}
 }

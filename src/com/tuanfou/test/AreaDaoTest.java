@@ -6,6 +6,7 @@ import com.tuanfou.pojo.City;
 
 public class AreaDaoTest {
 	public static void main(String[] args) {
+
 		Area area = new Area();
 		City city = new City();
 		city.setId(2);
