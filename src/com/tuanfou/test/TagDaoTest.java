@@ -12,12 +12,12 @@ public class TagDaoTest {
 		// TODO Auto-generated method stub
 		Tag tag = new Tag();
 		tag.setFilmNum(0);
-		tag.setTagName("°®Çé");
+		tag.setTagName("ÐüÒÉ");
 		Film film = new Film();
-		film.setId(1);
-		Set<Film> films = new HashSet();
-		films.add(film);
-		tag.setFilms(films);	
+//		film.setId(1);
+//		Set<Film> films = new HashSet<Film>();
+//		films.add(film);
+	//	tag.setFilms(films);	
 		TagDao tagDao = new TagDao();
 		tagDao.add(tag);
 		

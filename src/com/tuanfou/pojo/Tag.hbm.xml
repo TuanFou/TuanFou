@@ -16,5 +16,10 @@
 		<property name="filmNum" type="int">
 			<column name="filmNum"/>
 		</property>
+		<!-- 一对多映射 -->
+		<set name="films" table="t_film_tag">
+			<key column="tagId"></key>
+			<many-to-many class="com.tuanfou.pojo.Film" column="filmId" />			
+		</set>	 
  	</class>
  </hibernate-mapping>
