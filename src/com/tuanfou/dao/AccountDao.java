@@ -27,5 +27,23 @@ public class AccountDao {
 		}
 	}
 	
+	public boolean update(Account account){
+		Session session = null;
+		try{
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			session.update(account);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return false;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
 
 }
