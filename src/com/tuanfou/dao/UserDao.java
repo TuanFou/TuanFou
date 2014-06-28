@@ -1,11 +1,15 @@
 package com.tuanfou.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -51,5 +55,25 @@ public class UserDao {
 			HibernateUtil.closeSession();
 		}
 		return userList;	
+	}
+	/*
+	 * 获取用户所有订单
+	 */
+	public Set<Comment> getUserComments(int id){
+		Set<Comment> userComments = new HashSet<Comment>();
+		try{
+			session = HibernateUtil.getSession();
+			User user = (User)session.get(User.class, new Integer(id));
+			Set<Comment> comments = user.getComments();
+			for(Iterator<Comment> it =comments.iterator(); it.hasNext(); ){
+				Comment comment = (Comment)it.next();
+				userComments.add(comment);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
+		}
+		return userComments;
 	}
 }
