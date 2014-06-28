@@ -1,6 +1,5 @@
 package com.tuanfou.test;
 
-
 import java.util.Iterator;
 import java.util.Set;
 
@@ -18,10 +17,9 @@ public class TagDaoTest {
 		System.out.println("tagId:"+tagId);
 		Set<Film> films = tagDao.findFilms(tagId);
 		Iterator<Film> it = films.iterator();
-		while(it.hasNext())
-		{
+		while(it.hasNext()){
 			Film film = it.next();
-			System.out.println("电影："+film.getId());
+			System.out.println("电影id："+film.getId());
 		}
 //		film.setId(1);
 //		Set<Film> films = new HashSet<Film>();

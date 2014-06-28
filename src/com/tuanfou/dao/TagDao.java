@@ -1,6 +1,7 @@
 package com.tuanfou.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -32,14 +33,20 @@ public class TagDao {
 			HibernateUtil.closeSession();
 		}
 	}
-	
+		
 	public Set<Film> findFilms(int tagId){
 		Session session = null;
+		Set<Film> filmSet = new HashSet<Film>();
 		try{
 			session = HibernateUtil.getSession();
 			Tag tag = (Tag)session.get(Tag.class, tagId);
 			Set<Film> films = tag.getFilms();
-			return films;
+			Iterator<Film> it = films.iterator();
+			while(it.hasNext()){
+				Film film = it.next();
+				filmSet.add(film);
+			}
+			return filmSet;
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -48,7 +55,8 @@ public class TagDao {
 		finally{
 			HibernateUtil.closeSession();
 		}
-	} 
+		
+	}
 	@SuppressWarnings("unchecked")
 	public int findId(String tagName){
 		Session session = null;
