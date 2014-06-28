@@ -2,7 +2,7 @@ package com.tuanfou.pojo;
 
 public class Admin {
 	private int id;//主键
-	private int employeeId;//职工编号
+	private String employeeId;//职工编号
 	private String password;//密码
 	
 	public int getId() {
@@ -11,16 +11,17 @@ public class Admin {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
+	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 }
