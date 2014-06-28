@@ -27,6 +27,7 @@ public class UserAction extends ActionSupport {
 	private HttpServletRequest req;
 	private HttpServletResponse response;
 	private UserService userService;
+	
 	public User getUser() {
 		return user;
 	}

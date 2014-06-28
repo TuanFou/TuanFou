@@ -19,7 +19,7 @@
 		<!-- 账户 -->
 		<many-to-one name="account" unique="true" class="com.tuanfou.pojo.Account" cascade="all" column="accountId"></many-to-one>
 		<!-- 城市 -->
-		<many-to-one name="city" unique="true" class="com.tuanfou.pojo.City" cascade="all" column="cityId" ></many-to-one>
+		<many-to-one name="city" unique="true" class="com.tuanfou.pojo.City"  column="cityId" ></many-to-one>
 		<!-- email -->
 		<property name="email" type="string" length="80">
 			<column name="email"/>
