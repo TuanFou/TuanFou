@@ -10,5 +10,8 @@
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ehcache-core-2.4.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/gson-2.2.4-javadoc.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/gson-2.2.4-sources.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

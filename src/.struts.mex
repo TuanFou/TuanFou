@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="userPackage" location="10,10" size="280,140">
+    <action name="UserAction" location="27,42" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="success.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="success.jsp" path="/success.jsp" location="45,204" size="150,55" />
+  <webResource name="error.jsp" path="/error.jsp" location="355,52" size="150,55" />
+  <package name="GroupFilm" location="375,172" size="170,70">
+    <action name="GroupFilmAction" location="70,30" size="150,40">
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+</Struts2Diagram>
+

@@ -1,13 +1,20 @@
-package com.tuanfou.test;
+ï»¿package com.tuanfou.test;
 
-//import java.sql.Date;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+
+import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
+import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.pojo.Area;
 import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Merchant;
+import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmDaoTest {
 
@@ -21,39 +28,59 @@ public class GroupFilmDaoTest {
 //		private Merchant merchant;
 //		private Area area;
 //		private Cinema cinema;
-//		private float currentPrice;//´òÕÛºóµÄ¼Û¸ñ
-//		private float originalPrice;//´òÕÛÇ°µÄ¼Û¸ñ
+//		private float currentPrice;//ï¿½ï¿½ï¿½Ûºï¿½Ä¼Û¸ï¿½
+//		private float originalPrice;//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ä¼Û¸ï¿½
 //		private Date startDate;
 //		private Date endDate;
-//		private int status;  //0:ÉêÇëÖÐ£¬1:ÒÑÉÏ¼Ü£¬2£ºÏÂ¼Ü
-//		private String remark;//±¸×¢
-//		private int type;//0:ÒÑ¾­ÉÏÓ³, 1£º¼´½«ÉÏÓ³£¬2£ºÏÂ¼Ü
-		GroupFilmDao groupFilmDao = new GroupFilmDao();
-		GroupFilm groupFilm = new GroupFilm();
-		Film film = new Film();
-		film.setId(1);
-		Merchant merchant  = new Merchant();
-		merchant.setId(3);
-		Area area = new Area();
-		area.setId(1);
-		Cinema cinema = new Cinema();
-		cinema.setId(1);
+//		private int status;  //0:ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½1:ï¿½ï¿½ï¿½Ï¼Ü£ï¿½2ï¿½ï¿½ï¿½Â¼ï¿½
+//		private String remark;//ï¿½ï¿½×¢
+//		private int type;//0:ï¿½Ñ¾ï¿½ï¿½ï¿½Ó³, 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½2ï¿½ï¿½ï¿½Â¼ï¿½
+//		GroupFilmDao groupFilmDao = new GroupFilmDao();
+//		GroupFilm groupFilm = new GroupFilm();
+//		Film film = new Film();
+//		film.setId(1);
+//		Merchant merchant  = new Merchant();
+//		merchant.setId(3);
+//		Area area = new Area();
+//		area.setId(1);
+//		Cinema cinema = new Cinema();
+//		cinema.setId(1);
+//		
+//		groupFilm.setArea(area);
+//		groupFilm.setCinema(cinema);
+//		groupFilm.setMerchant(merchant);
+//		groupFilm.setFilm(film);
+//		
+//		groupFilm.setCurrentPrice(19.0f);
+//		groupFilm.setOriginalPrice(20.0f);
+//		groupFilm.setRemark("hello");
+//		groupFilm.setStartDate(new java.sql.Date(new java.util.Date().getTime()));
+//		groupFilm.setEndDate(new java.sql.Date(new java.util.Date().getTime()));
+//		if(groupFilmDao.addGroupFilm(groupFilm)){
+//			System.out.println("success");
+//		}else{
+//			System.out.println("failed");
+//		}
 		
-		groupFilm.setArea(area);
-		groupFilm.setCinema(cinema);
-		groupFilm.setMerchant(merchant);
-		groupFilm.setFilm(film);
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ð±ï¿½
+//		GroupFilmDao groupFilmDao = new GroupFilmDao();
+//		//List<GroupFilm> groupFilms = groupFilmDao.getGroupFilms(0, 1);
+//		List<GroupFilmBriefInfo> groupFilms = groupFilmDao.getGroupFilmsBriefInfo(0, 10);
+//		System.out.println(groupFilms);
 		
-		groupFilm.setCurrentPrice(19.0f);
-		groupFilm.setOriginalPrice(20.0f);
-		groupFilm.setRemark("hello");
-		groupFilm.setStartDate(new java.sql.Date(new java.util.Date().getTime()));
-		groupFilm.setEndDate(new java.sql.Date(new java.util.Date().getTime()));
-		if(groupFilmDao.addGroupFilm(groupFilm)){
-			System.out.println("success");
-		}else{
-			System.out.println("failed");
-		}
+		GroupFilmService se = new GroupFilmService();
+		List<GroupFilmBriefInfo> list = se.loadGroupFilmsBriefInfo(0, 10);
+//		for(GroupFilmBriefInfo tem:list){
+//			System.out.println("ï¿½ï¿½ï¿½ï¿½:"+tem.getCinemaName()+tem.getStar());
+//		}
+		GroupFilmBriefInfo info = list.get(0);
+//		List<String> tags = new ArrayList<String>();
+//		tags.add("ï¿½ï¿½ï¿½ï¿½");
+//		tags.add("ï¿½ï¿½ï¿½ï¿½");
+//		info.setTags(tags);
+		Gson gson = new Gson();
+		String str = gson.toJson(list);
+		System.out.println(str);
 	}
 
 }

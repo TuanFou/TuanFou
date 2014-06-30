@@ -1,6 +1,7 @@
 package com.tuanfou.pojo;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.Set;
 
 public class GroupFilm {
@@ -9,14 +10,15 @@ public class GroupFilm {
 	private Merchant merchant;
 	private Area area;
 	private Cinema cinema;
-	private float currentPrice;//´òÕÛºóµÄ¼Û¸ñ
-	private float originalPrice;//´òÕÛÇ°µÄ¼Û¸ñ
+	private float currentPrice;//ï¿½ï¿½ï¿½Ûºï¿½Ä¼Û¸ï¿½
+	private float originalPrice;//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ä¼Û¸ï¿½
 	private Date startDate;
 	private Date endDate;
-	private int status;  //0:ÉêÇëÖÐ£¬1:ÒÑÉÏ¼Ü£¬2£ºÏÂ¼Ü
-	private String remark;//±¸×¢
-	private int type;//0:ÒÑ¾­ÉÏÓ³, 1£º¼´½«ÉÏÓ³£¬2£ºÏÂ¼Ü
-	private Set<User> users;//Ïë¿´ÓÃ»§
+	private int status;  //0:ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½1:ï¿½ï¿½ï¿½Ï¼Ü£ï¿½2ï¿½ï¿½ï¿½Â¼ï¿½
+	private String remark;//ï¿½ï¿½×¢
+	private int type;//0:ï¿½Ñ¾ï¿½ï¿½ï¿½Ó³, 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½2ï¿½ï¿½ï¿½Â¼ï¿½
+	private String picUrl;//å›¾ç‰‡è·¯å¾„
+	private Set<User> users;//ï¿½ë¿´ï¿½Ã»ï¿½
 	private Set<Comment> comments;
 	private Set<Complaint> complaints;
 	
@@ -111,5 +113,11 @@ public class GroupFilm {
 	}
 	public void setOriginalPrice(float originalPrice) {
 		this.originalPrice = originalPrice;
+	}
+	public String getPicUrl() {
+		return picUrl;
+	}
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 }
