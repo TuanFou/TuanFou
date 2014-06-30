@@ -9,6 +9,7 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.dto.TagInfo;
 import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.Tag;
 import com.tuanfou.utils.HibernateUtil;
@@ -86,14 +87,41 @@ public class TagDao {
 		
 	}
 	
-	public List<Tag> getTags(){
+	//获得tagInfo，包含tagName，有此标签的films
+	@SuppressWarnings("unchecked")
+	public List<TagInfo> getTagInfoList(){
 		Session session = null;
+		List<TagInfo> tagInfoList = new ArrayList<TagInfo>();
 		try{
 			session = HibernateUtil.getSession();
-			
+			String hql = "From Tag";
+			Query query = session.createQuery(hql);		
+			Iterator<Tag> it = query.list().iterator();
+			while(it.hasNext())
+			{
+				Tag tag = it.next();
+				TagInfo tagInfo = new TagInfo();
+				tagInfo.setTagId(tag.getId());
+				tagInfo.setTagName(tag.getTagName());
+				System.out.println(tag.getTagName());
+				
+				Set<Film> films = new HashSet<Film>();
+				Iterator<Film> filmIt = tag.getFilms().iterator();
+				while(filmIt.hasNext())
+				{
+					Film film = filmIt.next();
+					films.add(film);
+					System.out.println("filmName:"+film.getFilmName());
+				}
+				tagInfo.setFilms(films);
+				tagInfoList.add(tagInfo);
+			}
+			System.out.println("Success");
+			return tagInfoList;			
 		}
 		catch(Exception e){
-			
+			e.printStackTrace();
+			return null;
 		}
 		finally{
 			HibernateUtil.closeSession();

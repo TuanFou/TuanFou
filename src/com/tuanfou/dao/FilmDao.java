@@ -1,5 +1,6 @@
 package com.tuanfou.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Film;
@@ -9,7 +10,7 @@ public class FilmDao {
 	Session session = null;
 	
 	/**
-	 * Ìí¼ÓÒ»¸öµçÓ°
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ó°
 	 * @param film
 	 * @return
 	 */
@@ -17,18 +18,35 @@ public class FilmDao {
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(film);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓµçÓ°Ê§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½Óµï¿½Ó°Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
 			HibernateUtil.closeSession();
 		}
 		return res;
+	}
+	
+	//ç”µå½±æ€»æ•°
+	public int getTotalFilmsNum(){
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "Select count(*) from Film";
+			Query query = session.createQuery(hql);
+			return ((Long)query.uniqueResult()).intValue();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}		
 	}
 }
