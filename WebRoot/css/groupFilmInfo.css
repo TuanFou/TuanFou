@@ -1,0 +1,317 @@
+hr{
+	border: 1px solid #EEEEEE;
+}
+.groupfilm-info{
+	width:610px;
+/*    border:2px solid #EEEEEE;*/
+    margin:5px auto;
+}
+.groupfilm-img img{
+	width: 180px;
+	height:250px;
+}
+.float-left{
+	float:left;
+}
+.price-area{
+	/*padding-top: 20px;*/
+}
+.light-text-51{
+	font-size: 51px;
+}
+.join-group{
+	/*padding-top: 20px;*/
+	padding-left: 30px;
+	height: 58px;
+	width:100px;
+}
+.float-right{
+	float:right;
+}
+.top-info{
+	padding-top: 30px;
+}
+.bg-blue{
+	background-color: blue;
+	margin-bottom: 5px;
+	border-radius: 2px;
+	width: 150px;
+	font-size: 16px;
+	padding: 2px;
+	color: white;
+}
+.detial-info{
+	border: 2px solid #EEEEEE;
+	padding:15px;
+	height: 120px;
+	width: 390px;
+	font-size: 13px;
+}
+.comment-star{
+	margin-left: 50px;
+}
+.film-info{
+	width:610px;
+	margin: 5px auto;
+}
+.film-star-info{
+	height: 80px;
+	width: 138px;
+	padding: 15px;
+	border:  1px solid #EEEEEE;
+}
+.film-introduce{
+	height: 80px;
+	width:390px;
+	padding: 15px;
+	margin-left: 10px;
+	border:  1px solid #EEEEEE;
+}
+/*菜单*/
+#nav-menu-area{
+	width:610px;
+	margin: 50px auto;
+	border: 1px solid #EEEEEE;
+}
+ul.nav-menu {
+	 padding: 0;
+	 margin: 0 auto;
+}
+ul.nav-menu li:hover{
+	background-color: blue;
+	color:white;
+}
+ul.nav-menu li{
+	width:150px;
+ 	height: 30px;
+ 	text-align: center;
+ 	border: 1px solid #000000;
+ 	line-height:30px 
+
+}
+.ads-area{
+	width: 603px;
+	height:100px;
+	background-color: blue;
+	margin: 15px auto;
+}
+.selected-menu{
+	background-color: blue;
+	color:white;
+}
+/*等你入伙*/
+#parter-info{
+	margin: 0 auto;
+	width:600px;
+}
+#parter-title{
+	margin-left: 50px;
+	margin-bottom: 10px;
+}
+.waiting-parter-film{
+	width:248px;
+	margin-left: 50px;
+	height:190px;
+	border: 1px solid #EEEEEE;
+	background-color: #EEEEEE;
+}
+.invite-area{
+	width:248px;
+	height:140px;
+	border: 1px solid #EEEEEE;
+	padding: 25px;
+}
+.relative-film-img{
+	 margin-left: -50px;
+	 margin-top: 15px;
+	 width:115px;
+	 height: 160px;
+}
+.parter-film-name{
+	border-bottom: 3px solid #00218C;
+}
+.parter-film-info{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.parter-film-cinema{
+	text-align: right;
+}
+.parter-film-wn,.parter-film-cinema,.parter-film-name,.parter-film-addr{
+	width:150px;
+}
+ul.parter-list{
+	list-style-type: none;
+	padding: 0px;
+}
+ul.parter-list li{
+	margin: 2px;
+}
+/*商家信息*/
+#merchant-info{
+	width: 600px;
+	margin: 0 auto;
+
+	margin-top: 50px;
+	/*border: 1px solid #EEEEEE;*/
+}
+.merchant-info-title,.notice-info-title{
+	border-bottom: 3px solid #00218C;
+}
+#merchant-detial-info{
+	background-color: #F3F3F3;
+	height: 125px;
+	padding: 20px;
+}
+#map{
+	background-color: #AAAAAA;
+	width:175px;
+	height: 120px;
+}
+#merchant-info-area{
+	width:365px;
+	font-size: 14px;
+	margin-left: 15px;
+}
+/*购买须知*/
+#buying-notice{
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 50px;
+/*	border: 1px solid #EEEEEE;*/
+}
+#notice-info-table{
+	border-top:1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left:none;
+	border-right: none;
+	border-collapse: collapse;
+	line-height: 2.5;
+	text-indent:5px;
+	color:#868686;
+	font-size: 15px;
+}
+td{
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+td.left-title{
+	width: 80px;
+	border-right: 1px solid #ccc;
+}
+
+/*评价详情*/
+#comment-info{
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 50px;
+/*	border: 1px solid #EEEEEE;*/
+}
+.comment-info-title{
+	border-bottom:1px solid #ccc;
+	text-align: bottom;
+}
+.comment-left,.comment-mid,.comment-right{
+	color:#868686;
+	height: 130px;
+	width:175px;
+	margin-top: 5px;
+	padding: 10px;
+	text-align: center;
+}
+
+.comment-left,.comment-mid{
+	border-right: 1px solid #EEEEEE;
+}
+.comment-left{
+	line-height: 1.5;
+}
+.comment-mid{
+	line-height: 1.8;
+	text-align: center;
+}
+
+.comment-right{
+	line-height: 1.5;
+}
+.five-grade,.four-grade,.three-grade,.two-grade,.one-grade{
+	margin-left: 5px;
+}
+/*大家都在说*/
+.comment-type{
+	display: block;
+	margin-top: 50px
+}
+.type-title{
+	position: absolute;
+}
+ul.type{
+	list-style-type: none;
+	margin-left: 50px;
+}
+ul.type li{
+	float:left;
+	margin-right: 10px;
+	border: 2px solid #0040ff;
+	padding: 2px;
+	margin-bottom: 2px;
+	font-size: 13px;
+}
+/*所有评论*/
+#all-comments{
+	margin-top: 20px;
+}
+.comments-title{
+	background-color: #F3F3F3;
+	padding:3px;
+	font-size: 13px;
+}
+.comments-centent{
+	padding: 20px;
+	border: 1px solid #EEEEEE;
+}
+.comment{
+/*	border: 1px solid #EEEEEE;*/
+	padding: 3px;
+	border-bottom: 1px solid #EEEEEE;
+	margin-bottom: 20px;
+}
+.content{
+	font-size: 13px;
+	line-height: 1.5;
+	margin-top: 5px;
+}
+.loadMore{
+	border: 1px solid #EEEEEE;
+	width:200px;
+	text-align: center;
+	margin: 0 auto;
+	padding:5px;
+	font-size: 15px;
+	border-radius: 2px;
+}
+div.loadMore:hover{
+	background-color: #EEEEEE
+}
+/*右侧信息*/
+#group-range{
+	margin-top: 40px;
+	border-right: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+}
+.range-item{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.range-num{
+
+}
+.range-film-img img{
+ 	width: 90px;
+ 	height: 125px;
+ 	float: left;
+ }
+div.range-item-info {
+	width:100px;
+	font-size: 13px;
+}
