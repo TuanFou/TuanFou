@@ -42,6 +42,9 @@
 		<property name="type" type="int">
 			<column name="type"></column>
 		</property>	
+		<property name="picUrl" type="string">
+			<column name="picUrl"></column>
+		</property>
 		<!-- 我想看一对多-->
 		<set name="users" table="t_heart">
 			<key column="groupFilmId"></key>

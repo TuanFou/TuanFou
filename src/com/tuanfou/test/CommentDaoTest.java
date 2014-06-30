@@ -28,10 +28,10 @@ public class CommentDaoTest {
 //		private Date createTime;	//此处Date类型对应mysql中datetime
 //		private String content;
 //		private int star;
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String dateString = sdf.format(date);
-		CommentDao commentDao = new CommentDao();
+//		Date date = new Date();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		String dateString = sdf.format(date);
+//		CommentDao commentDao = new CommentDao();
 //		User user = new User();
 //		user.setId(1);
 //		GroupFilm groupFilm = new GroupFilm();
@@ -47,9 +47,12 @@ public class CommentDaoTest {
 //
 //		
 //		commentDao.addComment(comment);
+//		
+//		List<Comment> commentsList = new ArrayList<Comment>();
+//		commentsList = commentDao.getCommentsByGroupFilmId(1);
+//		System.out.println(commentsList);
 		
-		List<Comment> commentsList = new ArrayList<Comment>();
-		commentsList = commentDao.getCommentsByGroupFilmId(1);
-		System.out.println(commentsList);
+		CommentDao commentDao = new CommentDao();
+		System.out.println(commentDao.getStarByGroupFilmId(1));
 	}
 }

@@ -18,8 +18,8 @@
 			<column name="filmName"/>
 		</property>
 		<!-- 发布日期  -->
-		<property name="releaseDate" type="date" >
-			<column name="releaseDate"/>
+		<property name="releaseDate" type="date">
+			<column name="releaseDate" />
 		</property>
 		<!-- 版本  -->
 		<property name="version" type="string" length="10">
@@ -54,7 +54,7 @@
 			<column name="status"/>
 		</property>		
 		<!-- 申请时间 -->
-		<property name="applicateTime" type="date" >
+		<property name="applicateTime" type="timestamp" >
 			<column name="applicateTime"/>
 		</property>		
 		<!-- 审核结果 -->				

@@ -7,4 +7,9 @@
 			<result name="error">/error.jsp</result>
 		</action>
 	</package>
+	<package name="GroupFilm" namespace="/" extends="struts-default">
+		<action name="GroupFilmAction" class="com.tuanfou.action.GroupFilmAction">
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
 </struts>    

@@ -1,6 +1,8 @@
 package com.tuanfou.pojo;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 public class Film {
@@ -17,7 +19,7 @@ public class Film {
 	private String actors;
 	private int star; //0,1,2,3,4,5
 	private int status;//0£ºÉóºËÖĞ£¬1£ºÉóºËÖĞ£¬2£ºÉóºËÎ´Í¨¹ı
-	private Date applicateTime;//2014-09-12 12:00:00
+	private Timestamp applicateTime;//2014-09-12 12:00:00
 	private int auditResult; //ÉóºË×´Ì¬£º1£¬ÉóºËÍ¨¹ı£¬2£ºÉóºËÎ´Í¨¹ı
 	private Set<Tag> tags;
 	private Set<GroupFilm> groupFilms;
@@ -90,7 +92,7 @@ public class Film {
 	public Date getApplicateTime() {
 		return applicateTime;
 	}
-	public void setApplicateTime(Date applicateTime) {
+	public void setApplicateTime(Timestamp applicateTime) {
 		this.applicateTime = applicateTime;
 	}
 	public int getAuditResult() {

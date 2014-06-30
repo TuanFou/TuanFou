@@ -1,6 +1,7 @@
 package com.tuanfou.test;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import com.tuanfou.dao.FilmDao;
 import com.tuanfou.pojo.Film;
@@ -21,7 +22,7 @@ public class FilmDaoTest {
 		Date date = new Date(new java.util.Date().getTime());
 		merchant.setId(1);
 		film.setMerchant(merchant);
-		film.setFilmName("变形金刚");
+		film.setFilmName("变形金刚2");
 		film.setActors("李维斯");
 		film.setReleaseDate(date);
 		film.setVersion("Chinese");
@@ -31,7 +32,8 @@ public class FilmDaoTest {
 		film.setDirector("siperberg");
 		film.setStar(5);
 		film.setStatus(0);
-		film.setApplicateTime(date);
+		film.setApplicateTime(new Timestamp(System.currentTimeMillis()));
+		
 		film.setAuditResult(0);
 		FilmDao filmDao = new FilmDao();
 		filmDao.addFilm(film);
