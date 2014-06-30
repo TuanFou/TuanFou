@@ -8,8 +8,8 @@ public class Order {
 	private User user;
 	private Date createTime;
 	private Date expiredTime;
-	private int status;  //¶©µ¥×´Ì¬£¬0£ºÊ§Ğ§£¬1£ºÎ´Ö§¸¶£¬2£ºÒÑ¾­Ö§¸¶
-	
+	private int status;  //ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½0ï¿½ï¿½Ê§Ğ§ï¿½ï¿½1ï¿½ï¿½Î´Ö§ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Ñ¾ï¿½Ö§ï¿½ï¿½
+	private int amount;//è´­ä¹°æ•°é‡
 	public int getId() {
 		return id;
 	}
@@ -45,5 +45,11 @@ public class Order {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 }

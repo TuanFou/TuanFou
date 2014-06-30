@@ -25,5 +25,8 @@
 		<property name="status" type="int">
 			<column name="status"/>
 		</property>
+		<property name="amount" type="int">
+			<column name="amount"/>
+		</property>
  	</class>
  </hibernate-mapping>

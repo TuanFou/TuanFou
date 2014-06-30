@@ -14,6 +14,7 @@ import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
+import com.tuanfou.service.UserService;
 import com.tuanfou.utils.GsonTestTemplate;
 
 public class UserDaoTest {
@@ -41,7 +42,17 @@ public class UserDaoTest {
 //		UserDao userDao = new UserDao();
 //		System.out.println(userDao.getUserComments(1));
 //		System.out.println(Integer.MAX_VALUE);
-		getHeartGroupFilmsTest();
+		//getHeartGroupFilmsTest();
+//		UserService userService = new UserService();
+//		User user = userService.getUserInfo(304010333);
+//		
+//		System.out.println(user.getAccount().getBalance());
+		UserDao userDao = new UserDao();
+		
+		List<MyHeartGroupFilmInfo> list = userDao.getHeartGroupFilms(302010010);
+		Gson gson = new Gson();
+		String str = gson.toJson(list);
+		System.out.println(str);
 	}
 	
 	/**

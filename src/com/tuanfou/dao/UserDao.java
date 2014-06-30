@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -85,7 +86,9 @@ public class UserDao {
 		try{
 			session = HibernateUtil.getSession();
 			User user = (User)session.get(User.class, userId);
-			System.out.println("userId:"+user.getId());
+			if(!Hibernate.isInitialized(user.getCity()))
+				Hibernate.initialize(user.getCity());
+			System.out.println("userAccount:"+user.getAccount().getBalance());
 			return user;
 		}
 		catch(Exception e){
@@ -144,11 +147,12 @@ public class UserDao {
 		}finally{
 			HibernateUtil.closeSession();
 		}
-
 		return myInfoList;
 	}
 
-	
+	/*
+	 * 获取用户的账户
+	 */
 	public Account getAccount(int userId){
 		try{
 			session = HibernateUtil.getSession();
@@ -166,4 +170,8 @@ public class UserDao {
 			HibernateUtil.closeSession();
 		}
 	}
+	/*
+	 * 根据用户id获取用户的所有订单
+	 */
+	 
 }

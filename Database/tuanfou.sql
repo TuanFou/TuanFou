@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014-7-2 9:40:17
+Date: 2014/7/4 15:12:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -195,6 +195,7 @@ CREATE TABLE `t_order` (
   `createTime` datetime default NULL COMMENT '订单日期',
   `expiredTime` datetime default NULL COMMENT 's失效时间，与groupfilm的下架时间对应',
   `status` int(11) default NULL COMMENT '订单状态,0：失效，1：未支付，2：已经支付',
+  `amount` int(11) default NULL COMMENT '订购数量',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -305,6 +306,7 @@ INSERT INTO `t_comment` VALUES ('7', '7', '309010006', '2014-07-02 08:54:51', '�
 INSERT INTO `t_comment` VALUES ('8', '10', '304010333', '2014-07-02 08:55:00', '不错额8', '4');
 INSERT INTO `t_comment` VALUES ('9', '7', '307016211', '2014-07-02 08:55:10', '不错额9', '4');
 INSERT INTO `t_comment` VALUES ('10', '9', '304010321', '2014-07-02 08:55:18', '不错额10', '5');
+INSERT INTO `t_comment` VALUES ('13', '4', '302010010', '2014-07-04 00:00:00', '???', '0');
 INSERT INTO `t_complaint` VALUES ('1', '1', '304010333', '不好看');
 INSERT INTO `t_complaint` VALUES ('2', '1', '307016211', '环境不好');
 INSERT INTO `t_complaint` VALUES ('3', '1', '307016211', '态度不好');
@@ -385,16 +387,16 @@ INSERT INTO `t_message` VALUES ('7', '319010023', '304010333', 'hello7', '2014-0
 INSERT INTO `t_message` VALUES ('8', '322011654', '319010023', 'hello8', '2014-07-02 09:25:00', '2');
 INSERT INTO `t_message` VALUES ('9', '326011111', '304010321', 'hello9', '2014-07-02 09:25:06', '2');
 INSERT INTO `t_message` VALUES ('10', '322011654', '319010023', 'hello10', '2014-07-02 09:25:13', '2');
-INSERT INTO `t_order` VALUES ('1', '1', '302010010', '2014-06-28 13:01:33', '2014-08-03 13:00:11', '1');
-INSERT INTO `t_order` VALUES ('2', '1', '304010321', '2014-07-02 09:30:59', '2014-08-03 13:00:11', '1');
-INSERT INTO `t_order` VALUES ('3', '1', '304010333', '2014-07-02 09:35:20', '2014-08-03 13:00:11', '1');
-INSERT INTO `t_order` VALUES ('4', '2', '302010010', '2014-07-02 09:35:29', '2014-08-03 00:00:00', '1');
-INSERT INTO `t_order` VALUES ('5', '2', '304010333', '2014-07-02 09:35:36', '2014-08-03 00:00:00', '1');
-INSERT INTO `t_order` VALUES ('6', '9', '319010023', '2014-07-02 09:35:55', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('7', '3', '304010333', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('8', '4', '309010006', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('9', '10', '309010056', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('10', '8', '319010001', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
+INSERT INTO `t_order` VALUES ('1', '1', '302010010', '2014-06-28 13:01:33', '2014-08-03 13:00:11', '1', '1');
+INSERT INTO `t_order` VALUES ('2', '1', '304010321', '2014-07-02 09:30:59', '2014-08-03 13:00:11', '1', '1');
+INSERT INTO `t_order` VALUES ('3', '1', '304010333', '2014-07-02 09:35:20', '2014-08-03 13:00:11', '1', '2');
+INSERT INTO `t_order` VALUES ('4', '2', '302010010', '2014-07-02 09:35:29', '2014-08-03 00:00:00', '1', '2');
+INSERT INTO `t_order` VALUES ('5', '2', '304010333', '2014-07-02 09:35:36', '2014-08-03 00:00:00', '1', '1');
+INSERT INTO `t_order` VALUES ('6', '9', '319010023', '2014-07-02 09:35:55', '2014-08-03 00:00:00', '2', '2');
+INSERT INTO `t_order` VALUES ('7', '3', '304010333', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '1');
+INSERT INTO `t_order` VALUES ('8', '4', '309010006', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '2');
+INSERT INTO `t_order` VALUES ('9', '10', '309010056', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '1');
+INSERT INTO `t_order` VALUES ('10', '8', '319010001', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '2');
 INSERT INTO `t_tag` VALUES ('1', '爱情', '0');
 INSERT INTO `t_tag` VALUES ('2', '动作', '0');
 INSERT INTO `t_tag` VALUES ('3', '科幻', '1');
@@ -408,13 +410,13 @@ INSERT INTO `t_tag` VALUES ('10', '伦理', '0');
 INSERT INTO `t_tag` VALUES ('11', '冒险', '0');
 INSERT INTO `t_tag` VALUES ('12', '犯罪', '0');
 INSERT INTO `t_tag` VALUES ('13', '剧情', '0');
-INSERT INTO `t_user` VALUES ('302010010', '2', '李晓峰', '1232', 'kdf5000@163.com', '30201', 'hello2', 'photo.jpg', '1');
-INSERT INTO `t_user` VALUES ('304010321', '3', '黄子龙', '1233', 'kdf@163.com', '30401', 'hello3', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('304010333', '8', '高笑笑', '1238', 'kdf@163.com', '30401', 'h8', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('307016211', '4', '王佳佳', '1234', 'kdf@163.com', '30701', 'hello4', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('309010006', '5', '李师师', '1235', 'kdf@163.com', '30901', 'hello5', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('309010056', '9', '郝歌哥', '1239', 'kdf@163.com', '30701', 'h9', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('319010001', '1', '张大伟', '1231', 'kdf@163.com', '31901', 'hello1', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('319010023', '6', '徐霞客', '1236', 'kdf@163.com', '31901', 'h6', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('322011654', '7', '邓紫棋', '1237', 'kdf@163.com', '32201', 'h7', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('326011111', '10', '齐大光', '12310', 'kdf@163.com', '32601', 'h10', 'kdf.jpg', '1');
+INSERT INTO `t_user` VALUES ('302010010', '2', '李晓峰', '1232', 'kdf5000@163.com', '30201', 'hello2', 'imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('304010321', '3', '黄子龙', '1233', 'kdf@163.com', '30401', 'hello3', 'imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('304010333', '8', '高笑笑', '1238', 'kdf@163.com', '30401', 'h8', 'imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('307016211', '4', '王佳佳', '1234', 'kdf@163.com', '30701', 'hello4', 'imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('309010006', '5', '李师师', '1235', 'kdf@163.com', '30901', 'hello5', 'imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('309010056', '9', '郝歌哥', '1239', 'kdf@163.com', '30701', 'h9', 'imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('319010001', '1', '张大伟', '1231', 'kdf@163.com', '31901', 'hello1', 'imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('319010023', '6', '徐霞客', '1236', 'kdf@163.com', '31901', 'h6', 'imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('322011654', '7', '邓紫棋', '1237', 'kdf@163.com', '32201', 'h7', 'imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('326011111', '10', '齐大光', '12310', 'kdf@163.com', '32601', 'h10', 'imgs/girl2.jpg', '1');
