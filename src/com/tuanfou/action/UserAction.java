@@ -46,7 +46,7 @@ public class UserAction extends ActionSupport {
 			return SUCCESS;
 		}else{
 			return ERROR;
-		}
+		}	
 	}
 	public String regist(){
 		return SUCCESS;
