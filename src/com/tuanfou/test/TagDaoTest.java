@@ -1,17 +1,20 @@
 package com.tuanfou.test;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import com.tuanfou.dao.TagDao;
+import com.tuanfou.dto.TagInfo;
 import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.Tag;
+import com.tuanfou.service.TagService;
 
 public class TagDaoTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Tag tag = new Tag();
-		tag.setTagName("°®Çé");
+		/*Tag tag = new Tag();
+		tag.setTagName("ï¿½ï¿½ï¿½ï¿½");
 		TagDao tagDao = new TagDao();
 		int tagId = tagDao.findId(tag.getTagName());
 		System.out.println("tagId:"+tagId);
@@ -19,16 +22,21 @@ public class TagDaoTest {
 		Iterator<Film> it = films.iterator();
 		while(it.hasNext()){
 			Film film = it.next();
-			System.out.println("µçÓ°id£º"+film.getId());
-		}
+			System.out.println("ï¿½ï¿½Ó°idï¿½ï¿½"+film.getId());
+		}*/
 //		film.setId(1);
 //		Set<Film> films = new HashSet<Film>();
 //		films.add(film);
 	//	tag.setFilms(films);	
 		
 		//tagDao.add(tag);
-		
-		
+		TagService tagService = new TagService();
+		List<TagInfo> tagInfoList = tagService.getTagInfoList();
+		Iterator<TagInfo> it = tagInfoList.iterator();
+		while(it.hasNext()){
+			TagInfo tagInfo = (TagInfo) it.next();
+			System.out.println("tagNameï¼š"+tagInfo.getTagName()+"	number:"+tagInfo.getFilmNum());	
+		}	
 		
 	}
 
