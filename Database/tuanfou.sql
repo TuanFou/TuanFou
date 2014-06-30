@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014/6/28 14:08:26
+Date: 2014/6/30 13:38:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -110,7 +110,7 @@ CREATE TABLE `t_film` (
   `actors` varchar(100) default NULL COMMENT '演员',
   `star` int(11) default NULL COMMENT '星评，0,1,2,3,4,5',
   `status` int(1) NOT NULL COMMENT '状态 0：审核中 1：审核通过 2：审核未通过',
-  `applicateTime` datetime default NULL COMMENT '申请时间',
+  `applicateTime` timestamp NULL default NULL COMMENT '申请时间',
   `auditResult` int(1) default NULL COMMENT '审核状态  1：审核通过 2：审核未通过',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -142,6 +142,7 @@ CREATE TABLE `t_group_film` (
   `status` int(11) NOT NULL COMMENT '0:申请中，1：已上架，2：已下架',
   `remark` varchar(300) default NULL COMMENT '备注',
   `type` int(11) NOT NULL COMMENT '电影类型，0：已经上映，1：即将上映 2：下架',
+  `picUrl` varchar(300) default './imgs/1.png',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -230,6 +231,8 @@ CREATE TABLE `t_user` (
 INSERT INTO `t_account` VALUES ('1', '10');
 INSERT INTO `t_account` VALUES ('2', '12');
 INSERT INTO `t_account` VALUES ('3', '10');
+INSERT INTO `t_account` VALUES ('4', '10');
+INSERT INTO `t_account` VALUES ('5', '10');
 INSERT INTO `t_area` VALUES ('1', '洪山区', '2');
 INSERT INTO `t_area` VALUES ('2', '武昌区', '2');
 INSERT INTO `t_area` VALUES ('3', '海淀区', '7');
@@ -242,13 +245,18 @@ INSERT INTO `t_cinema` VALUES ('3', '3', '灿灿大剧场', '777899943', '环境
 INSERT INTO `t_city` VALUES ('2', '武汉');
 INSERT INTO `t_city` VALUES ('6', '大连');
 INSERT INTO `t_city` VALUES ('7', '北京');
+INSERT INTO `t_city` VALUES ('8', '??');
 INSERT INTO `t_comment` VALUES ('1', '1', '1', '2014-06-28 13:02:15', '不错额', '4');
 INSERT INTO `t_comment` VALUES ('2', '1', '1', '2014-06-28 00:00:00', '?????sb', '2');
 INSERT INTO `t_comment` VALUES ('3', '1', '1', '2014-06-28 00:00:00', '?????sb', '2');
 INSERT INTO `t_complaint` VALUES ('1', '1', '1', '不好看');
-INSERT INTO `t_film` VALUES ('1', '1', '变形金刚', '2014-06-27', '四', '美国', '150', '机器人大战', '马克·沃尔伯格', '斯坦利突起', '4', '1', '0000-00-00 00:00:00', '1');
+INSERT INTO `t_film` VALUES ('1', '1', '变形金刚', '2014-06-27', '四', '美国', '150', '机器人大战', '马克·沃尔伯格', '斯坦利突起', '4', '1', '2014-06-28 23:44:26', '1');
+INSERT INTO `t_film` VALUES ('2', '1', '沉睡的魔谷', '2014-06-28', 'Chinese', 'America', '120', 'this is a splendid action film', 'siperberg', '???', '5', '0', '2014-06-20 00:00:56', '0');
 INSERT INTO `t_film_tag` VALUES ('1', '1', '3');
-INSERT INTO `t_group_film` VALUES ('1', '1', '1', '1', '19.99', '25', '2014-06-28 12:59:52', '2014-07-05 13:00:10', '1', '不错的电影', '0');
+INSERT INTO `t_film_tag` VALUES ('2', '2', '2');
+INSERT INTO `t_film_tag` VALUES ('3', '1', '2');
+INSERT INTO `t_group_film` VALUES ('1', '1', '1', '1', '19.99', '25', '2014-06-28 12:59:52', '2014-07-05 13:00:10', '1', '不错的电影', '0', './imgs/1.png');
+INSERT INTO `t_group_film` VALUES ('2', '2', '1', '1', '29.8', '20', '2014-06-28 00:00:00', '2014-06-28 00:00:00', '0', 'hello', '0', './imgs/1.png');
 INSERT INTO `t_heart` VALUES ('1', '1', '1');
 INSERT INTO `t_merchant` VALUES ('1', '孔德飞', '123456', '41048219920213671X', 'default.jpg');
 INSERT INTO `t_merchant` VALUES ('2', '赖楠', '123456', '410488199408261111', 'default.jpg');
@@ -262,3 +270,5 @@ INSERT INTO `t_tag` VALUES ('4', '惊悚', '0');
 INSERT INTO `t_user` VALUES ('1', '1', 'kdf', '123', 'kdf@163.com', '2', 'hello', 'kdf.jpg');
 INSERT INTO `t_user` VALUES ('2', '2', 'kongdefei', '123', 'kdf5000@163.com', '6', 'hello', 'photo.jpg');
 INSERT INTO `t_user` VALUES ('3', '3', 'kdf5000', '123', 'kdf@163.com', '7', 'hello', 'kdf.jpg');
+INSERT INTO `t_user` VALUES ('4', '4', 'kdf5000', '123', 'kdf@163.com', '2', 'hello', 'kdf.jpg');
+INSERT INTO `t_user` VALUES ('5', '5', 'kongdefei5000', '123', 'kdf@163.com', '2', 'hello', 'kdf.jpg');
