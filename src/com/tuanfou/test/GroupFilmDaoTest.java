@@ -1,6 +1,6 @@
 package com.tuanfou.test;
 
-import java.sql.Date;
+//import java.sql.Date;
 
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.pojo.Area;

@@ -85,4 +85,18 @@ public class TagDao {
 		}
 		
 	}
+	
+	public List<Tag> getTags(){
+		Session session = null;
+		try{
+			session = HibernateUtil.getSession();
+			
+		}
+		catch(Exception e){
+			
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
 }
