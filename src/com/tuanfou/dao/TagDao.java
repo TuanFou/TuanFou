@@ -103,17 +103,7 @@ public class TagDao {
 				TagInfo tagInfo = new TagInfo();
 				tagInfo.setTagId(tag.getId());
 				tagInfo.setTagName(tag.getTagName());
-				System.out.println(tag.getTagName());
-				
-				List<Film> films = new ArrayList<Film>();
-				Iterator<Film> filmIt = tag.getFilms().iterator();
-				while(filmIt.hasNext())
-				{
-					Film film = filmIt.next();
-					films.add(film);
-					System.out.println("filmName:"+film.getFilmName());
-				}
-				tagInfo.setFilms(films);
+				tagInfo.setFilmNum(tag.getFilmNum());
 				tagInfoList.add(tagInfo);
 			}
 			System.out.println("Success");

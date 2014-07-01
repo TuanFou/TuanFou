@@ -9,7 +9,6 @@ public class TagInfo {
 	private int tagId;
 	private String tagName;
 	private int filmNum;
-	private List<Film> films;
 	
 	public TagInfo(){
 		
@@ -36,12 +35,4 @@ public class TagInfo {
 	public void setFilmNum(int filmNum) {
 		this.filmNum = filmNum;
 	}
-	public List<Film> getFilms() {
-		return films;
-	}
-	public void setFilms(List<Film> films) {
-		this.films = films;
-	}
-	
-
 }

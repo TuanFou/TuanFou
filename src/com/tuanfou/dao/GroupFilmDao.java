@@ -1,7 +1,10 @@
 package com.tuanfou.dao;
 
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -107,7 +110,7 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
 					groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
 					groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
-					groupFilmDetailedInfo.setDeadline(groupFilm.getEndDate());
+					//groupFilmDetailedInfo.setDeadline(changeDateFormat(groupFilm.getEndDate()));
 					groupFilmDetailedInfo.setDirector(groupFilm.getFilm().getDirector());
 					groupFilmDetailedInfo.setFilmStar(groupFilm.getFilm().getStar());
 					groupFilmDetailedInfo.setFilmLength(groupFilm.getFilm().getPeriod());
@@ -231,4 +234,6 @@ public class GroupFilmDao {
 			HibernateUtil.closeSession();
 		}
 	}
+	
+
 }

@@ -2,6 +2,7 @@
 
 
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,10 +19,10 @@ public class GroupFilmDaoTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		groupfilmDetailedInfoTest(1);
+//		TODO some test
+		changeDateFormatTest();
 	}
 	public static void groupfilmBriefInfoTest(){
-		// TODO Auto-generated method stub
 //		private int id;
 //		private Film  film;
 //		private Merchant merchant;
@@ -118,4 +119,5 @@ public class GroupFilmDaoTest {
 //		String str = gson.toJson(i);
 //		System.out.println(str);
 	}
+	
 }
