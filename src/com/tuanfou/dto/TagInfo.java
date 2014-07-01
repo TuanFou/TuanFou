@@ -1,7 +1,7 @@
 package com.tuanfou.dto;
 
 
-import java.util.Set;
+import java.util.List;
 
 import com.tuanfou.pojo.Film;
 
@@ -9,7 +9,7 @@ public class TagInfo {
 	private int tagId;
 	private String tagName;
 	private int filmNum;
-	private Set<Film> films;
+	private List<Film> films;
 	
 	public TagInfo(){
 		
@@ -36,11 +36,12 @@ public class TagInfo {
 	public void setFilmNum(int filmNum) {
 		this.filmNum = filmNum;
 	}
-	public Set<Film> getFilms() {
+	public List<Film> getFilms() {
 		return films;
 	}
-	public void setFilms(Set<Film> films) {
+	public void setFilms(List<Film> films) {
 		this.films = films;
 	}
+	
 
 }
