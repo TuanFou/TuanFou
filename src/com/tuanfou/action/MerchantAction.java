@@ -29,7 +29,7 @@ public class MerchantAction extends ActionSupport{
 	
 	/**
 	 * 商家登录
-	 * 参数：用户名username;密码password
+	 * 参数：用户名username;密码password                                            
 	 */
 	public String login(){
 		
