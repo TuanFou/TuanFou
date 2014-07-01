@@ -20,7 +20,7 @@ public class GroupFilmDaoTest {
 	 */
 	public static void main(String[] args) {
 //		TODO some test
-		changeDateFormatTest();
+		groupfilmDetailedInfoTest(1);
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;

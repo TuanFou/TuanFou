@@ -25,18 +25,17 @@ public class GroupFilmDetailedInfo {
 	private Date realeaseDate;
 	private String director;
 	
-	
-	public float getPrice() {
+	public float getCurrentPrice() {
 		return currentPrice;
 	}
-	public void setPrice(float price) {
-		this.currentPrice = price;
+	public void setCurrentPrice(float currentPrice) {
+		this.currentPrice = currentPrice;
 	}
-	public int getGroupMemberNum() {
+	public int getPartnerNum() {
 		return partnerNum;
 	}
-	public void setGroupMemberNum(int groupMemberNum) {
-		this.partnerNum = groupMemberNum;
+	public void setPartnerNum(int partnerNum) {
+		this.partnerNum = partnerNum;
 	}
 	public String getCinemaName() {
 		return cinemaName;
@@ -50,11 +49,11 @@ public class GroupFilmDetailedInfo {
 	public void setCinemaAddress(String cinemaAddress) {
 		this.cinemaAddress = cinemaAddress;
 	}
-	public Date getDeadline() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setDeadline(Date deadline) {
-		this.endDate = deadline;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	public Time getTimeRange() {
 		return timeRange;
@@ -62,10 +61,10 @@ public class GroupFilmDetailedInfo {
 	public void setTimeRange(Time timeRange) {
 		this.timeRange = timeRange;
 	}
-	public int getorderNum() {
+	public int getOrderNum() {
 		return orderNum;
 	}
-	public void setorderNum(int orderNum) {
+	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
 	public float getGroupfilmStar() {
@@ -86,11 +85,11 @@ public class GroupFilmDetailedInfo {
 	public void setFilmStar(int filmStar) {
 		this.filmStar = filmStar;
 	}
-	public String getSummary() {
+	public String getDescription() {
 		return description;
 	}
-	public void setSummary(String summary) {
-		this.description = summary;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getFilmName() {
 		return filmName;
@@ -98,11 +97,11 @@ public class GroupFilmDetailedInfo {
 	public void setFilmName(String filmName) {
 		this.filmName = filmName;
 	}
-	public int getFilmLength() {
+	public int getPeriod() {
 		return period;
 	}
-	public void setFilmLength(int filmLength) {
-		this.period = filmLength;
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 	public List<Tag> getTags() {
 		return tags;
@@ -110,11 +109,11 @@ public class GroupFilmDetailedInfo {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
-	public Date getShowDate() {
+	public Date getRealeaseDate() {
 		return realeaseDate;
 	}
-	public void setShowDate(Date showDate) {
-		this.realeaseDate = showDate;
+	public void setRealeaseDate(Date realeaseDate) {
+		this.realeaseDate = realeaseDate;
 	}
 	public String getDirector() {
 		return director;
