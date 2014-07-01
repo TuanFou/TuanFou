@@ -5,7 +5,11 @@ import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dao.TagDao;
 import com.tuanfou.dto.TagInfo;
 
-
+/**
+ * 获取首页标签信息
+ * @author LN
+ *
+ */
 public class TagService {
 	public List<TagInfo> getTagInfoList(){
 		GroupFilmDao groupFilmDao = new GroupFilmDao();

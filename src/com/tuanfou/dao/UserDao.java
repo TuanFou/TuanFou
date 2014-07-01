@@ -11,9 +11,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
+import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.GroupFilm;
+import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -173,5 +175,5 @@ public class UserDao {
 	/*
 	 * 根据用户id获取用户的所有订单
 	 */
-	 
+
 }

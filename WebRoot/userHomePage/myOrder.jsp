@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -126,25 +127,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title_5">支付状态</div>
             <div class="title_6">操作</div>
          </div>
-         <div class="clear"></div>
-         <div class="order-item">
-            <span class="order-item-title">订单号: U20111111&nbsp;&nbsp;&nbsp;&nbsp;武汉市洪山区&nbsp;&nbsp;&nbsp;2014-01-01</span>
-            <div class="item-info">
-                <span ><img class="float-left" width="40px" height="60px" src="../imgs/1.png"></span>
-                <div class="float-left heart-film-info" >
-                    <span class="line-block">沉睡魔咒</span>
-                    <span class="line-block">洪山天河国际影城</span>
-                </div>
-                <span class="float-left price" >19.99</span>
-                <span class="float-left amount">2</span>
-                <span class="float-left totalPrice">39.98</span>
-                <span class="float-left status">已付款</span>
-                <span class="float-left operation">
-                     <span><button>评价</button></span>
-                     <span><button>申请投诉</button></span>
-                </span>
-            </div>
-            <div class="clear"></div>
+         <c:forEach items="${orderInfoList}" var="info">
+	         <div class="clear"></div>
+	         <div class="order-item">
+	            <span class="order-item-title">订单号: ${info.orderId }&nbsp;&nbsp;&nbsp;&nbsp;武汉市洪山区&nbsp;&nbsp;&nbsp;${orderId.orderTime }</span>
+	            <div class="item-info">
+	                <span ><img class="float-left" width="40px" height="60px" src="./imgs/1.png"></span>
+	                <div class="float-left heart-film-info" >
+	                    <span class="line-block">${info.filmName }</span>
+	                    <span class="line-block">洪山天河国际影城</span>
+	                </div>
+	                <span class="float-left price" >${info.curretPrice }</span>
+	                <span class="float-left amount">${info.amount }</span>
+	                <span class="float-left totalPrice">${info.totalPrice }</span>
+	                <span class="float-left status">${info.status }</span>
+	                <span class="float-left operation">
+	                     <span><button>评价</button></span>
+	                     <span><button>申请投诉</button></span>
+	                </span>
+	            </div>
+	          </div>
+            </c:forEach>
+           <!--  <div class="clear"></div>
             <div class="order-item">
             <span class="order-item-title">订单号: U20111111&nbsp;&nbsp;&nbsp;&nbsp;武汉市洪山区&nbsp;&nbsp;&nbsp;2014-01-01</span>
             <div class="item-info">
@@ -161,8 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <span><button>评价</button></span>
                      <span><button>申请投诉</button></span>
                 </span>
-            </div>
-            <span>
+            </div> -->
          </div>
       </div>
   </div>

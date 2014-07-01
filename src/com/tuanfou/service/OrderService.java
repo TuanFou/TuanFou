@@ -1,11 +1,13 @@
 package com.tuanfou.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.tuanfou.dao.AccountDao;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dao.OrderDao;
 import com.tuanfou.dao.UserDao;
+import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
@@ -62,6 +64,13 @@ public class OrderService {
 		else
 			return false;
 	}
-		
+	/*
+	 * 功能:通过用户id获取用户的所有订单
+	 */
+	public List<OrderInfo> getUserOrdersById(int id){
+		OrderDao orderDao = new OrderDao();
+		List<OrderInfo> list = orderDao.getOrdersByUserId(id);
+		return list;
+	}
 }
 

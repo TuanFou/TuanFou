@@ -1,11 +1,13 @@
 package com.tuanfou.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.User;
@@ -120,4 +122,46 @@ public class OrderDao {
 			HibernateUtil.closeSession();
 		}
 	}
+	/*
+	 * 根据用户id获取用户的所有订单
+	 */
+	 public List<OrderInfo> getOrdersByUserId(int id){
+		 List<OrderInfo> orderInfoList = new ArrayList<OrderInfo>();
+		 String hql = "from Order order where order.user.id="+id;
+		 try{
+			 session = HibernateUtil.getSession();
+			 Query q = session.createQuery(hql);
+			 List<Order> list = q.list();
+			 Iterator<Order> it = list.iterator();
+			 while(it.hasNext()){
+				 Order order = it.next();
+				 OrderInfo orderInfo = new OrderInfo();
+				 orderInfo.setAmount(order.getAmount());
+				 orderInfo.setCurretPrice(order.getGroupFilm().getCurrentPrice());
+				 orderInfo.setFilmName(order.getGroupFilm().getFilm().getFilmName());
+				 orderInfo.setOrderId(order.getId());
+				 orderInfo.setOrderTime(order.getCreateTime());
+				 orderInfo.setOriginalPrice(order.getGroupFilm().getOriginalPrice());
+				 switch(order.getStatus()){
+				 case 0:
+					 orderInfo.setStatus("失效");
+					 break;
+				 case 1:
+					 orderInfo.setStatus("未支付");
+					 break;
+				 case 2:
+					 orderInfo.setStatus("已支付");
+					 break;
+				 }
+				 orderInfo.setTotalPrice(orderInfo.getCurretPrice()*orderInfo.getAmount());
+				 orderInfoList.add(orderInfo);
+			 }
+			 return orderInfoList;
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }finally{
+			 HibernateUtil.closeSession();
+		 }
+		 return orderInfoList;
+	 }
 }

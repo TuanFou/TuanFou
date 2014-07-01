@@ -1,0 +1,46 @@
+.content{
+	width: 880px;
+	height: 400px;
+	margin:0 auto;
+	border: 1px solid #eeeeee;
+}
+.cotent-title{
+ 	display: block;
+ 	margin:50px 0 10px 100px;
+}
+
+.order-item{
+	width:600px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.order-item table{
+	float: left;
+	width: 380px;
+	text-align: center;
+}
+.order-item table{
+	border-collapse: collapse;
+	line-height: 2.5;
+	color: #C2C2C2;
+}
+td{
+	border: 1px solid #eeeeee;
+}
+.bg-color{
+	background: #BD6037;
+	border: 1px solid #BD6037;
+	color: white;
+}
+.account-info{
+	float: left;
+	margin-top: 160px;
+	margin-left: 20px;
+	line-height: 2;
+}
+.account-info button{
+	border: none;
+	width: 100px;
+	border-radius: 10px;
+	background: #BD6037;
+}

@@ -9,7 +9,11 @@ import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.AreaInfo;
 import com.tuanfou.pojo.Area;
 
-//获取地区团购电影信息
+/**
+ * 获取首页部分地区导航信息
+ * @author LN
+ *
+ */
 public class AreaService {
 
 	public List<AreaInfo> getAreaInfoList(int cityId){

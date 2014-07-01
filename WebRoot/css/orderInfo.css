@@ -1,0 +1,79 @@
+.content{
+	width: 880px;
+	height: 400px;
+	margin:0 auto;
+	border: 1px solid #eeeeee;
+}
+.cotent-title{
+ 	display: block;
+ 	margin:50px 0 10px 100px;
+	 
+}
+.order-item{
+	width:600px;
+	height:100px;
+	border: 1px solid #eeeeee;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.item-title{
+	line-height: 1.8;
+}
+.item-title span{
+	display: block;
+	float: left;
+	text-align: center;
+	background:#BD6037;
+}
+
+.item{
+	width: 250px;
+}
+.price{
+	width: 100px;
+}
+.amount{
+	width: 150px;
+}
+.total-price{
+	width: 100px;
+}
+.item-info {
+margin-top: 8px;
+}
+.item-info span{
+	display: block;
+	float: left;
+	text-align: center;
+	vertical-align: center;
+}
+.item span{
+	width: 250px;
+}
+.clear{
+	clear: both;
+}
+.top-margin{
+	margin-top: 8px;
+}
+.amount input{
+	width: 80px;
+}
+.cal-price{
+	width:600px;
+	height:30px;
+	border: 1px solid #eeeeee;
+	margin:0 auto;
+}
+.submit-bt {
+	width: 600px;
+	margin: 30px auto;
+}
+.submit-bt button{
+	float: right;
+	border: none;
+	width: 40px;
+	width: 160px;
+	border-radius: 10px;
+	background: #BD6037;
+}
