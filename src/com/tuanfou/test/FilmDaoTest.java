@@ -2,10 +2,13 @@ package com.tuanfou.test;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
+import com.google.gson.Gson;
 import com.tuanfou.dao.FilmDao;
 import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.Merchant;
+import com.tuanfou.pojo.Tag;
 
 public class FilmDaoTest {
 
@@ -14,7 +17,7 @@ public class FilmDaoTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		addFilmTest();
+		findTagsTest();
 	}
 	public static void addFilmTest(){
 		Film film = new Film();
@@ -22,8 +25,8 @@ public class FilmDaoTest {
 		Date date = new Date(new java.util.Date().getTime());
 		merchant.setId(1);
 		film.setMerchant(merchant);
-		film.setFilmName("±äÐÎ½ð¸Õ2");
-		film.setActors("ÀîÎ¬Ë¹");
+		film.setFilmName("ï¿½ï¿½ï¿½Î½ï¿½ï¿½2");
+		film.setActors("ï¿½ï¿½Î¬Ë¹");
 		film.setReleaseDate(date);
 		film.setVersion("Chinese");
 		film.setCountry("America");
@@ -39,5 +42,13 @@ public class FilmDaoTest {
 		filmDao.addFilm(film);
 		System.out.println(film.getReleaseDate());
 		
+	}
+	
+	public static void findTagsTest(){
+//		FilmDao filmDao = new FilmDao();
+//		List<Tag> tag = filmDao.findTags(1);
+//		Gson gson = new Gson();
+//		String str = gson.toJson(tag);
+//		System.out.println(str);
 	}
 }

@@ -1,15 +1,23 @@
 package com.tuanfou.dao;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Film;
+import com.tuanfou.pojo.Tag;
 import com.tuanfou.utils.HibernateUtil;
 
 public class FilmDao {
 	Session session = null;
 	
 	/**
-	 * Ìí¼ÓÒ»¸öµçÓ°
+	 * æ·»åŠ ä¸€ä¸ªç”µå½±
 	 * @param film
 	 * @return
 	 */
@@ -17,13 +25,13 @@ public class FilmDao {
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//å¼€å§‹äº‹ç‰©
 			session.save(film);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//æäº¤äº‹åŠ¡
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓµçÓ°Ê§°Ü");
+			session.getTransaction().rollback();//å›æ»šäº‹åŠ¡
+			System.out.println("æ·»åŠ ç”µå½±å¤±è´¥");
 			e.printStackTrace();
 			res = false;
 		}finally{
@@ -31,4 +39,5 @@ public class FilmDao {
 		}
 		return res;
 	}
+
 }
