@@ -20,25 +20,7 @@ public class TagService {
 		tagInfo.setTagName("全部");
 		
 		TagDao tagDao = new TagDao();
-		List<TagInfo> tagInfoList = tagDao.getTagInfoList();
-		Iterator<TagInfo> it = tagInfoList.iterator();
-		while(it.hasNext()){
-			int sum = 0;
-			TagInfo info = it.next();
-			System.out.println("tagName:"+info.getTagName());
-			
-			List<Film> films = info.getFilms();
-			Iterator<Film> filmIterator = films.iterator();
-			while(filmIterator.hasNext()){
-				Film film = filmIterator.next();
-				System.out.println("filmName:"+film.getFilmName());
-				int filmId = film.getId();
-				int num = groupFilmDao.getFilmNum(filmId);
-				sum = sum + num;
-			}
-			info.setFilmNum(sum);
-		}	
-		
+		List<TagInfo> tagInfoList = tagDao.getTagInfoList();	
 		tagInfoList.add(0, tagInfo);
 		return tagInfoList;
 	}
