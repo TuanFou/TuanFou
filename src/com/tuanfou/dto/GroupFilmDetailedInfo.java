@@ -4,40 +4,39 @@ package com.tuanfou.dto;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import com.tuanfou.pojo.Tag;
 
 public class GroupFilmDetailedInfo {
-	private float price;
-	private int groupMemberNum;//the num of the members who want to watch film with others
+	private float currentPrice;
+	private int partnerNum;//the num of the members who want to watch film with others
 	private String cinemaName;
 	private String cinemaAddress;
-	private Date deadline;//tickets can only be used before this date
+	private Date endDate;//tickets can only be used before this date
 	private Time timeRange;//tickets can only be used in the time range, like 10:00-24:00
-	private int orderNum;
+	private int orderNum;//
 	private float groupfilmStar;
 	private int commentNum;
 	private int filmStar;
-	private String summary;
+	private String description;
 	private String filmName;
-	private int filmLength;
+	private int period;//in minutes
 	private List<Tag> tags;
-	private Date showDate;
+	private Date realeaseDate;
 	private String director;
 	
 	
 	public float getPrice() {
-		return price;
+		return currentPrice;
 	}
 	public void setPrice(float price) {
-		this.price = price;
+		this.currentPrice = price;
 	}
 	public int getGroupMemberNum() {
-		return groupMemberNum;
+		return partnerNum;
 	}
 	public void setGroupMemberNum(int groupMemberNum) {
-		this.groupMemberNum = groupMemberNum;
+		this.partnerNum = groupMemberNum;
 	}
 	public String getCinemaName() {
 		return cinemaName;
@@ -52,10 +51,10 @@ public class GroupFilmDetailedInfo {
 		this.cinemaAddress = cinemaAddress;
 	}
 	public Date getDeadline() {
-		return deadline;
+		return endDate;
 	}
 	public void setDeadline(Date deadline) {
-		this.deadline = deadline;
+		this.endDate = deadline;
 	}
 	public Time getTimeRange() {
 		return timeRange;
@@ -88,10 +87,10 @@ public class GroupFilmDetailedInfo {
 		this.filmStar = filmStar;
 	}
 	public String getSummary() {
-		return summary;
+		return description;
 	}
 	public void setSummary(String summary) {
-		this.summary = summary;
+		this.description = summary;
 	}
 	public String getFilmName() {
 		return filmName;
@@ -100,10 +99,10 @@ public class GroupFilmDetailedInfo {
 		this.filmName = filmName;
 	}
 	public int getFilmLength() {
-		return filmLength;
+		return period;
 	}
 	public void setFilmLength(int filmLength) {
-		this.filmLength = filmLength;
+		this.period = filmLength;
 	}
 	public List<Tag> getTags() {
 		return tags;
@@ -112,10 +111,10 @@ public class GroupFilmDetailedInfo {
 		this.tags = tags;
 	}
 	public Date getShowDate() {
-		return showDate;
+		return realeaseDate;
 	}
 	public void setShowDate(Date showDate) {
-		this.showDate = showDate;
+		this.realeaseDate = showDate;
 	}
 	public String getDirector() {
 		return director;

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
+import com.google.gson.Gson;
 import com.tuanfou.dao.AreaDao;
 import com.tuanfou.dto.AreaInfo;
 import com.tuanfou.pojo.Area;
@@ -36,11 +37,16 @@ public class AreaDaoTest {
 		
 		AreaService areaService = new AreaService();
 		List<AreaInfo> areaInfoList = areaService.getAreaInfoList(2);
-		Iterator<AreaInfo> It = areaInfoList.iterator();
-		while(It.hasNext()){
-			AreaInfo areaInfo = It.next();
-			System.out.println("AreaName:"+areaInfo.getAreaName()+"	Number:"+areaInfo.getFilmNumber());
-		}
+		Gson gson = new Gson();
+		
+		String str = gson.toJson(areaInfoList);
+		System.out.println(str);
+//		Iterator<AreaInfo> It = areaInfoList.iterator();
+		
+//		while(It.hasNext()){
+//			AreaInfo areaInfo = It.next();
+//			System.out.println("AreaName:"+areaInfo.getAreaName()+"	Number:"+areaInfo.getFilmNumber());
+//		}
 		
 	}
 }

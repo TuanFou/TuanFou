@@ -25,7 +25,8 @@ $(document).ready(function(){
 		var jsonData = eval('('+data+')');
 		for(var index in jsonData){
 			var groupFilm = jsonData[index];
-			text += "<div class='group-item'>"+
+			text += "<a href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+ groupFilm['GroupFilmId'] +
+			"'><div class='group-item' id='"+groupFilm['GroupFilmId'] +"'>"+
 				    "<span class='film-img'><img src='" + groupFilm['filmPhotoUrl'] + "'></img></span>"+
 					"<span class='item-price'>￥"+ groupFilm['currentPrice'] +"</span>"+
 					"<span class='item-name'>"+
@@ -40,8 +41,9 @@ $(document).ready(function(){
 						"<span><img class='join-img'></img>"+
 						"入伙("+ groupFilm['heartNum'] +")</span>"+
 					"</span>"+			
-				"</div>";	
+				"</div></a>";	
 		}
+		text += "<div class='loadMore clear'>加载更多</div>";
 		$('#film-content').html(text);
 	}
 	 $.ajax({

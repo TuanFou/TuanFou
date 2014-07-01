@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.GroupFilmBriefInfo;
+import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmAction extends ActionSupport {
 
@@ -22,9 +24,29 @@ public class GroupFilmAction extends ActionSupport {
 	
 	private HttpServletRequest req;
 	private HttpServletResponse response;
-	private static GroupFilmDao groupFimDao = new GroupFilmDao();
+	private GroupFilmDetailedInfo groupFilmDetailInfo;
+	
+	public GroupFilmDetailedInfo getGroupFilmDetailInfo() {
+		return groupFilmDetailInfo;
+	}
+	public void setGroupFilmDetailInfo(GroupFilmDetailedInfo groupFilmDetailInfo) {
+		this.groupFilmDetailInfo = groupFilmDetailInfo;
+	}
+	
+	public String showGroupFilmDetail(){
+		req = ServletActionContext.getRequest();
+		int id = Integer.parseInt(req.getParameter("groupFilmId"));
+		try{
+			GroupFilmService gs = new GroupFilmService();
+			groupFilmDetailInfo = gs.getGroupFilmDetailInfo(id);
+			return "detailInfo";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "error";
+	}
 	/*
-	 * ¼ÓÔØ¸ü¶à£¬ÊµÏÖ·ÖÒ³ÏÔÊ¾
+	 * ï¿½ï¿½ï¿½Ø¸ï¿½à£¬Êµï¿½Ö·ï¿½Ò³ï¿½ï¿½Ê¾
 	 */
 	public String loadMore() throws IOException{
 		req = ServletActionContext.getRequest();
@@ -32,7 +54,8 @@ public class GroupFilmAction extends ActionSupport {
 		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
 		int fistResult = (page-1)*pageSize;
 		try{
-			List<GroupFilmBriefInfo> groupFilms = groupFimDao.getGroupFilmsBriefInfo(fistResult, pageSize);
+			GroupFilmService gs = new GroupFilmService();
+			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(0, 10);
 			response =  ServletActionContext.getResponse();
 			response.setCharacterEncoding("utf-8");
 			PrintWriter  out = response.getWriter();
