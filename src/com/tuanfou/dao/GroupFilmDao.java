@@ -234,4 +234,20 @@ public class GroupFilmDao {
 			HibernateUtil.closeSession();
 		}
 	}
+	
+	public GroupFilm getGroupFilm(int groupFilmId){
+		try{
+			session = HibernateUtil.getSession();
+			GroupFilm groupFilm = (GroupFilm) session.get(GroupFilm.class, groupFilmId);
+			return groupFilm;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+}
 
