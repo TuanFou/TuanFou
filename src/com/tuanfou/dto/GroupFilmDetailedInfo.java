@@ -24,7 +24,6 @@ public class GroupFilmDetailedInfo {
 	private List<String> tags;
 	private Date realeaseDate;
 	private String director;
-	
 	public float getCurrentPrice() {
 		return currentPrice;
 	}
