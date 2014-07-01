@@ -19,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="./css/common.css">
 	<link rel="stylesheet" type="text/css" href="./css/groupFilmInfo.css">
 	<script src="./js/jquery.js" type="text/javascript"></script>
-
   </head>
   
   <body>
@@ -29,22 +28,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="groupfilm-info">
 			<div class="groupfilm-img float-left "><img src="./imgs/1.png"/></div>
 			<div class="top-info">
-				<span class="float-left price-area">￥<span class="light-text-51">19.9</span>元</span>
-				<span class="float-left join-group">入伙(200)</span>
-				<div class="">
-					<span class="float-left bg-blue" >3D/IMAX3D/中国巨幕</span>
-					<span class="float-left bg-blue">洪山国际天河影城</span>
+				<span class="float-left price-area">￥<span class="light-text-51">${groupFilmDetailInfo.currentPrice}</span>元</span>
+				<span class="float-left join-group">入伙(${groupFilmDetailInfo.partnerNum})</span>
+				<div class="float-left ">
+					<span class="bg-blue line-block" >3D/IMAX3D/中国巨幕</span>
+					<span class="bg-blue line-block">${groupFilmDetailInfo.cinemaName}</span>
 				</div>
 			</div>
 			<div class="detial-info float-left">
-				<span class="line-block">商家：武汉广场 | 查看电话/地址</span>
-				<span class="line-block"> 有限期：截止到 2014.07.30 周末法定假日有效</span>
+				<span class="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
+				<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
 				<span class="line-block" >使用时间: 10:00-24:00</span>
 				<hr>
 				<span class="line-block font-20" >
-					<span>已售1000</span>
-					<span class="comment-star">*****9.5</span>
-					<span class="float-right">999人评价</span>
+					<span>已售${groupFilmDetailInfo.orderNum} </span>
+					<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
+					<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
 				</span>
 				<span class="line-block font-20 ">
 					<span class="float-right"><button>购买</button></span>
@@ -57,13 +56,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="film-info">
 			<div class="float-left film-star-info ">
 				<span class="line-block">电影评分：</span>
-				<span class="line-block">&nbsp&nbsp&nbsp********7.4</span>
+				<span class="line-block">&nbsp&nbsp&nbsp********${groupFilmDetailInfo.filmStar}</span>
 				<span class="line-block">我要评分：</span>
 				<span class="line-block">&nbsp&nbsp&nbsp********</span>
 			</div>
 			<div class="float-left film-introduce">
 				<span class="line-block blue-font">剧情介绍</span>
-				<span>玛琳菲森（安吉丽娜·朱莉饰）曾是一个美丽纯洁，拥有翅膀能够飞翔的年轻仙子，生长于宁静祥和的森林王国。然而美好的时光总是短暂的……<a href="#">详细</a></span>
+				<span>${groupFilmDetailInfo.description}……<a href="#">详细</a></span>
 			</div>
 		</div>
 		<div class="clear"></div>

@@ -24,7 +24,6 @@ public class GroupFilmDetailedInfo {
 	private List<Tag> tags;
 	private Date realeaseDate;
 	private String director;
-	
 	public float getCurrentPrice() {
 		return currentPrice;
 	}
@@ -121,5 +120,4 @@ public class GroupFilmDetailedInfo {
 	public void setDirector(String director) {
 		this.director = director;
 	}
-
 }
