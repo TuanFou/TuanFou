@@ -12,5 +12,10 @@
 			<result name="detailInfo">/groupFilmInfo.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="FilterAction"
+			class="com.tuanfou.action.FilterAction">
+			<result name="home">/home.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 	</package>
 </struts>    
