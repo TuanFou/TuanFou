@@ -19,6 +19,7 @@ import com.tuanfou.dao.MerchantDao;
 import com.tuanfou.dao.MessageDao;
 import com.tuanfou.dao.TagDao;
 import com.tuanfou.dto.ApplyFilmInfo;
+import com.tuanfou.dto.MerchantInfo;
 import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.pojo.Admin;
 import com.tuanfou.pojo.Area;
@@ -194,9 +195,16 @@ public class MerchantService {
 	 * @param merchantId
 	 * @return
 	 */
-	public boolean getMerchantInfo(int merchantId){
-		
-		return true;
+	public MerchantInfo getMerchantInfo(int merchantId){
+		MerchantDao merchantDao = new MerchantDao();
+		MerchantInfo merchantInfo = new MerchantInfo();
+		Merchant merchant = merchantDao.getMerchant(merchantId);
+		Set<Cinema> cinemas = merchantDao.getCinema(merchantId);
+		merchantInfo.setMerchantId(merchantId);
+		merchantInfo.setCinemas(cinemas);
+		merchantInfo.setMerchantName(merchant.getMerchantName());
+		merchantInfo.setPassword(merchant.getPassword());
+		return merchantInfo;   //这个对象好像不能转为Gson
 	}
 	
 	/**
@@ -207,7 +215,16 @@ public class MerchantService {
 	 * @return
 	 */
 	public boolean updateProfile(int merchantId,String oldPsw,String newPsw){
-		
-		return true;
+		MerchantDao merchantDao = new MerchantDao();
+		Merchant merchant = merchantDao.getMerchant(merchantId);
+		System.out.println("input psw:"+oldPsw);
+		System.out.println("old psw:"+merchant.getPassword());
+		if(merchant.getPassword().equals(oldPsw)){
+			//更新
+			merchant.setPassword(newPsw);
+			return (merchantDao.update(merchant));
+		}
+		else
+			return false;    //密码错误
 	}
 }

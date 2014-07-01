@@ -59,10 +59,18 @@ public class OrderDaoTest {
 //		List<OrderInfo> list = orderDao.getOrdersByUserId(302010010);
 	 
 		
-		List<OrderInfo> list = orderService.getUserOrdersById(302010010);
-		Gson gson = new Gson();
-		String str = gson.toJson(list );
-		System.out.println(str);
+//		List<OrderInfo> list = orderService.getUserOrdersById(302010010);
+//		Gson gson = new Gson();
+//		String str = gson.toJson(list );
+//		System.out.println(str);
+		/*
+		 * 添加订单
+		 * 
+		 */
+		int userId = 304010333;
+		int GroupFilmId = 2;
+		
+		System.out.println(orderService.orderFilm(GroupFilmId, userId, 2));
 	}
 
 }

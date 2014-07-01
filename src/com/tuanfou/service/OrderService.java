@@ -19,7 +19,7 @@ public class OrderService {
 	 * 下订单
 	 * 返回值为Boolean，标识下订单是否成功
 	 */
-	public boolean orderFilm(int groupFilmId,int userId,int amount){
+	public int orderFilm(int groupFilmId,int userId,int amount){
 		OrderDao orderDao = new OrderDao();
 		UserDao userDao = new UserDao();
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
@@ -34,7 +34,11 @@ public class OrderService {
 		
 		Date createTime = new Date(new java.util.Date().getTime());
 		order.setCreateTime(createTime);
-		return orderDao.addOrder(order);
+		int res = -1;
+		if(orderDao.addOrder(order)){
+			res = order.getId();
+		}
+		return res;
 	}
 	
 	/**
@@ -53,9 +57,9 @@ public class OrderService {
 
 		float filmPrice = groupFilm.getCurrentPrice();
 		float balance = account.getBalance();
-		if(balance > filmPrice)
+		if(balance > filmPrice*order.getAmount())
 		{
-			account.setBalance(balance-filmPrice);
+			account.setBalance(balance-filmPrice*order.getAmount());
 			accountDao.update(account);
 			order.setStatus(2);
 			orderDao.update(order);
