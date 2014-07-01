@@ -82,8 +82,14 @@ public class GroupFilmDaoTest {
 		//String str = gson.toJson(list);
 		//System.out.println(str);
 		
-		int number = groupFilmDao.getAreaGroupFilmNum(1);
-		System.out.println(number);
+//		int number = groupFilmDao.getAreaGroupFilmNum(1);
+//		System.out.println(number);
+		GroupFilmService gs = new GroupFilmService();
+		List<GroupFilmBriefInfo> list = gs.loadGroupFilmsBriefInfo(0, 10);
+		Gson gson = new Gson();
+		String str = gson.toJson(list);
+		System.out.println(str);
+		
 	}
 
 }
