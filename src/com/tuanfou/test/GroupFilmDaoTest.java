@@ -38,11 +38,13 @@ public class GroupFilmDaoTest {
 //		Gson gson = new Gson();
 //		String str = gson.toJson(list);
 //		System.out.println(str);
-		GroupFilmDao groupFlimDao = new GroupFilmDao();
-		List<GroupFilm> groupFilm = groupFlimDao.getGroupFilms(0, Integer.MAX_VALUE);
-		Gson gson = new Gson();
-
-		System.out.println(groupFilm);
+//		GroupFilmDao groupFlimDao = new GroupFilmDao();
+//		List<GroupFilm> groupFilm = groupFlimDao.getGroupFilms(0, Integer.MAX_VALUE);
+//		Gson gson = new Gson();
+//
+//		System.out.println(groupFilm);
+		
+		groupfilmDetailedInfoTest();
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
@@ -116,9 +118,9 @@ public class GroupFilmDaoTest {
 		
 	}
 	
-	public static void groupfilmDetailedInfoTest(int id){
+	public static void groupfilmDetailedInfoTest(){
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
-		GroupFilmDetailedInfo groufilmDetailedInfo = groupFilmDao.getGroupFilmDetailedInfo(id);		
+		GroupFilmDetailedInfo groufilmDetailedInfo = groupFilmDao.getGroupFilmDetailedInfo(1);		
 		Gson gson = new Gson();
 		String str = gson.toJson(groufilmDetailedInfo);
 		System.out.println(str);
