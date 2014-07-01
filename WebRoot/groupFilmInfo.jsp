@@ -25,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div id="header"></div>
 <div id="bg">
 	<div id="main-left">
-		<div class="groupfilm-info">
-			<div class="groupfilm-img float-left "><img src="./imgs/1.png"/></div>
+		<div class="groupfilm-info" id="groupfilm_${groupFilmDetailInfo.groupFilmId}">
+			<div class="groupfilm-img float-left "><img src="${groupFilmDetailInfo.photpUrl}"/></div>
 			<div class="top-info">
 				<span class="float-left price-area">￥<span class="light-text-41">${groupFilmDetailInfo.currentPrice}</span>元</span>
 				<span class="float-left join-group">入伙(${groupFilmDetailInfo.partnerNum})</span>
@@ -108,12 +108,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				</div>
 				<div id="merchant-info-area" class="float-left">
-					<span class="line-block">洪山天河国际影院</span>
-					<span class="line-block">商家累计评分</span>
-					<span class="line-block">地址：洪山区珞瑜路6号乐天城购物中心6楼(群光广场旁)</span>
+					<span class="line-block">${groupFilmDetailInfo.cinemaName}</span>
+					<span class="line-block">商家累计评分 :5.0</span>
+					<span class="line-block">地址：${groupFilmDetailInfo.cinemaAddress}</span>
 					<span class="line-block">查看地图公交/驾车到这里去</span>
 					<span class="line-block">地铁：距街道口站约140米</span>
-					<span class="line-block">电话：027-87882649-805</span>
+					<span class="line-block">电话： ${groupFilmDetailInfo.phoneNum}</span>
 				</div>
 			</div>
 		</div>
@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table id="notice-info-table">
 					<tr>
 						<td class="left-title">有效期</td>
-						<td>2013.9.30 至 2014.7.31（周末、法定节假日通用）</td>
+						<td>${groupFilmDetailInfo.startDate} 至 ${groupFilmDetailInfo.endDate}（周末、法定节假日通用）</td>
 					</tr>
 					<tr>
 						<td class="left-title">使用时间</td>
@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div id="comment-info">
 			<span class="comment-info-title line-block">
-				<font size="4" color="blue">商家信息</font>
+				<font size="4" color="blue">评价详情</font>
 				<span class="float-right" ><a href="#"><font size="1">我要评价</font></a></span>
 			</span>
 			<div class="float-left comment-left">

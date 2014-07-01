@@ -62,7 +62,7 @@ public class FilterAction extends ActionSupport {
 		groupFilmService = new GroupFilmService();
 		try{
 			filmTags = tagService.getTagInfoList();
-			areas = areaService.getAreaInfoList(2);
+			areas = areaService.getAreaInfoList(31901);
 			filmStatusInfo = groupFilmService.getStatusInfo();
 			return "home";
 		}catch(Exception e){

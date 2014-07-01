@@ -40,7 +40,6 @@ public class GroupFilmDaoTest {
 //		System.out.println(str);
 		GroupFilmDao groupFlimDao = new GroupFilmDao();
 		List<GroupFilm> groupFilm = groupFlimDao.getGroupFilms(0, Integer.MAX_VALUE);
-		Gson gson = new Gson();
 
 		System.out.println(groupFilm);
 	}

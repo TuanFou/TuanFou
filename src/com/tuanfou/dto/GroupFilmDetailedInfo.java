@@ -6,10 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 public class GroupFilmDetailedInfo {
+	private int groupFilmId;
 	private float currentPrice;
 	private int partnerNum;//the num of the members who want to watch film with others
 	private String cinemaName;
 	private String cinemaAddress;
+	private String phoneNum;
+	private Date startDate;
 	private Date endDate;//tickets can only be used before this date
 	private Time timeRange;//tickets can only be used in the time range, like 10:00-24:00
 	private int orderNum;//
@@ -22,6 +25,7 @@ public class GroupFilmDetailedInfo {
 	private List<String> tags;
 	private Date realeaseDate;
 	private String director;
+	private String photpUrl;
 	public float getCurrentPrice() {
 		return currentPrice;
 	}
@@ -118,6 +122,30 @@ public class GroupFilmDetailedInfo {
 	}
 	public void setTags(List<String> tags) {
 		this.tags = tags;
+	}
+	public int getGroupFilmId() {
+		return groupFilmId;
+	}
+	public void setGroupFilmId(int groupFilmId) {
+		this.groupFilmId = groupFilmId;
+	}
+	public String getPhotpUrl() {
+		return photpUrl;
+	}
+	public void setPhotpUrl(String photpUrl) {
+		this.photpUrl = photpUrl;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
 	}
 
 }

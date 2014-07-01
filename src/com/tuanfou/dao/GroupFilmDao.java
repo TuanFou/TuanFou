@@ -43,7 +43,7 @@ public class GroupFilmDao {
 	 * 锟斤拷取锟脚癸拷锟斤拷息,只锟斤拷锟叫筹拷
 	 */
 	public List<GroupFilm> getGroupFilms(int firstResult,int maxResult){
-		String hql = "from GroupFilm groupFilm";
+		String hql = "from GroupFilm groupFilm where groupFilm.id = 1";
 		List<GroupFilm> groupFilms  =  HibernateTemplate.executeQuery(hql, firstResult, maxResult);
 		return groupFilms;	
 	}
@@ -104,8 +104,11 @@ public class GroupFilmDao {
 //				if(groupFilm.getFilm().getId()== filmId&&groupFilm.getCinema().getId() == cinemaId){
 				if(groupFilm.getId()==id)
 				{
+					groupFilmDetailedInfo.setGroupFilmId(id);
+					groupFilmDetailedInfo.setPhotpUrl(groupFilm.getPicUrl());
 					groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
 					groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
+					groupFilmDetailedInfo.setPhoneNum(groupFilm.getCinema().getPhoneNumber());
 					groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
 					//groupFilmDetailedInfo.setDeadline(changeDateFormat(groupFilm.getEndDate()));
 					groupFilmDetailedInfo.setDirector(groupFilm.getFilm().getDirector());
@@ -116,6 +119,7 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setCommentNum(groupFilm.getUsers().size());
 					groupFilmDetailedInfo.setCurrentPrice(groupFilm.getCurrentPrice());
 					groupFilmDetailedInfo.setEndDate(groupFilm.getEndDate());
+					groupFilmDetailedInfo.setStartDate(groupFilm.getStartDate());
 					groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
 					groupFilmDetailedInfo.setDescription(groupFilm.getFilm().getDescription());
 //					TODO 	SET TAGS
