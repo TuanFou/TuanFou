@@ -4,17 +4,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
+import com.tuanfou.pojo.Account;
+import com.tuanfou.pojo.City;
+import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
+import com.tuanfou.service.CommentService;
+import com.tuanfou.service.GroupFilmService;
 import com.tuanfou.service.OrderService;
 import com.tuanfou.service.UserService;
+import com.tuanfou.utils.HibernateUtil;
+import com.tuanfou.utils.Utils;
 
 public class UserAction extends ActionSupport {
 	/**
@@ -47,19 +57,88 @@ public class UserAction extends ActionSupport {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	/*
-	 * ��¼�û�
+	/**
+	 * 用户登录
+	 * 参数：用户名username;密码password
 	 */
 	public String login(){
-		UserService service = new UserService();
-		if(service.addUser(user)){
-			return SUCCESS;
-		}else{
-			return ERROR;
-		}	
+		
+		String matching = ERROR;
+		req = ServletActionContext.getRequest();
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		try{
+
+			Session session = HibernateUtil.getSession();
+			String hql = "from User user where user.userName=:username and user.password=:password";
+			Query query = session.createQuery(hql);
+			query.setParameter("username", username);
+			query.setParameter("password", password);
+			@SuppressWarnings("unchecked")
+			List<User> userList = query.list();
+			Iterator<User> itUser =userList.iterator();
+			if(itUser.hasNext())
+				{			
+					matching = SUCCESS;
+				}
+		}catch(Exception e){
+			e.printStackTrace();
+			matching = ERROR;
+		}finally{
+			HibernateUtil.closeSession();
+		}
+		return matching;
 	}
-	public String regist(){
-		return SUCCESS;
+	
+	/**
+	 *注册新用户
+	 *参数：用户名username;密码password;城市ID cityId
+	 */
+	public boolean regist(){
+		boolean res = true;
+		req = ServletActionContext.getRequest();
+		User aUser = new User();
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		//cityId 要获取参数值
+		int cityId = 31901;
+		aUser.setUserName(username);
+		aUser.setPassword(password);
+		try{
+			UserService us = new UserService();
+			List<User> userList = us.getUserList();
+			Iterator<User> itUser =userList.iterator();
+			
+			while(itUser.hasNext())
+			{			
+				if(itUser.next().getUserName()==username){
+					res = false;
+				}
+			}
+		
+			if(res) {
+				City city = new City();
+				city.setId(cityId);
+				aUser.setCity(city);
+				Account account = new Account();
+				account.setBalance(0);
+				us.addAccount(account);
+				Session session = HibernateUtil.getSession();
+				@SuppressWarnings("unchecked")
+				List<Account> accountList = session.createQuery("from Account account where account.id=(select max(a.id) from Account a)").list();
+				Iterator<Account> itAccount =accountList.iterator();
+				while(itAccount.hasNext())
+				{			
+					aUser.setAccount(itAccount.next());
+				}
+				us.addUser(aUser);  
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			res = false;
+		}
+		return res;
 	}
 	/*
 	 * ��ȡ�û��б�href="UserAction!getUserList"
