@@ -27,7 +27,7 @@ public class TagService {
 			TagInfo info = it.next();
 			System.out.println("tagName:"+info.getTagName());
 			
-			Set<Film> films = info.getFilms();
+			List<Film> films = info.getFilms();
 			Iterator<Film> filmIterator = films.iterator();
 			while(filmIterator.hasNext()){
 				Film film = filmIterator.next();

@@ -33,9 +33,9 @@ public class TagDaoTest {
 		//tagDao.add(tag);
 		TagService tagService = new TagService();
 		List<TagInfo> tagInfoList = tagService.getTagInfoList();
-//		Gson gson = new Gson();
-//		String str = gson.toJson(tagInfoList);
-//		System.out.println(str);
+		Gson gson = new Gson();
+		String str = gson.toJson(tagInfoList);
+		System.out.println(str);
 //		Iterator<TagInfo> it = tagInfoList.iterator();
 //		while(it.hasNext()){
 //			TagInfo tagInfo = (TagInfo) it.next();

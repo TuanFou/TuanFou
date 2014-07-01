@@ -19,8 +19,8 @@ public class UserAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	/*
-	 * µÇÂ¼²Ù×÷
-	 * @return ÊÇ·ñ³É¹¦
+	 * ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½Ç·ï¿½É¹ï¿½
 	 */
 	private User user;
 	@SuppressWarnings("unused")
@@ -36,7 +36,7 @@ public class UserAction extends ActionSupport {
 		this.user = user;
 	}
 	/*
-	 * µÇÂ¼ÓÃ»§
+	 * ï¿½ï¿½Â¼ï¿½Ã»ï¿½
 	 */
 	public String login(){
 		UserService service = new UserService();
@@ -50,7 +50,7 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 	}
 	/*
-	 * »ñÈ¡ÓÃ»§ÁÐ±íhref="UserAction!getUserList"
+	 * ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½Ð±ï¿½href="UserAction!getUserList"
 	 */
 	public void getUserList() throws IOException{
 		userList = new ArrayList<User>();

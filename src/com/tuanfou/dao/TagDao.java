@@ -105,7 +105,7 @@ public class TagDao {
 				tagInfo.setTagName(tag.getTagName());
 				System.out.println(tag.getTagName());
 				
-				Set<Film> films = new HashSet<Film>();
+				List<Film> films = new ArrayList<Film>();
 				Iterator<Film> filmIt = tag.getFilms().iterator();
 				while(filmIt.hasNext())
 				{
