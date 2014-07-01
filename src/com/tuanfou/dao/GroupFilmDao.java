@@ -234,4 +234,4 @@ public class GroupFilmDao {
 			HibernateUtil.closeSession();
 		}
 	}
-}
+
