@@ -24,6 +24,12 @@ public class AreaAction extends ActionSupport {
 	private HttpServletResponse response;
 	private static AreaService areaService = new AreaService();
 	
+	
+	/**
+	 * 
+	 * 加载每个地区的团购电影数量
+	 * 参数：cityId
+	 */
 	public String loadAreas(){
 		req = (HttpServletRequest) ActionContext.getContext().get("request");
 		response = ServletActionContext.getResponse();

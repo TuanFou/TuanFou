@@ -2,6 +2,7 @@ package com.tuanfou.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.pojo.User;
+import com.tuanfou.service.OrderService;
 import com.tuanfou.service.UserService;
 
 public class UserAction extends ActionSupport {
@@ -19,8 +21,8 @@ public class UserAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	/*
-	 * µÇÂ¼²Ù×÷
-	 * @return ÊÇ·ñ³É¹¦
+	 * ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½Ç·ï¿½É¹ï¿½
 	 */
 	private User user;
 	@SuppressWarnings("unused")
@@ -36,7 +38,7 @@ public class UserAction extends ActionSupport {
 		this.user = user;
 	}
 	/*
-	 * µÇÂ¼ÓÃ»§
+	 * ï¿½ï¿½Â¼ï¿½Ã»ï¿½
 	 */
 	public String login(){
 		UserService service = new UserService();
@@ -50,7 +52,7 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 	}
 	/*
-	 * »ñÈ¡ÓÃ»§ÁĞ±íhref="UserAction!getUserList"
+	 * ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½Ğ±ï¿½href="UserAction!getUserList"
 	 */
 	public void getUserList() throws IOException{
 		userList = new ArrayList<User>();
@@ -59,5 +61,17 @@ public class UserAction extends ActionSupport {
 		userList = userService.getUserList();
 		PrintWriter  out = response.getWriter();
 		out.print("hello");
+	}
+	
+	/**
+	 * ä¸‹è®¢å•
+	 * å‚æ•°ï¼šå›¢è´­ç”µå½±idï¼Œç”¨æˆ·idï¼Œå›¢è´­åˆ°æœŸæ—¶é—´ï¼Œ
+	 */
+	public String order(int groupFilmId,int userId,Date expiredTime){
+		OrderService orderService = new OrderService();
+		if(orderService.orderFilm(groupFilmId, userId, expiredTime))
+			return "OrderSuccess";
+		else
+			return "OrderFailure";
 	}
 }
