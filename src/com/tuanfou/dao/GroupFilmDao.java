@@ -177,4 +177,58 @@ public class GroupFilmDao {
 	}
 	
 	
+	//团购电影总数
+	public int getTotalGroupFilmNum(){
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "select count(*) From GroupFilm";
+			Query query = session.createQuery(hql);
+			return ((Long)query.uniqueResult()).intValue();		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+		
+	}
+	
+	//地区团购电影
+	public int getAreaGroupFilmNum(int areaId){
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "select count(*) from GroupFilm groupFilm where groupFilm.area.id = :areaId";
+			Query query = session.createQuery(hql);
+			query.setParameter("areaId", areaId);
+			System.out.println(((Long)query.uniqueResult()).intValue());
+			return ((Long)query.uniqueResult()).intValue();		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
+	//同一电影数量
+	public int getFilmNum(int filmId){
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "select count(*) From GroupFilm groupFilm where groupFilm.film.id=:filmId";
+			Query query = session.createQuery(hql);
+			query.setParameter("filmId", filmId);
+			return ((Long)query.uniqueResult()).intValue();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
 }

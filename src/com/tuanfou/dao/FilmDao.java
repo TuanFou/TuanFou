@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -17,7 +18,7 @@ public class FilmDao {
 	Session session = null;
 	
 	/**
-	 * 添加一个电影
+	 * 添加一个电�
 	 * @param film
 	 * @return
 	 */
@@ -40,4 +41,21 @@ public class FilmDao {
 		return res;
 	}
 
+	
+	//电影总数
+	public int getTotalFilmsNum(){
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "Select count(*) from Film";
+			Query query = session.createQuery(hql);
+			return ((Long)query.uniqueResult()).intValue();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}		
+	}
 }

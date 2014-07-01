@@ -1,7 +1,9 @@
-package com.tuanfou.test;
+﻿package com.tuanfou.test;
+
 
 
 import java.util.List;
+
 
 import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
@@ -32,7 +34,7 @@ public class GroupFilmDaoTest {
 //		private int status;  //0:�����У�1:���ϼܣ�2���¼�
 //		private String remark;//��ע
 //		private int type;//0:�Ѿ���ӳ, 1��������ӳ��2���¼�
-//		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
 //		GroupFilm groupFilm = new GroupFilm();
 //		Film film = new Film();
 //		film.setId(1);
@@ -65,19 +67,24 @@ public class GroupFilmDaoTest {
 //		List<GroupFilmBriefInfo> groupFilms = groupFilmDao.getGroupFilmsBriefInfo(0, 10);
 //		System.out.println(groupFilms);
 		
-		GroupFilmService se = new GroupFilmService();
-		List<GroupFilmBriefInfo> list = se.loadGroupFilmsBriefInfo(0, 10);
+		//GroupFilmService se = new GroupFilmService();
+		//List<GroupFilmBriefInfo> list = se.loadGroupFilmsBriefInfo(0, 10);
 //		for(GroupFilmBriefInfo tem:list){
 //			System.out.println("����:"+tem.getCinemaName()+tem.getStar());
 //		}
-//		GroupFilmBriefInfo info = list.get(0);
+
+		//GroupFilmBriefInfo info = list.get(0);
+
 //		List<String> tags = new ArrayList<String>();
 //		tags.add("����");
 //		tags.add("����");
 //		info.setTags(tags);
-		Gson gson = new Gson();
-		String str = gson.toJson(list);
-		System.out.println(str);
+		//Gson gson = new Gson();
+		//String str = gson.toJson(list);
+		//System.out.println(str);
+		
+		int number = groupFilmDao.getAreaGroupFilmNum(1);
+		System.out.println(number);
 	}
 	
 	public static void groupfilmDetailedInfoTest(int id){

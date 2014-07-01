@@ -20,7 +20,7 @@ public class FilmDaoTest {
 		findTagsTest();
 	}
 	public static void addFilmTest(){
-		Film film = new Film();
+		/*Film film = new Film();
 		Merchant merchant = new Merchant();
 		Date date = new Date(new java.util.Date().getTime());
 		merchant.setId(1);
@@ -40,8 +40,10 @@ public class FilmDaoTest {
 		film.setAuditResult(0);
 		FilmDao filmDao = new FilmDao();
 		filmDao.addFilm(film);
-		System.out.println(film.getReleaseDate());
-		
+		System.out.println(film.getReleaseDate());*/
+		FilmDao filmDao = new FilmDao();
+		int number = filmDao.getTotalFilmsNum();
+		System.out.println("电影总数："+number);
 	}
 	
 	public static void findTagsTest(){

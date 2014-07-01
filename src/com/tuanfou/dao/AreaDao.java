@@ -1,5 +1,10 @@
 package com.tuanfou.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Area;
@@ -9,7 +14,7 @@ public class AreaDao {
 	Session session =null;
 	
 	/**
-	 * Ìí¼ÓÒ»¸öµØÇø
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param area
 	 * @return
 	 */
@@ -17,18 +22,46 @@ public class AreaDao {
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(area);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓµØÇøÊ§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½Óµï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
 			HibernateUtil.closeSession();
 		}
 		return res;
-	};
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Area> getAreaList(int cityId){
+		List<Area> areaList = new ArrayList<Area>();
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "From Area area where area.city.id = :cityId";
+			Query query = session.createQuery(hql);
+			query.setParameter("cityId", cityId);
+			Iterator<Area> it = query.list().iterator();
+			
+			while(it.hasNext())
+			{
+				Area area = it.next();
+				//if(area.getCity().getId() == cityId)
+				areaList.add(area);		
+			}
+			
+			return areaList;			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
 }
