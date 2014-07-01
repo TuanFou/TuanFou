@@ -1,13 +1,23 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>首页</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <base href="<%=basePath%>">
     
-    <link rel="stylesheet" type="text/css" href="./css/common.css">
+    <title>首页</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<link rel="stylesheet" type="text/css" href="./css/common.css">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
 
     <!--<link rel="stylesheet" type="text/css" href="./imgs/styles.css">-->
@@ -16,8 +26,7 @@
   </head>
   
   <body>
-   <body>
-	<div id="header"></div>
+     <div id="header"></div>
 	<div id="bg">
 		<div id="main-left">
 		   <div  class="filter">
@@ -30,26 +39,17 @@
 				<div class="filter-section">
 					<div class="filter-type">所在区域:</div>
 					<ul class="inline-block-list">
-						<li>全部(20)</li>
-						<li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
+						<c:forEach items="${areas}" var="area">
+							<li id="${area.areaId}">${area.areaName}(${area.filmNumber})</li>
+						</c:forEach>
 					</ul>
 				</div>
 			  	<div class="filter-section">
 					<div class="filter-type">影片类型:</div>
 					<ul class="inline-block-list">
-						<li>全部(20)</li>
-						<li>爱情(20)</li>
-						<li>喜剧(20)</li>
-						<li>动画(20)</li>
-						<li>科幻(20)</li>
-						<li>剧情(20)</li>
-						<li>奇幻(20)</li>
-						<li>剧情(20)</li>
+					    <c:forEach items="${filmTags}" var="tag">
+							<li id="${tag.tagId}">${tag.tagName}(${tag.filmNum})</li>
+						</c:forEach>
 					</ul>
 				</div>
 			    <div  class="filter-section">
@@ -160,6 +160,5 @@
 	<div class="site-info">
 		
 	</div>
-</body>
   </body>
 </html>

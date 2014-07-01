@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Struts2Diagram version="2.0">
   <package name="userPackage" location="10,10" size="280,140">
-    <action name="UserAction" location="27,42" size="150,62">
+    <action name="UserAction" location="33,48" size="150,62">
       <result name="success">
         <resourceEdge source="success" routing="0" target="success.jsp" />
       </result>
@@ -10,14 +10,19 @@
       </result>
     </action>
   </package>
-  <webResource name="success.jsp" path="/success.jsp" location="45,204" size="150,55" />
-  <webResource name="error.jsp" path="/error.jsp" location="355,52" size="150,55" />
-  <package name="GroupFilm" location="375,172" size="170,70">
-    <action name="GroupFilmAction" location="70,30" size="150,40">
+  <package name="GroupFilm" location="375,172" size="231,103">
+    <action name="GroupFilmAction" location="76,36" size="150,62">
+      <result name="detailInfo">
+        <resourceEdge source="detailInfo" routing="0" target="groupFilmInfo.jsp" />
+      </result>
       <result name="error">
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
     </action>
+    <action name="FilterAction" location="20,43" size="150,40" />
   </package>
+  <webResource name="success.jsp" path="/success.jsp" location="45,204" size="150,55" />
+  <webResource name="error.jsp" path="/error.jsp" location="355,52" size="150,55" />
+  <webResource name="groupFilmInfo.jsp" path="/groupFilmInfo.jsp" location="50,350" size="150,55" />
 </Struts2Diagram>
 

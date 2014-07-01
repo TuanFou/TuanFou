@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -24,6 +25,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<s:property value="groupFilmDetailInfo.currentPrice"></s:property>
+  	<s:property value="groupFilmDetailInfo.currentPrice"></s:property><br>
+  	1
+  	<c:forEach items ="${areas}" var="area">
+  	   1${area.areaId}
+  	</c:forEach>
   </body>
 </html>

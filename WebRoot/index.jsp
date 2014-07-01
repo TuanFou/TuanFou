@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>首页</title>
+    <meta http-equiv="refresh"content="0;url=FilterAction!getFilterTags">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -18,18 +19,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+
   </head>
   
-  <body>
-     <form action="UserAction!login" method="post">
-      	姓名:<input type="text" name="user.userName"/> <br>
-                            密码:<input type="password" name="user.password"/><br> 
-                           邮箱:<input type="text" name="user.email"/><br> 
-                           城市:<input type="text" name="user.city.cityName"/><br> 
-                          描述:<input type="text" name="user.description"/><br> 
-                          头像:<input type="text" name="user.photoUrl"/><br>     
-                          金额:<input type="text" name="user.account.balance"/><br>          
-    	<input type="submit" value="登录">
-     </form>
+  <body>   
   </body>
 </html>
