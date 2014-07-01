@@ -21,10 +21,9 @@ public class GroupFilmDetailedInfo {
 	private String description;
 	private String filmName;
 	private int period;//in minutes
-	private List<Tag> tags;
+	private List<String> tags;
 	private Date realeaseDate;
 	private String director;
-	
 	public float getCurrentPrice() {
 		return currentPrice;
 	}
@@ -103,12 +102,7 @@ public class GroupFilmDetailedInfo {
 	public void setPeriod(int period) {
 		this.period = period;
 	}
-	public List<Tag> getTags() {
-		return tags;
-	}
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-	}
+
 	public Date getRealeaseDate() {
 		return realeaseDate;
 	}
@@ -120,6 +114,12 @@ public class GroupFilmDetailedInfo {
 	}
 	public void setDirector(String director) {
 		this.director = director;
+	}
+	public List<String> getTags() {
+		return tags;
+	}
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 
 }
