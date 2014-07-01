@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="groupfilm-info">
 			<div class="groupfilm-img float-left "><img src="./imgs/1.png"/></div>
 			<div class="top-info">
-				<span class="float-left price-area">￥<span class="light-text-51">${groupFilmDetailInfo.currentPrice}</span>元</span>
+				<span class="float-left price-area">￥<span class="light-text-41">${groupFilmDetailInfo.currentPrice}</span>元</span>
 				<span class="float-left join-group">入伙(${groupFilmDetailInfo.partnerNum})</span>
 				<div class="float-left ">
 					<span class="bg-blue line-block" >3D/IMAX3D/中国巨幕</span>

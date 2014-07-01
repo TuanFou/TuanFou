@@ -2,8 +2,12 @@
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 import com.google.gson.Gson;
@@ -20,7 +24,10 @@ public class GroupFilmDaoTest {
 	 */
 	public static void main(String[] args) {
 //		TODO some test
-		groupfilmDetailedInfoTest(1);
+
+		//changeDateFormatTest();
+		groupfilmDetailedInfoTest();
+
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
@@ -94,9 +101,9 @@ public class GroupFilmDaoTest {
 		
 	}
 	
-	public static void groupfilmDetailedInfoTest(int id){
+	public static void groupfilmDetailedInfoTest(){
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
-		GroupFilmDetailedInfo groufilmDetailedInfo = groupFilmDao.getGroupFilmDetailedInfo(id);		
+		GroupFilmDetailedInfo groufilmDetailedInfo = groupFilmDao.getGroupFilmDetailedInfo(1);		
 		Gson gson = new Gson();
 		String str = gson.toJson(groufilmDetailedInfo);
 		System.out.println(str);
@@ -118,6 +125,24 @@ public class GroupFilmDaoTest {
 //		Gson gson = new Gson();
 //		String str = gson.toJson(i);
 //		System.out.println(str);
+	}
+	
+	public static void convertSetToListTest(){
+		Set<Integer> set = new HashSet<Integer>();
+		set.add(10);
+		set.add(11);
+		set.add(14);
+		set.add(10);
+		Iterator<Integer> it = set.iterator();
+		while (it.hasNext())
+		{
+		    System.out.print(it.next() + " ");
+		}
+		List<Integer> list = new ArrayList<Integer>(set);
+		for (int i = 0; i < list.size(); i++)
+		{
+		    System.out.print(list.get(i) + " ");
+		}
 	}
 	
 }
