@@ -2,7 +2,6 @@ package com.tuanfou.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -158,9 +157,9 @@ public class UserAction extends ActionSupport {
 	 * 下订单
 	 * 参数：团购电影id，用户id，团购到期时间，
 	 */
-	public String order(int groupFilmId,int userId,Date expiredTime){
+	public String order(int groupFilmId,int userId,int amount){
 		OrderService orderService = new OrderService();
-		if(orderService.orderFilm(groupFilmId, userId, expiredTime))
+		if(orderService.orderFilm(groupFilmId, userId, amount))
 			return "OrderSuccess";
 		else
 			return "OrderFailure";

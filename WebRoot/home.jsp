@@ -5,7 +5,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%
+	session.setAttribute("userId", 304010333);
+	session.setAttribute("userName", "高笑笑");
+	session.setMaxInactiveInterval(1800);
+ %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>

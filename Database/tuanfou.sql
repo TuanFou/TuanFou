@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014/7/4 15:12:16
+Date: 2014/7/5 11:00:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,6 +26,7 @@ CREATE TABLE `t_admin` (
   `id` int(11) NOT NULL auto_increment,
   `employeeId` varchar(10) default NULL COMMENT '工职编号',
   `password` varchar(16) default NULL COMMENT '密码',
+  `name` varchar(10) default NULL COMMENT '管理员名称',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -240,8 +241,8 @@ INSERT INTO `t_account` VALUES ('7', '2356');
 INSERT INTO `t_account` VALUES ('8', '9462');
 INSERT INTO `t_account` VALUES ('9', '57621');
 INSERT INTO `t_account` VALUES ('10', '32');
-INSERT INTO `t_admin` VALUES ('30601001', '001', '123001');
-INSERT INTO `t_admin` VALUES ('31201002', '007', '123007');
+INSERT INTO `t_admin` VALUES ('30601001', '001', '123001', 'KDF5000');
+INSERT INTO `t_admin` VALUES ('31201002', '007', '123007', 'KDF');
 INSERT INTO `t_area` VALUES ('3010101', '海淀区', '30101');
 INSERT INTO `t_area` VALUES ('3010102', '东城区', '30101');
 INSERT INTO `t_area` VALUES ('3160101', '双城区', '31601');
@@ -327,6 +328,7 @@ INSERT INTO `t_film` VALUES ('7', '1', '冰雪奇缘', '2014-07-28', '1', '美�
 INSERT INTO `t_film` VALUES ('8', '1', '窃听风云2', '2014-07-28', '2', '香港', '114', '香港证券商人罗敏生驱车上班途中遭遇车祸。警方在罗的车内发现军用窃听器，反恐队长何智强怀疑有人正在策划恐怖袭击。随着何的调查，始终藏在暗处监视窃听的退伍军人司马念祖也渐渐浮出水面。与此同时，罗将被窃听的消息告诉了“地主会”的元老们，这是一群自70年代起便操纵香港金融的业界精英，如今更成为只手遮天的抢钱大亨。原以为只会是普通的勒索案，却将罗、何、司马等人卷入了万劫不复的漩涡之中。', '麦兆辉', '古天乐', '5', '0', '2014-07-01 17:08:38', '0');
 INSERT INTO `t_film` VALUES ('9', '2', '驯龙高手2', '2014-07-28', '2', '美国', '120', '《驯龙高手》第一部的两位导演克里斯·桑德斯和迪恩·德布洛斯，在续集中将以另外一种形式合作：迪恩·德布洛斯“单飞”挑起导演大梁，独自执导《驯龙高手2》，克里斯·桑德斯则将出任执行制片人。所有台前配音以及幕后主创原班人马将悉数回归这部续集。杰伊·巴鲁切尔，克雷格·费格森，亚美莉卡·费雷拉，乔纳·希尔，克里斯托夫·梅兹-普莱瑟和克里斯汀·韦格等演员都将继续为影片里的角色担任配音。当然，大家最爱的没牙仔和其他可爱的小龙也都会继续出现在《驯龙高手2》中。', '迪恩·德布洛斯', '杰伊·巴鲁切尔', '5', '0', '2014-07-02 17:11:06', '0');
 INSERT INTO `t_film` VALUES ('10', '2', '霍比特人3', '2014-07-28', '3', '美国', '124', '根据英国作家J.R.R·托尔金1937年出版的同名长篇小说改编。又名《哈比特人历险记》或《去而复返-一个霍比特人的故事》。（原著中由比尔博本人亲自撰写。） 　　因此书而延伸出的《 魔戒 》和其后的故事，托尔金因此一举成名。 　　故事讲述记述霍比特人比尔博.巴金斯与巫师甘道夫和十三名矮人向东旅行横越中土大陆，寻找被恶龙抢占的属于矮人珍贵宝物的探险故事。 　　据目前证实，本片的第二部剧情将依据原著相关资料对小说故事进行延伸，讲述比尔博返乡乃至《魔戒》剧情开始之间六十年的故事。', '彼得·杰克逊', '马丁·弗瑞曼', '5', '1', '2014-07-03 17:14:22', '1');
+INSERT INTO `t_film` VALUES ('11', '1', '归来', '2014-06-13', '1', '大陆', '120', '归来之作', '张艺谋', '巩俐', '4', '0', '2014-07-04 21:00:07', '0');
 INSERT INTO `t_film_tag` VALUES ('1', '1', '2');
 INSERT INTO `t_film_tag` VALUES ('2', '1', '3');
 INSERT INTO `t_film_tag` VALUES ('3', '1', '4');
@@ -347,6 +349,8 @@ INSERT INTO `t_film_tag` VALUES ('17', '8', '5');
 INSERT INTO `t_film_tag` VALUES ('18', '9', '7');
 INSERT INTO `t_film_tag` VALUES ('19', '10', '8');
 INSERT INTO `t_film_tag` VALUES ('20', '10', '13');
+INSERT INTO `t_film_tag` VALUES ('21', '11', '1');
+INSERT INTO `t_film_tag` VALUES ('22', '11', '13');
 INSERT INTO `t_group_film` VALUES ('1', '1', '3190101', '319010103', '19.99', '80', '2014-07-06 12:59:52', '2014-08-03 13:00:11', '1', '不错的电影1', '0', './imgs/1.png');
 INSERT INTO `t_group_film` VALUES ('2', '1', '3190101', '319010101', '29.8', '90', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影2', '0', './imgs/1.png');
 INSERT INTO `t_group_film` VALUES ('3', '1', '3190101', '319010102', '39', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影3', '0', './imgs/1.png');
@@ -357,6 +361,7 @@ INSERT INTO `t_group_film` VALUES ('7', '6', '3190102', '319010201', '35', '100'
 INSERT INTO `t_group_film` VALUES ('8', '7', '3190103', '319010301', '33', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影8', '1', './imgs/1.png');
 INSERT INTO `t_group_film` VALUES ('9', '7', '3010102', '301010204', '32', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影9', '1', './imgs/1.png');
 INSERT INTO `t_group_film` VALUES ('10', '10', '3010102', '301010203', '31', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影10', '0', './imgs/1.png');
+INSERT INTO `t_group_film` VALUES ('12', '11', '3010101', '301010101', '19', '25', '2014-07-20 00:00:00', '2014-08-20 00:00:00', '1', null, '1', null);
 INSERT INTO `t_heart` VALUES ('1', '1', '307016211');
 INSERT INTO `t_heart` VALUES ('2', '1', '309010006');
 INSERT INTO `t_heart` VALUES ('3', '1', '309010056');
@@ -397,7 +402,7 @@ INSERT INTO `t_order` VALUES ('7', '3', '304010333', '2014-07-02 09:36:01', '201
 INSERT INTO `t_order` VALUES ('8', '4', '309010006', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '2');
 INSERT INTO `t_order` VALUES ('9', '10', '309010056', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '1');
 INSERT INTO `t_order` VALUES ('10', '8', '319010001', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '2');
-INSERT INTO `t_tag` VALUES ('1', '爱情', '0');
+INSERT INTO `t_tag` VALUES ('1', '爱情', '1');
 INSERT INTO `t_tag` VALUES ('2', '动作', '0');
 INSERT INTO `t_tag` VALUES ('3', '科幻', '1');
 INSERT INTO `t_tag` VALUES ('4', '惊悚', '0');
@@ -409,7 +414,7 @@ INSERT INTO `t_tag` VALUES ('9', '喜剧', '0');
 INSERT INTO `t_tag` VALUES ('10', '伦理', '0');
 INSERT INTO `t_tag` VALUES ('11', '冒险', '0');
 INSERT INTO `t_tag` VALUES ('12', '犯罪', '0');
-INSERT INTO `t_tag` VALUES ('13', '剧情', '0');
+INSERT INTO `t_tag` VALUES ('13', '剧情', '1');
 INSERT INTO `t_user` VALUES ('302010010', '2', '李晓峰', '1232', 'kdf5000@163.com', '30201', 'hello2', 'imgs/girl2.jpg', '1');
 INSERT INTO `t_user` VALUES ('304010321', '3', '黄子龙', '1233', 'kdf@163.com', '30401', 'hello3', 'imgs/girl2.jpg', '1');
 INSERT INTO `t_user` VALUES ('304010333', '8', '高笑笑', '1238', 'kdf@163.com', '30401', 'h8', 'imgs/girl2.jpg', '2');

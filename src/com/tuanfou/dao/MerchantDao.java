@@ -1,13 +1,12 @@
 package com.tuanfou.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
-
+import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Merchant;
-import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
 public class MerchantDao {
@@ -57,23 +56,26 @@ public class MerchantDao {
 		}
 	}
 	
-	/*
-	 * 获取商家列表
-	 */
-	public List<Merchant> getMerchantList(){
-		List<Merchant> merchantList = new ArrayList<Merchant>();
+	public Set<Cinema> getCinema(int merchantId){
+		Set<Cinema> cinemas = new HashSet<Cinema>();
 		try{
 			session = HibernateUtil.getSession();
-			String hql = "from Merchant merchant";
-			Query q = session.createQuery(hql);
-			merchantList = q.list();
-		}catch(Exception e){
-			System.out.println("��ѯʧ��");
+			Merchant merchant = (Merchant) session.get(Merchant.class, merchantId);
+			Iterator<Cinema> it = merchant.getCinemas().iterator();
+			while(it.hasNext()){
+				Cinema cinema = it.next();
+				cinemas.add(cinema);
+			}
+			return cinemas;
+		}
+		catch(Exception e){
 			e.printStackTrace();
-		}finally{
+			return null;
+		}
+		finally{
 			HibernateUtil.closeSession();
 		}
-		return merchantList;	
 	}
+	
 
 }

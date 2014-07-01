@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>首页</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="./imgs/styles.css">-->
+ <style>
+   .float-left{
+  float: left;
+  }
+  .line-block{
+    display: block;
+    padding:0px;
+	font-size:10px;
+  }
+
+  #info-area{
+    margin: 20px auto;
+  }
+  .title_1, .title_2,.title_3,.title_4,.title_5 ,.title_6,.title_7,.title_8{
+    padding: 5px;
+    float:left;
+    background: #EEEEEE;
+	font:10px '微软雅黑';
+	text-align:center;
+  }
+  .cell_1, .cell_2,.cell_3,.cell_4,.cell_5 ,.cell_6,.cell_7,.cell_8{
+    padding: 5px;
+    float:left;
+	height:60px;
+	font:10px '微软雅黑';
+	text-align:center;
+  }
+ .cell_1, .title_1{
+    width: 105px;
+	vertical-align:middle;
+  }
+ .cell_2, .title_2{
+    width: 80px;
+  }
+ .cell_3, .title_3{
+    width: 70px;
+  }
+ .cell_4, .title_4{
+    width: 55px;
+  }
+ .cell_5, .title_5{
+    width: 70px;
+  }
+ .cell_6, .title_6{
+    width: 50px;
+  }
+ .cell_7, .title_7{
+    width: 50px;
+  }
+ .cell_8, .title_8{
+    width: 60px;
+  }
+  /*订单项*/
+.order-item{
+  width: 620px;
+  border: 1px solid #EEEEEE;
+  margin-top: 20px;
+  height: 100px;
+}
+.clear{
+  clear: both;
+}
+.heart-film-info{
+  width: 150px;
+  margin-left: 10px;
+  margin-top: 0px;
+  vertical-align:middle;
+}
+.price{
+  margin-top:20px;
+  width: 60px;
+  text-align: center;
+}
+.amount{
+  margin-top: 20px;
+  width: 60px;
+  text-align: center;
+}
+.totalPrice{
+   width: 110px;
+   margin-top: 20px;
+   text-align: center;
+}
+.status{
+  width: 70px;
+  margin-top: 0px;
+  text-align: center;
+}
+.operation{
+  margin-top: 0px;
+  width: 60px;
+}
+.operation button{
+  width:60px;
+  border: none;
+  font-size:5px;
+}
+.operation button:hover{
+  background: #0080FF;
+}
+.order-item-title{
+  display: block;
+  background: #EEEEEE;
+  height: 25px;
+  line-height: 25px;
+  padding-left: 10px;
+}
+.item-info{
+  margin-top: 0px;
+  vertical-align:middle;
+}
+</style>
+</head>
+  
+<body>
+ <div  class="bg">
+      <span><font size="5" color="blue">我的订单</font></span>
+      <div id="info-area">
+         <div class="title">
+            <div class="title_1">团购</div>
+            <div class="title_2">上架时间</div>
+            <div class="title_3">有效期(天)</div>
+            <div class="title_4">单价(元)</div>
+            <div class="title_5">团购状态</div>
+            <div class="title_6">想看(人)</div>
+            <div class="title_7">订单数</div>
+            <div class="title_8">操作</div>
+         </div>
+         <div class="clear"></div>
+         <div class="order-item">
+            <span class="order-item-title">团购编号：001</span>
+            <div class="item-info">
+                <div >
+                    <span class="line-block cell_1">沉睡魔咒<br>洪山天河国际影城</span>
+                </div>
+                <span class="float-left cell_2" >2014-4-1</span>
+                <span class="float-left cell_3">30</span>
+                <span class="float-left cell_4">原价：<br>&nbsp50.00<br>现价：<br>&nbsp&nbsp19.99</span>
+                <span class="float-left status cell_5">已上架</span>
+                <span class="float-left cell_6">30</span>
+                <span class="float-left cell_7">30</span>
+                <span class="float-left operation cell_8">
+                     <span><button>申请下架</button></span>
+                </span>
+            </div>
+            <div class="clear"></div>
+         <div class="order-item">
+            <span class="order-item-title">团购编号：002</span>
+            <div class="item-info">
+                <div >
+                    <span class="line-block cell_1">沉睡魔咒<br>洪山天河国际影城</span>
+                </div>
+                <span class="float-left cell_2" >2014-4-1</span>
+                <span class="float-left cell_3">30</span>
+                <span class="float-left cell_4">原价：<br>&nbsp50.00<br>现价：<br>&nbsp&nbsp19.99</span>
+                <span class="float-left status cell_5">已上架</span>
+                <span class="float-left cell_6">30</span>
+                <span class="float-left cell_7">30</span>
+                <span class="float-left operation cell_8">
+                     <span><button>申请下架</button></span>
+                </span>
+            </div>
+            <span>
+         </div>
+      </div>
+  </div>
+</body>
+</html>
