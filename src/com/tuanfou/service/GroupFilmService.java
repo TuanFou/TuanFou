@@ -5,10 +5,11 @@ import java.util.List;
 import com.tuanfou.dao.CommentDao;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.GroupFilmBriefInfo;
+import com.tuanfou.dto.GroupFilmDetailedInfo;
 
 public class GroupFilmService {
 	/*
-	 * Ö¸¶¨Ò³ÊýºÍÃ¿Ò³ÏÔÊ¾µÄÌõÊý¼ÓÔØ¸ü¶à
+	 * Ö¸ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½
 	 */
 	public List<GroupFilmBriefInfo> loadGroupFilmsBriefInfo(int page,int pageSize){
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
@@ -20,5 +21,10 @@ public class GroupFilmService {
 			briefInfo.setStar(commentDao.getStarByGroupFilmId(briefInfo.getGroupFilmId()));
 		}
 		return groupFilms;
+	}
+	public GroupFilmDetailedInfo getGroupFilmDetailInfo(int groupFilmId){
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		GroupFilmDetailedInfo info = groupFilmDao.getGroupFilmDetailedInfo(groupFilmId);
+		return info;
 	}
 }

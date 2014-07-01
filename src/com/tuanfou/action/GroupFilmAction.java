@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.GroupFilmBriefInfo;
+import com.tuanfou.dto.GroupFilmDetailedInfo;
 import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmAction extends ActionSupport {
@@ -23,6 +24,27 @@ public class GroupFilmAction extends ActionSupport {
 	
 	private HttpServletRequest req;
 	private HttpServletResponse response;
+	private GroupFilmDetailedInfo groupFilmDetailInfo;
+	
+	public GroupFilmDetailedInfo getGroupFilmDetailInfo() {
+		return groupFilmDetailInfo;
+	}
+	public void setGroupFilmDetailInfo(GroupFilmDetailedInfo groupFilmDetailInfo) {
+		this.groupFilmDetailInfo = groupFilmDetailInfo;
+	}
+	
+	public String showGroupFilmDetail(){
+		req = ServletActionContext.getRequest();
+		int id = Integer.parseInt(req.getParameter("groupFilmId"));
+		try{
+			GroupFilmService gs = new GroupFilmService();
+			groupFilmDetailInfo = gs.getGroupFilmDetailInfo(id);
+			return "detailInfo";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "error";
+	}
 	/*
 	 * ���ظ�࣬ʵ�ַ�ҳ��ʾ
 	 */
