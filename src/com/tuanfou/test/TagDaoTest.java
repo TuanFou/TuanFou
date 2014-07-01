@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.google.gson.Gson;
 import com.tuanfou.dao.TagDao;
 import com.tuanfou.dto.TagInfo;
 import com.tuanfou.pojo.Film;
@@ -32,12 +33,15 @@ public class TagDaoTest {
 		//tagDao.add(tag);
 		TagService tagService = new TagService();
 		List<TagInfo> tagInfoList = tagService.getTagInfoList();
-		Iterator<TagInfo> it = tagInfoList.iterator();
-		while(it.hasNext()){
-			TagInfo tagInfo = (TagInfo) it.next();
-			System.out.println("tagName："+tagInfo.getTagName()+"	number:"+tagInfo.getFilmNum());	
-		}	
+//		Iterator<TagInfo> it = tagInfoList.iterator();
+//		while(it.hasNext()){
+//			TagInfo tagInfo = (TagInfo) it.next();
+//			System.out.println("tagName："+tagInfo.getTagName()+"	number:"+tagInfo.getFilmNum());	
+//		}	
+		Gson gson = new Gson();
+		String str = gson.toJson(tagInfoList);
+		System.out.println(str);
 		
-	}
+	} 
 
 }
