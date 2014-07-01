@@ -1,17 +1,10 @@
 package com.tuanfou.dao;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Film;
-import com.tuanfou.pojo.Tag;
 import com.tuanfou.utils.HibernateUtil;
 
 public class FilmDao {

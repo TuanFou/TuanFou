@@ -9,26 +9,24 @@ import org.hibernate.Session;
 
 
 import com.tuanfou.pojo.Comment;
-import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
 
 public class CommentDao {
 	/*
-	 * Ìí¼ÓÒ»¸öÆÀÂÛ
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private  Session session = null;
-	private int POSITIVE_INFINITY;
 	public boolean addComment(Comment comment){
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(comment);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓÆÀÂÛÊ§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
@@ -37,7 +35,7 @@ public class CommentDao {
 		return res;
 	}
 	/*
-	 * ÓÉÍÅ¹ºµçÓ°id»ñÈ¡ÓÃ»§ÆÀÂÛ
+	 * ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½Ó°idï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -50,7 +48,7 @@ public class CommentDao {
 			q.setParameter("id", i);
 			commentList = q.list();
 		}catch(Exception e){
-			System.out.println("²éÑ¯Ê§°Ü");
+			System.out.println("ï¿½ï¿½Ñ¯Ê§ï¿½ï¿½");
 			e.printStackTrace();
 		}finally{
 			HibernateUtil.closeSession();
@@ -58,7 +56,7 @@ public class CommentDao {
 		return commentList;	
 	}
 	/*
-	 * ¸ù¾ÝÍÅ¹ºµçÓ°id»ñÈ¡ÆÀ¼ÛµÄÆ½¾ùÖµ
+	 * ï¿½ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½Ó°idï¿½ï¿½È¡ï¿½ï¿½ï¿½Ûµï¿½Æ½ï¿½ï¿½Öµ
 	 */
 	public float getStarByGroupFilmId(int id){
 		float total = 0;

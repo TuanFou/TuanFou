@@ -1,7 +1,5 @@
 package com.tuanfou.dao;
 
-import java.util.List;
-
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Merchant;

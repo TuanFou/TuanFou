@@ -1,10 +1,7 @@
 ﻿package com.tuanfou.dao;
 
 
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -147,6 +144,7 @@ public class GroupFilmDao {
 			session = HibernateUtil.getSession();
 			String hqlString = "from Comment";
 			Query query = session.createQuery(hqlString);
+			@SuppressWarnings("unchecked")
 			List<Comment> comments  = query.list();
 			Iterator<Comment> it = comments.iterator();
 			while(it.hasNext()){
@@ -166,6 +164,7 @@ public class GroupFilmDao {
 			session = HibernateUtil.getSession();
 			String hqlString = "from Order";
 			Query query = session.createQuery(hqlString);
+			@SuppressWarnings("unchecked")
 			List<Order> orders  = query.list();
 			Iterator<Order> it = orders.iterator();
 			while(it.hasNext()){

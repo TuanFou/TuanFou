@@ -15,7 +15,7 @@ public class FilmStatusService {
 		FilmStatusInfo info3 = new FilmStatusInfo();
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
 		int TotalNum = groupFilmDao.getTotalGroupFilmNum();
-		info1.setStatus("全部：");
+		info1.setStatus("全部");
 		info1.setFilmNum(TotalNum);
 		statusInfo.add(info1);
 		int OnNum = groupFilmDao.getStatusGroupFilmNum(0);
