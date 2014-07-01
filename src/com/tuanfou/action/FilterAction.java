@@ -2,23 +2,24 @@ package com.tuanfou.action;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.AreaInfo;
+import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.TagInfo;
 import com.tuanfou.service.AreaService;
+import com.tuanfou.service.GroupFilmService;
 import com.tuanfou.service.TagService;
 
 public class FilterAction extends ActionSupport {
 	
 	private static final long serialVersionUID = 1L;
-	private HttpServletResponse response;
 	private TagService tagService;
 	private AreaService areaService;
+	private GroupFilmService groupFilmService;
 	private String city;
 	private List<AreaInfo> areas;
 	private List<TagInfo> filmTags;
+	private List<FilmStatusInfo> filmStatusInfo;
 	
 	public String getCity() {
 		return city;
@@ -43,6 +44,13 @@ public class FilterAction extends ActionSupport {
 	public void setFilmTags(List<TagInfo> filmTags) {
 		this.filmTags = filmTags;
 	}
+	public List<FilmStatusInfo> getFilmStatusInfo() {
+		return filmStatusInfo;
+	}
+
+	public void setFilmStatusInfo(List<FilmStatusInfo> filmStatusInfo) {
+		this.filmStatusInfo = filmStatusInfo;
+	}
 
 	/*
 	 * 获取过滤标签
@@ -51,13 +59,17 @@ public class FilterAction extends ActionSupport {
 		city = "武汉";
 		tagService = new TagService();
 		areaService = new AreaService();
+		groupFilmService = new GroupFilmService();
 		try{
 			filmTags = tagService.getTagInfoList();
 			areas = areaService.getAreaInfoList(2);
+			filmStatusInfo = groupFilmService.getStatusInfo();
 			return "home";
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return "error";
 	}
+
+
 }

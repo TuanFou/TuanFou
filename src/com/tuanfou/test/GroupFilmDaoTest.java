@@ -13,6 +13,7 @@ import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 
+import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.service.FilmStatusService;
 import com.tuanfou.service.GroupFilmService;
 
@@ -24,13 +25,24 @@ public class GroupFilmDaoTest {
 	public static void main(String[] args) {
 //		TODO some test
 		//groupfilmDetailedInfoTest(1);
-		FilmStatusService filmStatusService = new FilmStatusService();
-		List<FilmStatusInfo> statusInfo = filmStatusService.getStatusInfo();
-		Iterator<FilmStatusInfo> it = statusInfo.iterator();
-		while(it.hasNext()){
-			FilmStatusInfo filmStatusInfo = it.next();
-			System.out.println("Status:"+filmStatusInfo.getStatus()+"	Number:"+filmStatusInfo.getFilmNum());
-		}
+//		FilmStatusService filmStatusService = new FilmStatusService();
+//		List<FilmStatusInfo> statusInfo = filmStatusService.getStatusInfo();
+//		Iterator<FilmStatusInfo> it = statusInfo.iterator();
+//		while(it.hasNext()){
+//			FilmStatusInfo filmStatusInfo = it.next();
+//			System.out.println("Status:"+filmStatusInfo.getStatus()+"	Number:"+filmStatusInfo.getFilmNum());
+//		}
+		//filmstatus
+//		FilmStatusService se = new FilmStatusService();
+//		List<FilmStatusInfo> list = se.getStatusInfo();
+//		Gson gson = new Gson();
+//		String str = gson.toJson(list);
+//		System.out.println(str);
+		GroupFilmDao groupFlimDao = new GroupFilmDao();
+		List<GroupFilm> groupFilm = groupFlimDao.getGroupFilms(0, Integer.MAX_VALUE);
+		Gson gson = new Gson();
+
+		System.out.println(groupFilm);
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;

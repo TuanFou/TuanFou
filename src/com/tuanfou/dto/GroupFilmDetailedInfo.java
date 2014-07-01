@@ -5,8 +5,6 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
-import com.tuanfou.pojo.Tag;
-
 public class GroupFilmDetailedInfo {
 	private float currentPrice;
 	private int partnerNum;//the num of the members who want to watch film with others

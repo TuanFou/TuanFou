@@ -26,9 +26,10 @@ public class UserDaoTest {
 //		user.setPhotoUrl("kdf.jpg");
 //		UserDao userDao = new UserDao();
 //		userDao.addUser(user);
-//		System.out.println(user.getCity().getId());
-		UserDao userDao = new UserDao();
-		System.out.println(userDao.getUserComments(1));
+////		System.out.println(user.getCity().getId());
+//		UserDao userDao = new UserDao();
+//		System.out.println(userDao.getUserComments(1));
+		System.out.println(Integer.MAX_VALUE);
 	}
 
 }

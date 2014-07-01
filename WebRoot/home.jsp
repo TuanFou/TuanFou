@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="filter-type">影片类型:</div>
 					<ul class="inline-block-list">
 					    <c:forEach items="${filmTags}" var="tag">
-							<li id="${tag.tagId}">${tag.tagName}(${tag.filmNum})</li>
+							<li id="tag_${tag.tagId}">${tag.tagName}(${tag.filmNum})</li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -67,9 +67,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="filter-section">
 					<div class="filter-type">发布时间:</div>
 					<ul class="inline-block-list">
-						<li>全部(20)</li>
-						<li>正在上映(20)</li>
-						<li>即将上映(20)</li>
+						<c:forEach items="${filmStatusInfo}" var="info">
+							<li >${info.status}(${info.filmNum})</li>
+						</c:forEach>
 					</ul>
 				</div>
 		    </div>

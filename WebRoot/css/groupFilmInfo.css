@@ -16,8 +16,8 @@ hr{
 .price-area{
 	/*padding-top: 20px;*/
 }
-.light-text-51{
-	font-size: 51px;
+.light-text-41{
+	font-size: 41px;
 }
 .join-group{
 	/*padding-top: 20px;*/
@@ -67,7 +67,7 @@ hr{
 	margin-left: 10px;
 	border:  1px solid #EEEEEE;
 }
-/*菜单*/
+/*鑿滃崟*/
 #nav-menu-area{
 	width:610px;
 	margin: 50px auto;
@@ -99,7 +99,7 @@ ul.nav-menu li{
 	background-color: blue;
 	color:white;
 }
-/*等你入伙*/
+/*绛変綘鍏ヤ紮*/
 #parter-info{
 	margin: 0 auto;
 	width:600px;
@@ -147,7 +147,7 @@ ul.parter-list{
 ul.parter-list li{
 	margin: 2px;
 }
-/*商家信息*/
+/*鍟嗗淇℃伅*/
 #merchant-info{
 	width: 600px;
 	margin: 0 auto;
@@ -173,7 +173,7 @@ ul.parter-list li{
 	font-size: 14px;
 	margin-left: 15px;
 }
-/*购买须知*/
+/*璐拱椤荤煡*/
 #buying-notice{
 	width: 600px;
 	margin: 0 auto;
@@ -200,7 +200,7 @@ td.left-title{
 	border-right: 1px solid #ccc;
 }
 
-/*评价详情*/
+/*璇勪环璇︽儏*/
 #comment-info{
 	width: 600px;
 	margin: 0 auto;
@@ -237,7 +237,7 @@ td.left-title{
 .five-grade,.four-grade,.three-grade,.two-grade,.one-grade{
 	margin-left: 5px;
 }
-/*大家都在说*/
+/*评论区*/
 .comment-type{
 	display: block;
 	margin-top: 50px
@@ -257,7 +257,7 @@ ul.type li{
 	margin-bottom: 2px;
 	font-size: 13px;
 }
-/*所有评论*/
+/* 品论内容*/
 #all-comments{
 	margin-top: 20px;
 }
@@ -293,7 +293,7 @@ ul.type li{
 div.loadMore:hover{
 	background-color: #EEEEEE
 }
-/*右侧信息*/
+/*鍙充晶淇℃伅*/
 #group-range{
 	margin-top: 40px;
 	border-right: 1px solid #EEEEEE;
