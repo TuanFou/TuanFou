@@ -113,14 +113,14 @@ public class GroupFilmDao {
 					//groupFilmDetailedInfo.setDeadline(changeDateFormat(groupFilm.getEndDate()));
 					groupFilmDetailedInfo.setDirector(groupFilm.getFilm().getDirector());
 					groupFilmDetailedInfo.setFilmStar(groupFilm.getFilm().getStar());
-					groupFilmDetailedInfo.setFilmLength(groupFilm.getFilm().getPeriod());
+					groupFilmDetailedInfo.setPeriod(groupFilm.getFilm().getPeriod());
 					groupFilmDetailedInfo.setFilmName(groupFilm.getFilm().getFilmName());
 					groupFilmDetailedInfo.setGroupfilmStar(groupFilm.getFilm().getStar());
-					groupFilmDetailedInfo.setGroupMemberNum(groupFilm.getUsers().size());
-					groupFilmDetailedInfo.setPrice(groupFilm.getCurrentPrice());
-					groupFilmDetailedInfo.setShowDate(groupFilm.getStartDate());
-					groupFilmDetailedInfo.setorderNum(getOderNum(groupFilm.getId()));
-					groupFilmDetailedInfo.setSummary(groupFilm.getFilm().getDescription());
+					groupFilmDetailedInfo.setCommentNum(groupFilm.getUsers().size());
+					groupFilmDetailedInfo.setCurrentPrice(groupFilm.getCurrentPrice());
+					groupFilmDetailedInfo.setEndDate(groupFilm.getEndDate());
+					groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
+					groupFilmDetailedInfo.setDescription(groupFilm.getFilm().getDescription());
 //					TODO 	SET TAGS
 //					groupFilmDetailedInfo.setTags(groupFilm.getFilm().getTags());
 //					TODO	SET TIME RANGE IN THE DAYLIGHT

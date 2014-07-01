@@ -55,7 +55,7 @@ public class GroupFilmAction extends ActionSupport {
 		int fistResult = (page-1)*pageSize;
 		try{
 			GroupFilmService gs = new GroupFilmService();
-			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(0, 10);
+			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(fistResult, pageSize);
 			response =  ServletActionContext.getResponse();
 			response.setCharacterEncoding("utf-8");
 			PrintWriter  out = response.getWriter();

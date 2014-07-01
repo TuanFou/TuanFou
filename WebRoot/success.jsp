@@ -24,7 +24,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   ${groupFilmDetailInfo.price}<br>
-   ${groupFilmDetailInfo.groupMemberNum}
+  	<s:property value="groupFilmDetailInfo.currentPrice"></s:property>
   </body>
 </html>
