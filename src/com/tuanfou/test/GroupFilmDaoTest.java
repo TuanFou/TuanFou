@@ -1,19 +1,15 @@
 ﻿package com.tuanfou.test;
 
 
-import java.sql.Date;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.GroupFilmBriefInfo;
-import com.tuanfou.pojo.Area;
-import com.tuanfou.pojo.Cinema;
-import com.tuanfou.pojo.Film;
-import com.tuanfou.pojo.GroupFilm;
-import com.tuanfou.pojo.Merchant;
+import com.tuanfou.dto.GroupFilmDetailedInfo;
+
 import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmDaoTest {
@@ -22,6 +18,9 @@ public class GroupFilmDaoTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		groupfilmDetailedInfoTest(1);
+	}
+	public static void groupfilmBriefInfoTest(){
 		// TODO Auto-generated method stub
 //		private int id;
 //		private Film  film;
@@ -73,7 +72,9 @@ public class GroupFilmDaoTest {
 //		for(GroupFilmBriefInfo tem:list){
 //			System.out.println("����:"+tem.getCinemaName()+tem.getStar());
 //		}
+
 		//GroupFilmBriefInfo info = list.get(0);
+
 //		List<String> tags = new ArrayList<String>();
 //		tags.add("����");
 //		tags.add("����");
@@ -91,5 +92,30 @@ public class GroupFilmDaoTest {
 		System.out.println(str);
 		
 	}
-
+	
+	public static void groupfilmDetailedInfoTest(int id){
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		GroupFilmDetailedInfo groufilmDetailedInfo = groupFilmDao.getGroupFilmDetailedInfo(id);		
+		Gson gson = new Gson();
+		String str = gson.toJson(groufilmDetailedInfo);
+		System.out.println(str);
+		
+	}
+	
+	
+	public static void countCommentsTest(int groupFilmId){
+//		GroupFilmDao groupFilmDao = new GroupFilmDao();
+//		int i = groupFilmDao.getCountComments(groupFilmId);
+//		Gson gson = new Gson();
+//		String str = gson.toJson(i);
+//		System.out.println(str);
+	}
+	
+	public static void countGroupMemberNumberTest(int groupFilmId){
+//		GroupFilmDao groupFilmDao = new GroupFilmDao();
+//		int i = groupFilmDao.getOderNum(groupFilmId);
+//		Gson gson = new Gson();
+//		String str = gson.toJson(i);
+//		System.out.println(str);
+	}
 }

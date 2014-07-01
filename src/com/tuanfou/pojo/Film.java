@@ -13,14 +13,14 @@ public class Film {
 	private Date releaseDate;
 	private String version;
 	private String country;
-	private int period; //·ÖÖÓ
+	private int period; //åˆ†é’Ÿ
 	private String description;
 	private String director;
 	private String actors;
 	private int star; //0,1,2,3,4,5
-	private int status;//0£ºÉóºËÖĞ£¬1£ºÉóºËÖĞ£¬2£ºÉóºËÎ´Í¨¹ı
+	private int status;//0ï¼šå®¡æ ¸ä¸­ï¼Œ1ï¼šå®¡æ ¸ä¸­ï¼Œ2ï¼šå®¡æ ¸æœªé€šè¿‡
 	private Timestamp applicateTime;//2014-09-12 12:00:00
-	private int auditResult; //ÉóºË×´Ì¬£º1£¬ÉóºËÍ¨¹ı£¬2£ºÉóºËÎ´Í¨¹ı
+	private int auditResult; //å®¡æ ¸çŠ¶æ€ï¼š1ï¼Œå®¡æ ¸é€šè¿‡ï¼Œ2ï¼šå®¡æ ¸æœªé€šè¿‡
 	private Set<Tag> tags;
 	private Set<GroupFilm> groupFilms;
 	public Merchant getMerchant() {
@@ -102,7 +102,7 @@ public class Film {
 		this.auditResult = auditResult;
 	}
 	public Set<Tag> getTags() {
-		return tags;
+ 		return tags;
 	}
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;

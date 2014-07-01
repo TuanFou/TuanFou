@@ -1,5 +1,7 @@
 package com.tuanfou.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Merchant;
@@ -9,7 +11,7 @@ public class MerchantDao {
 	Session session = null;
 	
 	/**
-	 * Ìí¼ÓÒ»¸öÉÌ¼Ò
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ì¼ï¿½
 	 * @param merchant
 	 * @return
 	 */
@@ -17,13 +19,13 @@ public class MerchantDao {
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(merchant);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓÉÌ¼ÒÊ§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
