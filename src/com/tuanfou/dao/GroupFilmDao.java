@@ -110,7 +110,6 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
 					groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
 					groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
-					//groupFilmDetailedInfo.setDeadline(changeDateFormat(groupFilm.getEndDate()));
 					groupFilmDetailedInfo.setDirector(groupFilm.getFilm().getDirector());
 					groupFilmDetailedInfo.setFilmStar(groupFilm.getFilm().getStar());
 					groupFilmDetailedInfo.setPeriod(groupFilm.getFilm().getPeriod());
@@ -122,10 +121,7 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
 					groupFilmDetailedInfo.setDescription(groupFilm.getFilm().getDescription());
 //					TODO 	SET TAGS
-//					groupFilmDetailedInfo.setTags(groupFilm.getFilm().getTags());
-//					TODO	SET TIME RANGE IN THE DAYLIGHT
-					
-					
+					groupFilmDetailedInfo.setTags(convertSetToString(groupFilm.getFilm().getTags()));					
 					groupFilmDetailedInfo.setFilmName(groupFilm.getFilm().getFilmName());
 				}
 //				}
@@ -248,6 +244,16 @@ public class GroupFilmDao {
 		finally{
 			HibernateUtil.closeSession();
 		}
+	}
+	
+	public List<String> convertSetToString(Set<Tag> tagSet){
+		Iterator<Tag> it = tagSet.iterator();
+		List<String> tagList = new ArrayList<String>();
+		while (it.hasNext())
+		{
+		    tagList.add(it.next().getTagName());
+		}
+		return tagList;
 	}
 }
 
