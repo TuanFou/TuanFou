@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.struts2.jasper.tagplugins.jstl.core.When;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -123,7 +124,7 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
 					groupFilmDetailedInfo.setDescription(groupFilm.getFilm().getDescription());
 //					TODO 	SET TAGS
-//					groupFilmDetailedInfo.setTags(groupFilm.getFilm().getTags());
+					groupFilmDetailedInfo.setTags(convertSetToList(groupFilm.getFilm().getTags()));
 //					TODO	SET TIME RANGE IN THE DAYLIGHT
 					
 					
@@ -269,6 +270,19 @@ public class GroupFilmDao {
 		finally{
 			HibernateUtil.closeSession();
 		}
+	}
+	
+	// TODO CAHNGE THE PUBLIC TO PRIVATE
+	private List<String> convertSetToList(Set<Tag> srcSet){
+		List<String> tagStringList = new ArrayList<String>();
+		Iterator<Tag> it = srcSet.iterator();
+		while(it.hasNext()){
+			tagStringList.add(it.next().getTagName().toString());
+		}
+		
+		
+		return tagStringList;
+		
 	}
 	
 }
