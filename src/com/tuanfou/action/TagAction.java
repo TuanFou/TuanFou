@@ -21,6 +21,9 @@ public class TagAction extends ActionSupport {
 	private HttpServletResponse response;
 	private TagService tagService = new TagService();
 	
+	/**
+	 * 加载标签和各标签的电影数量
+	 */
 	public String loadTags(){
 		response = ServletActionContext.getResponse();
 		try{

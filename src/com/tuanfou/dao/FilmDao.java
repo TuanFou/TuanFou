@@ -18,7 +18,7 @@ public class FilmDao {
 	Session session = null;
 	
 	/**
-	 * 添加一个电�
+	 * 添加一个电�
 	 * @param film
 	 * @return
 	 */
@@ -57,5 +57,20 @@ public class FilmDao {
 		finally{
 			HibernateUtil.closeSession();
 		}		
+	}
+	
+	public Film getFilm(int filmId){
+		try{
+			session = HibernateUtil.getSession();
+			Film film = (Film) session.get(Film.class, filmId);
+			return film;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
 	}
 }

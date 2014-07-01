@@ -1,10 +1,5 @@
 package com.tuanfou.dto;
 
-
-import java.util.List;
-
-import com.tuanfou.pojo.Film;
-
 public class TagInfo {
 	private int tagId;
 	private String tagName;

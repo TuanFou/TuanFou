@@ -20,7 +20,10 @@ public class GroupFilmDaoTest {
 	 */
 	public static void main(String[] args) {
 //		TODO some test
+
 		//changeDateFormatTest();
+		groupfilmDetailedInfoTest(1);
+
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
@@ -84,8 +87,14 @@ public class GroupFilmDaoTest {
 		//String str = gson.toJson(list);
 		//System.out.println(str);
 		
-		int number = groupFilmDao.getAreaGroupFilmNum(1);
-		System.out.println(number);
+//		int number = groupFilmDao.getAreaGroupFilmNum(1);
+//		System.out.println(number);
+//		GroupFilmService gs = new GroupFilmService();
+//		List<GroupFilmBriefInfo> list = gs.loadGroupFilmsBriefInfo(0, 10);
+//		Gson gson = new Gson();
+//		String str = gson.toJson(list);
+//		System.out.println(str);
+		
 	}
 	
 	public static void groupfilmDetailedInfoTest(int id){

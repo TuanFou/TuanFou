@@ -17,19 +17,19 @@ public class UserDao {
 	private Session session = null;
 	
 	/*
-	 * Ìí¼ÓÒ»¸öÓÃ»§
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ã»ï¿½
 	 */
 	public boolean addUser(User user){
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(user);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓÓÃ»§Ê§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
@@ -38,7 +38,7 @@ public class UserDao {
 		return res;
 	}
 	/*
-	 * »ñÈ¡ÓÃ»§ÁÐ±í
+	 * ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½Ð±ï¿½
 	 */
 	@SuppressWarnings("unchecked")
 	public List<User> getUserList(){
@@ -49,7 +49,7 @@ public class UserDao {
 			Query q = session.createQuery(hql);
 			userList = q.list();
 		}catch(Exception e){
-			System.out.println("²éÑ¯Ê§°Ü");
+			System.out.println("ï¿½ï¿½Ñ¯Ê§ï¿½ï¿½");
 			e.printStackTrace();
 		}finally{
 			HibernateUtil.closeSession();
@@ -57,7 +57,7 @@ public class UserDao {
 		return userList;	
 	}
 	/*
-	 * »ñÈ¡ÓÃ»§ËùÓÐ¶©µ¥
+	 * ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½
 	 */
 	public Set<Comment> getUserComments(int id){
 		Set<Comment> userComments = new HashSet<Comment>();
@@ -75,5 +75,21 @@ public class UserDao {
 			HibernateUtil.closeSession();
 		}
 		return userComments;
+	}
+	
+	public User getUser(int userId){
+		try{
+			session = HibernateUtil.getSession();
+			User user = (User)session.get(User.class, userId);
+			return user;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+		
 	}
 }

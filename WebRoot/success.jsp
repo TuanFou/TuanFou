@@ -24,6 +24,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <s:property  value="user.userName"/>,欢迎你
+  	<s:property value="groupFilmDetailInfo.currentPrice"></s:property>
   </body>
 </html>
