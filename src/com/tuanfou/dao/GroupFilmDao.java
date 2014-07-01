@@ -118,7 +118,7 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setShowDate(groupFilm.getStartDate());
 					groupFilmDetailedInfo.setorderNum(getOderNum(groupFilm.getId()));
 					groupFilmDetailedInfo.setSummary(groupFilm.getFilm().getDescription());
-//					TODO 	SET TAGS start to do
+//					TODO 	SET TAGS
 //					groupFilmDetailedInfo.setTags(groupFilm.getFilm().getTags());
 //					TODO	SET TIME RANGE IN THE DAYLIGHT
 					
