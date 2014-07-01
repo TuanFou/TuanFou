@@ -249,5 +249,24 @@ public class GroupFilmDao {
 			HibernateUtil.closeSession();
 		}
 	}
+	
+	//同一状态电影数目统计
+	public int getStatusGroupFilmNum(int type){
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "select count(*) From GroupFilm groupFilm where groupFilm.type=:type";
+			Query query = session.createQuery(hql);
+			query.setParameter("type", type);
+			return ((Long)query.uniqueResult()).intValue();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
 }
 

@@ -1,5 +1,11 @@
 package com.tuanfou.dao;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.City;
@@ -9,7 +15,7 @@ public class CityDao {
 	Session session =null;
 	
 	/**
-	 * Ìí¼ÓÒ»¸ö³ÇÊÐ
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param city
 	 * @return
 	 */
@@ -17,13 +23,13 @@ public class CityDao {
 		boolean res=false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(city);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼Ó³ÇÊÐÊ§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
@@ -31,4 +37,36 @@ public class CityDao {
 		}
 		return res;
 	}
+	
+	/**
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param city
+	 * @return
+	 */
+	public Map<Integer,String> getCities(){
+		Map<Integer,String> cities = new HashMap<Integer,String>();
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "From City";
+			Query query = session.createQuery(hql);
+			@SuppressWarnings("unchecked")
+			List<City> cityList = query.list();
+			Iterator<City> it = cityList.iterator();
+			while(it.hasNext()){
+				City city = it.next();
+				int cityId = city.getId();
+				String cityName = city.getCityName();
+				cities.put(cityId, cityName);
+			}
+			return cities;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
 }

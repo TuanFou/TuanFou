@@ -3,14 +3,17 @@
 
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 
 import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
+import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 
+import com.tuanfou.service.FilmStatusService;
 import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmDaoTest {
@@ -20,7 +23,14 @@ public class GroupFilmDaoTest {
 	 */
 	public static void main(String[] args) {
 //		TODO some test
-		groupfilmDetailedInfoTest(1);
+		//groupfilmDetailedInfoTest(1);
+		FilmStatusService filmStatusService = new FilmStatusService();
+		List<FilmStatusInfo> statusInfo = filmStatusService.getStatusInfo();
+		Iterator<FilmStatusInfo> it = statusInfo.iterator();
+		while(it.hasNext()){
+			FilmStatusInfo filmStatusInfo = it.next();
+			System.out.println("Status:"+filmStatusInfo.getStatus()+"	Number:"+filmStatusInfo.getFilmNum());
+		}
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
