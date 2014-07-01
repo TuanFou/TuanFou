@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -14,6 +15,7 @@ import com.tuanfou.dao.FilmDao;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dao.MerchantDao;
 import com.tuanfou.dao.TagDao;
+import com.tuanfou.dao.UserDao;
 import com.tuanfou.dto.ApplyFilmInfo;
 import com.tuanfou.pojo.Area;
 import com.tuanfou.pojo.Cinema;
@@ -21,6 +23,7 @@ import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Merchant;
 import com.tuanfou.pojo.Tag;
+import com.tuanfou.pojo.User;
 
 public class MerchantService {
    /**
@@ -130,5 +133,26 @@ public class MerchantService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	/**
+	 * 添加商家
+	 */
+	public boolean addMerchant(Merchant merchant){
+		MerchantDao merchantDao = new MerchantDao();
+		if(merchantDao.addMerchant(merchant)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	/**
+	 * 获取商家列表
+	 * @return
+	 */
+	public List<Merchant> getMerchantList(){
+		MerchantDao merchantDao = new MerchantDao();
+		return merchantDao.getMerchantList();
 	}
 }

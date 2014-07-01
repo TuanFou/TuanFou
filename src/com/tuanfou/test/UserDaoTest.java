@@ -61,7 +61,7 @@ public class UserDaoTest {
 		
 		/**
 		 * 用户登陆测试开始
-		 */
+		 *//*
 		String matching = "ERROR";
 		String username = "testAddUser";
 		String password = "5555566666";
@@ -93,11 +93,11 @@ public class UserDaoTest {
 
 		/**
 		 * 新用户注册测试开始
-		 *//*
+		 */
 		City aCity = new City();
 		User aUser = new User();
 		aCity.setId(31901);
-		aUser.setUserName("testAddUser");
+		aUser.setUserName("testAddUser1");
 		aUser.setPassword("5555566666");
 		aUser.setCity(aCity);
 		UserService us = new UserService();
@@ -106,7 +106,7 @@ public class UserDaoTest {
 		boolean res = true;
 		while(itUser.hasNext())
 		{			
-			if(itUser.next().getUserName()=="testAddUser"){
+			if(itUser.next().getUserName().equals("testAddUser1")){
 				res = false;
 				break;
 			}
@@ -128,6 +128,11 @@ public class UserDaoTest {
 			}
 			us.addUser(aUser);  
 		}
+		if(res){
+			System.out.println("success");
+		}
+		else{
+			System.out.println("fail");
 	}
 	/**
 	 * 新用户注册测试到此为止
