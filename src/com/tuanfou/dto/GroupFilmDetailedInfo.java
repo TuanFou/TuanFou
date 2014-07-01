@@ -14,7 +14,7 @@ public class GroupFilmDetailedInfo {
 	private String cinemaAddress;
 	private Date endDate;//tickets can only be used before this date
 	private Time timeRange;//tickets can only be used in the time range, like 10:00-24:00
-	private int orderNum;
+	private int orderNum;//
 	private float groupfilmStar;
 	private int commentNum;
 	private int filmStar;
