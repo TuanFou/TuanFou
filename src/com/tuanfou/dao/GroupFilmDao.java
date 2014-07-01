@@ -110,6 +110,7 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
 					groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
 					groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
+					//groupFilmDetailedInfo.setDeadline(changeDateFormat(groupFilm.getEndDate()));
 					groupFilmDetailedInfo.setDirector(groupFilm.getFilm().getDirector());
 					groupFilmDetailedInfo.setFilmStar(groupFilm.getFilm().getStar());
 					groupFilmDetailedInfo.setPeriod(groupFilm.getFilm().getPeriod());
@@ -121,7 +122,10 @@ public class GroupFilmDao {
 					groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
 					groupFilmDetailedInfo.setDescription(groupFilm.getFilm().getDescription());
 //					TODO 	SET TAGS
-					groupFilmDetailedInfo.setTags(convertSetToString(groupFilm.getFilm().getTags()));					
+//					groupFilmDetailedInfo.setTags(groupFilm.getFilm().getTags());
+//					TODO	SET TIME RANGE IN THE DAYLIGHT
+					
+					
 					groupFilmDetailedInfo.setFilmName(groupFilm.getFilm().getFilmName());
 				}
 //				}
@@ -246,14 +250,23 @@ public class GroupFilmDao {
 		}
 	}
 	
-	public List<String> convertSetToString(Set<Tag> tagSet){
-		Iterator<Tag> it = tagSet.iterator();
-		List<String> tagList = new ArrayList<String>();
-		while (it.hasNext())
-		{
-		    tagList.add(it.next().getTagName());
+	//同一状态电影数目统计
+	public int getStatusGroupFilmNum(int type){
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "select count(*) From GroupFilm groupFilm where groupFilm.type=:type";
+			Query query = session.createQuery(hql);
+			query.setParameter("type", type);
+			return ((Long)query.uniqueResult()).intValue();
 		}
-		return tagList;
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
 	}
+	
 }
 

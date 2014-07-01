@@ -1,12 +1,9 @@
 package com.tuanfou.service;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dao.TagDao;
 import com.tuanfou.dto.TagInfo;
-import com.tuanfou.pojo.Film;
 
 
 public class TagService {

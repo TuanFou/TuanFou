@@ -2,19 +2,18 @@
 
 
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 
 import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
+import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 
+import com.tuanfou.service.FilmStatusService;
 import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmDaoTest {
@@ -24,10 +23,14 @@ public class GroupFilmDaoTest {
 	 */
 	public static void main(String[] args) {
 //		TODO some test
-
-		//changeDateFormatTest();
-		groupfilmDetailedInfoTest();
-
+		//groupfilmDetailedInfoTest(1);
+		FilmStatusService filmStatusService = new FilmStatusService();
+		List<FilmStatusInfo> statusInfo = filmStatusService.getStatusInfo();
+		Iterator<FilmStatusInfo> it = statusInfo.iterator();
+		while(it.hasNext()){
+			FilmStatusInfo filmStatusInfo = it.next();
+			System.out.println("Status:"+filmStatusInfo.getStatus()+"	Number:"+filmStatusInfo.getFilmNum());
+		}
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
@@ -101,9 +104,9 @@ public class GroupFilmDaoTest {
 		
 	}
 	
-	public static void groupfilmDetailedInfoTest(){
+	public static void groupfilmDetailedInfoTest(int id){
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
-		GroupFilmDetailedInfo groufilmDetailedInfo = groupFilmDao.getGroupFilmDetailedInfo(1);		
+		GroupFilmDetailedInfo groufilmDetailedInfo = groupFilmDao.getGroupFilmDetailedInfo(id);		
 		Gson gson = new Gson();
 		String str = gson.toJson(groufilmDetailedInfo);
 		System.out.println(str);
@@ -125,24 +128,6 @@ public class GroupFilmDaoTest {
 //		Gson gson = new Gson();
 //		String str = gson.toJson(i);
 //		System.out.println(str);
-	}
-	
-	public static void convertSetToListTest(){
-		Set<Integer> set = new HashSet<Integer>();
-		set.add(10);
-		set.add(11);
-		set.add(14);
-		set.add(10);
-		Iterator<Integer> it = set.iterator();
-		while (it.hasNext())
-		{
-		    System.out.print(it.next() + " ");
-		}
-		List<Integer> list = new ArrayList<Integer>(set);
-		for (int i = 0; i < list.size(); i++)
-		{
-		    System.out.print(list.get(i) + " ");
-		}
 	}
 	
 }
