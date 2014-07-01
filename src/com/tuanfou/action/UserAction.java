@@ -2,6 +2,7 @@ package com.tuanfou.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.pojo.User;
+import com.tuanfou.service.OrderService;
 import com.tuanfou.service.UserService;
 
 public class UserAction extends ActionSupport {
@@ -59,5 +61,17 @@ public class UserAction extends ActionSupport {
 		userList = userService.getUserList();
 		PrintWriter  out = response.getWriter();
 		out.print("hello");
+	}
+	
+	/**
+	 * 下订单
+	 * 参数：团购电影id，用户id，团购到期时间，
+	 */
+	public String order(int groupFilmId,int userId,Date expiredTime){
+		OrderService orderService = new OrderService();
+		if(orderService.orderFilm(groupFilmId, userId, expiredTime))
+			return "OrderSuccess";
+		else
+			return "OrderFailure";
 	}
 }

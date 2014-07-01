@@ -1,9 +1,13 @@
 package com.tuanfou.test;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import com.tuanfou.dao.OrderDao;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
 import com.tuanfou.pojo.Order;
+import com.tuanfou.service.OrderService;
 public class OrderDaoTest {
 
 	/**
@@ -21,7 +25,7 @@ public class OrderDaoTest {
 		//user.setEmail("kdf@163.com");
 		//user.setDescription("hello");
 		//user.setPassword("123");
-		user.setUserName("hcz92");
+		/*user.setUserName("hcz92");
 		groupFilm.setId(1);
 		order.setGroupFilm(groupFilm);
 		user.setId(1);
@@ -31,7 +35,22 @@ public class OrderDaoTest {
 		order.setStatus(0);
 		OrderDao OrderDao = new OrderDao();
 		OrderDao.addOrder(order);
-		System.out.println(order.getGroupFilm().getOriginalPrice());
+		System.out.println(order.getGroupFilm().getOriginalPrice());*/
+		OrderService orderService = new OrderService();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try{
+			java.util.Date date = dateFormat.parse("2014-8-1");
+			//java.util.Date date = new java.util.Date();
+			Date expiredTime = new Date(date.getTime());
+			if(orderService.orderFilm(1, 1, expiredTime))
+				System.out.println("下订单成功");
+			else
+				System.out.println("下订单失败");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 
 }

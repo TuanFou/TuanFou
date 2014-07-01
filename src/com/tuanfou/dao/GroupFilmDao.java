@@ -1,4 +1,4 @@
-package com.tuanfou.dao;
+﻿package com.tuanfou.dao;
 
 
 import java.text.ParsePosition;
@@ -234,6 +234,4 @@ public class GroupFilmDao {
 			HibernateUtil.closeSession();
 		}
 	}
-	
 
-}
