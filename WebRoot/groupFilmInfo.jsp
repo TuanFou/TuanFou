@@ -19,14 +19,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="./css/common.css">
 	<link rel="stylesheet" type="text/css" href="./css/groupFilmInfo.css">
 	<script src="./js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./js/tinybox.js"></script>
   </head>
-  
+ <style type="text/css">
+
+#tinybox{position:absolute; display:none; /*padding:10px;*/ background:#ffffff url(image/preload.gif) no-repeat 50% 50%; border:10px solid #e3e3e3; z-index:2000;}
+#tinymask{position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000000; z-index:1500;}
+#tinycontent{background:#ffffff; font-size:1.1em;}
+
+</style>
   <body>
    <div id="header"></div>
 <div id="bg">
+	<!--购票窗口*/ -->
+	<div id="hidden">
+		<div class="buying-info">
+			<span class="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
+			<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
+			<span class="line-block" >使用时间: 10:00-24:00</span>
+			<hr>
+			<span class="line-block font-20" >
+				<span>已售${groupFilmDetailInfo.orderNum} </span>
+				<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
+				<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
+			</span>
+			<span class="line-block font-20 ">
+				<span class="float-right"><button>购买</button></span>
+				<span class="float-right"><input type="text"  ></input></span>
+				<span class="float-right">数量</input>
+			</span>
+		</div> 
+	</div>
 	<div id="main-left">
 		<div class="groupfilm-info" id="groupfilm_${groupFilmDetailInfo.groupFilmId}">
-			<div class="groupfilm-img float-left "><img src="${groupFilmDetailInfo.photpUrl}"/></div>
+			<div class="groupfilm-img float-left "><img src="${groupFilmDetailInfo.photpUrl}"/><button id="buying_bt">购买</button></div>
 			<div class="top-info">
 				<span class="float-left price-area">￥<span class="light-text-41">${groupFilmDetailInfo.currentPrice}</span>元</span>
 				<span class="float-left join-group">入伙(${groupFilmDetailInfo.partnerNum})</span>
@@ -41,23 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="line-block" >导演：${groupFilmDetailInfo.director}</span>
 					<span class="line-block" >主演：罗伯特·斯托姆伯格</span>
 					<span class="line-block" >标签：${groupFilmDetailInfo.tags}</span>
-			</div>
-			<div class="buying-info float-left">
-				<span class="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
-				<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
-				<span class="line-block" >使用时间: 10:00-24:00</span>
-				<hr>
-				<span class="line-block font-20" >
-					<span>已售${groupFilmDetailInfo.orderNum} </span>
-					<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
-					<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
-				</span>
-				<span class="line-block font-20 ">
-					<span class="float-right"><button>购买</button></span>
-					<span class="float-right"><input type="text"  ></input></span>
-					<span class="float-right">数量</input>
-				</span>
-			</div>  
+			</div> 
 		</div>	
 		<div class="clear"></div>
 		<div class="film-info">
@@ -308,5 +318,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="site-info">
 	
 </div>
-  </body>
+ </body>
+ <script type="text/javascript">
+		var hiddenText = $('#hidden').html();
+        var content2 = "<div class='buying-info'>"+
+                    "<span class='line-block'>商家：天河剧院天河剧院天河剧院天河剧院天河剧院| 查看电话/地址</span>"+
+                    "<span class='line-block'> 有限期：截止到  周末法定假日有效</span>"+
+                    "<span class='line-block'>使用时间: 10:00-24:00</span>"+
+                    "<hr>"+
+                    "<span class='line-block font-20' >"+
+                        "<span>已售1000 </span>"+
+                        "<span class='comment-star'>*****5</span>"+
+                        "<span class='float-right'>200人评价</span>"+
+                    "</span>"+
+                    "<span class='line-block font-20'>"+
+                        "<span class='float-right'><button>购买</button></span>"+
+                        "<span class='float-right'><input type='text'  ></input></span>"+
+                        "<span class='float-right'>数量</input>"+
+                   " </span></div>  ";//弹出图片
+        T$('buying_bt').onclick = function(){TINY.box.show(hiddenText,0,0,0,1)}
+    </script>
 </html>
