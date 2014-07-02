@@ -56,95 +56,43 @@ public class GroupFilmDao {
 	/**
 	 * 锟斤拷取锟脚癸拷锟斤拷影锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷锟杰伙拷取锟斤拷锟斤拷
 	 */ 
-	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult,List<Tag> tagsOutsideList,String area,String status){
+	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult){
 		List<GroupFilmBriefInfo> list = new ArrayList<GroupFilmBriefInfo>();
-		Integer i = 0;
 		try{
 			session = HibernateUtil.getSession();
-			String hql = "from GroupFilm groupFilm where groupFilm.status = :status and groupFilm.area = :area";
+			String hql = "from GroupFilm groupFilm";
 			Query q = session.createQuery(hql);
-			//status and area filter parameters
-			q.setParameter("status", status);
-			q.setParameter("area", area);
-			
-			
-//			q.setFirstResult(firstResult);
-//			q.setMaxResults(maxResult);
+			q.setFirstResult(firstResult);
+			q.setMaxResults(maxResult);
 			@SuppressWarnings("unchecked")
-			//get the result in the List format
 			List<GroupFilm> groupFilms  = q.list();
 			Iterator<GroupFilm> it = groupFilms.iterator();
 			while(it.hasNext()){
 				GroupFilm groupFilm = it.next();
+				GroupFilmBriefInfo briefInfo = new GroupFilmBriefInfo();
+				briefInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
+				briefInfo.setCurrentPrice(groupFilm.getCurrentPrice());
+				briefInfo.setOriginalPrice(groupFilm.getOriginalPrice());
+				briefInfo.setGroupFilmId(groupFilm.getId());
+				//锟斤拷取锟斤拷影锟斤拷锟斤拷息
 				Film film = groupFilm.getFilm();
-				//the film set which
-				Set<Tag> tagsSet = film.getTags();
-				if(tagsSet.containsAll(tagsOutsideList)){
-					if(i>firstResult&&i<firstResult+maxResult){
-						GroupFilmBriefInfo briefInfo = new GroupFilmBriefInfo();
-						briefInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
-						briefInfo.setCurrentPrice(groupFilm.getCurrentPrice());
-						briefInfo.setOriginalPrice(groupFilm.getOriginalPrice());
-						briefInfo.setGroupFilmId(groupFilm.getId());
-						//get film Object through GroupFilm
-						//Film film = groupFilm.getFilm();
-						briefInfo.setFilmName(film.getFilmName());
-						briefInfo.setHeartNum(groupFilm.getUsers().size());
-						briefInfo.setFilmPhotoUrl(groupFilm.getPicUrl());
-						//锟斤拷取锟斤拷签
-						Set<Tag> tags = film.getTags();
-						List<String> tagList = new ArrayList<String>();
-						for(Tag tag:tags){
-							tagList.add(tag.getTagName());
-						}
-						briefInfo.setTags(tagList);
-						list.add(briefInfo);
-					}	
+				briefInfo.setFilmName(film.getFilmName());
+				briefInfo.setHeartNum(groupFilm.getUsers().size());
+				briefInfo.setFilmPhotoUrl(groupFilm.getPicUrl());
+				//锟斤拷取锟斤拷签
+				Set<Tag> tags = film.getTags();
+				List<String> tagList = new ArrayList<String>();
+				for(Tag tag:tags){
+					tagList.add(tag.getTagName());
 				}
-									
+				briefInfo.setTags(tagList);
+				list.add(briefInfo);			
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return list;
 	}
-//	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult){
-//		List<GroupFilmBriefInfo> list = new ArrayList<GroupFilmBriefInfo>();
-//		try{
-//			session = HibernateUtil.getSession();
-//			String hql = "from GroupFilm groupFilm";
-//			Query q = session.createQuery(hql);
-//			q.setFirstResult(firstResult);
-//			q.setMaxResults(maxResult);
-//			@SuppressWarnings("unchecked")
-//			List<GroupFilm> groupFilms  = q.list();
-//			Iterator<GroupFilm> it = groupFilms.iterator();
-//			while(it.hasNext()){
-//				GroupFilm groupFilm = it.next();
-//				GroupFilmBriefInfo briefInfo = new GroupFilmBriefInfo();
-//				briefInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
-//				briefInfo.setCurrentPrice(groupFilm.getCurrentPrice());
-//				briefInfo.setOriginalPrice(groupFilm.getOriginalPrice());
-//				briefInfo.setGroupFilmId(groupFilm.getId());
-//				//锟斤拷取锟斤拷影锟斤拷锟斤拷息
-//				Film film = groupFilm.getFilm();
-//				briefInfo.setFilmName(film.getFilmName());
-//				briefInfo.setHeartNum(groupFilm.getUsers().size());
-//				briefInfo.setFilmPhotoUrl(groupFilm.getPicUrl());
-//				//锟斤拷取锟斤拷签
-//				Set<Tag> tags = film.getTags();
-//				List<String> tagList = new ArrayList<String>();
-//				for(Tag tag:tags){
-//					tagList.add(tag.getTagName());
-//				}
-//				briefInfo.setTags(tagList);
-//				list.add(briefInfo);			
-//			}
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		return list;
-//	}
 	
 	public GroupFilmDetailedInfo getGroupFilmDetailedInfo(int id){
 		GroupFilmDetailedInfo groupFilmDetailedInfo=new GroupFilmDetailedInfo();
