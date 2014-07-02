@@ -6,12 +6,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.struts2.jasper.tagplugins.jstl.core.When;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.RecommendFilm;
+import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.GroupFilm;
@@ -238,7 +239,7 @@ public class GroupFilmDao {
 			HibernateUtil.closeSession();
 		}
 	}
-	
+	//取出团购电影对象
 	public GroupFilm getGroupFilm(int groupFilmId){
 		try{
 			session = HibernateUtil.getSession();
@@ -282,6 +283,55 @@ public class GroupFilmDao {
 		
 		
 		return tagStringList;
+		
+	}
+	
+	//获得所有正在上映和即将上映的电影
+	@SuppressWarnings("unchecked")
+	public List<RecommendFilm> getNoffFilm(){
+		List<RecommendFilm> films = new ArrayList<RecommendFilm>();
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "From GroupFilm groupFilm where groupFilm.type=0 or groupFilm.type=1";
+			Query query = session.createQuery(hql);
+			List<GroupFilm> NoffFilmList = query.list();
+			Iterator<GroupFilm> it = NoffFilmList.iterator();
+			while(it.hasNext()){
+				GroupFilm groupFilm = it.next();
+				RecommendFilm aRfilm = new RecommendFilm();
+				Film film = groupFilm.getFilm();
+				aRfilm.setFilmName(film.getFilmName());
+				Cinema  cinema = groupFilm.getCinema();
+				aRfilm.setCinemaName(cinema.getCinemaName());
+				aRfilm.setGroupFilmId(groupFilm.getId());
+				aRfilm.setUserNum(groupFilm.getUsers().size());
+				films.add(aRfilm);		
+			}
+			return films;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
+	//获得一个团购电影想看人数
+	public int getWantedUserNum(int groupFilmId){
+		try{
+			session = HibernateUtil.getSession();
+			GroupFilm groupFilm = (GroupFilm) session.get(GroupFilm.class, groupFilmId);
+			return groupFilm.getUsers().size();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
 		
 	}
 	

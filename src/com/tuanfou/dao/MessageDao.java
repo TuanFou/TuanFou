@@ -31,6 +31,9 @@ public class MessageDao {
 		}
 	}
 	
+	/**
+	 * 获得所有受到的信息内容
+	 * */
 	@SuppressWarnings("unchecked")
 	public List<Message> findReceiveMsg(int type,int receiverId){
 		Session session = null;
