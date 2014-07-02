@@ -61,7 +61,7 @@ public class GroupFilmService {
 	 * 获取所有推荐电影
 	 */
 	@SuppressWarnings("unchecked")
-	public List<RecommendFilm> getRecommendFilms(){
+	public List<RecommendFilm> getRecommendFilms(int pageSize,int page){
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
 		List<RecommendFilm> films = groupFilmDao.getNoffFilm();  //获得当前正在放映或即将放映的团购电影
 		List<RecommendFilm> recommendFilms = new ArrayList<RecommendFilm>();  //存放前五名团购电影
@@ -70,15 +70,11 @@ public class GroupFilmService {
 		Collections.sort(films,comparator);
 		
 		Iterator<RecommendFilm> it = films.iterator();
-		int number; 
-		if(films.size()<5)
-			number = films.size();
-		else
-			number = 5;
-		for(int i = 0; i < number; i++)
+		for(int i = 1; i <= films.size(); i++)
 		{
 			RecommendFilm aFilm = it.next();
-			recommendFilms.add(aFilm);
+			if((i > (page-1)*pageSize)&&(i <= page * pageSize))	
+				recommendFilms.add(aFilm);
 		}
 		return recommendFilms;
 	}

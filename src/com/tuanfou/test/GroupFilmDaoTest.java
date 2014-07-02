@@ -47,7 +47,7 @@ public class GroupFilmDaoTest {
 		
 		//groupfilmDetailedInfoTest();
 		GroupFilmService groupFilmService = new GroupFilmService();
-		List<RecommendFilm> films = groupFilmService.getRecommendFilms();
+		List<RecommendFilm> films = groupFilmService.getRecommendFilms(3,2);
 		Iterator<RecommendFilm> it = films.iterator();
 		while(it.hasNext())
 		{
