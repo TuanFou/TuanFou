@@ -3,6 +3,7 @@ package com.tuanfou.dto;
 public class RecommendFilm {
 
 	private int groupFilmId;    //团购电影id；
+	private int rank;
 	private String picUrl;
 	private String filmName;    //电影名称
 	private String cinemaName;  //影院名称
@@ -37,6 +38,12 @@ public class RecommendFilm {
 	}
 	public void setPicUrl(String picUrl) {
 		this.picUrl = picUrl;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 	
 }

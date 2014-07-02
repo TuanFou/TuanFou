@@ -48,12 +48,15 @@ public class GroupFilmDaoTest {
 		//groupfilmDetailedInfoTest();
 		GroupFilmService groupFilmService = new GroupFilmService();
 		List<RecommendFilm> films = groupFilmService.getRecommendFilms(3,2);
-		Iterator<RecommendFilm> it = films.iterator();
-		while(it.hasNext())
-		{
-			RecommendFilm film = it.next();
-			System.out.println("FilmName："+film.getFilmName()+"	cinemaName:"+film.getCinemaName()+"	userNum:"+film.getUserNum()+"	picUrl"+film.getPicUrl());
-		}
+//		Iterator<RecommendFilm> it = films.iterator();
+//		while(it.hasNext())
+//		{
+//			RecommendFilm film = it.next();
+//			System.out.println("FilmName："+film.getFilmName()+"	cinemaName:"+film.getCinemaName()+"	userNum:"+film.getUserNum()+"	picUrl"+film.getPicUrl());
+//		}
+		Gson gson = new Gson();
+		String result = gson.toJson(films);
+		System.out.println(result);
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;

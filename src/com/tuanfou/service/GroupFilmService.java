@@ -70,11 +70,16 @@ public class GroupFilmService {
 		Collections.sort(films,comparator);
 		
 		Iterator<RecommendFilm> it = films.iterator();
+		int rank = 0;
 		for(int i = 1; i <= films.size(); i++)
 		{
 			RecommendFilm aFilm = it.next();
-			if((i > (page-1)*pageSize)&&(i <= page * pageSize))	
+			rank ++;
+			if((i > (page-1)*pageSize)&&(i <= page * pageSize))
+			{
+				aFilm.setRank(rank);
 				recommendFilms.add(aFilm);
+			}
 		}
 		return recommendFilms;
 	}
