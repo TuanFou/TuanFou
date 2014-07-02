@@ -7,6 +7,9 @@ import com.tuanfou.utils.HibernateUtil;
 
 public class AccountDao {
 	
+	/**
+	 * 增加商户
+	 * */
 	public boolean add(Account account){
 		Session session = null;
 		try{
@@ -26,7 +29,9 @@ public class AccountDao {
 			HibernateUtil.closeSession();
 		}
 	}
-	
+	/**
+	 *更新账户
+	 * */
 	public boolean update(Account account){
 		Session session = null;
 		try{

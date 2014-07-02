@@ -12,6 +12,7 @@ import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.RecommendFilm;
 
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.service.FilmStatusService;
@@ -44,7 +45,15 @@ public class GroupFilmDaoTest {
 //
 //		System.out.println(groupFilm);
 		
-		groupfilmDetailedInfoTest();
+		//groupfilmDetailedInfoTest();
+		GroupFilmService groupFilmService = new GroupFilmService();
+		List<RecommendFilm> films = groupFilmService.getRecommendFilms();
+		Iterator<RecommendFilm> it = films.iterator();
+		while(it.hasNext())
+		{
+			RecommendFilm film = it.next();
+			System.out.println("FilmName："+film.getFilmName()+"	cinemaName:"+film.getCinemaName()+"	userNum:"+film.getUserNum());
+		}
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;

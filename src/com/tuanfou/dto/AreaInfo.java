@@ -1,9 +1,9 @@
 package com.tuanfou.dto;
 
 public class AreaInfo {
-	private int areaId;
-	private String areaName;
-	private int filmNumber;
+	private int areaId;       //地区ID
+	private String areaName;  //地区名称
+	private int filmNumber;   //该地区团购电影数量
 	
 	public AreaInfo(){
 		

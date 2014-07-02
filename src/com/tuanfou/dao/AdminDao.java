@@ -6,7 +6,9 @@ import com.tuanfou.pojo.Admin;
 import com.tuanfou.utils.HibernateUtil;
 
 public class AdminDao {
-
+	/**
+	 * 更新管理员信息
+	 * */
 	public boolean update(Admin admin){
 		Session session = null;
 		try{
@@ -26,6 +28,10 @@ public class AdminDao {
 		}
 		
 	}
+	
+	/**
+	 * 增加管理员信息
+	 * */
 	public boolean add(Admin admin){
 		Session session = null;
 		try{

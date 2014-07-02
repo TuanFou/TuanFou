@@ -1,6 +1,8 @@
 package com.tuanfou.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import com.tuanfou.dao.CommentDao;
@@ -8,6 +10,8 @@ import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.RecommendFilm;
+import com.tuanfou.utils.ComparatorFilm;
 
 public class GroupFilmService {
 	/*
@@ -51,5 +55,31 @@ public class GroupFilmService {
 		info3.setFilmNum(number);
 		statusInfo.add(info3);
 		return statusInfo;
+	}
+	
+	/*
+	 * 获取所有推荐电影
+	 */
+	@SuppressWarnings("unchecked")
+	public List<RecommendFilm> getRecommendFilms(){
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		List<RecommendFilm> films = groupFilmDao.getNoffFilm();  //获得当前正在放映或即将放映的团购电影
+		List<RecommendFilm> recommendFilms = new ArrayList<RecommendFilm>();  //存放前五名团购电影
+	
+		ComparatorFilm comparator = new ComparatorFilm();
+		Collections.sort(films,comparator);
+		
+		Iterator<RecommendFilm> it = films.iterator();
+		int number; 
+		if(films.size()<5)
+			number = films.size();
+		else
+			number = 5;
+		for(int i = 0; i < number; i++)
+		{
+			RecommendFilm aFilm = it.next();
+			recommendFilms.add(aFilm);
+		}
+		return recommendFilms;
 	}
 }

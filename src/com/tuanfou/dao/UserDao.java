@@ -77,6 +77,7 @@ public class UserDao {
 		return userComments;
 	}
 	
+	//获得数据库对象
 	public User getUser(int userId){
 		try{
 			session = HibernateUtil.getSession();
