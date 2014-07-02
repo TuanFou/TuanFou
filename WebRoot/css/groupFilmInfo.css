@@ -73,8 +73,9 @@ body{
 	border:  1px solid #EEEEEE;
 }
 .film-introduce{
-	height: 80px;
+	/*height: 80px;*/
 	width:390px;
+	overflow: hidden;
 	padding: 15px;
 	margin-left: 10px;
 	border:  1px solid #EEEEEE;
@@ -314,6 +315,7 @@ div.loadMore:hover{
 .range-item{
 	margin-left: 10px;
 	margin-right: 10px;
+	clear: both;
 }
 .range-num{
 

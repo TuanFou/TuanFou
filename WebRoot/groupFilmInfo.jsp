@@ -20,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="./css/groupFilmInfo.css">
 	<script src="./js/jquery.js" type="text/javascript"></script>
 	<script type="text/javascript" src="./js/tinybox.js"></script>
+	<script type="text/javascript" src="./js/groupFilmInfo.js"></script>
   </head>
  <style type="text/css">
 
@@ -79,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="float-left film-introduce">
 				<span class="line-block blue-font">剧情介绍</span>
-				<span>${groupFilmDetailInfo.description}……<a href="#">详细</a></span>
+				<span>${groupFilmDetailInfo.description}</span>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -256,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="main-right">
 		<div id="main-right-title"></div>
 		<div id="group-range">
-			<div class="range-item">
+			<!-- <div class="range-item">
 				<span class="range-num float-left">1</span>
 				<span class="range-film-img"><img src="./imgs/1.png"></img></span>
 				<div class="float-left range-item-info">
@@ -266,51 +267,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="line-block"><font size="3">200</font>人已经入伙</span>
 					<span class="line-block float-right"><a href="#">我要入伙</a></span>
 				</div>
-			</div>
-			<div class="range-item">
-				<span class="range-num float-left">2</span>
-				<span class="range-film-img"><img src="./imgs/1.png"></img></span>
-				<div class="float-left range-item-info">
-					<span class="line-block"><img ></img>伙影</span>
-					<span class="line-block">沉睡的魔谷</span>
-					<span class="line-block">洪山天河国际影城</span>
-					<span class="line-block"><font size="3">200</font>人已经入伙</span>
-					<span class="line-block float-right"><a href="#">我要入伙</a></span>
-				</div>
-			</div>
-			<div class="range-item">
-				<span class="range-num float-left">3</span>
-				<span class="range-film-img"><img src="./imgs/1.png"></img></span>
-				<div class="float-left range-item-info">
-					<span class="line-block"><img ></img>伙影</span>
-					<span class="line-block">沉睡的魔谷</span>
-					<span class="line-block">洪山天河国际影城</span>
-					<span class="line-block"><font size="3">200</font>人已经入伙</span>
-					<span class="line-block float-right"><a href="#">我要入伙</a></span>
-				</div>
-			</div>
-			<div class="range-item">
-				<span class="range-num float-left">4</span>
-				<span class="range-film-img"><img src="./imgs/1.png"></img></span>
-				<div class="float-left range-item-info">
-					<span class="line-block"><img ></img>伙影</span>
-					<span class="line-block">沉睡的魔谷</span>
-					<span class="line-block">洪山天河国际影城</span>
-					<span class="line-block"><font size="3">200</font>人已经入伙</span>
-					<span class="line-block float-right"><a href="#">我要入伙</a></span>
-				</div>
-			</div>
-			<div class="range-item">
-				<span class="range-num float-left">5</span>
-				<span class="range-film-img"><img src="./imgs/1.png"></img></span>
-				<div class="float-left range-item-info">
-					<span class="line-block"><img ></img>伙影</span>
-					<span class="line-block">沉睡的魔谷</span>
-					<span class="line-block">洪山天河国际影城</span>
-					<span class="line-block"><font size="3">200</font>人已经入伙</span>
-					<span class="line-block float-right"><a href="#">我要入伙</a></span>
-				</div>
-			</div>
+			</div> -->
+
 		</div>
 	</div>
 </div>
