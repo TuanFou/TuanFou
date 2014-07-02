@@ -10,13 +10,17 @@ import org.apache.struts2.jasper.tagplugins.jstl.core.When;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import sun.print.resources.serviceui;
+
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.InvitedMember;
 import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.Tag;
+import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -49,9 +53,9 @@ public class GroupFilmDao {
 		return groupFilms;	
 	}
 	
-	/*
+	/**
 	 * 锟斤拷取锟脚癸拷锟斤拷影锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷锟杰伙拷取锟斤拷锟斤拷
-	 */
+	 */ 
 	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult){
 		List<GroupFilmBriefInfo> list = new ArrayList<GroupFilmBriefInfo>();
 		try{
@@ -272,18 +276,42 @@ public class GroupFilmDao {
 		}
 	}
 	
-	// TODO CAHNGE THE PUBLIC TO PRIVATE
 	private List<String> convertSetToList(Set<Tag> srcSet){
 		List<String> tagStringList = new ArrayList<String>();
 		Iterator<Tag> it = srcSet.iterator();
 		while(it.hasNext()){
 			tagStringList.add(it.next().getTagName().toString());
 		}
-		
-		
 		return tagStringList;
-		
 	}
 	
+	/**
+	 * This method is used to provid the a list of invited Members' information
+	 *  which contains id and name 
+	 * @author yogiman
+	 * @param groupFilmId
+	 * @param firstResult
+	 * @param maxResult
+	 * @return List<InvitedMember>
+	 */
+	public List<InvitedMember> getInvitedMembers(int groupFilmId,int firstResult,int maxResult){
+		
+		String hql = "select gf.users from GroupFilm gf where gf.id =";
+		Integer i = groupFilmId;
+		String str = i.toString();
+		hql += str;
+
+		List<InvitedMember> invitedMembers  =  new ArrayList<InvitedMember>();
+		List<User> users = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
+		Iterator<User> it = users.iterator();
+		while(it.hasNext()){
+			User user = it.next();
+			InvitedMember invitedMember = new InvitedMember();
+			invitedMember.setUserId(user.getId());
+			invitedMember.setUserName(user.getUserName());
+			invitedMembers.add(invitedMember);
+		}
+		return invitedMembers;
+	}
 }
 
