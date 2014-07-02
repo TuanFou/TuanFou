@@ -36,6 +36,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="detial-info float-left">
+					<span class="line-block"><font size="5"> ${groupFilmDetailInfo.filmName}</font></span>
+					<span class="line-block"><font size="3">${groupFilmDetailInfo.period}分钟&nbsp&nbsp&nbsp${groupFilmDetailInfo.realeaseDate}中国上映</font></span>
+					<span class="line-block" >导演：${groupFilmDetailInfo.director}</span>
+					<span class="line-block" >主演：罗伯特·斯托姆伯格</span>
+					<span class="line-block" >标签：${groupFilmDetailInfo.tags}</span>
+			</div>
+			<div class="buying-info float-left">
 				<span class="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
 				<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
 				<span class="line-block" >使用时间: 10:00-24:00</span>
@@ -50,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="float-right"><input type="text"  ></input></span>
 					<span class="float-right">数量</input>
 				</span>
-			</div>
+			</div>  
 		</div>	
 		<div class="clear"></div>
 		<div class="film-info">
