@@ -2,19 +2,24 @@
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
+import com.tuanfou.dao.TagDao;
 import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 import com.tuanfou.dto.InvitedMember;
 
 import com.tuanfou.pojo.GroupFilm;
+import com.tuanfou.pojo.Tag;
 import com.tuanfou.service.FilmStatusService;
 import com.tuanfou.service.GroupFilmService;
 
@@ -45,7 +50,7 @@ public class GroupFilmDaoTest {
 //
 //		System.out.println(groupFilm);
 		
-		getinviInvitedMembersTest();
+		groupfilmBriefInfoTest();
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
@@ -113,6 +118,11 @@ public class GroupFilmDaoTest {
 //		System.out.println(number);
 //		GroupFilmService gs = new GroupFilmService();
 //		List<GroupFilmBriefInfo> list = gs.loadGroupFilmsBriefInfo(0, 10);
+		
+//		
+//		List<Tag> tags = new ArrayList<Tag>();
+//		Tag tag = TagDao.
+//		groupFilmDao.getGroupFilmsBriefInfo(0, 1, , "", "")
 //		Gson gson = new Gson();
 //		String str = gson.toJson(list);
 //		System.out.println(str);
@@ -150,6 +160,21 @@ public class GroupFilmDaoTest {
 		Gson gson = new Gson();
 		String str = gson.toJson(invitedMembers);
 		System.out.println(str);
+	}
+	
+	
+	public static void listContainsTest(){
+		List<Integer> list = new ArrayList<Integer>();
+		Set<Integer> set = new HashSet<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(4);
+		set.add(1);
+		set.add(2);
+		set.add(5);
+		if(set.containsAll(list)){
+			System.out.println("ok");
+		}
 	}
 	
 }
