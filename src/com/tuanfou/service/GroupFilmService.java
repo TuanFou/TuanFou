@@ -59,6 +59,7 @@ public class GroupFilmService {
 	
 	/*
 	 * 获取所有推荐电影
+	 * 参数：页数，和每页电影数
 	 */
 	@SuppressWarnings("unchecked")
 	public List<RecommendFilm> getRecommendFilms(int pageSize,int page){
@@ -80,7 +81,11 @@ public class GroupFilmService {
 				aFilm.setRank(rank);
 				recommendFilms.add(aFilm);
 			}
+			if(i > page*pageSize)
+				break;
 		}
 		return recommendFilms;
 	}
+	
+	
 }
