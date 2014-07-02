@@ -52,7 +52,7 @@ public class GroupFilmDaoTest {
 		while(it.hasNext())
 		{
 			RecommendFilm film = it.next();
-			System.out.println("FilmName："+film.getFilmName()+"	cinemaName:"+film.getCinemaName()+"	userNum:"+film.getUserNum());
+			System.out.println("FilmName："+film.getFilmName()+"	cinemaName:"+film.getCinemaName()+"	userNum:"+film.getUserNum()+"	picUrl"+film.getPicUrl());
 		}
 	}
 	public static void groupfilmBriefInfoTest(){
