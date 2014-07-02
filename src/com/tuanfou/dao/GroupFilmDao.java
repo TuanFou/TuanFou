@@ -299,6 +299,7 @@ public class GroupFilmDao {
 			while(it.hasNext()){
 				GroupFilm groupFilm = it.next();
 				RecommendFilm aRfilm = new RecommendFilm();
+				aRfilm.setPicUrl(groupFilm.getPicUrl());
 				Film film = groupFilm.getFilm();
 				aRfilm.setFilmName(film.getFilmName());
 				Cinema  cinema = groupFilm.getCinema();

@@ -5,10 +5,13 @@ import java.util.ArrayList;
 //import java.util.Date;
 import java.util.List;
 
+import com.google.gson.Gson;
 import com.tuanfou.dao.CommentDao;
+import com.tuanfou.dto.CommentInfo;
 //import com.tuanfou.pojo.Area;
 import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Comment;
+import com.tuanfou.service.CommentService;
 //import com.tuanfou.pojo.Film;
 //import com.tuanfou.pojo.GroupFilm;
 //import com.tuanfou.pojo.Merchant;
@@ -24,7 +27,7 @@ public class CommentDaoTest {
 //		private int id;
 //		private GroupFilm groupFilm;
 //		private User user;
-//		private Date createTime;	//´Ë´¦DateÀàÐÍ¶ÔÓ¦mysqlÖÐdatetime
+//		private Date createTime;	//ï¿½Ë´ï¿½Dateï¿½ï¿½ï¿½Í¶ï¿½Ó¦mysqlï¿½ï¿½datetime
 //		private String content;
 //		private int star;
 
@@ -39,7 +42,7 @@ public class CommentDaoTest {
 //		groupFilm.setId(1);
 //		
 //		Comment comment = new Comment();
-//		comment.setContent("»Æ²ÓÛÚÊÇ¸ösb");
+//		comment.setContent("ï¿½Æ²ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½sb");
 //		comment.setCreateTime(new java.sql.Date(new java.util.Date().getTime()));
 //		comment.setStar(2);
 //		
@@ -54,6 +57,11 @@ public class CommentDaoTest {
 //		System.out.println(commentsList);
 		
 		CommentDao commentDao = new CommentDao();
-		System.out.println(commentDao.getStarByGroupFilmId(1));
+		CommentService commentService = new CommentService();
+		//System.out.println(commentDao.getStarByGroupFilmId(1));
+		List<CommentInfo> commentList = commentService.getCommentList(2, 1, 10);
+		Gson gson = new Gson();
+		String result = gson.toJson(commentList);
+		System.out.println(result);
 	}
 }

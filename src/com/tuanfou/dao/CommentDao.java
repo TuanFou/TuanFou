@@ -2,13 +2,16 @@ package com.tuanfou.dao;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 
+import com.tuanfou.dto.CommentInfo;
 import com.tuanfou.pojo.Comment;
+import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
 public class CommentDao {
@@ -71,5 +74,37 @@ public class CommentDao {
 			}
          }
 		return total;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<CommentInfo> getCommentInfo(int groupFilmId){
+		List<CommentInfo> commentList = new ArrayList<CommentInfo>();
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "From Comment comment where comment.groupFilm.id=:groupFilmId";
+			Query query = session.createQuery(hql);
+			query.setParameter("groupFilmId", groupFilmId);
+			Iterator<Comment> it = query.list().iterator();
+			while(it.hasNext()){
+				Comment comment = it.next();
+				CommentInfo commentInfo = new CommentInfo();
+				User user = comment.getUser();
+				commentInfo.setUserId(user.getId());
+				commentInfo.setUserName(user.getUserName());
+				commentInfo.setGroupFilmId(comment.getGroupFilm().getId());
+				commentInfo.setDate(comment.getCreateTime());
+				commentInfo.setContent(comment.getContent());
+				commentInfo.setStar(comment.getStar());
+				commentList.add(commentInfo);
+			}
+			return commentList;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
 	}
 }
