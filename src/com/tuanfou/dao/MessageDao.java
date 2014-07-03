@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Message;
+import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
 
 public class MessageDao {
@@ -56,5 +57,29 @@ public class MessageDao {
 			HibernateUtil.closeSession();
 		}
 	}
-
+	
+	/**
+	 * @author yogiman
+	 * @param userId
+	 * @param firstResult
+	 * @param maxResult
+	 * @return
+	 */
+	public List<Message> getReceivedMessage(int userId,int firstResult,int maxResult){
+		String hql ="from Message message where message.receiverId = ";
+		Integer integer = userId;
+		String temp = integer.toString();
+		hql += temp;
+		List<Message> messages = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
+		return messages;
+	}
+	
+	public List<Message> getSentMessages(int userId,int firstResult,int maxResult){
+		String hql ="from Message message where message.senderId = ";
+		Integer integer = userId;
+		String temp = integer.toString();
+		hql += temp;
+		List<Message> messages = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
+		return messages;
+	}
 }

@@ -20,6 +20,7 @@ import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.Tag;
 import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
+import com.tuanfou.utils.Utils;
 
 public class GroupFilmDao {
 	private Session session = null;
@@ -53,17 +54,40 @@ public class GroupFilmDao {
 	/*
 	 * 锟斤拷取锟脚癸拷锟斤拷影锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷锟杰伙拷取锟斤拷锟斤拷
 	 */
-	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult){
+	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult,String areaName,int type,List<String> tagList){
 		List<GroupFilmBriefInfo> list = new ArrayList<GroupFilmBriefInfo>();
 		try{
 			session = HibernateUtil.getSession();
-			String hql = "from GroupFilm groupFilm";
-			Query q = session.createQuery(hql);
-			q.setFirstResult(firstResult);
-			q.setMaxResults(maxResult);
+			Query q = null;
+			String hql = null;
+			//根据参数设置查询sql语句
+			if(type<0){
+				hql= "from GroupFilm groupFilm where groupFilm.area.areaName like :areaName";
+				q = session.createQuery(hql);
+				q.setParameter("areaName", areaName);
+			}
+			else
+			{
+				hql= "from GroupFilm groupFilm where groupFilm.area.areaName like :areaName and groupFilm.type like :type";
+				q = session.createQuery(hql);
+				q.setParameter("areaName", areaName);
+				q.setParameter("type", type);
+			}
+			
 			@SuppressWarnings("unchecked")
-			List<GroupFilm> groupFilms  = q.list();
-			Iterator<GroupFilm> it = groupFilms.iterator();
+			List<GroupFilm> groupFilmList = q.list();
+			Iterator<GroupFilm> itGroupFilm =groupFilmList.iterator();
+			List<GroupFilm> newGroupFilmList = new ArrayList<GroupFilm>();
+			while(itGroupFilm.hasNext())
+			{
+				GroupFilm groupFilm = itGroupFilm.next();
+				List<String> tagNameList = Utils.getTagNameList(groupFilm.getFilm().getTags());
+				if(tagNameList.containsAll(tagList)){
+					newGroupFilmList.add(groupFilm);
+				}
+			}
+			//拼装信息
+			Iterator<GroupFilm> it = newGroupFilmList.iterator();
 			while(it.hasNext()){
 				GroupFilm groupFilm = it.next();
 				GroupFilmBriefInfo briefInfo = new GroupFilmBriefInfo();
@@ -71,25 +95,83 @@ public class GroupFilmDao {
 				briefInfo.setCurrentPrice(groupFilm.getCurrentPrice());
 				briefInfo.setOriginalPrice(groupFilm.getOriginalPrice());
 				briefInfo.setGroupFilmId(groupFilm.getId());
-				//锟斤拷取锟斤拷影锟斤拷锟斤拷息
+				//��ȡ��Ӱ����Ϣ
 				Film film = groupFilm.getFilm();
 				briefInfo.setFilmName(film.getFilmName());
 				briefInfo.setHeartNum(groupFilm.getUsers().size());
 				briefInfo.setFilmPhotoUrl(groupFilm.getPicUrl());
-				//锟斤拷取锟斤拷签
+				//��ȡ��ǩ
 				Set<Tag> tags = film.getTags();
-				List<String> tagList = new ArrayList<String>();
+				List<String> tagList1 = new ArrayList<String>();
 				for(Tag tag:tags){
-					tagList.add(tag.getTagName());
+					tagList1.add(tag.getTagName());
 				}
-				briefInfo.setTags(tagList);
+				briefInfo.setTags(tagList1);
 				list.add(briefInfo);			
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}
-		return list;
+		if(list.size()<firstResult){
+			list.clear();
+			return list;
+		}else{
+			if(list.size()>(maxResult+firstResult)){ 
+				List<GroupFilmBriefInfo> resultList =  new ArrayList<GroupFilmBriefInfo>();
+				for(int i=firstResult;i<= (firstResult + maxResult -1);i++){
+					resultList.add(list.get(i));					
+				}
+				return resultList;
+			}else{
+				List<GroupFilmBriefInfo> resultList =  new ArrayList<GroupFilmBriefInfo>();
+				for(int i=firstResult;i<= (list.size()-1);i++){
+					resultList.add(list.get(i));					
+				}
+				return resultList;
+			}
+		}
 	}
+//	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult){
+//		List<GroupFilmBriefInfo> list = new ArrayList<GroupFilmBriefInfo>();
+//		try{
+//			session = HibernateUtil.getSession();
+//			String hql = "from GroupFilm groupFilm";
+//			Query q = session.createQuery(hql);
+//			q.setFirstResult(firstResult);
+//			q.setMaxResults(maxResult);
+//			@SuppressWarnings("unchecked")
+//			List<GroupFilm> groupFilms  = q.list();
+//			Iterator<GroupFilm> it = groupFilms.iterator();
+//			while(it.hasNext()){
+//				GroupFilm groupFilm = it.next();
+//				GroupFilmBriefInfo briefInfo = new GroupFilmBriefInfo();
+//				briefInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
+//				briefInfo.setCurrentPrice(groupFilm.getCurrentPrice());
+//				briefInfo.setOriginalPrice(groupFilm.getOriginalPrice());
+//				briefInfo.setGroupFilmId(groupFilm.getId());
+//				//锟斤拷取锟斤拷影锟斤拷锟斤拷息
+//				Film film = groupFilm.getFilm();
+//				briefInfo.setFilmName(film.getFilmName());
+//				briefInfo.setHeartNum(groupFilm.getUsers().size());
+//				briefInfo.setFilmPhotoUrl(groupFilm.getPicUrl());
+//				//锟斤拷取锟斤拷签
+//				Set<Tag> tags = film.getTags();
+//				List<String> tagList = new ArrayList<String>();
+//				for(Tag tag:tags){
+//					tagList.add(tag.getTagName());
+//				}
+//				briefInfo.setTags(tagList);
+//				list.add(briefInfo);			
+//			}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//	HibernateUtil.closeSession();
+//}
+//		return list;
+//	}
 	
 	public GroupFilmDetailedInfo getGroupFilmDetailedInfo(int id){
 		GroupFilmDetailedInfo groupFilmDetailedInfo=new GroupFilmDetailedInfo();
@@ -135,6 +217,8 @@ public class GroupFilmDao {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}
 		return groupFilmDetailedInfo;
 	}
@@ -160,6 +244,8 @@ public class GroupFilmDao {
 			}
 			}catch(Exception e){
 				e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}		
 		return i;
 	}
@@ -180,6 +266,8 @@ public class GroupFilmDao {
 			}
 			}catch(Exception e){
 				e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}		
 		return i;
 	}

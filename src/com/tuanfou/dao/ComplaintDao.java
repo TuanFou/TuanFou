@@ -1,31 +1,34 @@
 package com.tuanfou.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.dto.ComplaintInfo;
 import com.tuanfou.pojo.Complaint;
+import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
 
 public class ComplaintDao {
 	Session session = null;
 	
 	/*
-	 * Ìí¼ÓÒ»¸öÍ¶Ëß
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í¶ï¿½ï¿½
 	 */
 	public boolean addComplaintr(Complaint complaint){
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(complaint);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓÍ¶ËßÊ§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½Í¶ï¿½ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
@@ -34,7 +37,7 @@ public class ComplaintDao {
 		return res;
 	}
 	/*
-	 * »ñÈ¡¶©µ¥ÁÐ±í
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Complaint> getComplaintList(){
@@ -45,11 +48,37 @@ public class ComplaintDao {
 			Query q = session.createQuery(hql);
 			complaintList = q.list();
 		}catch(Exception e){
-			System.out.println("²éÑ¯Ê§°Ü");
+			System.out.println("ï¿½ï¿½Ñ¯Ê§ï¿½ï¿½");
 			e.printStackTrace();
 		}finally{
 			HibernateUtil.closeSession();
 		}
 		return complaintList;	
+	}
+	
+	/**
+	 * @author yogiman
+	 * @param userId
+	 * @param firstResult
+	 * @param maxResult
+	 * @return
+	 */
+	public List<ComplaintInfo> getUserComplaints(int userId,int firstResult,int maxResult){
+		List<ComplaintInfo> complaintInfoList = new ArrayList<ComplaintInfo>();
+		String hql = "from Complaint complaint where complaint.user.id = ";
+		Integer integer = userId;
+		hql += integer.toString();
+		List<Complaint> complaints = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
+		Iterator<Complaint> iterator = complaints.iterator();
+		while(iterator.hasNext()){
+			Complaint complaint = iterator.next();
+			ComplaintInfo complaintInfo = new ComplaintInfo();
+			complaintInfo.setId(complaint.getId());
+			complaintInfo.setGroupFilmId(complaint.getGroupFilm().getId());
+			complaintInfo.setUserId(complaint.getUser().getId());
+			complaintInfo.setReason(complaint.getReason());
+			complaintInfoList.add(complaintInfo);
+		}
+		return complaintInfoList;
 	}
 }
