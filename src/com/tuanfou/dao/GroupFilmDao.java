@@ -116,10 +116,18 @@ public class GroupFilmDao {
 			list.clear();
 			return list;
 		}else{
-			if(list.size()>maxResult){
-				return list.subList(firstResult, maxResult);
+			if(list.size()>(maxResult+firstResult)){ 
+				List<GroupFilmBriefInfo> resultList =  new ArrayList<GroupFilmBriefInfo>();
+				for(int i=firstResult;i<= (firstResult + maxResult -1);i++){
+					resultList.add(list.get(i));					
+				}
+				return resultList;
 			}else{
-				return list.subList(firstResult, list.size());
+				List<GroupFilmBriefInfo> resultList =  new ArrayList<GroupFilmBriefInfo>();
+				for(int i=firstResult;i<= (list.size()-1);i++){
+					resultList.add(list.get(i));					
+				}
+				return resultList;
 			}
 		}
 	}
