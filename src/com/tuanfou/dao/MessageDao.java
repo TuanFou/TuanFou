@@ -70,7 +70,7 @@ public class MessageDao {
 		Integer integer = userId;
 		String temp = integer.toString();
 		hql += temp;
-		List<Message> messages = new HibernateTemplate().executeQuery(hql, firstResult, maxResult);
+		List<Message> messages = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
 		return messages;
 	}
 	
@@ -79,7 +79,7 @@ public class MessageDao {
 		Integer integer = userId;
 		String temp = integer.toString();
 		hql += temp;
-		List<Message> messages = new HibernateTemplate().executeQuery(hql, firstResult, maxResult);
+		List<Message> messages = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
 		return messages;
 	}
 }
