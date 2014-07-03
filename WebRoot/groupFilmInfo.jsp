@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
 			<span class="line-block" >使用时间: 10:00-24:00</span>
 			<hr>
-			<span class="line-block font-20" >
+			<span class="line-block font-20" >6
 				<span>已售${groupFilmDetailInfo.orderNum} </span>
 				<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
 				<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
