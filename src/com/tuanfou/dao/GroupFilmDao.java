@@ -424,7 +424,7 @@ public class GroupFilmDao {
 		}
 		
 	}
-	
+	//团购电影价格
 	public float getPrice(int groupFilmId){
 		try{
 			session = HibernateUtil.getSession();

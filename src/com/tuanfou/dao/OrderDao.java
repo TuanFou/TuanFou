@@ -88,7 +88,7 @@ public class OrderDao {
 			HibernateUtil.closeSession();
 		}
 	}
-	
+	//实例化加载数据库对象
 	public Order getOrder(int orderId){
 		try{
 			session = HibernateUtil.getSession();
@@ -103,7 +103,7 @@ public class OrderDao {
 			HibernateUtil.closeSession();
 		}
 	}
-	
+	//更新订单信息
 	public boolean update(Order order){
 		try{
 			session = HibernateUtil.getSession();
