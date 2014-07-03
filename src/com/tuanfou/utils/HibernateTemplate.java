@@ -24,6 +24,5 @@ public class HibernateTemplate {
 			HibernateUtil.closeSession();
 		}
 		return list;
-		
 	}
 }

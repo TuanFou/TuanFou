@@ -9,6 +9,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.tuanfou.dao.MessageDao;
 import com.tuanfou.pojo.Message;
+import com.tuanfou.utils.GsonTestTemplate;
 
 public class MessageDaoTest {
 	public static void main(String[] args) {
@@ -25,17 +26,22 @@ public class MessageDaoTest {
 //			System.out.println("	Message_time:"+message.getTime());
 //		}
 //		getReceivedMessageTest();
-		getSentMessageTest();
+		getReceivedMessageTest();
 	}
 	
+	
+	/**
+	 * @author yogiman
+	 */
 	public static void getReceivedMessageTest(){
 		MessageDao messageDao = new MessageDao();
 		List<Message> messages =  messageDao.getReceivedMessage(2, 0, 2);
-		Gson gson = new Gson();
-		String string = gson.toJson(messages);
-		System.out.println(string);
+		GsonTestTemplate.testListToString(messages);
 	}
-	
+
+	/**
+	 * @author yogiman
+	 */
 	public static void getSentMessageTest(){
 		MessageDao messageDao = new MessageDao();
 		List<Message> messages =  messageDao.getSentMessages(10, 0, 2);
