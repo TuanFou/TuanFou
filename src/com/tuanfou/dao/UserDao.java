@@ -9,7 +9,9 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Comment;
+import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -92,5 +94,56 @@ public class UserDao {
 			HibernateUtil.closeSession();
 		}
 		
+	}
+	
+	/**
+	 * get the information for the targeted user's hearted GroupFilms
+	 * @author yogiman
+	 * @param id
+	 * @return List<MyHeartGroupFilmInfo>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<MyHeartGroupFilmInfo> getHeartGroupFilms(int id){
+		List<User> users = new ArrayList<User>();
+		List<GroupFilm> groupFilmList = new ArrayList<GroupFilm>();		
+		List<MyHeartGroupFilmInfo> myInfoList = new ArrayList<MyHeartGroupFilmInfo>();
+		try{
+			String hql = "select heartGroupFilm from User user where user.id = ";
+			Integer integer = id;
+			hql += integer.toString();
+			session = HibernateUtil.getSession();
+			Query query = session.createQuery(hql);
+			//query.setParameter("id", id);
+			groupFilmList = query.list();
+			Iterator<GroupFilm> groupFilmListIterator = groupFilmList.iterator();
+			while(groupFilmListIterator.hasNext()){
+				GroupFilm groupFilm = groupFilmListIterator.next();
+				MyHeartGroupFilmInfo myInfo = new MyHeartGroupFilmInfo();
+				myInfo.setId(groupFilm.getId());
+				myInfo.setFilmName(groupFilm.getFilm().getFilmName());
+				myInfo.setAddress(groupFilm.getArea().getAreaName());
+				myInfoList.add(myInfo);
+			}
+//			User user = new User();
+//			if(users.iterator().hasNext()){//get the target user(to get the groupfilm which is related to this user
+//				user = users.get(0);
+//			}
+//			else{
+//				return null;
+//			}
+//			Set<GroupFilm> groupFilmSet = user.getHeartGroupFilm();
+//			Iterator<GroupFilm> groupFilmSetIterator = groupFilmSet.iterator();
+//			while(groupFilmSetIterator.hasNext()){
+//				GroupFilm groupFilm = groupFilmSetIterator.next();
+//				
+//			}
+
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
+		}
+
+		return myInfoList;
 	}
 }
