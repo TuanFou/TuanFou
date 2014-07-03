@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.pojo.Comment;
+import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -92,5 +93,11 @@ public class UserDao {
 			HibernateUtil.closeSession();
 		}
 		
+	}
+	
+	public List<GroupFilm> getHeartGroupFilms(int userId){
+		List<GroupFilm> groupFilms = new ArrayList<GroupFilm>();
+		
+		return null;
 	}
 }
