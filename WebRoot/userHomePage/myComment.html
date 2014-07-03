@@ -7,9 +7,108 @@
     <meta http-equiv="description" content="this is my page">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <!--<link rel="stylesheet" type="text/css" href="./imgs/styles.css">-->
+  <style>
+.clear{
+  clear: both;
+}
+.float-left{
+  float:left;
+}
+.line-block{
+  display:block;
+}
+#info-area{
+  margin: 20px auto;
+}
+.title_1,.title_2,.title_3,.title_4{
+  padding: 5px;
+  float: left;
+  background: #EEEEEE;
+  text-align: center;
+}
+.title_1{
+  width:200px;
+}
+.title_2{
+  width:230px;
+}
+.title_3{
+  width:80px;
+}
+.title_4{
+  width:80px;
+}
+.comment-film-info{
+  width:160px;
+}
+.comment-content{
+  width: 240px;
+}
+.comment-time{
+  width:90px;
+  text-align: center;
+}
+.comment-operation{
+    width:90px;
+    text-align: center;
+}
+.comment-film{
+  margin-top: 15px;
+}
+.comment-operation button{
+  width:60px;
+  border: none;
+}
+.comment-operation button:hover{
+  background: #0080FF;
+}
+</style>
   </head>
   
-  <body>
-  <h1>你好，我是评论</h1>
-  </body>
+<body>
+<div  class="bg">
+      <span><font size="5" color="blue">我的评论</font></span>
+      <div id="info-area">
+         <div class="title">
+            <div class="title_1">团购</div>
+            <div class="title_2">评论内容</div>
+            <div class="title_3">时间</div>
+            <div class="title_4">操作</div>
+         </div>
+         <div class="clear"></div>
+         <div class="comment-item">
+           <div class="comment-film">
+              <span ><img class="float-left" width="50px" height="60px" src="../imgs/1.png"></span>
+              <div class="float-left comment-film-info" >
+                  <span class="line-block">沉睡魔咒</span>
+                  <span class="line-block">洪山天河国际影城</span>
+              </div>
+           </div>
+            <span class="line-block  float-left comment-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
+           <span class="float-left comment-time">2014-6-1</span>
+           <span class="float-left comment-operation">
+              <span><button>修改</button></span>
+              <span><button>删除</button></span>
+           </span>
+         </div>
+
+         <div class="clear"></div>
+         <div class="comment-item">
+           <div class="comment-film">
+              <span ><img class="float-left" width="50px" height="60px" src="../imgs/1.png"></span>
+              <div class="float-left comment-film-info" >
+                  <span class="line-block">沉睡魔咒</span>
+                  <span class="line-block">洪山天河国际影城</span>
+              </div>
+           </div>
+            <span class="line-block  float-left comment-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
+           <span class="float-left comment-time">2014-6-1</span>
+           <span class="float-left comment-operation">
+              <span><button>修改</button></span>
+              <span><button>删除</button></span>
+           </span>
+         </div>
+      </div>
+  </div>
+</body>
 </html>
