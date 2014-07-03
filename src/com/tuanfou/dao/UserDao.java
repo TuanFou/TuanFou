@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
+import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
@@ -84,6 +85,7 @@ public class UserDao {
 		try{
 			session = HibernateUtil.getSession();
 			User user = (User)session.get(User.class, userId);
+			System.out.println("userId:"+user.getId());
 			return user;
 		}
 		catch(Exception e){
@@ -145,5 +147,24 @@ public class UserDao {
 		}
 
 		return myInfoList;
+	}
+
+	
+	public Account getAccount(int userId){
+		try{
+			session = HibernateUtil.getSession();
+			User user = (User) session.get(User.class, userId);
+			Account account = new Account();
+			account.setId(user.getAccount().getId());
+			account.setBalance(user.getAccount().getBalance());
+			return account;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
 	}
 }

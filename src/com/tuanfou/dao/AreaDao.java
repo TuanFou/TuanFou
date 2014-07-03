@@ -37,6 +37,9 @@ public class AreaDao {
 		return res;
 	}
 	
+	/*
+	 * 获得地区列表
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Area> getAreaList(int cityId){
 		List<Area> areaList = new ArrayList<Area>();

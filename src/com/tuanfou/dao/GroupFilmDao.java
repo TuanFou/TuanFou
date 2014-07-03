@@ -332,6 +332,7 @@ public class GroupFilmDao {
 		try{
 			session = HibernateUtil.getSession();
 			GroupFilm groupFilm = (GroupFilm) session.get(GroupFilm.class, groupFilmId);
+			System.out.println("groupFilmId:"+groupFilm.getId());
 			return groupFilm;
 		}
 		catch(Exception e){
@@ -422,6 +423,21 @@ public class GroupFilmDao {
 			HibernateUtil.closeSession();
 		}
 		
+	}
+	//团购电影价格
+	public float getPrice(int groupFilmId){
+		try{
+			session = HibernateUtil.getSession();
+			GroupFilm groupFilm = (GroupFilm) session.get(GroupFilm.class, groupFilmId);
+			return groupFilm.getCurrentPrice();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
 	}
 	
 }

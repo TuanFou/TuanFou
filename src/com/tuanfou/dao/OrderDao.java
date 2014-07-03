@@ -6,26 +6,28 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
+import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
 public class OrderDao {
 	Session session = null;
 	
 	/*
-	 * Ìí¼ÓÒ»¸ö¶©µ¥
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public boolean addOrder(Order order){
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(order);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼Ó¶©µ¥Ê§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
@@ -34,7 +36,7 @@ public class OrderDao {
 		return res;
 	}
 	/*
-	 * »ñÈ¡¶©µ¥ÁĞ±í
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Order> getOrderList(){
@@ -45,7 +47,7 @@ public class OrderDao {
 			Query q = session.createQuery(hql);
 			orderList = q.list();
 		}catch(Exception e){
-			System.out.println("²éÑ¯Ê§°Ü");
+			System.out.println("ï¿½ï¿½Ñ¯Ê§ï¿½ï¿½");
 			e.printStackTrace();
 		}finally{
 			HibernateUtil.closeSession();
@@ -53,4 +55,69 @@ public class OrderDao {
 		return orderList;	
 	}
 	
+	//æ‰¾åˆ°è®¢å•çš„User
+	public User getUser(int orderId){
+		try{
+			session = HibernateUtil.getSession();
+			Order order = (Order) session.get(Order.class, orderId);
+			return order.getUser();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
+	//æ‰¾åˆ°è®¢å•çš„å›¢è´­ç”µå½±
+	public GroupFilm getGroupFilm(int orderId){
+		try{
+			session = HibernateUtil.getSession();
+			Order order = (Order) session.get(Order.class, orderId);
+			GroupFilm groupFilm = new GroupFilm();
+			groupFilm.setCurrentPrice(order.getGroupFilm().getCurrentPrice());
+			return groupFilm;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	//å®ä¾‹åŒ–åŠ è½½æ•°æ®åº“å¯¹è±¡
+	public Order getOrder(int orderId){
+		try{
+			session = HibernateUtil.getSession();
+			Order order = (Order) session.get(Order.class, orderId);
+			return order;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	//æ›´æ–°è®¢å•ä¿¡æ¯
+	public boolean update(Order order){
+		try{
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			session.update(order);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
 }
