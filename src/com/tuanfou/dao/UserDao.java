@@ -106,7 +106,6 @@ public class UserDao {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<MyHeartGroupFilmInfo> getHeartGroupFilms(int id){
-		List<User> users = new ArrayList<User>();
 		List<GroupFilm> groupFilmList = new ArrayList<GroupFilm>();		
 		List<MyHeartGroupFilmInfo> myInfoList = new ArrayList<MyHeartGroupFilmInfo>();
 		try{
@@ -126,20 +125,6 @@ public class UserDao {
 				myInfo.setAddress(groupFilm.getArea().getAreaName());
 				myInfoList.add(myInfo);
 			}
-//			User user = new User();
-//			if(users.iterator().hasNext()){//get the target user(to get the groupfilm which is related to this user
-//				user = users.get(0);
-//			}
-//			else{
-//				return null;
-//			}
-//			Set<GroupFilm> groupFilmSet = user.getHeartGroupFilm();
-//			Iterator<GroupFilm> groupFilmSetIterator = groupFilmSet.iterator();
-//			while(groupFilmSetIterator.hasNext()){
-//				GroupFilm groupFilm = groupFilmSetIterator.next();
-//				
-//			}
-
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally{
