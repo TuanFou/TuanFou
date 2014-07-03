@@ -73,13 +73,13 @@ public class GroupFilmAction extends ActionSupport {
 	 * 推荐前五个
 	 */
 	public String getRecommendGroupFilms(){
-//		req = ServletActionContext.getRequest();
-//		int page = Integer.parseInt( req.getParameter("page"));
-//		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
-//		int fistResult = (page-1)*pageSize;
+		req = ServletActionContext.getRequest();
+		int page = Integer.parseInt( req.getParameter("page"));
+		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
+		//int fistResult = (page-1)*pageSize;
 		try{
 			GroupFilmService gs = new GroupFilmService();
-			List<RecommendFilm> groupFilms = gs.getRecommendFilms();
+			List<RecommendFilm> groupFilms = gs.getRecommendFilms(pageSize,page);
 			response =  ServletActionContext.getResponse();
 			response.setCharacterEncoding("utf-8");
 			PrintWriter  out = response.getWriter();

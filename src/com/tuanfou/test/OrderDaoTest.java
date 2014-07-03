@@ -37,7 +37,7 @@ public class OrderDaoTest {
 		OrderDao.addOrder(order);
 		System.out.println(order.getGroupFilm().getOriginalPrice());*/
 		OrderService orderService = new OrderService();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		/*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		try{
 			java.util.Date date = dateFormat.parse("2014-8-1");
 			//java.util.Date date = new java.util.Date();
@@ -49,8 +49,10 @@ public class OrderDaoTest {
 		}
 		catch(Exception e){
 			e.printStackTrace();
-		}
-		
+		}*/
+		if(orderService.pay(3))
+			System.out.println("支付成功");
+			
 	}
 
 }
