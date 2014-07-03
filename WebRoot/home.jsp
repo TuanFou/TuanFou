@@ -92,8 +92,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   				入伙(200)</span>
 		   			</span>			
 	   			</div> -->
-	   			<div class='loadMore clear'>加载更多</div>
+	   			<!-- <div class='loadMore clear'>加载更多</div> -->
+
 		   </div>
+		   <div class="loadMore clear" id="groupFilm_load">加载更多</div>
 		</div>
 		<div id="main-right">
 			<div id="main-right-title"></div>

@@ -1,0 +1,1 @@
+$("#groupFilm_load").bind('click', function() { alert("That tickles!") });
