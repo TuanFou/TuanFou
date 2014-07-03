@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.RecommendFilm;
 import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmAction extends ActionSupport {
@@ -55,6 +56,30 @@ public class GroupFilmAction extends ActionSupport {
 		try{
 			GroupFilmService gs = new GroupFilmService();
 			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(fistResult, pageSize);
+			response =  ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8");
+			PrintWriter  out = response.getWriter();
+			Gson gson = new Gson();
+			String res = gson.toJson(groupFilms);
+			out.print(res);
+			return null;
+		}catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	/*
+	 * 获取推荐列表
+	 * 推荐前五个
+	 */
+	public String getRecommendGroupFilms(){
+//		req = ServletActionContext.getRequest();
+//		int page = Integer.parseInt( req.getParameter("page"));
+//		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
+//		int fistResult = (page-1)*pageSize;
+		try{
+			GroupFilmService gs = new GroupFilmService();
+			List<RecommendFilm> groupFilms = gs.getRecommendFilms();
 			response =  ServletActionContext.getResponse();
 			response.setCharacterEncoding("utf-8");
 			PrintWriter  out = response.getWriter();

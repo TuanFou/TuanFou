@@ -8,6 +8,9 @@ import com.tuanfou.dto.FilmStatusInfo;
 
 public class FilmStatusService {
 	
+	/*
+	 * 获取上映信息标签：全部，正在上映，即将上映
+	 */
 	public List<FilmStatusInfo> getStatusInfo(){
 		List<FilmStatusInfo> statusInfo = new ArrayList<FilmStatusInfo>();
 		FilmStatusInfo info1 = new FilmStatusInfo();

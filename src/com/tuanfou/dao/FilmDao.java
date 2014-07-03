@@ -52,6 +52,7 @@ public class FilmDao {
 		}		
 	}
 	
+	//获得数据库对象
 	public Film getFilm(int filmId){
 		try{
 			session = HibernateUtil.getSession();

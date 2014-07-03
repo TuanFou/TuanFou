@@ -98,7 +98,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="main-right">
 			<div id="main-right-title"></div>
 			<div id="group-range">
-				<div class="range-item">
+			
+				<!-- <div class="range-item">
 					<span class="range-num float-left">1</span>
 					<span class="range-film-img"><img src="./imgs/1.png"></img></span>
 					<div class="float-left range-item-info">
@@ -152,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="line-block"><font size="3">200</font>人已经入伙</span>
 						<span class="line-block float-right"><a href="#">我要入伙</a></span>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

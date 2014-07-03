@@ -12,14 +12,14 @@ import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
-import com.tuanfou.dto.InvitedMember;
+import com.tuanfou.dto.RecommendFilm;
 
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.service.FilmStatusService;
 import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmDaoTest {
-	public static GroupFilmDao gfd = new GroupFilmDao();
+
 	/**
 	 * @param args
 	 */
@@ -45,7 +45,18 @@ public class GroupFilmDaoTest {
 //
 //		System.out.println(groupFilm);
 		
-		getinviInvitedMembersTest();
+		//groupfilmDetailedInfoTest();
+		GroupFilmService groupFilmService = new GroupFilmService();
+		List<RecommendFilm> films = groupFilmService.getRecommendFilms(3,2);
+//		Iterator<RecommendFilm> it = films.iterator();
+//		while(it.hasNext())
+//		{
+//			RecommendFilm film = it.next();
+//			System.out.println("FilmName："+film.getFilmName()+"	cinemaName:"+film.getCinemaName()+"	userNum:"+film.getUserNum()+"	picUrl"+film.getPicUrl());
+//		}
+		Gson gson = new Gson();
+		String result = gson.toJson(films);
+		System.out.println(result);
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
@@ -143,13 +154,6 @@ public class GroupFilmDaoTest {
 //		Gson gson = new Gson();
 //		String str = gson.toJson(i);
 //		System.out.println(str);
-	}
-	
-	public static void getinviInvitedMembersTest(){
-		List<InvitedMember> invitedMembers = gfd.getInvitedMembers(1, 0, 3);
-		Gson gson = new Gson();
-		String str = gson.toJson(invitedMembers);
-		System.out.println(str);
 	}
 	
 }

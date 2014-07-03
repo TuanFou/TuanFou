@@ -1,6 +1,8 @@
 package com.tuanfou.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import com.tuanfou.dao.CommentDao;
@@ -8,6 +10,8 @@ import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.RecommendFilm;
+import com.tuanfou.utils.ComparatorFilm;
 
 public class GroupFilmService {
 	/*
@@ -52,4 +56,36 @@ public class GroupFilmService {
 		statusInfo.add(info3);
 		return statusInfo;
 	}
+	
+	/*
+	 * 获取所有推荐电影
+	 * 参数：页数，和每页电影数
+	 */
+	@SuppressWarnings("unchecked")
+	public List<RecommendFilm> getRecommendFilms(int pageSize,int page){
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		List<RecommendFilm> films = groupFilmDao.getNoffFilm();  //获得当前正在放映或即将放映的团购电影
+		List<RecommendFilm> recommendFilms = new ArrayList<RecommendFilm>();  //存放前五名团购电影
+	
+		ComparatorFilm comparator = new ComparatorFilm();
+		Collections.sort(films,comparator);
+		
+		Iterator<RecommendFilm> it = films.iterator();
+		int rank = 0;
+		for(int i = 1; i <= films.size(); i++)
+		{
+			RecommendFilm aFilm = it.next();
+			rank ++;
+			if((i > (page-1)*pageSize)&&(i <= page * pageSize))
+			{
+				aFilm.setRank(rank);
+				recommendFilms.add(aFilm);
+			}
+			if(i > page*pageSize)
+				break;
+		}
+		return recommendFilms;
+	}
+	
+	
 }

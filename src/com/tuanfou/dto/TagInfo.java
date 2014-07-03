@@ -1,9 +1,9 @@
 package com.tuanfou.dto;
 
 public class TagInfo {
-	private int tagId;
-	private String tagName;
-	private int filmNum;
+	private int tagId;       //tagId
+	private String tagName;  //标签名称
+	private int filmNum;    //有此标签的团购电影数量
 	
 	public TagInfo(){
 		

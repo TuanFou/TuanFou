@@ -34,7 +34,8 @@ public class TagDao {
 			HibernateUtil.closeSession();
 		}
 	}
-		
+	
+	//获得有此标签的电影
 	public Set<Film> findFilms(int tagId){
 		Session session = null;
 		Set<Film> filmSet = new HashSet<Film>();
@@ -58,6 +59,8 @@ public class TagDao {
 		}
 		
 	}
+	
+	//查找标签ID
 	@SuppressWarnings("unchecked")
 	public int findId(String tagName){
 		Session session = null;
