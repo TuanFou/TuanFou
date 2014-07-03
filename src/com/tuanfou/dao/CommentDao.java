@@ -76,6 +76,9 @@ public class CommentDao {
 		return total;
 	}
 	
+	/*
+	 * 获得对一个团购电影的评价列表
+	 */
 	@SuppressWarnings("unchecked")
 	public List<CommentInfo> getCommentInfo(int groupFilmId){
 		List<CommentInfo> commentList = new ArrayList<CommentInfo>();

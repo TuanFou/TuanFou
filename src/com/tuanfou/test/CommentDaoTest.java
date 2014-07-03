@@ -63,5 +63,9 @@ public class CommentDaoTest {
 		Gson gson = new Gson();
 		String result = gson.toJson(commentList);
 		System.out.println(result);
+		if(commentService.postComment(4, 302010010, "很好看", 5))
+			System.out.println("评论成功");
+		else
+			System.out.println("评论失败");
 	}
 }

@@ -39,7 +39,7 @@ public class CityDao {
 	}
 	
 	/**
-	 * ���һ������
+	 * 获得城市列表
 	 * @param city
 	 * @return
 	 */
