@@ -1,0 +1,67 @@
+body{
+	margin:0;
+}
+#header{
+	background-color: #000000;
+	min-width:980px;
+	height: 160px;
+	margin-bottom: 30px;
+}
+#bg{
+	width: 980px;
+	padding: 10px 0 65px;
+	margin: 0 auto;
+	font-family:'黑体';
+}
+#main-left{
+	/*height: 1290px;*/
+	float: left;
+	width: 180px;
+	margin-left:100px;
+	height:600px;
+	padding-bottom: 50px;
+	border:2px solid #EEEEEE;
+}
+#main-right{
+	/*float: right;*/
+	width: 600px;
+	height: 600px;
+	margin-left:285px;
+	border:2px solid #EEEEEE;
+	padding-bottom: 50px;
+}
+#menu-up{
+	width: 180px;
+	margin-left:0px;
+	height:150px;
+}
+#personalData{
+	width:180px;
+	margin:0px;
+	height:100px;
+}
+#account{
+	width:180px;
+	height:45px;
+}
+#photo{
+	width: 80px;
+	margin-left:0px;
+	height:100px;
+	padding-top:10px;
+	padding-left:10px;
+	float:left;
+}
+#data{
+	width:100px;
+	margin-left:100px;
+	padding-top:20px;
+}
+#menu-bottom{
+	width: 180px;
+	margin-left:0px;
+	height:400px;
+}
+a{
+	
+}
