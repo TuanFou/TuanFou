@@ -13,14 +13,13 @@ $(document).ready(function(){
 	</div>
 	*/
 	function  showRangeInfo(data){
-		$('#group-range').html('');
-		var text ='';
+		var text  = $('#group-range').html();
 		var jsonData = eval('('+data+')');
 		for(var index in jsonData){
 			var recommendFilm = jsonData[index];
 			text += "<div class='range-item' id='range_" + recommendFilm['groupFilmId'] +"'>"+
-						"<span class='range-num float-left'>"+ index + "</span>"+
-						"<span class='range-film-img'><img src='" + "./imgs/1.png" + "'></img></span>"+
+						"<span class='range-num float-left'>"+ recommendFilm['rank'] + "</span>"+
+						"<span class='range-film-img'><img src='" + recommendFilm['picUrl'] + "'></img></span>"+
 						"<div class='float-left range-item-info'>"+
 							"<span class='line-block'><img ></img>伙影</span>"+
 							"<span class='line-block'>" + recommendFilm['filmName'] + "</span>"+
@@ -30,12 +29,12 @@ $(document).ready(function(){
 						"</div>"+
 					"</div>";	
 		}
-		// text += "<div class='loadMore clear'>加载更多</div>";
+		text += "<div class='loadMore clear' id='loadMore'>加载更多</div>";
 		$('#group-range').html(text);
 	}
 	 /*请求推荐电影列表*/
 	$.ajax({
-	 	url: 'GroupFilmAction!getRecommendGroupFilms?page=1&pageSize=10',
+	 	url: 'GroupFilmAction!getRecommendGroupFilms?page=1&pageSize=5',
 	 	type: 'get',
 	 	datatype:"json",
 	 	success:function(data){

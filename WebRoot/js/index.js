@@ -20,9 +20,14 @@
 
 $(document).ready(function(){
 	function showInfo(data){
-		$('#film-content').html('');
-		var text ='';
+		var text = $('#film-content').html();
 		var jsonData = eval('('+data+')');
+		if($.isEmptyObject(jsonData)){//如果数据为空
+			$('#groupFilm_load').unbind();
+			$('#groupFilm_load').css("background","#EEEEEE");
+			$('#groupFilm_load').text("没有更多内容了！");
+			return;
+		}
 		for(var index in jsonData){
 			var groupFilm = jsonData[index];
 			text += "<a href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+ groupFilm['GroupFilmId'] +
@@ -43,7 +48,7 @@ $(document).ready(function(){
 					"</span>"+			
 				"</div></a>";	
 		}
-		text += "<div class='loadMore clear'>加载更多</div>";
+		// text += "<div class='loadMore clear' id='groupFilm_load'>加载更多</div>";
 		$('#film-content').html(text);
 	}
 	/*
@@ -60,14 +65,13 @@ $(document).ready(function(){
 	</div>
 	*/
 	function  showRangeInfo(data){
-		$('#group-range').html('');
-		var text ='';
+		var text = $('#group-range').html();
 		var jsonData = eval('('+data+')');
 		for(var index in jsonData){
 			var recommendFilm = jsonData[index];
 			text += "<div class='range-item' id='range_" + recommendFilm['groupFilmId'] +"'>"+
-						"<span class='range-num float-left'>"+ index + "</span>"+
-						"<span class='range-film-img'><img src='" + "./imgs/1.png" + "'></img></span>"+
+						"<span class='range-num float-left'>"+ recommendFilm['rank'] + "</span>"+
+						"<span class='range-film-img'><img src='" + recommendFilm['picUrl'] + "'></img></span>"+
 						"<div class='float-left range-item-info'>"+
 							"<span class='line-block'><img ></img>伙影</span>"+
 							"<span class='line-block'>" + recommendFilm['filmName'] + "</span>"+
@@ -77,11 +81,11 @@ $(document).ready(function(){
 						"</div>"+
 					"</div>";	
 		}
-		// text += "<div class='loadMore clear'>加载更多</div>";
+		// text += "<div class='loadMore clear' id='loadMore'>加载更多</div>";
 		$('#group-range').html(text);
 	}
 	 $.ajax({
-	 	url: 'GroupFilmAction!loadMore?page=1&pageSize=10',
+	 	url: 'GroupFilmAction!loadMore?page=1&pageSize=8',
 	 	type: 'get',
 	 	datatype:"json",
 	 	success:function(data){
@@ -94,7 +98,7 @@ $(document).ready(function(){
 	 });
 	 /*请求推荐电影列表*/
 	$.ajax({
-	 	url: 'GroupFilmAction!getRecommendGroupFilms?page=1&pageSize=10',
+	 	url: 'GroupFilmAction!getRecommendGroupFilms?page=1&pageSize=5',
 	 	type: 'get',
 	 	datatype:"json",
 	 	success:function(data){
@@ -106,4 +110,20 @@ $(document).ready(function(){
 	 		alert("fail");
 	 	}
 	}); 
+	var page = 2;
+	$("#groupFilm_load").bind('click', function(){ 
+		$.ajax({
+		 	url: "GroupFilmAction!loadMore?page="+page+"&pageSize=8",
+		 	type: 'get',
+		 	datatype:"json",
+		 	success:function(data){
+			        showInfo(data);
+			        page++;    
+		 	},
+		 	error:function(error) {
+		 		/* Act on the event */
+		 		alert("加载数据失败");
+		 	}
+	 	});
+	});
 });
