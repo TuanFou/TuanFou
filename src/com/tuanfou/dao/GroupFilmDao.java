@@ -111,6 +111,8 @@ public class GroupFilmDao {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}
 		if(list.size()<firstResult){
 			list.clear();
@@ -165,7 +167,9 @@ public class GroupFilmDao {
 //			}
 //		}catch(Exception e){
 //			e.printStackTrace();
-//		}
+//		}finally{
+//	HibernateUtil.closeSession();
+//}
 //		return list;
 //	}
 	
@@ -213,6 +217,8 @@ public class GroupFilmDao {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}
 		return groupFilmDetailedInfo;
 	}
@@ -238,6 +244,8 @@ public class GroupFilmDao {
 			}
 			}catch(Exception e){
 				e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}		
 		return i;
 	}
@@ -258,6 +266,8 @@ public class GroupFilmDao {
 			}
 			}catch(Exception e){
 				e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
 		}		
 		return i;
 	}
