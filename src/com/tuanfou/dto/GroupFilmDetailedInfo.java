@@ -92,12 +92,6 @@ public class GroupFilmDetailedInfo {
 	public void setGroupfilmStar(float groupfilmStar) {
 		this.groupfilmStar = groupfilmStar;
 	}
-	public int getCommentNum() {
-		return commentNum;
-	}
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
 	public int getFilmStar() {
 		return filmStar;
 	}
@@ -145,6 +139,12 @@ public class GroupFilmDetailedInfo {
 	}
 	public void setPhotpUrl(String photpUrl) {
 		this.photpUrl = photpUrl;
+	}
+	public int getCommentNum() {
+		return commentNum;
+	}
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
 	}
 	
 

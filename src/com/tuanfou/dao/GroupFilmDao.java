@@ -194,14 +194,12 @@ public class GroupFilmDao {
 					tag.getTagName();
 //					System.out.println(tag.getTagName());
 				}
-				System.out.println(film.getCountry());
-				System.out.println(film.getActors());
 				groupFilmDetailedInfo.setGroupFilmId(id);
 				groupFilmDetailedInfo.setPhotpUrl(groupFilm.getPicUrl());
 				groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
 				groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
 				groupFilmDetailedInfo.setPhoneNum(groupFilm.getCinema().getPhoneNumber());
-				groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
+
 				groupFilmDetailedInfo.setFilmName(film.getFilmName());
 				groupFilmDetailedInfo.setDirector(film.getDirector());
 				groupFilmDetailedInfo.setFilmStar(film.getStar());
@@ -212,7 +210,9 @@ public class GroupFilmDao {
 				 
 				groupFilmDetailedInfo.setTags(convertSetToList(film.getTags()));
 				//想看人数
-				groupFilmDetailedInfo.setCommentNum(groupFilm.getUsers().size());
+				groupFilmDetailedInfo.setPartnerNum(groupFilm.getUsers().size());
+				//评论人数
+				groupFilmDetailedInfo.setCommentNum(groupFilm.getComments().size());
 				groupFilmDetailedInfo.setCurrentPrice(groupFilm.getCurrentPrice());
 				//团购开始结束日期
 				groupFilmDetailedInfo.setEndDate(groupFilm.getEndDate());

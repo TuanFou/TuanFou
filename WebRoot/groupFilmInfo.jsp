@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
 			<span class="line-block" >使用时间: 10:00-24:00</span>
 			<hr>
-			<span class="line-block font-20" >6
+			<span class="line-block font-20" >
 				<span>已售${groupFilmDetailInfo.orderNum} </span>
 				<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
 				<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
@@ -96,18 +96,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span  id="parter-title" class="line-block"><font size="4">等你入伙</font></span>
 		<div id="parter-info">	
 			<div class="float-left waiting-parter-film">
-				<span><img class=" float-left relative-film-img" src="./imgs/1.png"></img></span>
+				<span><img class=" float-left relative-film-img" src="${groupFilmDetailInfo.photpUrl}"></img></span>
 				<div class="float-left parter-film-info">
-					<span class="line-block parter-film-name">沉睡的魔谷</span>
-					<span class="line-block parter-film-cinema">洪山国际影城</span>
+					<span class="line-block parter-film-name">${groupFilmDetailInfo.filmName}</span>
+					<span class="line-block parter-film-cinema">${groupFilmDetailInfo.cinemaAddress}</span>
 					<span class="line-block parter-film-wn">
-						 <font size="25">200</font>人  等待中
+						 <font size="25">${groupFilmDetailInfo.partnerNum}</font>人  等待中
 					</span>
 					<span class="line-block parter-film-addr"><font size="0">地址：洪山区珞瑜路6号乐天购物中心6楼(群光广场旁)</font></span>
 				</div>
 			</div>
 			<div class="float-left invite-area">
-				<span><font color="blue" size="2">已入伙(200)</font></span>
+				<span><font color="blue" size="2">已入伙(${groupFilmDetailInfo.partnerNum})</font></span>
 				<ul class="parter-list">
 					<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
 					<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
