@@ -67,7 +67,7 @@
 			<many-to-many class="com.tuanfou.pojo.Tag" column="tagId" />			
 		</set>	
 		<set name="groupFilms" inverse="true">
-			<key column="groupFilmId"></key>
+			<key column="id"></key>
 			<one-to-many class="com.tuanfou.pojo.GroupFilm"/>
 		</set>										
  	</class>

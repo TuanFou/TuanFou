@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -18,6 +19,7 @@ import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.Tag;
+import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
 import com.tuanfou.utils.Utils;
@@ -172,48 +174,51 @@ public class GroupFilmDao {
 //}
 //		return list;
 //	}
-	
 	public GroupFilmDetailedInfo getGroupFilmDetailedInfo(int id){
-		GroupFilmDetailedInfo groupFilmDetailedInfo=new GroupFilmDetailedInfo();
+		GroupFilmDetailedInfo groupFilmDetailedInfo = new GroupFilmDetailedInfo();
 		try{
 			session = HibernateUtil.getSession();
-			String hqlString = "from GroupFilm groupfilm";
-			Query query = session.createQuery(hqlString);
-//			query.setParameter("id", id);
+			String hql = "from GroupFilm groupFilm where id=:id";
+			Query  q = session.createQuery(hql);
+			q.setParameter("id", id);
 			@SuppressWarnings("unchecked")
-			List<GroupFilm> groupFilms  = query.list();
-			Iterator<GroupFilm> it = groupFilms.iterator();
+			List<GroupFilm> groupFilmList = q.list();
+			Iterator<GroupFilm> it = groupFilmList.iterator();
 			while(it.hasNext()){
 				GroupFilm groupFilm = it.next();
-//				if(groupFilm.getFilm().getId()== filmId&&groupFilm.getCinema().getId() == cinemaId){
-				if(groupFilm.getId()==id)
-				{
-					groupFilmDetailedInfo.setGroupFilmId(id);
-					groupFilmDetailedInfo.setPhotpUrl(groupFilm.getPicUrl());
-					groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
-					groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
-					groupFilmDetailedInfo.setPhoneNum(groupFilm.getCinema().getPhoneNumber());
-					groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
-					//groupFilmDetailedInfo.setDeadline(changeDateFormat(groupFilm.getEndDate()));
-					groupFilmDetailedInfo.setDirector(groupFilm.getFilm().getDirector());
-					groupFilmDetailedInfo.setFilmStar(groupFilm.getFilm().getStar());
-					groupFilmDetailedInfo.setPeriod(groupFilm.getFilm().getPeriod());
-					groupFilmDetailedInfo.setFilmName(groupFilm.getFilm().getFilmName());
-					groupFilmDetailedInfo.setGroupfilmStar(groupFilm.getFilm().getStar());
-					groupFilmDetailedInfo.setCommentNum(groupFilm.getUsers().size());
-					groupFilmDetailedInfo.setCurrentPrice(groupFilm.getCurrentPrice());
-					groupFilmDetailedInfo.setEndDate(groupFilm.getEndDate());
-					groupFilmDetailedInfo.setStartDate(groupFilm.getStartDate());
-					groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
-					groupFilmDetailedInfo.setDescription(groupFilm.getFilm().getDescription());
-//					TODO 	SET TAGS
-					groupFilmDetailedInfo.setTags(convertSetToList(groupFilm.getFilm().getTags()));
-//					TODO	SET TIME RANGE IN THE DAYLIGHT
-					
-					
-					groupFilmDetailedInfo.setFilmName(groupFilm.getFilm().getFilmName());
+				Film film = groupFilm.getFilm();
+				
+				Iterator<Tag> itTag = film.getTags().iterator();
+				while(itTag.hasNext()){
+					Tag tag = itTag.next();
+					tag.getTagName();
+//					System.out.println(tag.getTagName());
 				}
-//				}
+				System.out.println(film.getCountry());
+				System.out.println(film.getActors());
+				groupFilmDetailedInfo.setGroupFilmId(id);
+				groupFilmDetailedInfo.setPhotpUrl(groupFilm.getPicUrl());
+				groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
+				groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
+				groupFilmDetailedInfo.setPhoneNum(groupFilm.getCinema().getPhoneNumber());
+				groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
+				groupFilmDetailedInfo.setFilmName(film.getFilmName());
+				groupFilmDetailedInfo.setDirector(film.getDirector());
+				groupFilmDetailedInfo.setFilmStar(film.getStar());
+				groupFilmDetailedInfo.setPeriod(film.getPeriod());
+				groupFilmDetailedInfo.setFilmName(film.getFilmName());
+				groupFilmDetailedInfo.setGroupfilmStar(film.getStar());
+				groupFilmDetailedInfo.setDescription(film.getDescription());
+				 
+				groupFilmDetailedInfo.setTags(convertSetToList(film.getTags()));
+				//想看人数
+				groupFilmDetailedInfo.setCommentNum(groupFilm.getUsers().size());
+				groupFilmDetailedInfo.setCurrentPrice(groupFilm.getCurrentPrice());
+				//团购开始结束日期
+				groupFilmDetailedInfo.setEndDate(groupFilm.getEndDate());
+				groupFilmDetailedInfo.setStartDate(groupFilm.getStartDate());
+				//预定的人数
+				groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -222,6 +227,57 @@ public class GroupFilmDao {
 		}
 		return groupFilmDetailedInfo;
 	}
+	
+//	public GroupFilmDetailedInfo getGroupFilmDetailedInfo(int id){
+//		GroupFilmDetailedInfo groupFilmDetailedInfo=new GroupFilmDetailedInfo();
+//		try{
+//			session = HibernateUtil.getSession();
+//			String hqlString = "from GroupFilm groupfilm";
+//			Query query = session.createQuery(hqlString);
+//			@SuppressWarnings("unchecked")
+//			List<GroupFilm> groupFilms  = query.list();
+//			Iterator<GroupFilm> it = groupFilms.iterator();
+//			while(it.hasNext()){
+//				GroupFilm groupFilm = it.next();
+//				if(groupFilm.getId()==id)
+//				{
+//					groupFilmDetailedInfo.setGroupFilmId(id);
+//					groupFilmDetailedInfo.setPhotpUrl(groupFilm.getPicUrl());
+//					groupFilmDetailedInfo.setCinemaAddress(groupFilm.getCinema().getAddress());
+//					groupFilmDetailedInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
+//					groupFilmDetailedInfo.setPhoneNum(groupFilm.getCinema().getPhoneNumber());
+//					groupFilmDetailedInfo.setCommentNum(getCountComments(groupFilm.getId()));
+//					
+//					//获取电影信息
+//					Film film =  groupFilm.getFilm();
+//					if(!Hibernate.isInitialized(film)){
+//						Hibernate.initialize(film);
+//					}
+//					groupFilmDetailedInfo.setFilmName(film.getFilmName());
+//					groupFilmDetailedInfo.setDirector(film.getDirector());
+//					groupFilmDetailedInfo.setFilmStar(film.getStar());
+//					groupFilmDetailedInfo.setPeriod(film.getPeriod());
+//					groupFilmDetailedInfo.setFilmName(film.getFilmName());
+//					groupFilmDetailedInfo.setGroupfilmStar(film.getStar());
+//					groupFilmDetailedInfo.setDescription(film.getDescription());
+//					groupFilmDetailedInfo.setTags(convertSetToList(film.getTags()));
+//					//想看人数
+//					groupFilmDetailedInfo.setCommentNum(groupFilm.getUsers().size());
+//					groupFilmDetailedInfo.setCurrentPrice(groupFilm.getCurrentPrice());
+//					//团购开始结束日期
+//					groupFilmDetailedInfo.setEndDate(groupFilm.getEndDate());
+//					groupFilmDetailedInfo.setStartDate(groupFilm.getStartDate());
+//					//预定的人数
+//					groupFilmDetailedInfo.setOrderNum(getOderNum(groupFilm.getId()));
+//				}
+//			}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//			HibernateUtil.closeSession();
+//		}
+//		return groupFilmDetailedInfo;
+//	}
 	
 	/**
 	 * get the comment number of the specific group_film
@@ -369,8 +425,6 @@ public class GroupFilmDao {
 		while(it.hasNext()){
 			tagStringList.add(it.next().getTagName().toString());
 		}
-		
-		
 		return tagStringList;
 		
 	}
@@ -422,7 +476,6 @@ public class GroupFilmDao {
 		finally{
 			HibernateUtil.closeSession();
 		}
-		
 	}
 	//团购电影价格
 	public float getPrice(int groupFilmId){

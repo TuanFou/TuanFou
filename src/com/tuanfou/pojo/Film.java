@@ -23,6 +23,12 @@ public class Film {
 	private int auditResult; //审核状态：1，审核通过，2：审核未通过
 	private Set<Tag> tags;
 	private Set<GroupFilm> groupFilms;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public Merchant getMerchant() {
 		return merchant;
 	}
@@ -89,7 +95,7 @@ public class Film {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public Date getApplicateTime() {
+	public Timestamp getApplicateTime() {
 		return applicateTime;
 	}
 	public void setApplicateTime(Timestamp applicateTime) {
@@ -102,16 +108,10 @@ public class Film {
 		this.auditResult = auditResult;
 	}
 	public Set<Tag> getTags() {
- 		return tags;
+		return tags;
 	}
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public Set<GroupFilm> getGroupFilms() {
 		return groupFilms;
@@ -119,4 +119,5 @@ public class Film {
 	public void setGroupFilms(Set<GroupFilm> groupFilms) {
 		this.groupFilms = groupFilms;
 	}
+	
 }

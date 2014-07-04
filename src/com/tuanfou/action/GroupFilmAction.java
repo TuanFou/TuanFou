@@ -2,6 +2,7 @@ package com.tuanfou.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,9 +54,10 @@ public class GroupFilmAction extends ActionSupport {
 		int page = Integer.parseInt( req.getParameter("page"));
 		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
 		int fistResult = (page-1)*pageSize;
+		List<String> tagList = new ArrayList<String>();
 		try{
 			GroupFilmService gs = new GroupFilmService();
-			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(fistResult, pageSize);
+			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(fistResult, pageSize, "%", -1, tagList);
 			response =  ServletActionContext.getResponse();
 			response.setCharacterEncoding("utf-8");
 			PrintWriter  out = response.getWriter();

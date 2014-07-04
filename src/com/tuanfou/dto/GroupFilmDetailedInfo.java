@@ -26,6 +26,12 @@ public class GroupFilmDetailedInfo {
 	private Date realeaseDate;
 	private String director;
 	private String photpUrl;
+	public int getGroupFilmId() {
+		return groupFilmId;
+	}
+	public void setGroupFilmId(int groupFilmId) {
+		this.groupFilmId = groupFilmId;
+	}
 	public float getCurrentPrice() {
 		return currentPrice;
 	}
@@ -49,6 +55,18 @@ public class GroupFilmDetailedInfo {
 	}
 	public void setCinemaAddress(String cinemaAddress) {
 		this.cinemaAddress = cinemaAddress;
+	}
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 	public Date getEndDate() {
 		return endDate;
@@ -104,7 +122,12 @@ public class GroupFilmDetailedInfo {
 	public void setPeriod(int period) {
 		this.period = period;
 	}
-
+	public List<String> getTags() {
+		return tags;
+	}
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
 	public Date getRealeaseDate() {
 		return realeaseDate;
 	}
@@ -117,35 +140,12 @@ public class GroupFilmDetailedInfo {
 	public void setDirector(String director) {
 		this.director = director;
 	}
-	public List<String> getTags() {
-		return tags;
-	}
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
-	public int getGroupFilmId() {
-		return groupFilmId;
-	}
-	public void setGroupFilmId(int groupFilmId) {
-		this.groupFilmId = groupFilmId;
-	}
 	public String getPhotpUrl() {
 		return photpUrl;
 	}
 	public void setPhotpUrl(String photpUrl) {
 		this.photpUrl = photpUrl;
 	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
+	
 
 }
