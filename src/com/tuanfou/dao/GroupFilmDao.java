@@ -494,7 +494,6 @@ public class GroupFilmDao {
 		}
 	}
 	
-
 	/**
 	+	 * This method is used to provid the a list of invited Members' information
 	+	 *  which contains id and name 
