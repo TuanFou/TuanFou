@@ -46,11 +46,11 @@
 			<column name="picUrl"></column>
 		</property>
 		<!-- 我想看一对多-->
-		<set name="users" table="t_heart">
+		<set name="users" table="t_heart" lazy="false">
 			<key column="groupFilmId"></key>
 			<many-to-many class="com.tuanfou.pojo.User" column="userId"></many-to-many>
 		</set>
-		<set name="comments" inverse="true">
+		<set name="comments" inverse="true" >
 			<key column="groupFilmId"></key>
 			<one-to-many class="com.tuanfou.pojo.Comment"/>
 		</set>

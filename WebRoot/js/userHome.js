@@ -9,10 +9,11 @@ $(document).ready(function(){
 		$(currentMenuId).attr("class","current-select");
 		switch(id){
 			case "my-groupFilm":
-				$("#detail-info").attr("src","./userHomePage/personInfo.html");
+//				$("#detail-info").attr("src","./userHomePage/personInfo.html");
+				$("#detail-info").attr("src","UserAction!showUserInfo");
 				break;
 			case "my-heartfilm":
-				$("#detail-info").attr("src","./userHomePage/myHeartFilm.html");
+				$("#detail-info").attr("src","UserAction!showMyHeartFilmInfo");
 				break;
 			case "my-order":
 				$("#detail-info").attr("src","./userHomePage/myOrder.html");

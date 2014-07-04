@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.User;
 import com.tuanfou.service.OrderService;
 import com.tuanfou.service.UserService;
@@ -25,12 +26,21 @@ public class UserAction extends ActionSupport {
 	 * @return �Ƿ�ɹ�
 	 */
 	private User user;
+	
 	@SuppressWarnings("unused")
 	private HttpServletRequest req;
 	private HttpServletResponse response;
 	private UserService userService;
 	@SuppressWarnings("unused")
 	private List<User>  userList;
+	private List<MyHeartGroupFilmInfo> myHeartFilm;
+	
+	public List<MyHeartGroupFilmInfo> getMyHeartFilm() {
+		return myHeartFilm;
+	}
+	public void setMyHeartFilm(List<MyHeartGroupFilmInfo> myHeartFilm) {
+		this.myHeartFilm = myHeartFilm;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -73,5 +83,41 @@ public class UserAction extends ActionSupport {
 			return "OrderSuccess";
 		else
 			return "OrderFailure";
+	}
+	/*
+	 * 功能：显示用户个人主页首页
+	 */
+	public String ShowProfilePage(){
+		//通过session获取用户id
+		int id = 304010333;
+		UserService userService = new UserService();
+		user = userService.getUserInfo(id); 
+		if(user==null){
+			return "error";
+		}else{
+			return "userHome";
+		}
+	}
+	/*
+	 * 显示个人信息
+	 */
+	public String showUserInfo(){
+		//通过Session获取id
+		int id = 304010333;
+		UserService userService = new UserService();
+		user = userService.getUserInfo(id); 
+		if(user==null){
+			return "error";
+		}else{
+			return "personInfo";
+		}
+	}
+	public String showMyHeartFilmInfo(){
+		int id = 302010010;
+		UserService userService = new UserService();
+		myHeartFilm = userService.getHeartFilmByUserId(id);
+		if(myHeartFilm==null)
+			return "error";
+		return "myHeartFilm";	
 	}
 }
