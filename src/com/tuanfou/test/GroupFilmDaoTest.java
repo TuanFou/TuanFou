@@ -46,17 +46,18 @@ public class GroupFilmDaoTest {
 //		System.out.println(groupFilm);
 		
 		//groupfilmDetailedInfoTest();
-		GroupFilmService groupFilmService = new GroupFilmService();
-		List<RecommendFilm> films = groupFilmService.getRecommendFilms(3,2);
+//		GroupFilmService groupFilmService = new GroupFilmService();
+//		List<RecommendFilm> films = groupFilmService.getRecommendFilms(3,2);
 //		Iterator<RecommendFilm> it = films.iterator();
 //		while(it.hasNext())
 //		{
 //			RecommendFilm film = it.next();
 //			System.out.println("FilmName："+film.getFilmName()+"	cinemaName:"+film.getCinemaName()+"	userNum:"+film.getUserNum()+"	picUrl"+film.getPicUrl());
 //		}
-		Gson gson = new Gson();
-		String result = gson.toJson(films);
-		System.out.println(result);
+//		Gson gson = new Gson();
+//		String result = gson.toJson(films);
+//		System.out.println(result);
+		groupfilmDetailedInfoTest();
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;
