@@ -12,6 +12,7 @@ import org.hibernate.Session;
 
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.InvitedMember;
 import com.tuanfou.dto.RecommendFilm;
 import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Comment;
@@ -493,5 +494,35 @@ public class GroupFilmDao {
 		}
 	}
 	
+
+	/**
+	+	 * This method is used to provid the a list of invited Members' information
+	+	 *  which contains id and name 
+	+	 * @author yogiman
+	+	 * @param groupFilmId
+	+	 * @param firstResult
+	+	 * @param maxResult
+	+	 * @return List<InvitedMember>
+	+	 */
+	public List<InvitedMember> getInvitedMembers(int groupFilmId,int firstResult,int maxResult){
+		
+		String hql = "select gf.users from GroupFilm gf where gf.id =";
+		Integer i = groupFilmId;
+		String str = i.toString();
+		hql += str;
+
+		List<InvitedMember> invitedMembers  =  new ArrayList<InvitedMember>();
+		List<User> users = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
+		Iterator<User> it = users.iterator();
+		while(it.hasNext()){
+			User user = it.next();
+			InvitedMember invitedMember = new InvitedMember();
+			invitedMember.setUserId(user.getId());
+			invitedMember.setUserName(user.getUserName());
+			invitedMembers.add(invitedMember);
+		}
+		return invitedMembers;
+	}
 }
+
 

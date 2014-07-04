@@ -11,9 +11,11 @@ import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
+import com.tuanfou.dto.CommentInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 import com.tuanfou.dto.RecommendFilm;
+import com.tuanfou.service.CommentService;
 import com.tuanfou.service.GroupFilmService;
 
 public class GroupFilmAction extends ActionSupport {
@@ -26,6 +28,7 @@ public class GroupFilmAction extends ActionSupport {
 	private HttpServletRequest req;
 	private HttpServletResponse response;
 	private GroupFilmDetailedInfo groupFilmDetailInfo;
+	private List<CommentInfo> commentList;
 	
 	public GroupFilmDetailedInfo getGroupFilmDetailInfo() {
 		return groupFilmDetailInfo;
@@ -39,7 +42,9 @@ public class GroupFilmAction extends ActionSupport {
 		int id = Integer.parseInt(req.getParameter("groupFilmId"));
 		try{
 			GroupFilmService gs = new GroupFilmService();
+			CommentService commentService = new CommentService();
 			groupFilmDetailInfo = gs.getGroupFilmDetailInfo(id);
+			commentList = commentService.getCommentList(id, 1, 5);
 			return "detailInfo";
 		}catch(Exception e){
 			e.printStackTrace();
@@ -93,5 +98,11 @@ public class GroupFilmAction extends ActionSupport {
 			e.printStackTrace();
 			return "error";
 		}
+	}
+	public List<CommentInfo> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<CommentInfo> commentList) {
+		this.commentList = commentList;
 	}
 }

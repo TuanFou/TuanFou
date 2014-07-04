@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -99,11 +100,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span><img class=" float-left relative-film-img" src="${groupFilmDetailInfo.photpUrl}"></img></span>
 				<div class="float-left parter-film-info">
 					<span class="line-block parter-film-name">${groupFilmDetailInfo.filmName}</span>
-					<span class="line-block parter-film-cinema">${groupFilmDetailInfo.cinemaAddress}</span>
+					<span class="line-block parter-film-cinema">${groupFilmDetailInfo.cinemaName}</span>
 					<span class="line-block parter-film-wn">
 						 <font size="25">${groupFilmDetailInfo.partnerNum}</font>人  等待中
 					</span>
-					<span class="line-block parter-film-addr"><font size="0">地址：洪山区珞瑜路6号乐天购物中心6楼(群光广场旁)</font></span>
+					<span class="line-block parter-film-addr"><font size="0">地址：${groupFilmDetailInfo.cinemaAddress}</font></span>
 				</div>
 			</div>
 			<div class="float-left invite-area">
@@ -179,9 +180,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="float-right" ><a href="#"><font size="1">我要评价</font></a></span>
 			</span>
 			<div class="float-left comment-left">
-				<span class="line-block"> <font size="20" color="blue">9.4</font>&nbsp分</span>
+				<span class="line-block"> <font size="20" color="blue">${groupFilmDetailInfo.groupfilmStar}</font>&nbsp分</span>
 				<span class="line-block">*******</span>
-				<span class="line-block">半年内共<font color="red" size="5">100</font>人评价</span>
+				<span class="line-block">半年内共<font color="red" size="5">${groupFilmDetailInfo.commentNum}</font>人评价</span>
 			</div>
 			<div class="float-left comment-mid">
 				<span class="line-block">试听效果&nbsp<span>******  9.4</span></span>
@@ -217,7 +218,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="float-right"><a href="#">默认</a> | <a href="#">按时间</a></span>
 				</span>
 				<div class="comments-centent">
-					<div class="comment">
+				
+					<!-- <div class="comment">
 						<span>kdf5000</span>
 						<span>2014-6-30 18:00:00</span>
 						<span class="float-right">*****4.5分</span>
@@ -248,7 +250,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="line-block content">
 							之前就在乐天西园店看过好多次啦！今天看得下午1点半4号厅的变形金刚～喜欢银兴乐天西园店的环境和影厅～人不多，厅也大～效果也很好～推荐大家去哟～
 						</span>
-					</div>
+					</div> -->
+					<c:forEach items="${commentList}" var="info">
+						<div class="comment">
+							<span>${info.userName}</span>
+							<span>${info.date}</span>
+							<span class="float-right">*****${info.star}分</span>
+							<span class="line-block content">
+								 ${info.content}
+							</span>
+						</div>
+					</c:forEach>
 					<div class="loadMore">加载更多</div>
 				</div>
 			</div>
