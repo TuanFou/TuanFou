@@ -32,9 +32,10 @@ public class MerchantInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Set<Cinema> getCinemas() {
+		return cinemas;
+	}
 	public void setCinemas(Set<Cinema> cinemas) {
 		this.cinemas = cinemas;
-	}
-	
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      	
+	}	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	
 }

@@ -18,7 +18,6 @@ import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
-import com.tuanfou.service.OrderService;
 import com.tuanfou.service.UserService;
 import com.tuanfou.utils.GsonTestTemplate;
 import com.tuanfou.utils.HibernateUtil;
@@ -59,87 +58,82 @@ public class UserDaoTest {
 //		Gson gson = new Gson();
 //		String str = gson.toJson(list);
 //		System.out.println(str)
-//		
-//		/**
-//		 * 用户登陆测试开始
-//		 */
-//		String matching = "ERROR";
-//		String username = "testAddUser";
-//		String password = "5555566666";
-//		try{
-//
-//			Session session = HibernateUtil.getSession();
-//			String hql = "from User user where user.userName=:username and user.password=:password";
-//			Query query = session.createQuery(hql);
-//			query.setParameter("username", username);
-//			query.setParameter("password", password);
-//			@SuppressWarnings("unchecked")
-//			List<User> userList = query.list();
-//			Iterator<User> itUser =userList.iterator();
-//			if(itUser.hasNext())
-//				{			
-//					matching = "SUCCESS";
-//				}
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			matching = "ERROR";
-//		}finally{
-//			HibernateUtil.closeSession();
-//		}
-//		System.out.println(matching);
-//		/**
-//		 * 用户登陆测试到此为止
-//		 */
+		
+		/**
+		 * 用户登陆测试开始
+		 *//*
+		String matching = "ERROR";
+		String username = "testAddUser";
+		String password = "5555566666";
+		try{
+
+			Session session = HibernateUtil.getSession();
+			String hql = "from User user where user.userName=:username and user.password=:password";
+			Query query = session.createQuery(hql);
+			query.setParameter("username", username);
+			query.setParameter("password", password);
+			@SuppressWarnings("unchecked")
+			List<User> userList = query.list();
+			Iterator<User> itUser =userList.iterator();
+			if(itUser.hasNext())
+				{			
+					matching = "SUCCESS";
+				}
+		}catch(Exception e){
+			e.printStackTrace();
+			matching = "ERROR";
+		}finally{
+			HibernateUtil.closeSession();
+		}
+		System.out.println(matching);
+		/**
+		 * 用户登陆测试到此为止
+		 */
 		
 
 		/**
 		 * 新用户注册测试开始
 		 */
-//		City aCity = new City();
-//		User aUser = new User();
-//		aCity.setId(31901);
-//		aUser.setUserName("testAddUser");
-//		aUser.setPassword("5555566666");
-//		aUser.setCity(aCity);
-//		UserService us = new UserService();
-//		List<User> userList = us.getUserList();
-//		Iterator<User> itUser =userList.iterator();
-//		boolean res = true;
-//		while(itUser.hasNext())
-//		{			
-//			if(itUser.next().getUserName()=="testAddUser"){
-//				res = false;
-//				break;
-//			}
-//		}
-//		//from test as t where t.id=(select max(s.id) from test s)
-//		if(res) {
-//		    
-//			Account account = new Account();
-//			account.setBalance(0);
-//			us.addAccount(account);
-//			Session session = HibernateUtil.getSession();
-//			@SuppressWarnings("unchecked")
-//			List<Account> accountList = session.createQuery("from Account account where account.id=(select max(a.id) from Account a)").list();
-//			Iterator<Account> itAccount =accountList.iterator();
-//			while(itAccount.hasNext())
-//			{	
-//				//System.out.println(itAccount.next().getId());
-//				aUser.setAccount(itAccount.next());
-//			}
-//			us.addUser(aUser);  
-//		}
-		/*
-		 * 测试添加订单
-		 */
-		Account account  = new Account();
-		UserService userService = new UserService();
-		UserDao userDao = new UserDao();
-		
-		account  = userDao.getAccount(304010333);
-		System.out.println(account.getBalance());
+		City aCity = new City();
+		User aUser = new User();
+		aCity.setId(31901);
+		aUser.setUserName("testAddUser1");
+		aUser.setPassword("5555566666");
+		aUser.setCity(aCity);
+		UserService us = new UserService();
+		List<User> userList = us.getUserList();
+		Iterator<User> itUser =userList.iterator();
+		boolean res = true;
+		while(itUser.hasNext())
+		{			
+			if(itUser.next().getUserName().equals("testAddUser1")){
+				res = false;
+				break;
+			}
+		}
+		//from test as t where t.id=(select max(s.id) from test s)
+		if(res) {
+		    
+			Account account = new Account();
+			account.setBalance(0);
+			us.addAccount(account);
+			Session session = HibernateUtil.getSession();
+			@SuppressWarnings("unchecked")
+			List<Account> accountList = session.createQuery("from Account account where account.id=(select max(a.id) from Account a)").list();
+			Iterator<Account> itAccount =accountList.iterator();
+			while(itAccount.hasNext())
+			{	
+				//System.out.println(itAccount.next().getId());
+				aUser.setAccount(itAccount.next());
+			}
+			us.addUser(aUser);  
+		}
+		if(res){
+			System.out.println("success");
+		}
+		else{
+			System.out.println("fail");
 	}
-	
 	/**
 	 * 新用户注册测试到此为止
 	 */
@@ -181,4 +175,4 @@ public class UserDaoTest {
 		
 //	}
 
-	}
+	}}
