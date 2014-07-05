@@ -1,12 +1,24 @@
 package com.tuanfou.test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.google.gson.Gson;
 import com.tuanfou.dao.MerchantDao;
 import com.tuanfou.dto.ApplyFilmInfo;
+import com.tuanfou.dto.MerchantGroupFilmOrderInfo;
+import com.tuanfou.pojo.Cinema;
+import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Merchant;
+import com.tuanfou.pojo.Order;
 import com.tuanfou.service.MerchantService;
+import com.tuanfou.utils.HibernateUtil;
 
 
 
@@ -18,11 +30,11 @@ public class MerchantDaoTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//addMerchantTest();
-		MerchantService merchantService = new MerchantService();
-		if(merchantService.applyForSale( 11, 301010101, "2014-7-20", "2014-8-20", 19, 25))
-			System.out.println("申请成功");
-		else
-			System.out.println("申请失败");
+//		MerchantService merchantService = new MerchantService();
+//		if(merchantService.applyForSale( 11, 301010101, "2014-7-20", "2014-8-20", 19, 25))
+//			System.out.println("申请成功");
+//		else
+//			System.out.println("申请失败");
 		/*ApplyFilmInfo afilm = new ApplyFilmInfo();
 		afilm.setActor("巩俐");
 		afilm.setCountry("大陆");
@@ -43,6 +55,60 @@ public class MerchantDaoTest {
 		else
 			System.out.println("申请失败");*/
 		
+		getGroupFilmOrderInfos();
+		
+		
+//		Session session = null;
+//		session = HibernateUtil.getSession();
+//		List<MerchantGroupFilmOrderInfo> MGFOList = new ArrayList<MerchantGroupFilmOrderInfo>();
+//		String hql1 = "from Cinema cinema where cinema.merchant.id = :merchantId";
+//		Query query1 = session.createQuery(hql1);
+//		query1.setParameter("merchantId", 1);
+//		Cinema cinema = new Cinema();
+//		if(query1.list().isEmpty())
+////			return null;
+//			;
+//		else{
+//			cinema = (Cinema)query1.list().get(0);			
+//		}
+//		//System.out.println(cinema.getId());
+//		String hql2 = "from GroupFilm gf where gf.cinema =:cinema";
+//		Query query2 = session.createQuery(hql2);
+//		query2.setParameter("cinema", cinema);
+//		@SuppressWarnings("unchecked")
+//		List<GroupFilm> groupFilmList = query2.list();		
+////		System.out.println(groupFilmList.get(1).getId());
+//		Iterator<GroupFilm> groupFilmIterator = groupFilmList.iterator();
+//		while(groupFilmIterator.hasNext()){
+//			GroupFilm groupFilm = groupFilmIterator.next();
+//			MerchantGroupFilmOrderInfo MGFOinfo = new MerchantGroupFilmOrderInfo();
+//			MGFOinfo.setId(groupFilm.getId());
+//			MGFOinfo.setFilmName(groupFilm.getFilm().getFilmName());
+//			MGFOinfo.setAddress(groupFilm.getArea().getAreaName());
+//			MGFOinfo.setStartDate(groupFilm.getStartDate());
+//			MGFOinfo.setEndDate(groupFilm.getEndDate());
+//			MGFOinfo.setOriginPrice(groupFilm.getOriginalPrice());
+//			MGFOinfo.setCurrentPrice(groupFilm.getCurrentPrice());
+//			MGFOinfo.setHeartNum(groupFilm.getUsers().size());
+//			MGFOinfo.setOrderNum(getOrderNum(groupFilm));			//number of groupfilm's order
+//			MGFOinfo.setType(groupFilm.getType());
+//			MGFOList.add(MGFOinfo);
+//		}
+//		System.out.println(MGFOList.get(0).getId());
+		
+	}
+	
+	private static int getOrderNum(GroupFilm groupFilm){
+		Session session = null;
+		session = HibernateUtil.getSession();
+		int groupFilmId = groupFilm.getId();
+		String hql = "from Order order where order.groupFilm.id = :groupFilmId";
+		Query query = session.createQuery(hql);
+		query.setParameter("groupFilmId", groupFilmId);
+		@SuppressWarnings("unchecked")
+		List<Order> orderList = query.list();
+		int orderNum = orderList.size();
+		return orderNum;
 	}
 	public static void addMerchantTest(){
 		Merchant merchant = new Merchant();
@@ -53,5 +119,16 @@ public class MerchantDaoTest {
 		MerchantDao merchantDao = new MerchantDao();
 		merchantDao.addMerchant(merchant);
 		System.out.println(merchant.getIdNumber());
+	}
+	
+	/**
+	 * @author yogiman
+	 */
+	public static void getGroupFilmOrderInfos(){
+		MerchantDao merchantDao = new MerchantDao();
+		List<MerchantGroupFilmOrderInfo> mgfoList = merchantDao.getGroupFilmOrderInfos(1);
+		Gson gson = new Gson();
+		String string = gson.toJson(mgfoList);
+		System.out.println(string);
 	}
 }
