@@ -1,7 +1,11 @@
 package com.tuanfou.dao;
 
-import org.hibernate.Session;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
+import org.hibernate.Session;
+import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Merchant;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -42,6 +46,27 @@ public class MerchantDao {
 			session = HibernateUtil.getSession();
 			Merchant merchant = (Merchant) session.get(Merchant.class, merchantId);
 			return merchant;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
+	public Set<Cinema> getCinema(int merchantId){
+		Set<Cinema> cinemas = new HashSet<Cinema>();
+		try{
+			session = HibernateUtil.getSession();
+			Merchant merchant = (Merchant) session.get(Merchant.class, merchantId);
+			Iterator<Cinema> it = merchant.getCinemas().iterator();
+			while(it.hasNext()){
+				Cinema cinema = it.next();
+				cinemas.add(cinema);
+			}
+			return cinemas;
 		}
 		catch(Exception e){
 			e.printStackTrace();

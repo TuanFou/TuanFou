@@ -1,10 +1,13 @@
 package com.tuanfou.test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
 import com.tuanfou.dao.MerchantDao;
 import com.tuanfou.dto.ApplyFilmInfo;
+import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.pojo.Merchant;
 import com.tuanfou.service.MerchantService;
 
@@ -19,10 +22,14 @@ public class MerchantDaoTest {
 		// TODO Auto-generated method stub
 		//addMerchantTest();
 		MerchantService merchantService = new MerchantService();
-		if(merchantService.applyForSale( 11, 301010101, "2014-7-20", "2014-8-20", 19, 25))
+		/*if(merchantService.applyForSale( 11, 301010101, "2014-7-20", "2014-8-20", 19, 25))
 			System.out.println("申请成功");
 		else
-			System.out.println("申请失败");
+			System.out.println("申请失败");*/
+		List<MessageInfo> msgInfoList = merchantService.getMsg(2, 1, 5);
+		Gson gson = new Gson();
+		String res = gson.toJson(msgInfoList);
+		System.out.println(res);
 		/*ApplyFilmInfo afilm = new ApplyFilmInfo();
 		afilm.setActor("巩俐");
 		afilm.setCountry("大陆");

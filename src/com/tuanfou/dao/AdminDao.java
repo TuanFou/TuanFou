@@ -50,4 +50,20 @@ public class AdminDao {
 			HibernateUtil.closeSession();
 		}
 	}
+	
+	public Admin getAdmin(int adminId){
+		Session session = null;
+		try{
+			session = HibernateUtil.getSession();
+			Admin admin = (Admin)session.get(Admin.class, adminId);
+			return admin;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
 }

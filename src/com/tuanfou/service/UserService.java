@@ -1,11 +1,11 @@
 package com.tuanfou.service;
 
 import java.util.List;
-import java.util.Set;
 
+import com.tuanfou.dao.AccountDao;
 import com.tuanfou.dao.UserDao;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
-import com.tuanfou.pojo.Comment;
+import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.User;
 
 public class UserService {
@@ -44,11 +44,14 @@ public class UserService {
 		return list;
 	}
 	/*
-	 * 获取用户所有评论
+	 * 为新用户添加一个账户
 	 */
-	public Set<Comment> getUserComments(int userId){
-		UserDao userDao = new UserDao();
-		Set<Comment> userComments = userDao.getUserComments(userId);
-		return userComments;
+	public boolean addAccount(Account account){
+		AccountDao accountrDao = new AccountDao();
+		if(accountrDao.add(account)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

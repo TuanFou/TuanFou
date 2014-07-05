@@ -12,7 +12,9 @@
 		<property name="employeeId" type="string" length="10">
 			<column name="employeeId"/>
 		</property>
-		
+		<property name="name" type="string" length="10">
+			<column name="name"/>
+		</property>
 		<property name="password" type="string" length="16">
 			<column name="password"/>
 		</property>

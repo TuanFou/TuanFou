@@ -1,9 +1,10 @@
 package com.tuanfou.pojo;
 
 public class Admin {
-	private int id;//Ö÷¼ü
-	private String employeeId;//Ö°¹¤±àºÅ
-	private String password;//ÃÜÂë
+	private int id;//ï¿½ï¿½ï¿½ï¿½
+	private String employeeId;//Ö°ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String password;//ï¿½ï¿½ï¿½ï¿½
+	private String name;
 	
 	public int getId() {
 		return id;
@@ -23,5 +24,11 @@ public class Admin {
 	}
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }
