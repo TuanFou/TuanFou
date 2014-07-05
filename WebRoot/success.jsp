@@ -25,10 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<s:property value="groupFilmDetailInfo.currentPrice"></s:property><br>
-  	1
-  	<c:forEach items ="${areas}" var="area">
-  	   1${area.areaId}
-  	</c:forEach>
+  <%=session.getAttribute("userName")
+   %>
   </body>
 </html>

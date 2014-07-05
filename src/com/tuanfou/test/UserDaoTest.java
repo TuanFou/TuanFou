@@ -12,6 +12,7 @@ import com.tuanfou.dao.UserDao;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
+import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
 import com.tuanfou.service.UserService;
@@ -47,12 +48,16 @@ public class UserDaoTest {
 //		User user = userService.getUserInfo(304010333);
 //		
 //		System.out.println(user.getAccount().getBalance());
-		UserDao userDao = new UserDao();
+//		UserDao userDao = new UserDao();
+//		
+//		List<MyHeartGroupFilmInfo> list = userDao.getHeartGroupFilms(302010010);
+//		Gson gson = new Gson();
+//		String str = gson.toJson(list);
+//		System.out.println(str);
+		UserService userService = new UserService();
+		Set<Comment> userComments = userService.getUserComments(319010001);
 		
-		List<MyHeartGroupFilmInfo> list = userDao.getHeartGroupFilms(302010010);
-		Gson gson = new Gson();
-		String str = gson.toJson(list);
-		System.out.println(str);
+		 System.out.println(userComments);
 	}
 	
 	/**
