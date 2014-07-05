@@ -2,6 +2,11 @@ package com.tuanfou.action;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.service.OrderService;
@@ -13,6 +18,9 @@ public class OrderAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<OrderInfo> orderInfoList;
+	private HttpServletRequest req;
+	private HttpServletResponse response;
+	
 	public List<OrderInfo> getOrderInfoList() {
 		return orderInfoList;
 	}
@@ -32,5 +40,12 @@ public class OrderAction extends ActionSupport {
 			return "error";
 		return "myOrder";
 		
+	}
+	/*
+	 * 缓存用户的订单信息
+	 */
+	public String transferOrderInfo(){
+		req = ServletActionContext.getRequest();
+		return null;
 	}
 }

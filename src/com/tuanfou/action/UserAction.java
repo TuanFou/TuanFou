@@ -110,7 +110,7 @@ public class UserAction extends ActionSupport {
 			
 			while(itUser.hasNext())
 			{			
-				if(itUser.next().getUserName()==username){
+				if(itUser.next().getUserName().equals(username)){
 					res = false;
 				}
 			}
@@ -136,6 +136,8 @@ public class UserAction extends ActionSupport {
 		}catch(Exception e){
 			e.printStackTrace();
 			res = false;
+		}finally{
+			HibernateUtil.closeSession();
 		}
 		return res;
 	}
