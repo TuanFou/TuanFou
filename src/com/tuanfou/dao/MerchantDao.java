@@ -36,6 +36,22 @@ public class MerchantDao {
 		return res;
 	}
 	
+	public boolean update(Merchant merchant){
+		try{
+			session = HibernateUtil.getSession();
+			session.beginTransaction();//��ʼ����
+			session.update(merchant);
+			session.getTransaction().commit();//�ύ����
+			return true;
+		}catch(Exception e){
+			session.getTransaction().rollback();//�ع�����
+			e.printStackTrace();
+			return false;
+		}finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
 	/**
 	 * 实例化，加载数据库对象
 	 * @param merchantId
