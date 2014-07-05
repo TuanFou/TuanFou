@@ -87,5 +87,4 @@ public class GroupFilmService {
 		return recommendFilms;
 	}
 	
-	
 }

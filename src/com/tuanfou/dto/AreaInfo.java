@@ -1,5 +1,9 @@
 package com.tuanfou.dto;
-
+/**
+ *首页地区标签信息
+ * @author LN
+ *
+ */
 public class AreaInfo {
 	private int areaId;       //地区ID
 	private String areaName;  //地区名称

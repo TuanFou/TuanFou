@@ -35,6 +35,25 @@ public class TagDao {
 		}
 	}
 	
+	public boolean update(Tag tag){
+		Session session = null;
+		try{
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			session.update(tag);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return false;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
 	//获得有此标签的电影
 	public Set<Film> findFilms(int tagId){
 		Session session = null;
@@ -111,6 +130,27 @@ public class TagDao {
 			}
 			System.out.println("Success");
 			return tagInfoList;			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
+	/**
+	 * 加载数据库对象
+	 * @param tagId
+	 * @return
+	 */
+	public Tag getTag(int tagId){
+		Session session = null;
+		try{
+			session = HibernateUtil.getSession();
+			Tag tag = (Tag) session.get(Tag.class, tagId);
+			return tag;
 		}
 		catch(Exception e){
 			e.printStackTrace();

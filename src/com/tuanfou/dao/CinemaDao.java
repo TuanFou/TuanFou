@@ -2,6 +2,7 @@ package com.tuanfou.dao;
 
 import org.hibernate.Session;
 
+import com.tuanfou.pojo.Area;
 import com.tuanfou.pojo.Cinema;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -9,7 +10,7 @@ public class CinemaDao {
 	Session session = null;
 	
 	/**
-	 * Ìí¼ÓÒ»¸öµçÓ°Ôº
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ó°Ôº
 	 * @param cinema
 	 * @return
 	 */
@@ -17,18 +18,60 @@ public class CinemaDao {
 		boolean res = false;
 		try{
 			session = HibernateUtil.getSession();
-			session.beginTransaction();//¿ªÊ¼ÊÂÎï
+			session.beginTransaction();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			session.save(cinema);
-			session.getTransaction().commit();//Ìá½»ÊÂÎï
+			session.getTransaction().commit();//ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 			res = true;
 		}catch(Exception e){
-			session.getTransaction().rollback();//»Ø¹öÊÂÎï
-			System.out.println("Ìí¼ÓÓ°ÔºÊ§°Ü");
+			session.getTransaction().rollback();//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½Ó°ÔºÊ§ï¿½ï¿½");
 			e.printStackTrace();
 			res = false;
 		}finally{
 			HibernateUtil.closeSession();
 		}
 		return res;
+	}
+	
+	/**
+	 * åŠ è½½æ•°æ®åº“å¯¹è±¡ï¼Œå®ä¾‹åŒ–
+	 * @param cinemaId
+	 * @return
+	 */
+	public Cinema getCinema(int cinemaId){
+		try{
+			session = HibernateUtil.getSession();
+			Cinema cinema = (Cinema) session.get(Cinema.class, cinemaId);
+			return cinema;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
+	/**
+	 * è·å¾—å½±é™¢çš„åœ°åŒºå¯¹è±¡
+	 * @param cinemaId
+	 * @return
+	 */
+	public Area getArea(int cinemaId){
+		try{
+			session = HibernateUtil.getSession();
+			Cinema cinema = (Cinema)session.get(Cinema.class, cinemaId);
+			Area area = cinema.getArea();
+			return area;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+		
 	}
 }
