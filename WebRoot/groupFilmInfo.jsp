@@ -36,20 +36,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--购票窗口*/ -->
 	<div id="hidden">
 		<div class="buying-info">
-			<span class="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
-			<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
-			<span class="line-block" >使用时间: 10:00-24:00</span>
-			<hr>
-			<span class="line-block font-20" >
-				<span>已售${groupFilmDetailInfo.orderNum} </span>
-				<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
-				<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
-			</span>
-			<span class="line-block font-20 ">
-				<span class="float-right"><button>购买</button></span>
-				<span class="float-right"><input type="text"  ></input></span>
-				<span class="float-right">数量</input>
-			</span>
+			<form method="post" action="orderInfo.jsp">
+				<input name="groupFilmId" type="hidden" value="${groupFilmDetailInfo.groupFilmId}" /> 
+				<input name="filmName" type="hidden" value="${groupFilmDetailInfo.filmName}" /> 
+				<input name="cinemaAddress" type="hidden" value="${groupFilmDetailInfo.cinemaAddress}" /> 
+				<input name="currentPrice" type="hidden" value="${groupFilmDetailInfo.currentPrice}" /> 
+				<span cl	ass="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
+				<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
+				<span class="line-block" >使用时间: 10:00-24:00</span>
+				<hr>
+				<span class="line-block font-20" >
+					<span>已售${groupFilmDetailInfo.orderNum} </span>
+					<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
+					<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
+				</span>
+				<span class="line-block font-20 ">
+					<span class="float-right"><input type="submit" value="购买"></input></span>
+					<span class="float-right"><input type="text" name="amount" ></input></span>
+					<span class="float-right">数量</input>
+				</span>
+			</form>
 		</div> 
 	</div>
 	<div id="main-left">
@@ -306,6 +312,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         "<span class='float-right'><input type='text'  ></input></span>"+
                         "<span class='float-right'>数量</input>"+
                    " </span></div>  ";//弹出图片
-        T$('buying_bt').onclick = function(){TINY.box.show(hiddenText,0,0,0,1)}
+        T$('buying_bt').onclick = function(){TINY.box.show(hiddenText,0,0,0,1)
+        };
+        /*购买商品，下订单*/
     </script>
 </html>

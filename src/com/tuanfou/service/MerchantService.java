@@ -1,20 +1,27 @@
-package com.tuanfou.service;
+﻿package com.tuanfou.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.tuanfou.dao.AdminDao;
 import com.tuanfou.dao.CinemaDao;
 import com.tuanfou.dao.FilmDao;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dao.MerchantDao;
+import com.tuanfou.dao.MessageDao;
 import com.tuanfou.dao.TagDao;
 import com.tuanfou.dto.ApplyFilmInfo;
+import com.tuanfou.dto.MerchantInfo;
+import com.tuanfou.dto.MessageInfo;
+import com.tuanfou.pojo.Admin;
 import com.tuanfou.pojo.Area;
 import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Film;
@@ -87,6 +94,11 @@ public class MerchantService {
 		}			
 	}
 	
+	/**
+	 * 申请新电影
+	 * @param afilm
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	public boolean applyNewFilm(ApplyFilmInfo afilm){
 		FilmDao filmDao = new FilmDao();
@@ -130,5 +142,89 @@ public class MerchantService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	/**
+	 * 添加商家
+	 */
+	public boolean addMerchant(Merchant merchant){
+		MerchantDao merchantDao = new MerchantDao();
+		if(merchantDao.addMerchant(merchant)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * 获取商家列表
+	 * @return
+	 */
+	public List<Merchant> getMerchantList(){
+		MerchantDao merchantDao = new MerchantDao();
+		return merchantDao.getMerchantList();
+	}
+	/**
+	 * 获得管理员发送来的消息
+	 * @param merchantId
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
+	public List<MessageInfo> getMsg(int merchantId,int page,int pageSize){
+		MessageDao messageDao = new MessageDao();
+		AdminDao adminDao = new AdminDao();
+		List<MessageInfo> msgInfoList = messageDao.findReceiveMsg(0, merchantId);
+		List<MessageInfo> msgList = new ArrayList<MessageInfo>();
+		int number = 1;
+		Iterator<MessageInfo> it = msgInfoList.iterator();
+		while(it.hasNext()){
+			MessageInfo msgInfo = it.next();
+			if(number > (page-1)*pageSize && number <= page*pageSize)
+			{
+				Admin admin = adminDao.getAdmin(msgInfo.getSenderId());
+				msgInfo.setSenderName(admin.getName());
+				msgList.add(msgInfo);
+				number++;
+			}
+			if(number > page*pageSize)
+				break;
+		}
+		return msgList;
+	}
+	/**
+	 * 商家获得个人信息
+	 * @param merchantId
+	 * @return
+	 */
+	public MerchantInfo getMerchantInfo(int merchantId){
+		MerchantDao merchantDao = new MerchantDao();
+		MerchantInfo merchantInfo = new MerchantInfo();
+		Merchant merchant = merchantDao.getMerchant(merchantId);
+		Set<Cinema> cinemas = merchantDao.getCinema(merchantId);
+		merchantInfo.setMerchantId(merchantId);
+		merchantInfo.setCinemas(cinemas);
+		merchantInfo.setMerchantName(merchant.getMerchantName());
+		merchantInfo.setPassword(merchant.getPassword());
+		return merchantInfo;   //这个对象好像不能转为Gson
+	}
+	
+	/**
+	 * 商家修改密码
+	 * @param merchantId
+	 * @param oldPsw
+	 * @param newPsw
+	 * @return
+	 */
+	public boolean updateProfile(int merchantId,String oldPsw,String newPsw){
+		MerchantDao merchantDao = new MerchantDao();
+		Merchant merchant = merchantDao.getMerchant(merchantId);
+		System.out.println("input psw:"+oldPsw);
+		System.out.println("old psw:"+merchant.getPassword());
+		if(merchant.getPassword().equals(oldPsw)){
+			//更新
+			merchant.setPassword(newPsw);
+			return (merchantDao.update(merchant));
+		}
+		else
+			return false;    //密码错误
 	}
 }

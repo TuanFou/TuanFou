@@ -5,16 +5,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import com.google.gson.Gson;
 import com.tuanfou.dao.MerchantDao;
 import com.tuanfou.dto.ApplyFilmInfo;
 import com.tuanfou.dto.MerchantGroupFilmOrderInfo;
 import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.GroupFilm;
+import com.tuanfou.dto.MerchantInfo;
+import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.pojo.Merchant;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.service.MerchantService;
@@ -30,11 +33,23 @@ public class MerchantDaoTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//addMerchantTest();
+
 //		MerchantService merchantService = new MerchantService();
 //		if(merchantService.applyForSale( 11, 301010101, "2014-7-20", "2014-8-20", 19, 25))
 //			System.out.println("申请成功");
 //		else
 //			System.out.println("申请失败");
+
+		MerchantService merchantService = new MerchantService();
+		/*if(merchantService.applyForSale( 11, 301010101, "2014-7-20", "2014-8-20", 19, 25))
+			System.out.println("申请成功");
+		else
+			System.out.println("申请失败");*/
+		if(merchantService.updateProfile(1, "123", "123456"))
+			System.out.println("更新成功");
+		else
+			System.out.println("更新失败");
+		
 		/*ApplyFilmInfo afilm = new ApplyFilmInfo();
 		afilm.setActor("巩俐");
 		afilm.setCountry("大陆");

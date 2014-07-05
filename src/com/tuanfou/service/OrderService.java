@@ -19,22 +19,26 @@ public class OrderService {
 	 * 下订单
 	 * 返回值为Boolean，标识下订单是否成功
 	 */
-	public boolean orderFilm(int groupFilmId,int userId,Date expiredTime){
+	public int orderFilm(int groupFilmId,int userId,int amount){
 		OrderDao orderDao = new OrderDao();
 		UserDao userDao = new UserDao();
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
 		User user = userDao.getUser(userId);
-		//Film film = filmDao.getFilm(groupFilmId);
 		GroupFilm groupFilm = groupFilmDao.getGroupFilm(groupFilmId); 
 		Order order = new Order();
-		order.setExpiredTime(expiredTime);
 		order.setStatus(1);  //设置订单状态为未支付
 		order.setUser(user);
 		order.setGroupFilm(groupFilm);
+		order.setAmount(amount);
+		order.setExpiredTime(groupFilm.getEndDate());
 		
 		Date createTime = new Date(new java.util.Date().getTime());
 		order.setCreateTime(createTime);
-		return orderDao.addOrder(order);
+		int res = -1;
+		if(orderDao.addOrder(order)){
+			res = order.getId();
+		}
+		return res;
 	}
 	
 	/**
@@ -53,9 +57,9 @@ public class OrderService {
 
 		float filmPrice = groupFilm.getCurrentPrice();
 		float balance = account.getBalance();
-		if(balance > filmPrice)
+		if(balance > filmPrice*order.getAmount())
 		{
-			account.setBalance(balance-filmPrice);
+			account.setBalance(balance-filmPrice*order.getAmount());
 			accountDao.update(account);
 			order.setStatus(2);
 			orderDao.update(order);
