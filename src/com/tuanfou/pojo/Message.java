@@ -1,6 +1,6 @@
 package com.tuanfou.pojo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Message {
 	private int id;
