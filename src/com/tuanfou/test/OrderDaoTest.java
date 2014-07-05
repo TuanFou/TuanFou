@@ -2,8 +2,11 @@ package com.tuanfou.test;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+import com.google.gson.Gson;
 import com.tuanfou.dao.OrderDao;
+import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
 import com.tuanfou.pojo.Order;
@@ -15,9 +18,9 @@ public class OrderDaoTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		User user = new User();
-		GroupFilm groupFilm = new GroupFilm();
-		Order order = new Order();
+//		User user = new User();
+//		GroupFilm groupFilm = new GroupFilm();
+//		Order order = new Order();
 		//account.setBalance(10);
 		//city.setCityName("wuhan");
 		//user.setAccount(account);
@@ -50,9 +53,16 @@ public class OrderDaoTest {
 		catch(Exception e){
 			e.printStackTrace();
 		}*/
-		if(orderService.pay(3))
-			System.out.println("支付成功");
-			
+//		if(orderService.pay(3))
+//			System.out.println("支付成功");
+//		OrderDao orderDao = new OrderDao();
+//		List<OrderInfo> list = orderDao.getOrdersByUserId(302010010);
+	 
+		
+		List<OrderInfo> list = orderService.getUserOrdersById(302010010);
+		Gson gson = new Gson();
+		String str = gson.toJson(list );
+		System.out.println(str);
 	}
 
 }

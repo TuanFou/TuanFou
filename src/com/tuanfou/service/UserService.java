@@ -1,9 +1,11 @@
 package com.tuanfou.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.tuanfou.dao.UserDao;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
+import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.User;
 
 public class UserService {
@@ -40,5 +42,13 @@ public class UserService {
 		UserDao  userDao = new UserDao();
 		List<MyHeartGroupFilmInfo> list = userDao.getHeartGroupFilms(id);
 		return list;
+	}
+	/*
+	 * 获取用户所有评论
+	 */
+	public Set<Comment> getUserComments(int userId){
+		UserDao userDao = new UserDao();
+		Set<Comment> userComments = userDao.getUserComments(userId);
+		return userComments;
 	}
 }

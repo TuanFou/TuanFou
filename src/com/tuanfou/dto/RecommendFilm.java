@@ -1,5 +1,9 @@
 package com.tuanfou.dto;
-
+/**
+ * 推荐电影信息
+ * @author LN
+ *
+ */
 public class RecommendFilm {
 
 	private int groupFilmId;    //团购电影id；

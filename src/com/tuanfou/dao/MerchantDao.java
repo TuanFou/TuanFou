@@ -32,5 +32,25 @@ public class MerchantDao {
 		return res;
 	}
 	
+	/**
+	 * 实例化，加载数据库对象
+	 * @param merchantId
+	 * @return
+	 */
+	public Merchant getMerchant(int merchantId){
+		try{
+			session = HibernateUtil.getSession();
+			Merchant merchant = (Merchant) session.get(Merchant.class, merchantId);
+			return merchant;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
 
 }

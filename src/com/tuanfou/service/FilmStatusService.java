@@ -5,7 +5,11 @@ import java.util.List;
 
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.FilmStatusInfo;
-
+/**
+ * 获取首页电影状态个数信息
+ * @author LN
+ *
+ */
 public class FilmStatusService {
 	
 	/*
