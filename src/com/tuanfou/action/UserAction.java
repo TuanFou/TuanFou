@@ -157,7 +157,7 @@ public class UserAction extends ActionSupport {
 	 */
 	public String order(int groupFilmId,int userId,int amount){
 		OrderService orderService = new OrderService();
-		if(orderService.orderFilm(groupFilmId, userId, amount))
+		if(orderService.orderFilm(groupFilmId, userId, amount)!=-1)
 			return "OrderSuccess";
 		else
 			return "OrderFailure";

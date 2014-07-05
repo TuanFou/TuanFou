@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <%
 	String groupFlimId = request.getParameter("groupFilmId");
-	String fileName= request.getParameter("filmName");
+	String filmName= request.getParameter("filmName");
 	String cinemaAddress = request.getParameter("cinemaAddress");
 	String currentPrice = request.getParameter("currentPrice");
 	String amountStr = request.getParameter("amount");
@@ -59,7 +59,7 @@ function submitForm (){
 		        		<div class="clear"></div>
 						<div class="item-info">
 							<span class="item">
-								<span class="line-block "><%=fileName  %></span>
+								<span class="line-block "><%=filmName  %></span>
 								<span class="line-block"><%=cinemaAddress  %></span>
 							</span>
 		        			<span class="price top-margin"><%=price  %></span>
@@ -73,23 +73,22 @@ function submitForm (){
 	        			   <span class="float-right">您需要支付：￥<%=totalPrice %></span>
 	        		</div>
 					<div class="submit-bt">
-						<form name="orderForm" action="pay.jsp" method="psot">
+						<form name="orderForm" action="OrderAction!addOrder" method="post">
 						    <input type="hidden" name="groupFlimId" value="<%=groupFlimId%>"/>
-						    <input type="hidden" name="fileName" value="<%=fileName%>"/>
+						    <input type="hidden" name="filmName" value="<%=filmName%>"/>
 						    <input type="hidden" name="cinemaAddress" value="<%=cinemaAddress%>"/>
 						    <input type="hidden" name="currentPrice" value="<%=currentPrice%>"/>
-						     <input type="hidden" name="amount" value="<%=amount%>"/>
+						    <input type="hidden" name="amount" value="<%=amount%>"/>
 						    <input type="hidden" name="totalPrice" value="<%=totalPrice%>"/>
 							<button  id="submit-order" onclick="javascript:orderForm.submit();">提交订单</button>
 						</form>
 					</div>
-				 
         	<div>
         </div>
         <div class="clear"></div>
-       <div class="site-info">
+       <!-- <div class="site-info">
             
-        </div>
+        </div> -->
     </div>
     </div>
    </div>

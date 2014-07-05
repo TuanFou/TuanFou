@@ -37,35 +37,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		  <table>
                     <tr>
                         <td class="bg-color"> 订单号</td>
-                        <td> 1290247234729</td>
+                        <td> ${requestScope.orderId} </td>
                     </tr>
                      <tr>
                         <td class="bg-color"> 团购</td>
                         <td> 
-                            <span class="line-block">沉睡魔咒</span>
-                            <span class="line-block">洪山天河国际影院</span>
+                            <span class="line-block"> ${requestScope.filmName }</span>
+                            <span class="line-block">${requestScope.cinemaAddress }</span>
                         </td>
                     </tr>
                      <tr>
                         <td class="bg-color"> 单价(元)</td>
-                        <td> 19.99</td>
+                        <td> ${requestScope.currentPrice }</td>
                     </tr>
 
                      <tr>
                         <td class="bg-color"> 数量</td>
-                        <td> 2</td>
+                        <td>${requestScope.amount }</td>
                     </tr>
                      <tr>
                         <td class="bg-color"> 总价(元)</td>
-                        <td> 39.98</td>
+                        <td>${requestScope.totalPrice }</td>
                     </tr>
                   </table>
                 </div>
-                <div class="account-info">
-                    <span class="line-block">账户余额:100.0元</span>
-                    </span class="line-block">您需为订单支付：￥39.98</span>
-                    <span><button class="line-block float-right">付款</button></span>
-                </div>
+                <form name="payForm" action="OrderAction!payOrder" method="post">
+                	<input type="hidden" name="orderId" value="${requestScope.orderId }"/>
+	                <div class="account-info">
+	                    <span class="line-block">账户余额:${requestScope.balance }元</span>
+	                    </span class="line-block">您需为订单支付：￥${requestScope.totalPrice }</span>
+	                    <span><button class="line-block float-right" onclick="javascript:payForm.submit()">付款</button></span>
+	                </div>
+                </form>
         	<div>
         </div>
         <div class="clear"></div>

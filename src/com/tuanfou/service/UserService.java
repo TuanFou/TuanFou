@@ -54,4 +54,12 @@ public class UserService {
 			return false;
 		}
 	}
+	/*
+	 * 通过用户id获取账户余额
+	 */
+	public float getBalance(int userId){
+		UserDao userDao = new UserDao();
+		Account account = userDao.getAccount(userId);
+		return account.getBalance();
+	}
 }

@@ -2,6 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="userPackage" extends="struts-default">
+		<!-- 用户操作 -->
 		<action name="UserAction" class="com.tuanfou.action.UserAction">
 			<result name="userHome">/userHome.jsp</result>
 			<result name="personInfo">/userHomePage/personInfo.jsp</result>
@@ -9,16 +10,21 @@
 			<result name="login_success">/success.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-
+		<!-- 订单操作 -->
 		<action name="OrderAction" class="com.tuanfou.action.OrderAction">
+			<result name="error">/error.jsp</result>
 			<result name="myOrder">/userHomePage/myOrder.jsp</result>
+			<result name="OrderPay">/pay.jsp</result>
+			<result name="pay_success">/paySuccess.html</result>
 		</action>
 	</package>
 	<package name="GroupFilm" namespace="/" extends="struts-default">
+	<!-- 团购电影操作 -->
 		<action name="GroupFilmAction" class="com.tuanfou.action.GroupFilmAction">
 			<result name="detailInfo">/groupFilmInfo.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<!-- 过滤器操作 -->
 		<action name="FilterAction"
 			class="com.tuanfou.action.FilterAction">
 			<result name="home">/home.jsp</result>
