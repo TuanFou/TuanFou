@@ -2,7 +2,9 @@ package com.tuanfou.test;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.google.gson.Gson;
 import com.tuanfou.dao.FilmDao;
@@ -17,7 +19,14 @@ public class FilmDaoTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		findTagsTest();
+		//findTagsTest();
+		FilmDao filmDao = new FilmDao();
+		Set<Tag> tags = filmDao.getTags(1);
+		Iterator<Tag> it = tags.iterator();
+		while(it.hasNext()){
+			Tag tag = it.next();
+			System.out.println(tag.getTagName());
+		}
 	}
 	public static void addFilmTest(){
 		/*Film film = new Film();

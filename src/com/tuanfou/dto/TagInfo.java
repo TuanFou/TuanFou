@@ -1,5 +1,10 @@
 package com.tuanfou.dto;
 
+/**
+ * 首页标签信息
+ * @author LN
+ *
+ */
 public class TagInfo {
 	private int tagId;       //tagId
 	private String tagName;  //标签名称
