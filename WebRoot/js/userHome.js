@@ -16,7 +16,7 @@ $(document).ready(function(){
 				$("#detail-info").attr("src","UserAction!showMyHeartFilmInfo");
 				break;
 			case "my-order":
-				$("#detail-info").attr("src","./userHomePage/myOrder.html");
+				$("#detail-info").attr("src","OrderAction!getUserOrders");
 				break;
 			case "my-comment":
 				$("#detail-info").attr("src","./userHomePage/myComment.html");

@@ -2,8 +2,10 @@ package com.tuanfou.service;
 
 import java.util.List;
 
+import com.tuanfou.dao.AccountDao;
 import com.tuanfou.dao.UserDao;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
+import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.User;
 
 public class UserService {
@@ -40,5 +42,16 @@ public class UserService {
 		UserDao  userDao = new UserDao();
 		List<MyHeartGroupFilmInfo> list = userDao.getHeartGroupFilms(id);
 		return list;
+	}
+	/*
+	 * 为新用户添加一个账户
+	 */
+	public boolean addAccount(Account account){
+		AccountDao accountrDao = new AccountDao();
+		if(accountrDao.add(account)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

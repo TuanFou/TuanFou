@@ -23,7 +23,6 @@ public class AccountDao {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 			return false;
-			
 		}
 		finally{
 			HibernateUtil.closeSession();
