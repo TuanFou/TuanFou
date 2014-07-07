@@ -3,33 +3,26 @@ package com.tuanfou.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.Query;
-import org.hibernate.Session;
+
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.ComplaintInfo;
 import com.tuanfou.dto.MessageInfo;
+import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
-import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
-import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
-import com.tuanfou.service.CommentService;
-import com.tuanfou.service.GroupFilmService;
 import com.tuanfou.service.OrderService;
-import com.tuanfou.service.UserService;
-import com.tuanfou.utils.HibernateUtil;
-import com.tuanfou.utils.Utils;
+import com.tuanfou.service.UserService;;
 
 public class UserAction extends ActionSupport {
 	/**
@@ -42,7 +35,6 @@ public class UserAction extends ActionSupport {
 	 */
 	private User user;
 	
-	@SuppressWarnings("unused")
 	private HttpServletRequest req;
 	private HttpServletResponse response;
 	private Map<String ,Object> session;
@@ -67,6 +59,24 @@ public class UserAction extends ActionSupport {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public Set<MyCommentInfo> getComments() {
+		return comments;
+	}
+	public void setComments(Set<MyCommentInfo> comments) {
+		this.comments = comments;
+	}
+	public List<ComplaintInfo> getComplaints() {
+		return complaints;
+	}
+	public void setComplaints(List<ComplaintInfo> complaints) {
+		this.complaints = complaints;
+	}
+	public List<MessageInfo> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<MessageInfo> messages) {
+		this.messages = messages;
+	}
 
 	/**
 	 * 用户登录
@@ -74,8 +84,6 @@ public class UserAction extends ActionSupport {
 	 * @throws IOException 
 	 */
 	public String login() throws IOException{
-		
-		String matching = ERROR;
 		req = ServletActionContext.getRequest();
 		req.setCharacterEncoding("utf-8");
 		session = ActionContext.getContext().getSession();
@@ -199,5 +207,39 @@ public class UserAction extends ActionSupport {
 		response = ServletActionContext.getResponse();
 		PrintWriter out  = response.getWriter();
 		out.print("success");
+	}
+	public String showMyComment(){
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
+		UserService userService = new UserService();
+		comments = userService.getMyComments(id);
+		if(comments == null)
+			return "error";
+		else
+			return "myComment";
+	}
+	public String showMyComplaint(){
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
+		UserService userService = new UserService();
+		complaints = userService.getMyComplaints(id);
+		if(complaints == null)
+			return "error";
+		else
+			return "myComplaint";
+	}
+	
+	public String showMyMessage(){
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
+		UserService userService = new UserService();
+		messages = userService.getMyMessages(id );
+		Gson gson = new Gson();
+		String result = gson.toJson(messages);
+		System.out.println(result);
+		if(messages == null)
+			return "error";
+		else
+			return "myMessage";
 	}
 }
