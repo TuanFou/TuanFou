@@ -5,7 +5,9 @@
 	<title>登录注册</title>
 	<link rel="stylesheet" type="text/css" href="./css/reg_log.css">
 	<script src="./js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./js/reg_login.js"></script>
 	<script type="text/javascript" src="./js/tinybox.js"></script>
+
 <style>
 .hidden{
 	display: none;
@@ -60,51 +62,79 @@
 			</div>
 		</div>  
 	</div>-->
-	<div id="bottom"></div>
 </body>
 </html>
 <script>
-	function regSubmit(obj){
-		var span = obj.id;
-		var userName = regForm.userName;
-		alert(userName.value);
-	}
-	function loginSubmit(obj){
-		alert('login');
-	}
-$(document).ready(function($) {
+// function ajaxRequest(){
+//  	var xmlHttp;
+//  	if (window.XMLHttpRequest)
+// 	{// code for IE7+, Firefox, Chrome, Opera, Safari
+// 	  xmlhttp=new XMLHttpRequest();
+// 	}
+// 	else
+// 	{// code for IE6, IE5
+// 	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+// 	}
+// 	xmlhttp.onreadystatechange=function(){
+// 	 	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+// 	    {
+// 	    	 alert(xmlhttp.responseText);
+// 	    }else{
+// 	    	 alert('failed');
+// 	    }
+//  	}
+// 	xmlhttp.open("GET","UserAction!loginTest",true);
+// 	xmlhttp.send();
+//  }
 
-	var loginHtml = "<div class='login_content'>"+
-						"<span class='form-title line-block'><font size='5' color='#466474'>团否.MOVIE - 登录</font></span>"+
-						"<form name='login_form'  class='login-form' >"+
-							"<span class='line-block'>用户名:<input type='text' name='userName'/></span>"+
-							"<span class='line-block'>密&nbsp;&nbsp;码:<input type='password' name='password' /></span>"+
-							"<span class='line-block'>"+
-								"<span><font size='1' color='#DEAF9B'>如果还没有注册？点击<a href='#'>直接注册</a></font></span>"+
-								"<span><button onclick='loginSubmit(this)' class='login-bt'>登录</button></span>"+
-							"</span>"+
-						"</form>"+
-					"</div>";
-	var regHtml = "<div class='regist-content'>"+
-				"<span class='form-title line-block'><font size='5' color='#466474'>团否.MOVIE - 注册</font></span>"+
-				"<div class='reg-info'>"+
-					"<div class='img-area float-left'>"+
-						"<span ><img width='120px' height='120px' src='./imgs/girl2.jpg'/></span>"+
-						"<span class='line-block'><input type='file' value='上传'></input></span>"+
-					"</div>"+
-					"<div class='detail-info float-left'><form name='regForm'>"+
-							"<span class='reg-line-block'>&nbsp;&nbsp;用户名<input name='userName' type='text'></input></span>"+
-							"<span class='reg-line-block'>&nbsp;&nbsp;&nbsp;&nbsp;密码<input name='password' type='text'></input></"+"span>"+
-							"<span class='reg-line-block'>密码确认<input name='confirm-password' type='text'></input></span>"+
-							"<span class='reg-line-block'>&nbsp;&nbsp;&nbsp;&nbsp;性别<input name='sex' type='text'></input></span>"+
-							"<span class='reg-line-block'>&nbsp;&nbsp;&nbsp;&nbsp;城市<input name='city' type='text'></input></span>"+
-							"<span class='reg-line-block'>&nbsp;&nbsp;&nbsp;&nbsp;邮箱<input name='email' type='text'></input></span>"+
-							"<span class='reg-line-block'>&nbsp;&nbsp;&nbsp;&nbsp;描述<input name='description' type='text'></input></span></form>"+
-							"<span class='reg-line-block' id='registSubmit'><button class='reg-bt'  onclick='regSubmit(this);'>注册</"+"button></span>"+
-					"</div>"+
-				"</div>"+
-			"</div>";
-	 T$('login_link').onclick = function(){TINY.box.show(loginContent,0,0,0,1)};
-	 T$('reg_link').onclick = function(){TINY.box.show(regHtml,0,0,0,1);};
-});
+ function loginSubmit(obj){
+ 	var userName = loginForm.userName.value;
+ 	var password = loginForm.password.value;
+ 	if(userName=='' || password ==''){
+ 		alert('用户名和密码不能为空');
+ 		return;
+ 	}
+
+	$.ajax({
+		//alert(userName);
+	 	url: 'UserAction!login',
+	 	//data:{"userName":userName, "password":password},
+	 	type: 'get',
+	 	datatype:'json',
+	 	data:{'userName':userName,'password':password},
+	 	success:function(data){
+	 		if(data=="success"){//登录成功
+	 			window.location.reload();
+	 		}
+	 	},
+	 	error:function(error) {
+	 		/* Act on the event */
+	 		alert(error);
+	 	}
+	}); 
+ }
+ function regSubmit(obj){
+	var userName = regForm.userName.value;
+	var password = regForm.password.value;
+	var confirm_password = regForm.confirm_password.value;
+	var cityId = regForm.citySelector.value;
+	var email = regForm.email.value;
+	var description = regForm.description.value;
+	if(password != confirm_password)
+	{
+		alert('两次密码不一致');
+		return ;
+	}
+	$.ajax({
+		url: 'UserAction!regist',
+		type: 'get',
+		data: {"userName": userName,'password':password,'cityId':cityId,'email':email,'description':description},
+		success:function(data){
+			window.location.href = "FilterAction!getFilterTags";
+		},
+		error:function(error){
+			alert('注册失败');
+		}
+	});
+ }
 </script>

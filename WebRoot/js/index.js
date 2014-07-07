@@ -126,4 +126,24 @@ $(document).ready(function(){
 		 	}
 	 	});
 	});
+
+	/*
+		退出登录
+	*/
+	$('#exit').bind('click', function(event) {
+		/* Act on the event */
+		$.ajax({
+			url: 'UserAction!logout',
+			type: 'get',
+			success:function(data){
+				if(data=="success")
+					window.location.reload();
+				else
+					alert("退出失败");
+			},
+			error:function(){
+				alert('退出失败');
+			}
+		});
+	});
 });

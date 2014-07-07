@@ -158,7 +158,29 @@ public class UserDao {
 		}
 	}
 	/*
-	 * 根据用户id获取用户的所有订单
+	 * 查找用户名和密码是否存在
 	 */
-
+	public int findUser(String userName,String password){
+		try{
+			Session session = HibernateUtil.getSession();
+			String hql = "from User user where user.userName=:username and user.password=:password";
+			Query query = session.createQuery(hql);
+			query.setParameter("username", userName);
+			query.setParameter("password", password);
+			@SuppressWarnings("unchecked")
+			List<User> userList = query.list();
+			Iterator<User> itUser =userList.iterator();
+			if(itUser.hasNext())
+			{							
+				return itUser.next().getId();
+			}else{
+				return -1;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}finally{
+			HibernateUtil.closeSession();
+		}
+	}
 }

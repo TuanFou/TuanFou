@@ -17,7 +17,7 @@ public class AccountDao {
 			session.beginTransaction();
 			session.save(account);
 			session.getTransaction().commit();
-			return true;		
+			return true;
 		}
 		catch(Exception e){
 			e.printStackTrace();

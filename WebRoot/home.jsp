@@ -6,8 +6,6 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%
-	session.setAttribute("userId", 304010333);
-	
 	session.setMaxInactiveInterval(1800);
  %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -36,29 +34,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	#tinycontent{background:#ffffff; font-size:1.1em;}
 	</style>
   </head>
- <script>
- function loginSubmit(obj){
+<script type="text/javascript">
+function registClick(){
+	$('#reg_link').click();
+}
+function loginSubmit(obj){
  	var userName = loginForm.userName.value;
- 	var password = loginForm.password;
+ 	var password = loginForm.password.value;
  	if(userName=='' || password ==''){
  		alert('用户名和密码不能为空');
  		return;
  	}
- 	$.ajax({
- 		url: 'UserAction!login',
- 		type: 'post',
- 		dataType: 'json',
- 		data: {"userName": userName,"password":password},
- 		success:function(data){
- 			alert('success');
- 		},
- 		error:function(error){
- 			alert('failed');
- 		}
- 	});
+
+	$.ajax({
+		//alert(userName);
+	 	url: 'UserAction!login',
+	 	//data:{"userName":userName, "password":password},
+	 	type: 'get',
+	 	datatype:'json',
+	 	data:{'userName':userName,'password':password},
+	 	success:function(data){
+	 		if(data=="success"){//登录成功
+	 			window.location.reload();
+	 		}
+	 	},
+	 	error:function(error) {
+	 		/* Act on the event */
+	 		alert(error);
+	 	}
+	}); 
  }
- function regSubmit(obj){
- 	alert('reg');
+function regSubmit(obj){
+	var userName = regForm.userName.value;
+	var password = regForm.password.value;
+	var confirm_password = regForm.confirm_password.value;
+	var cityId = regForm.citySelector.value;
+	var email = regForm.email.value;
+	var description = regForm.description.value;
+	if(password != confirm_password)
+	{
+		alert('两次密码不一致');
+		return ;
+	}
+	$.ajax({
+		url: 'UserAction!regist',
+		type: 'get',
+		data: {'userName': userName,'password':password,'cityId':cityId,'email':email,'description':description},
+		success:function(data){
+			window.location.reload();
+		},
+		error:function(error){
+			for(var index in error){
+				alert(error[index]);
+			}
+		}
+	});
  }
  </script>
 <body>
@@ -164,44 +194,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="clear"></div>
 		<div class="site-info">
 			
-		</div>
-	</div>
-
-	<!-- 登录注册页面-->
-	<div class="hidden" >
-		<div id="login">
-			<div class="login_content">
-				<span class="form-title line-block"><font size="5" color="#466474">团否.MOVIE - 登录</font></span>
-				<form name="login_form"  class="login-form" >
-					<span class="line-block">用户名:<input type="text" name="userName"/></span>
-					<span class="line-block">密&nbsp;&nbsp;码:<input type="password" name="password" /></span>
-					<span class="line-block">
-						<span><font size="1" color="#DEAF9B">如果还没有注册？点击<a href="#">直接注册</a></font></span>
-						<span><button class="login-bt">登录</button></span>
-					</span>
-				</form>
-			</div>
-		</div>
-		<div id="regist">
-			<div class="regist-content">
-				<span class="form-title line-block"><font size="5" color="#466474">团否.MOVIE - 注册</font></span>
-				<div class="reg-info">
-					<div class="img-area float-left">
-						<span ><img width="120px" height="120px" src="./imgs/girl2.jpg"/></span>
-						<span class="line-block"><input type="file" value="上传"></input></span>
-					</div>
-					<div class="detail-info float-left">
-						<span class="reg-line-block">&nbsp;&nbsp;用户名<input type="text"></input></span>
-						<span class="reg-line-block">&nbsp;&nbsp;&nbsp;&nbsp;密码<input type="text"></input></span>
-						<span class="reg-line-block">密码确认<input type="text"></input></span>
-						<span class="reg-line-block">&nbsp;&nbsp;&nbsp;&nbsp;性别<input type="text"></input></span>
-						<span class="reg-line-block">&nbsp;&nbsp;&nbsp;&nbsp;城市<input type="text"></input></span>
-						<span class="reg-line-block">&nbsp;&nbsp;&nbsp;&nbsp;邮箱<input type="text"></input></span>
-						<span class="reg-line-block">&nbsp;&nbsp;&nbsp;&nbsp;描述<input type="text"></input></span>
-						<span class="reg-line-block" id="regist-submit"><button class="reg-bt"  onclick="regSubmit()">注册</button></span>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
   </body>
