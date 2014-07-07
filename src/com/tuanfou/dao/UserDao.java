@@ -10,6 +10,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.dto.CommentInfo;
+import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.pojo.Account;
@@ -62,18 +64,27 @@ public class UserDao {
 		}
 		return userList;	
 	}
-	/*
-	 * ��ȡ�û����ж���
+	/**
+	 * 获得用户的所有评论
+	 * @param id
+	 * @return
 	 */
-	public Set<Comment> getUserComments(int id){
-		Set<Comment> userComments = new HashSet<Comment>();
+	public Set<MyCommentInfo> getUserComments(int id){
+		Set<MyCommentInfo> userComments = new HashSet<MyCommentInfo>();
 		try{
 			session = HibernateUtil.getSession();
 			User user = (User)session.get(User.class, new Integer(id));
 			Set<Comment> comments = user.getComments();
 			for(Iterator<Comment> it =comments.iterator(); it.hasNext(); ){
-				Comment comment = (Comment)it.next();
-				userComments.add(comment);
+				Comment aComment = (Comment)it.next();
+				MyCommentInfo commentInfo = new MyCommentInfo();
+				commentInfo.setContent(aComment.getContent());
+				GroupFilm groupFilm = aComment.getGroupFilm();
+				commentInfo.setPicUrl(groupFilm.getPicUrl());
+				commentInfo.setFilmName(groupFilm.getFilm().getFilmName());
+				commentInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
+				commentInfo.setTime(aComment.getCreateTime());
+				userComments.add(commentInfo);
 			}
 		}catch(Exception e){
 			e.printStackTrace();

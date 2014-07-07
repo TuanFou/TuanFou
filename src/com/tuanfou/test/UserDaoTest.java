@@ -13,9 +13,11 @@ import org.hibernate.Session;
 import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dao.UserDao;
+import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
+import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
 import com.tuanfou.service.UserService;
@@ -94,7 +96,7 @@ public class UserDaoTest {
 		/**
 		 * 新用户注册测试开始
 		 */
-		City aCity = new City();
+		/*City aCity = new City();
 		User aUser = new User();
 		aCity.setId(31901);
 		aUser.setUserName("testAddUser1");
@@ -132,7 +134,15 @@ public class UserDaoTest {
 			System.out.println("success");
 		}
 		else{
-			System.out.println("fail");
+			System.out.println("fail");*/
+		UserService userService = new UserService();
+		Set<MyCommentInfo> comments = userService.getMyComments(302010010);
+		Iterator<MyCommentInfo> it= comments.iterator();
+		while(it.hasNext()){
+			MyCommentInfo comment = it.next();
+			System.out.println("content:"+comment.getContent()+"	cinemaName:"+comment.getCinemaName()+"	filmName:"+comment.getFilmName());
+		}
+			
 	}
 	/**
 	 * 新用户注册测试到此为止
@@ -175,4 +185,4 @@ public class UserDaoTest {
 		
 //	}
 
-	}}
+	}
