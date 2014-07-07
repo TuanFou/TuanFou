@@ -1,6 +1,7 @@
 package com.tuanfou.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,7 @@ import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.User;
+import com.tuanfou.utils.ComparatorComment;
 import com.tuanfou.utils.HibernateUtil;
 
 public class UserDao {
@@ -80,9 +82,23 @@ public class UserDao {
 		}finally{
 			HibernateUtil.closeSession();
 		}
+		userComments = sortCommentDes(userComments);
 		return userComments;
 	}
 	
+	/**
+	 * Sort the user's comments by the Date DES order
+	 * @param userComments
+	 * @return
+	 */
+	private Set<Comment> sortCommentDes(Set<Comment> userComments) {
+		List<Comment> list = new ArrayList<Comment>();
+		list.addAll(userComments);
+		ComparatorComment com = new ComparatorComment();
+		Collections.sort(list, com);
+		userComments.addAll(list);
+		return userComments;
+	}
 	//获得数据库对象
 	public User getUser(int userId){
 		try{
