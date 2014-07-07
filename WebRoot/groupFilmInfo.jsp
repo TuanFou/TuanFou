@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<input name="filmName" type="hidden" value="${groupFilmDetailInfo.filmName}" /> 
 				<input name="cinemaAddress" type="hidden" value="${groupFilmDetailInfo.cinemaAddress}" /> 
 				<input name="currentPrice" type="hidden" value="${groupFilmDetailInfo.currentPrice}" /> 
-				<span cl	ass="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
+				<span class="line-block">商家：${groupFilmDetailInfo.cinemaAddress} | 查看电话/地址</span>
 				<span class="line-block"> 有限期：截止到 ${groupFilmDetailInfo.endDate} 周末法定假日有效</span>
 				<span class="line-block" >使用时间: 10:00-24:00</span>
 				<hr>

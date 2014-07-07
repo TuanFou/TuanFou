@@ -1,0 +1,67 @@
+.login_content{
+	width: 395px;
+	height:210px;
+	border: 1px solid #BD6037;
+	color: #BD6037;
+}
+.line-block{
+	display: block;
+}
+.form-title{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.login-form{
+	margin-top: 20px;
+	margin-left: 80px;
+}
+ .login_content a{
+	color: #BD6037;
+}
+.login_content button{
+	border: none;
+	background: #BD6037;
+	border-radius: 5px;
+	color: white;
+	width: 70px;
+	height: 20px;
+}
+form input{
+	width: 170px;
+}
+form span{
+	margin-top: 10px;
+}
+/*注册界面*/
+.regist-content{
+	width: 485px;
+	height: 400px;
+	border: 1px solid #BD6037;
+}
+.reg-info{
+	margin-top:40px;
+	margin-left:26px;
+}
+.img-area input{
+	width: 180px;
+}
+ 
+.detail-info span{
+	margin-top: 10px;
+	color: #BD6037;
+}
+.float-left{
+	float: left;
+}
+.reg-line-block{
+	display: block;
+}
+#regist-submit {
+	border: none;
+	background: #BD6037;
+	border-radius: 5px;
+	color: white;
+	width: 70px;
+	height: 20px;
+	float: right;
+}

@@ -34,7 +34,7 @@ button:hover{
 	padding-bottom: 15px;
 }
 .site-info{
-	background-color: #000000;
+	background-image: url("../imgs/footer.png");
 	height: 160px;
 	margin-top: 50px;
 }
