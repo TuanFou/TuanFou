@@ -25,7 +25,7 @@ $(document).ready(function(){
 				$("#detail-info").attr("src","UserAction!showMyComplaint");
 				break;	
 			case "my-message":
-				$("#detail-info").attr("src","./userHomePage/myMessage.html");
+				$("#detail-info").attr("src","UserAction!showMyMessage");
 				break;	
 		}
 	});

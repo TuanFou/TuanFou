@@ -8,7 +8,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.dto.ComplaintInfo;
+import com.tuanfou.pojo.Area;
+import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Complaint;
+import com.tuanfou.pojo.Film;
+import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -81,4 +85,5 @@ public class ComplaintDao {
 		}
 		return complaintInfoList;
 	}
+	
 }

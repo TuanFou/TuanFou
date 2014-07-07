@@ -121,45 +121,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title_4">操作</div>
          </div>
          <div class="clear"></div>
-         <div class="complaint-item">
-            <span class="complaint-item-title">&nbsp;&nbsp;&nbsp;&nbsp;武汉市洪山区&nbsp;&nbsp;&nbsp;2014-01-01</span>
-            <div class="item-info">
-                <span ><img class="float-left" width="40px" height="60px" src="../imgs/1.png"></span>
-                <div class="float-left heart-film-info" >
-                    <span class="line-block">沉睡魔咒</span>
-                    <span class="line-block">洪山天河国际影城</span>
-                </div>
-                <span class="  float-left  compliant-content" >
-                    gsdgsfgsdgfsgsgsgsggs
-                    gsdgsfgsdgfsgsgsgsggs
-                    gsdgsfgsdgfsgsgsgsggs
-                </span>
-                <span class="float-left status">已处理</span>
-                <span class="float-left operation">
-                     <span><button>撤销投诉</button></span>
-                </span>
-            </div>
-         </div>
-         <div class="clear"></div>
-         <div class="complaint-item">
-            <span class="complaint-item-title">&nbsp;&nbsp;&nbsp;&nbsp;武汉市洪山区&nbsp;&nbsp;&nbsp;2014-01-01</span>
-            <div class="item-info">
-                <span ><img class="float-left" width="40px" height="60px" src="../imgs/1.png"></span>
-                <div class="float-left heart-film-info" >
-                    <span class="line-block">沉睡魔咒</span>
-                    <span class="line-block">洪山天河国际影城</span>
-                </div>
-                <span class="  float-left  compliant-content" >
-                    gsdgsfgsdgfsgsgsgsggs
-                    gsdgsfgsdgfsgsgsgsggs
-                    gsdgsfgsdgfsgsgsgsggs
-                </span>
-                <span class="float-left status">已处理</span>
-                <span class="float-left operation">
-                     <span><button>撤销投诉</button></span>
-                </span>
-            </div>
-         </div>
+         <c:forEach items="${complaints}" var="info">
+	         <div class="complaint-item">
+	            <span class="complaint-item-title">&nbsp;&nbsp;&nbsp;&nbsp;${info.areaName}&nbsp;&nbsp;&nbsp;2014-01-01</span>
+	            <div class="item-info">
+	                <span ><img class="float-left" width="40px" height="60px" src="${info.picUrl}"></span>
+	                <div class="float-left heart-film-info" >
+	                    <span class="line-block">${info.filmName}</span>
+	                    <span class="line-block">${info.cinemaName}</span>
+	                </div>
+	                <span class="  float-left  compliant-content" >
+	                    ${info.reason}
+	                </span>
+	                <span class="float-left status">已处理</span>
+	                <span class="float-left operation">
+	                     <span><button>撤销投诉</button></span>
+	                </span>
+	            </div>
+	         </div>
+	         <div class="clear"></div>
+	     </c:forEach>
       </div>
   </div>
 </body>

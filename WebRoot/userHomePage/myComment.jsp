@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	         <div class="clear"></div>
 	         <div class="comment-item">
 	           <div class="comment-film">
-	              <span ><img class="float-left" width="50px" height="60px" src="./imgs/1.png"></span>
+	              <span ><img class="float-left" width="50px" height="60px" src="${commentInfo.picUrl}"></span>
 	              <div class="float-left comment-film-info" >
 	                  <span class="line-block">${commentInfo.filmName}</span>
 	                  <span class="line-block">${commentInfo.cinemaName}</span>

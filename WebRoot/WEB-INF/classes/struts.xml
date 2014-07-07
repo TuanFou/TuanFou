@@ -10,6 +10,7 @@
 			<result name="login_success">/success.jsp</result>
 			<result name="myComment">/userHomePage/myComment.jsp</result>
 			<result name="myComplaint">/userHomePage/myComplaint.jsp</result>
+			<result name="myMessage">/userHomePage/myMessage.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="success">/error.jsp</result>
 		</action>

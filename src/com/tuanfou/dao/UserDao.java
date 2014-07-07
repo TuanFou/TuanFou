@@ -12,12 +12,20 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.tuanfou.dto.CommentInfo;
+import com.tuanfou.dto.ComplaintInfo;
+import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.pojo.Account;
+import com.tuanfou.pojo.Admin;
+import com.tuanfou.pojo.Area;
+import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Comment;
+import com.tuanfou.pojo.Complaint;
+import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.GroupFilm;
+import com.tuanfou.pojo.Message;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.User;
 import com.tuanfou.utils.ComparatorComment;
@@ -210,5 +218,95 @@ public class UserDao {
 		}finally{
 			HibernateUtil.closeSession();
 		}
+	}
+	
+	/**
+	 * 获取用户的所有的投诉
+	 * @param userId
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ComplaintInfo> getUserComplaints(int userId){
+		List<ComplaintInfo> complaintInfoList = new ArrayList<ComplaintInfo>();
+		try{
+			session = HibernateUtil.getSession();
+			String hql = "from Complaint complaint where complaint.user.id = :userId";
+			//Integer integer = userId;
+			Query query = session.createQuery(hql);
+			query.setParameter("userId", userId);
+			//hql += integer.toString();
+			//List<Complaint> complaints = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
+			List<Complaint> complaints = query.list();
+			Iterator<Complaint> iterator = complaints.iterator();
+			while(iterator.hasNext()){
+				Complaint complaint = iterator.next();
+				GroupFilm groupFilm = complaint.getGroupFilm();
+				Film film = groupFilm.getFilm();
+				Area area = groupFilm.getArea();
+				Cinema cinema = groupFilm.getCinema();
+				ComplaintInfo complaintInfo = new ComplaintInfo();
+				
+				complaintInfo.setId(complaint.getId());
+				complaintInfo.setGroupFilmId(complaint.getGroupFilm().getId());
+				complaintInfo.setUserId(complaint.getUser().getId());
+				complaintInfo.setReason(complaint.getReason());
+				complaintInfo.setAreaName(area.getAreaName());
+				complaintInfo.setCinemaName(cinema.getCinemaName());
+				complaintInfo.setFilmName(film.getFilmName());
+				complaintInfo.setPicUrl(groupFilm.getPicUrl());
+				complaintInfoList.add(complaintInfo);				
+			}
+			return complaintInfoList;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<MessageInfo> getUserMessages(int userId){
+		List<MessageInfo> messageInfoList = new ArrayList<MessageInfo>();
+		try{
+			session = HibernateUtil.getSession();
+			AdminDao adminDao = new AdminDao();
+			UserDao userDao = new UserDao();
+			String hql = "From Message message where message.receiverId=:userId";
+			Query query = session.createQuery(hql);
+			query.setParameter("userId", userId);
+			List<Message> messageList = query.list();
+			Iterator<Message> it = messageList.iterator();
+			while(it.hasNext()){
+				Message message = it.next();
+				MessageInfo messageInfo = new MessageInfo();
+				messageInfo.setContent(message.getContent());
+				messageInfo.setMessageId(message.getId());
+				messageInfo.setTime(message.getTime());
+				messageInfo.setSenderId(message.getSenderId());
+				if(message.getType() == 1){
+					Admin admin = adminDao.getAdmin(message.getSenderId());
+					messageInfo.setSenderName(admin.getName());
+					messageInfo.setPhotoUrl("./imgs/girl.jpg");
+				}
+				if(message.getType() == 2){
+					User user = userDao.getUser(message.getSenderId());
+					messageInfo.setSenderName(user.getUserName());
+					messageInfo.setPhotoUrl(user.getPhotoUrl());
+				}
+				messageInfoList.add(messageInfo);
+			}
+			return messageInfoList;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			HibernateUtil.closeSession();
+		}
+		
 	}
 }

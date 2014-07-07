@@ -23,10 +23,10 @@ public class ComplaintDaoTest {
 	 */
 	public static void getUserComplaintsTest(){
 		ComplaintDao complaintDao = new ComplaintDao();
-		List<ComplaintInfo> complaints = complaintDao.getUserComplaints(319010023, 0, 5);
+		//List<ComplaintInfo> complaints = complaintDao.getUserComplaints(319010023);
 //		Complaint complaint = complaints.get(0);
 //		System.out.println(complaint.getUser().getId());
-		GsonTestTemplate.testListToString(complaints);
+		//GsonTestTemplate.testListToString(complaints);
 	}
 
 }
