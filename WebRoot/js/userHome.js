@@ -19,13 +19,13 @@ $(document).ready(function(){
 				$("#detail-info").attr("src","OrderAction!getUserOrders");
 				break;
 			case "my-comment":
-				$("#detail-info").attr("src","./userHomePage/myComment.html");
+				$("#detail-info").attr("src","UserAction!showMyComment");
+				break;	
+			case "my-complaint":
+				$("#detail-info").attr("src","UserAction!showMyComplaint");
 				break;	
 			case "my-message":
 				$("#detail-info").attr("src","./userHomePage/myMessage.html");
-				break;	
-			case "my-complaint":
-				$("#detail-info").attr("src","./userHomePage/myComplaint.html");
 				break;	
 		}
 	});

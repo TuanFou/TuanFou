@@ -1,11 +1,17 @@
 package com.tuanfou.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.tuanfou.dao.AccountDao;
+import com.tuanfou.dao.ComplaintDao;
 import com.tuanfou.dao.UserDao;
+import com.tuanfou.dto.ComplaintInfo;
+import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
+import com.tuanfou.pojo.Comment;
+import com.tuanfou.pojo.Complaint;
 import com.tuanfou.pojo.User;
 
 public class UserService {
@@ -61,5 +67,22 @@ public class UserService {
 		UserDao userDao = new UserDao();
 		Account account = userDao.getAccount(userId);
 		return account.getBalance();
+	}
+	/*
+	 * 获取用户评论
+	 */
+	public Set<MyCommentInfo> getMyComments(int userId){
+		UserDao userDao = new UserDao();
+		Set<MyCommentInfo> comments = userDao.getUserComments(userId);
+		//排序函数
+		return comments;
+	}
+	/*
+	 * 获取用户投诉,未写完。。。。。
+	 */
+	public List<ComplaintInfo> getMyComplaints(int userId){
+		ComplaintDao complaintDao = new ComplaintDao();
+		List<ComplaintInfo> complaints = complaintDao.getUserComplaints(userId, 1, 10);
+		return complaints;
 	}
 }
