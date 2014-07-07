@@ -1,19 +1,14 @@
 /*
-<div class="group-item">
-    <span class="film-img"><img src="./imgs/1.png"></img></span>
-	<span class="item-price">￥19.99</span>
-	<span class="item-name">
+<div class='group-item' id='1'>
+	<span class='film-img'><img src='./imgs/1.png'></img></span>
+	<span class='item-name'>
 		<span>沉睡的魔咒</span>
-		<span>7.4</span>
-	</span>
-	<span class="item-tag">标签：动作 冒险 奇幻 爱情</span>   
-	<span class="film-cinema">
-		<span><img class="position-img"></img>
+	</span>  
+	<span class='film-cinema'>
+		<span class='cinema-name'><img class='position-img' src='./imgs/direction.png'></img>
 		洪山天河国际影城</span>
 	</span>	
-	<span class="join-info">
-		<span><img class="join-img"></img>
-		入伙(200)</span>
+	<span class='item-price'><span class='prime-price'>￥50.00</span><span class='current-price'>￥19.99</span></span>
 	</span>			
 </div>
 */
@@ -30,21 +25,16 @@ $(document).ready(function(){
 		}
 		for(var index in jsonData){
 			var groupFilm = jsonData[index];
-			text += "<a href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+ groupFilm['GroupFilmId'] +
+			text += "<a  href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+ groupFilm['GroupFilmId'] +
 			"'><div class='group-item' id='"+groupFilm['GroupFilmId'] +"'>"+
 				    "<span class='film-img'><img src='" + groupFilm['filmPhotoUrl'] + "'></img></span>"+
-					"<span class='item-price'>￥"+ groupFilm['currentPrice'] +"</span>"+
 					"<span class='item-name'>"+
 						"<span>"+  groupFilm['filmName'] +"</span>"+
-						"<span>&nbsp"+ groupFilm['star'] +"</span><br>"+
-					"</span>"+
-					"<span class='item-tag'>标签：" + groupFilm['tags'] +"</span>"+   
+					"</span>"+ 
 					"<span class='film-cinema'>"+
-						"<span><img class='position-img'></img>"+ groupFilm['cinemaName'] +"</span>"+
+						"<span><img class='position-img' src='./imgs/direction.png'></img><font size='1'>&nbsp;"+ groupFilm['cinemaName'] + "</font></span>"+
 					"</span>"+	
-					"<span class='join-info'>"+
-						"<span><img class='join-img'></img>"+
-						"入伙("+ groupFilm['heartNum'] +")</span>"+
+					"<span class='item-price'><span class='prime-price'>￥"+groupFilm['originalPrice']+"</span><span class='current-price'>￥"+groupFilm['currentPrice']+"</span></span>"+
 					"</span>"+			
 				"</div></a>";	
 		}
@@ -52,15 +42,13 @@ $(document).ready(function(){
 		$('#film-content').html(text);
 	}
 	/*
-	<div class="range-item">
-		<span class="range-num float-left">2</span>
-		<span class="range-film-img"><img src="./imgs/1.png"></img></span>
-		<div class="float-left range-item-info">
-			<span class="line-block"><img ></img>伙影</span>
-			<span class="line-block">沉睡的魔谷</span>
-			<span class="line-block">洪山天河国际影城</span>
-			<span class="line-block"><font size="3">200</font>人已经入伙</span>
-			<span class="line-block float-right"><a href="#">我要入伙</a></span>
+	<div class='range-item top_3'>
+		<span class='range-num float-left'>1</span>
+		<div class='float-left range-item-info'>
+			<!--<span class='line-block'><img ></img>伙影</span>-->
+			<span class='line-block line-block-film'>沉睡的魔谷</span>
+			<span class='line-block line-block-cinema'>洪山天河国际影城</span>
+			<span class='line-block line-block-join'>已入伙&nbsp<font size='2' color='#FFFF00'>200</font></span>
 		</div>
 	</div>
 	*/
@@ -69,17 +57,15 @@ $(document).ready(function(){
 		var jsonData = eval('('+data+')');
 		for(var index in jsonData){
 			var recommendFilm = jsonData[index];
-			text += "<div class='range-item' id='range_" + recommendFilm['groupFilmId'] +"'>"+
+			text += "<a href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+ recommendFilm['groupFilmId'] +
+			        "'><div class='range-item top_"+index+"' id='range_" + recommendFilm['groupFilmId'] +"'>"+
 						"<span class='range-num float-left'>"+ recommendFilm['rank'] + "</span>"+
-						"<span class='range-film-img'><img src='" + recommendFilm['picUrl'] + "'></img></span>"+
 						"<div class='float-left range-item-info'>"+
-							"<span class='line-block'><img ></img>伙影</span>"+
-							"<span class='line-block'>" + recommendFilm['filmName'] + "</span>"+
-							"<span class='line-block'>"+ recommendFilm['cinemaName'] + "</span>"+
-							"<span class='line-block'><font size='3'>" + recommendFilm['userNum'] + "</font>人已经入伙</span>"+
-							"<span class='line-block float-right'><a href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+recommendFilm['groupFilmId']+"'>我要入伙</a></span>"+
+							"<span class='line-block line-block-film'>" + recommendFilm['filmName'] + "</span>"+
+							"<span class='line-block line-block-cinema'>"+ recommendFilm['cinemaName'] + "</span>"+
+							"<span class='line-block line-block-join'>已入伙&nbsp<font size='2' color='#FFFF00'>" + recommendFilm['userNum'] + "</font></span>"+
 						"</div>"+
-					"</div>";	
+					"</div></a><div class='clear'></div>";	
 		}
 		// text += "<div class='loadMore clear' id='loadMore'>加载更多</div>";
 		$('#group-range').html(text);
@@ -98,7 +84,7 @@ $(document).ready(function(){
 	 });
 	 /*请求推荐电影列表*/
 	$.ajax({
-	 	url: 'GroupFilmAction!getRecommendGroupFilms?page=1&pageSize=5',
+	 	url: 'GroupFilmAction!getRecommendGroupFilms?page=1&pageSize=8',
 	 	type: 'get',
 	 	datatype:"json",
 	 	success:function(data){
@@ -145,5 +131,16 @@ $(document).ready(function(){
 				alert('退出失败');
 			}
 		});
+	});
+	/*
+	菜单选择
+	*/
+	$('#myTF').bind('click', function(event) {
+		/* Act on the event */
+		window.location.href = "UserAction!ShowProfilePage";
+	});
+	$('#login_TF').bind('click',function(event) {
+		/* Act on the event */
+		$('#login_link').click();
 	});
 });

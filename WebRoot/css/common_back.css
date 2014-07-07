@@ -1,0 +1,117 @@
+body{
+	margin: 0;
+}
+
+#header{
+	background-color: #000000;
+	min-width:980px;
+	height: 160px;
+	margin-bottom: 30px;
+}
+#bg{
+	width: 980px;
+	padding: 10px 0 65px;
+	margin: 0 auto;
+	font-family:'黑体';
+}
+button{
+	background-color: #535353;
+	border: none;
+	border-radius: 2px;
+	width: 60px;
+	height:25px;
+	color:white;
+}
+button:hover{
+	background-color: #2693FF;
+}
+#main-left{
+	/*height: 1290px;*/
+	float: left;
+	width: 680px;
+/*	height:1000px;*/
+	padding-bottom: 50px;
+	border:2px solid #EEEEEE;
+}
+#main-right{
+	/*height: 1290px;*/
+	float: right;
+	width: 265px;
+	border:2px solid #EEEEEE;
+	padding-bottom: 15px;
+}
+.site-info{
+	background-image: url("./imgs/footer.png");
+	height: 160px;
+	margin-top: 50px;
+}
+.clear{
+	clear: both;
+}
+/*排名样式*/
+#main-right-title{
+	background-image: url("../imgs/waiting.png");
+	height: 110px;
+    color: #FFFFFF;
+}
+
+#group-range{
+	margin-top: 50px;
+}
+.range-item{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.range-num{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	color: red;
+	font-size: 20px;
+	border-radius: 10px
+}
+.range-item-info{
+	padding: 10px;
+	font-size: 16px;
+}
+.line-block{
+	display: block;
+	padding: 2px;
+	overflow: hidden;
+}
+ .font-20{
+	font-size: 20px;
+ }
+  .font-40{
+	font-size: 40px;
+ }
+ .margin-auto{
+ 	 margin: 0 auto;
+ }
+ .align-middle{
+ 	 margin-left: auto;
+ 	 margin-right: auto;
+ }
+ .blue-font{
+ 	color: blue;
+ 	font-weight: bold;
+ 	margin: 2px;
+ }
+ ul.menu-style{
+ 	display: block;
+	list-style-type: none;
+ }
+ ul.menu-style li{
+ 	float: left;
+ }
+ .float-left{
+	float: left;
+}
+.float-right{
+	float:right;
+}
+
+.hidden{
+	display: none;
+}

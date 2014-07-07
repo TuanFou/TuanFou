@@ -31,10 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="main-left">
      	    <div id="menu-up">
             	<div id="personalData">
-                    <span class="float-left"><img id="photo" src="${user.photoUrl}" alt="用户头像" /></span>
-                    <div id="data" class="float-left">
+                    <span ><img id="photo" src="${user.photoUrl}" alt="用户头像" /></span>
+                    <div id="data" >
                     	<span class="line-block"><font size="5">${user.userName }</font></span>
-                        <span class="line-block"><a href="#">查看个人资料</a><span>
                     </div>
                 </div>
                 <div class="float-left" id="account-info">

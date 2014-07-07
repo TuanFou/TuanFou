@@ -17,6 +17,8 @@ import org.hibernate.Session;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.tuanfou.dto.ComplaintInfo;
+import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
@@ -45,7 +47,9 @@ public class UserAction extends ActionSupport {
 	private HttpServletResponse response;
 	private Map<String ,Object> session;
 	private UserService userService;
-	
+	private Set<MyCommentInfo> comments;
+	private List<ComplaintInfo> complaints;
+	private List<MessageInfo> messages;
 	@SuppressWarnings("unused")
 	private List<User>  userList;
 	private List<MyHeartGroupFilmInfo> myHeartFilm;
@@ -83,7 +87,7 @@ public class UserAction extends ActionSupport {
 		int id = userService.findUser(username, password);
 		if(id!=-1){
 			session.put("userName", username);
-			session.put("userId", password);
+			session.put("userId", id);
 			out.print("success");
 		}else{
 			out.print("error");
@@ -152,7 +156,8 @@ public class UserAction extends ActionSupport {
 	 */
 	public String ShowProfilePage(){
 		//通过session获取用户id
-		int id = 304010333;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		user = userService.getUserInfo(id); 
 		if(user==null){
@@ -166,7 +171,8 @@ public class UserAction extends ActionSupport {
 	 */
 	public String showUserInfo(){
 		//通过Session获取id
-		int id = 304010333;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		user = userService.getUserInfo(id); 
 		if(user==null){
@@ -176,7 +182,8 @@ public class UserAction extends ActionSupport {
 		}
 	}
 	public String showMyHeartFilmInfo(){
-		int id = 302010010;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		myHeartFilm = userService.getHeartFilmByUserId(id);
 		if(myHeartFilm==null)

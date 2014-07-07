@@ -111,7 +111,15 @@ function regSubmit(obj){
             <div id="catagory">
                 <span id="recommend">推荐</span>
                 <span id="shopping">团购首页</span>
-                <span id="myTF">我的团否</span>
+                <!--<span id="myTF" >我的团否</span>-->
+                 <c:choose>
+                	<c:when test="${empty sessionScope.userId}">
+                		<span id="login_TF" >我的团否</span>
+                	</c:when>
+                	<c:otherwise>
+                		<span id="myTF" >我的团否</span>
+                	</c:otherwise>
+                </c:choose>   
                 <span id="aboutUs">关于团否</span>
             </div>
             <div id="breakline"></div>
@@ -186,7 +194,7 @@ function regSubmit(obj){
 			   <div class="loadMore clear" id="groupFilm_load">加载更多</div>
 			</div>
 			<div id="main-right">
-				<div id="main-right-title"></div>
+				<img src="./imgs/recommend.png">
 				<div id="group-range">					
 				</div>
 			</div>
