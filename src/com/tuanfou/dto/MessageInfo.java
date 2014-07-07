@@ -8,6 +8,7 @@ public class MessageInfo {
 	private String senderName;
 	private String content;
 	private Date time;
+	private String photoUrl;
 	public int getMessageId() {
 		return messageId;
 	}
@@ -37,5 +38,11 @@ public class MessageInfo {
 	}
 	public void setSenderId(int senderId) {
 		this.senderId = senderId;
+	}
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 }

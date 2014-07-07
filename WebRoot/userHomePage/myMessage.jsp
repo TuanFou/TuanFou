@@ -102,31 +102,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title_4">操作</div>
          </div>
          <div class="clear"></div>
-         <div class="message-item ">
-           <div class="message clear"> 
-              <span class="receive-img" ><img class="float-left receive-img"  src="../imgs/girl.jpg"></span>
-              <span class="line-block float-left receiver-name" >LN_HUST</span>
+     	 <c:forEach items="${messages}" var="info">
+           <div class="message-item ">
+             <div class="message clear"> 
+                <span class="receive-img" ><img class="float-left receive-img"  src="${info.photoUrl}"></span>
+                <span class="line-block float-left receiver-name" >${info.senderName}</span>
+             </div>
+              <span class="line-block  float-left message-content">${info.content}</span>
+             <span class="float-left message-time">${info.time}</span>
+             <span class="float-left message-operation">
+                <span><button>回复</button></span>
+                <span><button>删除</button></span>
+             </span>
            </div>
-            <span class="line-block  float-left message-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
-           <span class="float-left message-time">2014-6-1</span>
-           <span class="float-left message-operation">
-              <span><button>回复</button></span>
-              <span><button>删除</button></span>
-           </span>
-         </div>
-         <div class="clear"></div>
-         <div class="message-item">
-           <div class="message">
-              <span class="receive-img" ><img class="float-left receive-img"  src="../imgs/girl.jpg"></span>
-              <span class="line-block float-left receiver-name" >LN_HUST</span>
-           </div>
-            <span class="line-block  float-left message-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
-           <span class="float-left message-time">2014-6-1</span>
-           <span class="float-left message-operation">
-              <span><button>回复</button></span>
-              <span><button>删除</button></span>
-           </span>
-         </div>
+           <div class="clear"></div>
+       </c:forEach>
+       </div>
   </div>
 </body>
 </html>

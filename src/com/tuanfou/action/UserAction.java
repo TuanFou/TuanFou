@@ -14,8 +14,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.ComplaintInfo;
+import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
@@ -50,7 +52,14 @@ public class UserAction extends ActionSupport {
 	private List<MyHeartGroupFilmInfo> myHeartFilm;
 	private Set<MyCommentInfo> comments;
 	private List<ComplaintInfo> complaints;
+	private List<MessageInfo> messages;
 	
+	public List<MessageInfo> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<MessageInfo> messages) {
+		this.messages = messages;
+	}
 	public List<MyHeartGroupFilmInfo> getMyHeartFilm() {
 		return myHeartFilm;
 	}
@@ -236,6 +245,19 @@ public class UserAction extends ActionSupport {
 			return "error";
 		else
 			return "myComplaint";
+	}
+	
+	public String showMyMessage(){
+		int id = 302010010;
+		UserService userService = new UserService();
+		messages = userService.getMyMessages(id );
+		Gson gson = new Gson();
+		String result = gson.toJson(messages);
+		System.out.println(result);
+		if(messages == null)
+			return "error";
+		else
+			return "myMessage";
 	}
 	
 }

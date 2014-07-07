@@ -10,6 +10,7 @@ import com.tuanfou.dao.AccountDao;
 import com.tuanfou.dao.ComplaintDao;
 import com.tuanfou.dao.UserDao;
 import com.tuanfou.dto.ComplaintInfo;
+import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
@@ -114,11 +115,20 @@ public class UserService {
 		return comments;
 	}
 	/*
-	 * 获取用户投诉,未写完。。。。。
+	 * 获取用户投诉
 	 */
 	public List<ComplaintInfo> getMyComplaints(int userId){
-		ComplaintDao complaintDao = new ComplaintDao();
-		List<ComplaintInfo> complaints = complaintDao.getUserComplaints(userId, 1, 10);
+		UserDao userDao = new UserDao();
+		List<ComplaintInfo> complaints = userDao.getUserComplaints(userId);
 		return complaints;
+	}
+	/*
+	 * 获取用户消息
+	 */
+	public List<MessageInfo> getMyMessages(int userId){
+		// TODO Auto-generated method stub
+		UserDao userDao = new UserDao();
+		List<MessageInfo> messages = userDao.getUserMessages(userId);
+		return messages;
 	}
 }
