@@ -1,3 +1,6 @@
+/**
+ * @author yogiman
+ */
 package com.tuanfou.utils;
 
 import java.sql.Date;

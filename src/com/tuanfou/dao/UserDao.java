@@ -21,6 +21,7 @@ import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.User;
 import com.tuanfou.utils.ComparatorComment;
+import com.tuanfou.utils.ComparatorMyCommentInfo;
 import com.tuanfou.utils.HibernateUtil;
 
 public class UserDao {
@@ -102,10 +103,10 @@ public class UserDao {
 	 * @param userComments
 	 * @return
 	 */
-	private Set<Comment> sortCommentDes(Set<Comment> userComments) {
-		List<Comment> list = new ArrayList<Comment>();
+	private Set<MyCommentInfo> sortCommentDes(Set<MyCommentInfo> userComments) {
+		List<MyCommentInfo> list = new ArrayList<MyCommentInfo>();
 		list.addAll(userComments);
-		ComparatorComment com = new ComparatorComment();
+		ComparatorMyCommentInfo com = new ComparatorMyCommentInfo();
 		Collections.sort(list, com);
 		userComments.addAll(list);
 		return userComments;
