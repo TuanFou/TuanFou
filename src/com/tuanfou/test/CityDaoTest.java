@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.google.gson.Gson;
 import com.tuanfou.dao.CityDao;
 import com.tuanfou.pojo.City;
 
@@ -18,10 +19,8 @@ public class CityDaoTest {
 			//System.out.println("failed");
 		//}
 		Map<Integer,String> cities = cityDao.getCities();
-		Iterator<Entry<Integer, String>> it = cities.entrySet().iterator();
-		while(it.hasNext()){
-			Map.Entry<Integer, String> city = (Map.Entry<Integer, String>)it.next();
-		System.out.println("CityID:"+city.getKey()+"	cityName:"+city.getValue());
-		}
+		Gson gson = new Gson();
+		String str = gson.toJson(cities);
+		System.out.println(str);
 	}
 }

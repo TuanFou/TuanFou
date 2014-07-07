@@ -1,9 +1,11 @@
 package com.tuanfou.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.struts2.ServletActionContext;
@@ -13,11 +15,9 @@ import org.hibernate.Session;
 import com.google.gson.Gson;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dao.UserDao;
-import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
-import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
 import com.tuanfou.service.UserService;
@@ -91,58 +91,77 @@ public class UserDaoTest {
 		/**
 		 * 用户登陆测试到此为止
 		 */
-		
-
+//		String matching = "ERROR";
+//		String username = "高笑笑";
+//		String password = "1238";
+//
+//		UserService userService = new UserService();
+//		
+////		System.out.println(userService.findUser("lixiaofeng", "1232"));
+//		Map<Integer,String> list = new HashMap<Integer,String>();
+//		list.put(1, "武汉");
+//		list.put(3, "北京");
+//		Gson gson = new Gson();
+//		String str = gson.toJson(list);
+//		System.out.println(str);
+		User user = new User();
+		user.setUserName("kdf");
+		user.setPassword("123456");
+		user.setEmail("kdf5000@163.com");
+		user.setDescription("hello");
+		City city = new City();
+		city.setId(31201);
+		user.setCity(city);
+		UserService userService = new UserService();
+		if(userService.addUser(user)){
+			System.out.println(user.getId());
+			System.out.println(user.getCity().getId());
+		}else{
+			System.out.println("fail");
+		}
+	}
 		/**
 		 * 新用户注册测试开始
 		 */
-		/*City aCity = new City();
-		User aUser = new User();
-		aCity.setId(31901);
-		aUser.setUserName("testAddUser1");
-		aUser.setPassword("5555566666");
-		aUser.setCity(aCity);
-		UserService us = new UserService();
-		List<User> userList = us.getUserList();
-		Iterator<User> itUser =userList.iterator();
-		boolean res = true;
-		while(itUser.hasNext())
-		{			
-			if(itUser.next().getUserName().equals("testAddUser1")){
-				res = false;
-				break;
-			}
-		}
-		//from test as t where t.id=(select max(s.id) from test s)
-		if(res) {
-		    
-			Account account = new Account();
-			account.setBalance(0);
-			us.addAccount(account);
-			Session session = HibernateUtil.getSession();
-			@SuppressWarnings("unchecked")
-			List<Account> accountList = session.createQuery("from Account account where account.id=(select max(a.id) from Account a)").list();
-			Iterator<Account> itAccount =accountList.iterator();
-			while(itAccount.hasNext())
-			{	
-				//System.out.println(itAccount.next().getId());
-				aUser.setAccount(itAccount.next());
-			}
-			us.addUser(aUser);  
-		}
-		if(res){
-			System.out.println("success");
-		}
-		else{
-			System.out.println("fail");*/
-		UserService userService = new UserService();
-		Set<MyCommentInfo> comments = userService.getMyComments(302010010);
-		Iterator<MyCommentInfo> it= comments.iterator();
-		while(it.hasNext()){
-			MyCommentInfo comment = it.next();
-			System.out.println("content:"+comment.getContent()+"	cinemaName:"+comment.getCinemaName()+"	filmName:"+comment.getFilmName());
-		}
-			
+//		City aCity = new City();
+//		User aUser = new User();
+//		aCity.setId(31901);
+//		aUser.setUserName("testAddUser1");
+//		aUser.setPassword("5555566666");
+//		aUser.setCity(aCity);
+//		UserService us = new UserService();
+//		List<User> userList = us.getUserList();
+//		Iterator<User> itUser =userList.iterator();
+//		boolean res = true;
+//		while(itUser.hasNext())
+//		{			
+//			if(itUser.next().getUserName().equals("testAddUser1")){
+//				res = false;
+//				break;
+//			}
+//		}
+//		//from test as t where t.id=(select max(s.id) from test s)
+//		if(res) {
+//		    
+//			Account account = new Account();
+//			account.setBalance(0);
+//			us.addAccount(account);
+//			Session session = HibernateUtil.getSession();
+//			@SuppressWarnings("unchecked")
+//			List<Account> accountList = session.createQuery("from Account account where account.id=(select max(a.id) from Account a)").list();
+//			Iterator<Account> itAccount =accountList.iterator();
+//			while(itAccount.hasNext())
+//			{	
+//				//System.out.println(itAccount.next().getId());
+//				aUser.setAccount(itAccount.next());
+//			}
+//			us.addUser(aUser);  
+//		}
+//		if(res){
+//			System.out.println("success");
+//		}
+//		else{
+//			System.out.println("fail");
 	}
 	/**
 	 * 新用户注册测试到此为止
@@ -185,4 +204,4 @@ public class UserDaoTest {
 		
 //	}
 
-	}
+	 

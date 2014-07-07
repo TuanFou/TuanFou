@@ -1,7 +1,10 @@
 package com.tuanfou.service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import org.hibernate.Session;
 
 import com.tuanfou.dao.AccountDao;
 import com.tuanfou.dao.ComplaintDao;
@@ -13,18 +16,43 @@ import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.Complaint;
 import com.tuanfou.pojo.User;
+import com.tuanfou.utils.HibernateUtil;
 
 public class UserService {
 	/*
 	 * ���һ���û�
 	 */
 	public boolean addUser(User user){
-		UserDao userDao = new UserDao();
-		if(userDao.addUser(user)){
-			return true;
-		}else{
-			return false;
+		int res = 1;
+		try{
+			List<User> userList = getUserList();
+			Iterator<User> itUser =userList.iterator();	
+			while(itUser.hasNext())
+			{			
+				if(itUser.next().getUserName().equals(user.getUserName())){
+					res = -1;
+				}
+			}
+			if(res==1){
+				Account account = new Account();
+				AccountDao accountDao = new AccountDao();
+				account.setBalance(100);
+				accountDao.add(account);
+				user.setAccount(account);
+				UserDao userDao = new UserDao();
+				if(userDao.addUser(user)){
+					  return true;
+				}
+				else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
+		return false;
 	}
 	/*
 	 * ��ȡ�û��б�
@@ -49,17 +77,7 @@ public class UserService {
 		List<MyHeartGroupFilmInfo> list = userDao.getHeartGroupFilms(id);
 		return list;
 	}
-	/*
-	 * 为新用户添加一个账户
-	 */
-	public boolean addAccount(Account account){
-		AccountDao accountrDao = new AccountDao();
-		if(accountrDao.add(account)){
-			return true;
-		}else{
-			return false;
-		}
-	}
+
 	/*
 	 * 通过用户id获取账户余额
 	 */
@@ -67,6 +85,14 @@ public class UserService {
 		UserDao userDao = new UserDao();
 		Account account = userDao.getAccount(userId);
 		return account.getBalance();
+	}
+	/*
+
+	 *查找用户返回用户id
+	 */
+	public int findUser(String userName,String password ){
+		UserDao userDao = new UserDao();
+		return userDao.findUser(userName, password);
 	}
 	/*
 	 * 获取用户评论

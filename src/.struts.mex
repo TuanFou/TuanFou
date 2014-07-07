@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Struts2Diagram version="2.0">
-  <package name="userPackage" location="10,10" size="280,140">
-    <action name="UserAction" location="33,48" size="150,62">
-      <result name="success">
-        <resourceEdge source="success" routing="0" target="success.jsp" />
+  <package name="userPackage" location="10,10" size="215,296">
+    <action name="UserAction" location="62,77" size="150,146">
+      <result name="userHome">
+        <resourceEdge source="userHome" routing="0" target="userHome.jsp" />
+      </result>
+      <result name="personInfo">
+        <resourceEdge source="personInfo" routing="0" target="personInfo.jsp" />
+      </result>
+      <result name="myHeartFilm">
+        <resourceEdge source="myHeartFilm" routing="0" target="myHeartFilm.jsp" />
+      </result>
+      <result name="login_success">
+        <resourceEdge source="login_success" routing="0" target="success.jsp" />
       </result>
       <result name="error">
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="OrderAction" location="39,189" size="150,104">
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+      <result name="myOrder">
+        <resourceEdge source="myOrder" routing="0" target="myOrder.jsp" />
+      </result>
+      <result name="OrderPay">
+        <resourceEdge source="OrderPay" routing="0" target="pay.jsp" />
+      </result>
+      <result name="pay_success">
+        <resourceEdge source="pay_success" routing="0" target="paySuccess.html" />
+      </result>
     </action>
   </package>
-  <package name="GroupFilm" location="375,172" size="231,103">
-    <action name="GroupFilmAction" location="76,36" size="150,62">
+  <package name="GroupFilm" location="375,172" size="258,137">
+    <action name="GroupFilmAction" location="105,65" size="150,62">
       <result name="detailInfo">
         <resourceEdge source="detailInfo" routing="0" target="groupFilmInfo.jsp" />
       </result>
@@ -19,10 +45,27 @@
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
     </action>
-    <action name="FilterAction" location="20,43" size="150,40" />
+    <action name="FilterAction" location="49,72" size="150,62">
+      <result name="home">
+        <resourceEdge source="home" routing="0" target="home.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
   </package>
   <webResource name="success.jsp" path="/success.jsp" location="45,204" size="150,55" />
   <webResource name="error.jsp" path="/error.jsp" location="355,52" size="150,55" />
   <webResource name="groupFilmInfo.jsp" path="/groupFilmInfo.jsp" location="50,350" size="150,55" />
+  <webResource name="userHome.jsp" path="/userHome.jsp" location="350,350" size="150,55" />
+  <webResource name="personInfo.jsp" path="/userHomePage/personInfo.jsp" location="50,500" size="150,55" />
+  <webResource name="myHeartFilm.jsp" path="/userHomePage/myHeartFilm.jsp" location="350,500" size="150,55" />
+  <webResource name="myOrder.jsp" path="/userHomePage/myOrder.jsp" location="50,650" size="150,55" />
+  <webResource name="pay.jsp" path="/pay.jsp" location="350,650" size="150,55" />
+  <webResource name="paySuccess.html" path="/paySuccess.html" location="50,800" size="150,55" />
+  <webResource name="home.jsp" path="/home.jsp" location="350,800" size="150,55" />
+  <package name="CityPackage" location="661,92" size="170,70">
+    <action name="CityAction" location="90,56" size="150,40" />
+  </package>
 </Struts2Diagram>
 

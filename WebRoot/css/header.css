@@ -39,11 +39,16 @@ div#header div#banner span#logo {
 	}
 div#header div#banner span#username {
 	margin-left:760px;
-	}
+}
+.header-login{
+	margin-left:800px;
+}
+.header-regist{
+	margin-left:20px;
+}
 div#header div#banner span#exit {
 	margin-left:20px;
-	text-decoration:underline;
-	}
+}
 div#header img#logo-img {
 	position:relative;
 	margin-top:15px;

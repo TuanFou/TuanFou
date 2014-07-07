@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="userPackage" extends="struts-default">
+	<package name="userPackage" namespace="/"  extends="struts-default">
 		<!-- 用户操作 -->
 		<action name="UserAction" class="com.tuanfou.action.UserAction">
 			<result name="userHome">/userHome.jsp</result>
@@ -11,9 +11,10 @@
 			<result name="myComment">/userHomePage/myComment.jsp</result>
 			<result name="myComplaint">/userHomePage/myComplaint.jsp</result>
 			<result name="error">/error.jsp</result>
+			<result name="success">/error.jsp</result>
 		</action>
 		<!-- 订单操作 -->
-		<action name="OrderAction" class="com.tuanfou.action.OrderAction">
+		<action name="OrderAction"  class="com.tuanfou.action.OrderAction">
 			<result name="error">/error.jsp</result>
 			<result name="myOrder">/userHomePage/myOrder.jsp</result>
 			<result name="OrderPay">/pay.jsp</result>
@@ -31,6 +32,12 @@
 			class="com.tuanfou.action.FilterAction">
 			<result name="home">/home.jsp</result>
 			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+	
+	<package name="CityPackage" namespace="/"
+		extends="struts-default">
+		<action name="CityAction" class="com.tuanfou.action.CityAction">
 		</action>
 	</package>
 </struts>    
