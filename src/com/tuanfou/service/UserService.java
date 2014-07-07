@@ -87,7 +87,17 @@ public class UserService {
 		return account.getBalance();
 	}
 	/*
-
+	 * 为新用户添加一个账户
+	 */
+	public boolean addAccount(Account account){
+		AccountDao accountrDao = new AccountDao();
+		if(accountrDao.add(account)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/*
 	 *查找用户返回用户id
 	 */
 	public int findUser(String userName,String password ){
