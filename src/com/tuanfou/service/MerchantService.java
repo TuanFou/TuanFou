@@ -1,4 +1,4 @@
-package com.tuanfou.service;
+﻿package com.tuanfou.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -143,7 +143,25 @@ public class MerchantService {
 			return false;
 		}
 	}
-	
+	/**
+	 * 添加商家
+	 */
+	public boolean addMerchant(Merchant merchant){
+		MerchantDao merchantDao = new MerchantDao();
+		if(merchantDao.addMerchant(merchant)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * 获取商家列表
+	 * @return
+	 */
+	public List<Merchant> getMerchantList(){
+		MerchantDao merchantDao = new MerchantDao();
+		return merchantDao.getMerchantList();
+	}
 	/**
 	 * 获得管理员发送来的消息
 	 * @param merchantId
