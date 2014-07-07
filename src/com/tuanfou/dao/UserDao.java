@@ -1,6 +1,7 @@
 package com.tuanfou.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +11,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.tuanfou.dto.CommentInfo;
+import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.dto.OrderInfo;
 import com.tuanfou.pojo.Account;
@@ -17,6 +20,8 @@ import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.Order;
 import com.tuanfou.pojo.User;
+import com.tuanfou.utils.ComparatorComment;
+import com.tuanfou.utils.ComparatorMyCommentInfo;
 import com.tuanfou.utils.HibernateUtil;
 
 public class UserDao {
@@ -62,27 +67,50 @@ public class UserDao {
 		}
 		return userList;	
 	}
-	/*
-	 * ��ȡ�û����ж���
+	/**
+	 * 获得用户的所有评论
+	 * @param id
+	 * @return
 	 */
-	public Set<Comment> getUserComments(int id){
-		Set<Comment> userComments = new HashSet<Comment>();
+	public Set<MyCommentInfo> getUserComments(int id){
+		Set<MyCommentInfo> userComments = new HashSet<MyCommentInfo>();
 		try{
 			session = HibernateUtil.getSession();
 			User user = (User)session.get(User.class, new Integer(id));
 			Set<Comment> comments = user.getComments();
 			for(Iterator<Comment> it =comments.iterator(); it.hasNext(); ){
-				Comment comment = (Comment)it.next();
-				userComments.add(comment);
+				Comment aComment = (Comment)it.next();
+				MyCommentInfo commentInfo = new MyCommentInfo();
+				commentInfo.setContent(aComment.getContent());
+				GroupFilm groupFilm = aComment.getGroupFilm();
+				commentInfo.setPicUrl(groupFilm.getPicUrl());
+				commentInfo.setFilmName(groupFilm.getFilm().getFilmName());
+				commentInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
+				commentInfo.setTime(aComment.getCreateTime());
+				userComments.add(commentInfo);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			HibernateUtil.closeSession();
 		}
+		userComments = sortCommentDes(userComments);
 		return userComments;
 	}
 	
+	/**
+	 * Sort the user's comments by the Date DES order
+	 * @param userComments
+	 * @return
+	 */
+	private Set<MyCommentInfo> sortCommentDes(Set<MyCommentInfo> userComments) {
+		List<MyCommentInfo> list = new ArrayList<MyCommentInfo>();
+		list.addAll(userComments);
+		ComparatorMyCommentInfo com = new ComparatorMyCommentInfo();
+		Collections.sort(list, com);
+		userComments.addAll(list);
+		return userComments;
+	}
 	//获得数据库对象
 	public User getUser(int userId){
 		try{

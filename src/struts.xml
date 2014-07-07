@@ -8,6 +8,8 @@
 			<result name="personInfo">/userHomePage/personInfo.jsp</result>
 			<result name="myHeartFilm">/userHomePage/myHeartFilm.jsp</result>
 			<result name="login_success">/success.jsp</result>
+			<result name="myComment">/userHomePage/myComment.jsp</result>
+			<result name="myComplaint">/userHomePage/myComplaint.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="success">/error.jsp</result>
 		</action>

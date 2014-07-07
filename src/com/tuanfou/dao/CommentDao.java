@@ -2,6 +2,7 @@ package com.tuanfou.dao;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.hibernate.Session;
 import com.tuanfou.dto.CommentInfo;
 import com.tuanfou.pojo.Comment;
 import com.tuanfou.pojo.User;
+import com.tuanfou.utils.ComparatorCommentInfo;
 import com.tuanfou.utils.HibernateUtil;
 
 public class CommentDao {
@@ -100,6 +102,7 @@ public class CommentDao {
 				commentInfo.setStar(comment.getStar());
 				commentList.add(commentInfo);
 			}
+			commentList = sortComment(commentList);
 			return commentList;
 		}
 		catch(Exception e){
@@ -109,5 +112,17 @@ public class CommentDao {
 		finally{
 			HibernateUtil.closeSession();
 		}
+	}
+	
+	/**
+	 * This method makes the comment list in a decrease order
+	 * @param commentList
+	 * @return
+	 */
+	private List<CommentInfo> sortComment(List<CommentInfo> commentList) {
+		ComparatorCommentInfo comparator = new ComparatorCommentInfo();
+		Collections.sort(commentList, comparator);
+		return commentList;
+		
 	}
 }

@@ -56,16 +56,22 @@ public class CommentDaoTest {
 //		commentsList = commentDao.getCommentsByGroupFilmId(1);
 //		System.out.println(commentsList);
 		
-		CommentDao commentDao = new CommentDao();
-		CommentService commentService = new CommentService();
-		//System.out.println(commentDao.getStarByGroupFilmId(1));
-		List<CommentInfo> commentList = commentService.getCommentList(2, 1, 10);
+//		CommentDao commentDao = new CommentDao();
+//		CommentService commentService = new CommentService();
+//		//System.out.println(commentDao.getStarByGroupFilmId(1));
+//		List<CommentInfo> commentList = commentService.getCommentList(2, 1, 10);
+//		Gson gson = new Gson();
+//		String result = gson.toJson(commentList);
+//		System.out.println(result);
+//		if(commentService.postComment(4, 302010010, "很好看", 5))
+//			System.out.println("评论成功");
+//		else
+//			System.out.println("评论失败");
+		
+		CommentDao com = new CommentDao();
 		Gson gson = new Gson();
-		String result = gson.toJson(commentList);
-		System.out.println(result);
-		if(commentService.postComment(4, 302010010, "很好看", 5))
-			System.out.println("评论成功");
-		else
-			System.out.println("评论失败");
+		String str = gson.toJson(com.getCommentInfo(1));
+		System.out.println(str);
+		
 	}
 }

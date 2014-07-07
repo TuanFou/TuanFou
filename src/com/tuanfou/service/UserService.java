@@ -2,13 +2,19 @@ package com.tuanfou.service;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 
 import com.tuanfou.dao.AccountDao;
+import com.tuanfou.dao.ComplaintDao;
 import com.tuanfou.dao.UserDao;
+import com.tuanfou.dto.ComplaintInfo;
+import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.Account;
+import com.tuanfou.pojo.Comment;
+import com.tuanfou.pojo.Complaint;
 import com.tuanfou.pojo.User;
 import com.tuanfou.utils.HibernateUtil;
 
@@ -81,10 +87,28 @@ public class UserService {
 		return account.getBalance();
 	}
 	/*
+
 	 *查找用户返回用户id
 	 */
 	public int findUser(String userName,String password ){
 		UserDao userDao = new UserDao();
 		return userDao.findUser(userName, password);
+	}
+	/*
+	 * 获取用户评论
+	 */
+	public Set<MyCommentInfo> getMyComments(int userId){
+		UserDao userDao = new UserDao();
+		Set<MyCommentInfo> comments = userDao.getUserComments(userId);
+		//排序函数
+		return comments;
+	}
+	/*
+	 * 获取用户投诉,未写完。。。。。
+	 */
+	public List<ComplaintInfo> getMyComplaints(int userId){
+		ComplaintDao complaintDao = new ComplaintDao();
+		List<ComplaintInfo> complaints = complaintDao.getUserComplaints(userId, 1, 10);
+		return complaints;
 	}
 }

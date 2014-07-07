@@ -91,39 +91,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title_3">时间</div>
             <div class="title_4">操作</div>
          </div>
-         <div class="clear"></div>
-         <div class="comment-item">
-           <div class="comment-film">
-              <span ><img class="float-left" width="50px" height="60px" src="../imgs/1.png"></span>
-              <div class="float-left comment-film-info" >
-                  <span class="line-block">沉睡魔咒</span>
-                  <span class="line-block">洪山天河国际影城</span>
-              </div>
-           </div>
-            <span class="line-block  float-left comment-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
-           <span class="float-left comment-time">2014-6-1</span>
-           <span class="float-left comment-operation">
-              <span><button>修改</button></span>
-              <span><button>删除</button></span>
-           </span>
-         </div>
-
-         <div class="clear"></div>
-         <div class="comment-item">
-           <div class="comment-film">
-              <span ><img class="float-left" width="50px" height="60px" src="../imgs/1.png"></span>
-              <div class="float-left comment-film-info" >
-                  <span class="line-block">沉睡魔咒</span>
-                  <span class="line-block">洪山天河国际影城</span>
-              </div>
-           </div>
-            <span class="line-block  float-left comment-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
-           <span class="float-left comment-time">2014-6-1</span>
-           <span class="float-left comment-operation">
-              <span><button>修改</button></span>
-              <span><button>删除</button></span>
-           </span>
-         </div>
+         <c:forEach items="${comments}" var="commentInfo">	
+	         <div class="clear"></div>
+	         <div class="comment-item">
+	           <div class="comment-film">
+	              <span ><img class="float-left" width="50px" height="60px" src="./imgs/1.png"></span>
+	              <div class="float-left comment-film-info" >
+	                  <span class="line-block">${commentInfo.filmName}</span>
+	                  <span class="line-block">${commentInfo.cinemaName}</span>
+	              </div>
+	           </div>
+	            <span class="line-block  float-left comment-content">${commentInfo.content}</span>
+	           <span class="float-left comment-time">${commentInfo.time}</span>
+	           <span class="float-left comment-operation">
+	              <span><button>修改</button></span>
+	              <span><button>删除</button></span>
+	           </span>
+	         </div>
+         </c:forEach>
       </div>
   </div>
 </body>
