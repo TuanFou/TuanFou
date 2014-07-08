@@ -20,6 +20,11 @@ public class ApplyFilmInfo {
 	int star;              //星级
 	private Map<Integer,String> tags;
 	
+	
+	public ApplyFilmInfo(){
+		
+	}
+
 	public Map<Integer, String> getTags() {
 		return tags;
 	}
