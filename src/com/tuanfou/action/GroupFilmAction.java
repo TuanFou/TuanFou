@@ -56,13 +56,38 @@ public class GroupFilmAction extends ActionSupport {
 	 */
 	public String loadMore() throws IOException{
 		req = ServletActionContext.getRequest();
+		req.setCharacterEncoding("utf-8");
 		int page = Integer.parseInt( req.getParameter("page"));
 		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
-		int fistResult = (page-1)*pageSize;
+		String area = req.getParameter("area");
+		String status = req.getParameter("status");
+		String[] tags = req.getParameterValues("tags[]");
 		List<String> tagList = new ArrayList<String>();
+		List<String> list = java.util.Arrays.asList(tags);
+		for(String str:list){
+			if(str.equals("全部")){
+				tagList.clear();
+				break;
+			}else{
+				tagList.add(str);
+			}
+		}
+		if(area.equals("全部")){
+			area = "%";
+		}
+		int type = -1;
+		if(status.equals("正在上映")){
+			type = 0;
+		}
+		if(status.equals("即将上映")){
+			type = 1;
+		}
+		
+		int fistResult = (page-1)*pageSize;
+		
 		try{
 			GroupFilmService gs = new GroupFilmService();
-			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(fistResult, pageSize, "%", -1, tagList);
+			List<GroupFilmBriefInfo> groupFilms = gs.loadGroupFilmsBriefInfo(fistResult, pageSize, area, type, tagList);
 			response =  ServletActionContext.getResponse();
 			response.setCharacterEncoding("utf-8");
 			PrintWriter  out = response.getWriter();

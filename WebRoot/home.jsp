@@ -34,6 +34,175 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	#tinycontent{background:#ffffff; font-size:1.1em;}
 	</style>
   </head>
+<style>
+.selected{
+	background: blue;
+	border-radius: 2px;
+}
+
+</style>
+<script>
+function showInfo(data){
+	var text = $('#film-content').html();
+	var jsonData = eval('('+data+')');
+	if($.isEmptyObject(jsonData)){//如果数据为空
+		$('#groupFilm_load').unbind();
+		$('#groupFilm_load').css("background","#EEEEEE");
+		$('#groupFilm_load').text("没有更多内容了！");
+		return;
+	}
+	for(var index in jsonData){
+		var groupFilm = jsonData[index];
+		text += "<a  href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+ groupFilm['GroupFilmId'] +
+		"'><div class='group-item' id='"+groupFilm['GroupFilmId'] +"'>"+
+			    "<span class='film-img'><img src='" + groupFilm['filmPhotoUrl'] + "'></img></span>"+
+				"<span class='item-name'>"+
+					"<span>"+  groupFilm['filmName'] +"</span>"+
+				"</span>"+ 
+				"<span class='film-cinema'>"+
+					"<span><img class='position-img' src='./imgs/direction.png'></img><font size='1'>&nbsp;"+ groupFilm['cinemaName'] + "</font></span>"+
+				"</span>"+	
+				"<span class='item-price'><span class='prime-price'>￥"+groupFilm['originalPrice']+"</span><span class='current-price'>￥"+groupFilm['currentPrice']+"</span></span>"+
+				"</span>"+			
+			"</div></a>";	
+	}
+	// text += "<div class='loadMore clear' id='groupFilm_load'>加载更多</div>";
+	$('#film-content').html(text);
+}
+//显示团购电影信息
+var page = 1;
+var area = '';	
+var tags = [];	
+var status = ''; 
+function showFirstPage(data){
+		page = 2;
+		$('#film-content').html('');
+		$('#groupFilm_load').text("加载更多");
+		$("#groupFilm_load").unbind();
+		$("#groupFilm_load").bind('click', function(){ 
+			alert(area);
+			alert(status);
+			alert(tags);
+			$.ajax({
+			 	url: "GroupFilmAction!loadMore?page="+page+"&pageSize=8",
+			 	type: 'get',
+			 	data:{'area':area,'status':status,'tags':tags},
+			 	datatype:"json",
+			 	success:function(data){
+				        showInfo(data);
+				        page++;    
+			 	},
+			 	error:function(error) {
+			 		/* Act on the event */
+			 		alert("加载数据失败");
+			 	}
+		 	});
+		});
+		var text = '';
+		var jsonData = eval('('+data+')');
+		if($.isEmptyObject(jsonData)){//如果数据为空
+			$('#groupFilm_load').unbind();
+			$('#groupFilm_load').css("background","#EEEEEE");
+			$('#groupFilm_load').text("没有更多内容了！");
+			return;
+		}
+		for(var index in jsonData){
+			var groupFilm = jsonData[index];
+			text += "<a  href='GroupFilmAction!showGroupFilmDetail?groupFilmId="+ groupFilm['GroupFilmId'] +
+			"'><div class='group-item' id='"+groupFilm['GroupFilmId'] +"'>"+
+				    "<span class='film-img'><img src='" + groupFilm['filmPhotoUrl'] + "'></img></span>"+
+					"<span class='item-name'>"+
+						"<span>"+  groupFilm['filmName'] +"</span>"+
+					"</span>"+ 
+					"<span class='film-cinema'>"+
+						"<span><img class='position-img' src='./imgs/direction.png'></img><font size='1'>&nbsp;"+ groupFilm['cinemaName'] + "</font></span>"+
+					"</span>"+	
+					"<span class='item-price'><span class='prime-price'>￥"+groupFilm['originalPrice']+"</span><span class='current-price'>￥"+groupFilm['currentPrice']+"</span></span>"+
+					"</span>"+			
+				"</div></a>";	
+		}
+		// text += "<div class='loadMore clear' id='groupFilm_load'>加载更多</div>";
+		$('#film-content').html(text);
+}
+function checkSelect(){
+	    //地区选项 id="area-filter" 
+	    area = '';
+	    status = '';
+	    tags = [];
+	    $.each($('#area-filter').children('li'), function(index, val) {
+	    	 /* iterate through array or object */
+	    	 if($('#'+val.id).attr('class')=='selected')
+	    	 	  area = $('#'+val.id).text().split('(',1);
+	    });
+	    //alert(area);
+	    //影片类型 id="type-filter" 
+	    $.each($('#type-filter').children('li'), function(index, val) {
+	    	 /* iterate through array or object */
+	    		if($('#'+val.id).attr('class') == 'selected'){
+	    			tags.push($('#'+val.id).text().split('(',1));
+	    		}
+	    });
+	   // alert(tags);
+	    //上映状态
+	    $.each($('#status-filter').children('li'), function(index, val) {
+	    	 /* iterate through array or object */
+	    		 if($('#'+val.id).attr('class')=='selected')
+	    	 	    status = $('#'+val.id).text().split('(',1);
+	    });
+    	//alert(status);
+    	if(area==''){
+    		area = '全部';
+    	}
+    	if(status == ''){
+    		status = '全部';
+    	}
+    	if(tags.length==0){
+    		tags.push('全部');
+    	}
+    	var tags1 = [];
+	    var area1 = area;
+	    var status1 = status;
+		tags1.push('全部');
+		alert(tags1);
+		alert(area1);
+		alert(status1);
+    	/*向后台请求数据*/
+    	 $.ajax({
+		 	url: 'GroupFilmAction!loadMore?page=1&pageSize=8',
+		 	type: 'get',
+		 	data:{'area':"青山区",'status':status1,'tags':tags1},
+		 	datatype:"json",
+		 	success:function(data){
+		 		alert(data);
+			    showFirstPage(data);
+		 	},
+		 	error:function(error) {
+		 		/* Act on the event */
+		 		for(var index in error){
+
+		 			alert(error[index]);
+		 		}
+		 	}
+		 });
+}
+function requestFilter(ele){
+	if($('#'+ele.id).attr('class') == 'selected'){
+		$('#'+ele.id).attr('class', '');
+		checkSelect();
+		return ;
+	}
+	if($('#'+ele.id).parent("ul").attr('id') != "type-filter" ){
+		//设置其他节点为选择
+		$('#'+ele.id).attr('class', 'selected');
+  	$.each($('#'+ele.id).siblings('li'), function(index, val) {
+  		 /* iterate through array or object */
+  		 $('#'+val.id).attr('class', '');
+  	});
+	}
+	$('#'+ele.id).attr('class', 'selected');
+	checkSelect();
+}
+</script>
 <script type="text/javascript">
 function registClick(){
 	$('#reg_link').click();
@@ -111,13 +280,23 @@ function regSubmit(obj){
             <div id="catagory">
                 <span id="recommend">推荐</span>
                 <span id="shopping">团购首页</span>
-                <span id="myTF">我的团否</span>
+                <!--<span id="myTF" >我的团否</span>-->
+                 <c:choose>
+                	<c:when test="${empty sessionScope.userId}">
+                		<span id="login_TF" >我的团否</span>
+                	</c:when>
+                	<c:otherwise>
+                		<span id="myTF" >我的团否</span>
+                	</c:otherwise>
+                </c:choose>   
                 <span id="aboutUs">关于团否</span>
             </div>
+            <div class="clear"></div>
             <div id="breakline"></div>
         </div>
 	 	<div id="bg">
 			<div id="main-left">
+			   <img src="./imgs/ad.png" id="adImg">
 			   <div  class="filter">
 			  		 <div class="filter-section">
 						<div class="filter-type">所在城市:</div>
@@ -127,24 +306,24 @@ function regSubmit(obj){
 					</div>
 					<div class="filter-section">
 						<div class="filter-type">所在区域:</div>
-						<ul class="inline-block-list">
+						<ul id="area-filter" class="inline-block-list">
 							<c:forEach items="${areas}" var="area">
-								<li id="${area.areaId}">${area.areaName}(${area.filmNumber})</li>
+								<li id="area_${area.areaId}" onclick="requestFilter(this)">${area.areaName}(${area.filmNumber})</li>
 							</c:forEach>
 						</ul>
 					</div>
 				  	<div class="filter-section">
 						<div class="filter-type">影片类型:</div>
-						<ul class="inline-block-list">
+						<ul id="type-filter" class="inline-block-list">
 						    <c:forEach items="${filmTags}" var="tag">
-								<li id="tag_${tag.tagId}">${tag.tagName}(${tag.filmNum})</li>
+								<li id="tag_${tag.tagId}" onclick="requestFilter(this)">${tag.tagName}(${tag.filmNum})</li>
 							</c:forEach>
 						</ul>
 					</div>
 				    <div  class="filter-section">
 						<div class="filter-type">国家/地区:</div>
-						<ul class="inline-block-list">
-							<li>全国(20)</li>
+						<ul id="city-filter"  class="inline-block-list">
+							<li class="selected">全部(20)</li>
 							<li>中国大陆(20)</li>
 							<li>中国香港(20)</li>
 							<li>中国台湾(20)</li>
@@ -155,9 +334,9 @@ function regSubmit(obj){
 					</div>
 					<div class="filter-section">
 						<div class="filter-type">发布时间:</div>
-						<ul class="inline-block-list">
-							<c:forEach items="${filmStatusInfo}" var="info">
-								<li >${info.status}(${info.filmNum})</li>
+						<ul id="status-filter"  class="inline-block-list">
+							<c:forEach items="${filmStatusInfo}" var="info" varStatus="idx" >
+								<li id="status_${idx.index}" onclick="requestFilter(this)">${info.status}(${info.filmNum})</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -186,7 +365,7 @@ function regSubmit(obj){
 			   <div class="loadMore clear" id="groupFilm_load">加载更多</div>
 			</div>
 			<div id="main-right">
-				<div id="main-right-title"></div>
+				<img src="./imgs/recommend.png">
 				<div id="group-range">					
 				</div>
 			</div>

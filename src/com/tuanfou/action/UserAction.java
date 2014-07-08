@@ -3,34 +3,26 @@ package com.tuanfou.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.ComplaintInfo;
 import com.tuanfou.dto.MessageInfo;
 import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
-import com.tuanfou.pojo.Account;
 import com.tuanfou.pojo.City;
-import com.tuanfou.pojo.Comment;
-import com.tuanfou.pojo.GroupFilm;
 import com.tuanfou.pojo.User;
-import com.tuanfou.service.CommentService;
-import com.tuanfou.service.GroupFilmService;
 import com.tuanfou.service.OrderService;
-import com.tuanfou.service.UserService;
-import com.tuanfou.utils.HibernateUtil;
-import com.tuanfou.utils.Utils;
+import com.tuanfou.service.UserService;;
 
 public class UserAction extends ActionSupport {
 	/**
@@ -43,40 +35,35 @@ public class UserAction extends ActionSupport {
 	 */
 	private User user;
 	
-	@SuppressWarnings("unused")
 	private HttpServletRequest req;
 	private HttpServletResponse response;
+	private Map<String ,Object> session;
 	private UserService userService;
-	@SuppressWarnings("unused")
-	private List<User>  userList;
-	private List<MyHeartGroupFilmInfo> myHeartFilm;
 	private Set<MyCommentInfo> comments;
 	private List<ComplaintInfo> complaints;
 	private List<MessageInfo> messages;
+	@SuppressWarnings("unused")
+	private List<User>  userList;
+	private List<MyHeartGroupFilmInfo> myHeartFilm;
 	
-	public List<MessageInfo> getMessages() {
-		return messages;
-	}
-	public void setMessages(List<MessageInfo> messages) {
-		this.messages = messages;
-	}
 	public List<MyHeartGroupFilmInfo> getMyHeartFilm() {
 		return myHeartFilm;
 	}
 	public void setMyHeartFilm(List<MyHeartGroupFilmInfo> myHeartFilm) {
 		this.myHeartFilm = myHeartFilm;
 	}
+	
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public void setComments(Set<MyCommentInfo> comments){
-		this.comments = comments;
-	}
-	public Set<MyCommentInfo> getComments(){
+	public Set<MyCommentInfo> getComments() {
 		return comments;
+	}
+	public void setComments(Set<MyCommentInfo> comments) {
+		this.comments = comments;
 	}
 	public List<ComplaintInfo> getComplaints() {
 		return complaints;
@@ -84,90 +71,70 @@ public class UserAction extends ActionSupport {
 	public void setComplaints(List<ComplaintInfo> complaints) {
 		this.complaints = complaints;
 	}
+	public List<MessageInfo> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<MessageInfo> messages) {
+		this.messages = messages;
+	}
+
 	/**
 	 * 用户登录
 	 * 参数：用户名username;密码password
+	 * @throws IOException 
 	 */
-	public String login(){
-		
-		String matching = ERROR;
+	public String login() throws IOException{
 		req = ServletActionContext.getRequest();
-		String username = req.getParameter("username");
+		req.setCharacterEncoding("utf-8");
+		session = ActionContext.getContext().getSession();
+		response = ServletActionContext.getResponse();
+		PrintWriter out = response.getWriter();
+		String username = req.getParameter("userName");
 		String password = req.getParameter("password");
-		try{
-
-			Session session = HibernateUtil.getSession();
-			String hql = "from User user where user.userName=:username and user.password=:password";
-			Query query = session.createQuery(hql);
-			query.setParameter("username", username);
-			query.setParameter("password", password);
-			@SuppressWarnings("unchecked")
-			List<User> userList = query.list();
-			Iterator<User> itUser =userList.iterator();
-			if(itUser.hasNext())
-				{			
-					matching = SUCCESS;
-				}
-		}catch(Exception e){
-			e.printStackTrace();
-			matching = ERROR;
-		}finally{
-			HibernateUtil.closeSession();
+		UserService userService = new UserService();
+		int id = userService.findUser(username, password);
+		if(id!=-1){
+			session.put("userName", username);
+			session.put("userId", id);
+			out.print("success");
+		}else{
+			out.print("error");
 		}
-		return matching;
+		return null;
 	}
-	
 	/**
 	 *注册新用户
 	 *参数：用户名username;密码password;城市ID cityId
+	 * @throws IOException 
 	 */
-	public boolean regist(){
-		boolean res = true;
+	public void regist() throws IOException{
+		response =  ServletActionContext.getResponse();
+		PrintWriter out = response.getWriter();
 		req = ServletActionContext.getRequest();
-		User aUser = new User();
-		String username = req.getParameter("username");
+		req.setCharacterEncoding("utf-8");
+		int cityId = Integer.parseInt(req.getParameter("cityId"));
+		String userName = req.getParameter("userName");
 		String password = req.getParameter("password");
-		//cityId 要获取参数值
-		int cityId = 31901;
-		aUser.setUserName(username);
-		aUser.setPassword(password);
-		try{
-			UserService us = new UserService();
-			List<User> userList = us.getUserList();
-			Iterator<User> itUser =userList.iterator();
-			
-			while(itUser.hasNext())
-			{			
-				if(itUser.next().getUserName().equals(username)){
-					res = false;
-				}
-			}
+		String email = req.getParameter("email");
+		String description = req.getParameter("description");
+		City city = new City();
+		city.setId(cityId);
+		User user = new User();
+		user.setCity(city);
+		user.setUserName(userName);
+		user.setPassword(password);
+		user.setEmail(email);
+		user.setDescription(description);
 		
-			if(res) {
-				City city = new City();
-				city.setId(cityId);
-				aUser.setCity(city);
-				Account account = new Account();
-				account.setBalance(0);
-				us.addAccount(account);
-				Session session = HibernateUtil.getSession();
-				@SuppressWarnings("unchecked")
-				List<Account> accountList = session.createQuery("from Account account where account.id=(select max(a.id) from Account a)").list();
-				Iterator<Account> itAccount =accountList.iterator();
-				while(itAccount.hasNext())
-				{			
-					aUser.setAccount(itAccount.next());
-				}
-				us.addUser(aUser);  
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-			res = false;
-		}finally{
-			HibernateUtil.closeSession();
+		UserService userService = new UserService();
+		if(userService.addUser(user)){
+			session = ActionContext.getContext().getSession();
+			session.put("userName", user.getUserName());
+			session.put("userId", user.getId());
+			out.print("success");
+		}else{
+			out.print("failed");
 		}
-		return res;
 	}
 	/*
 	 * ��ȡ�û��б�href="UserAction!getUserList"
@@ -197,7 +164,8 @@ public class UserAction extends ActionSupport {
 	 */
 	public String ShowProfilePage(){
 		//通过session获取用户id
-		int id = 304010333;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		user = userService.getUserInfo(id); 
 		if(user==null){
@@ -211,7 +179,8 @@ public class UserAction extends ActionSupport {
 	 */
 	public String showUserInfo(){
 		//通过Session获取id
-		int id = 304010333;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		user = userService.getUserInfo(id); 
 		if(user==null){
@@ -221,15 +190,27 @@ public class UserAction extends ActionSupport {
 		}
 	}
 	public String showMyHeartFilmInfo(){
-		int id = 302010010;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		myHeartFilm = userService.getHeartFilmByUserId(id);
 		if(myHeartFilm==null)
 			return "error";
 		return "myHeartFilm";	
 	}
+	/*
+	 * 退出登录
+	 */
+	public void logout() throws IOException{
+		session = ActionContext.getContext().getSession();
+		session.clear();
+		response = ServletActionContext.getResponse();
+		PrintWriter out  = response.getWriter();
+		out.print("success");
+	}
 	public String showMyComment(){
-		int id = 302010010;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		comments = userService.getMyComments(id);
 		if(comments == null)
@@ -238,7 +219,8 @@ public class UserAction extends ActionSupport {
 			return "myComment";
 	}
 	public String showMyComplaint(){
-		int id = 302010010;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		complaints = userService.getMyComplaints(id);
 		if(complaints == null)
@@ -248,7 +230,8 @@ public class UserAction extends ActionSupport {
 	}
 	
 	public String showMyMessage(){
-		int id = 302010010;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		UserService userService = new UserService();
 		messages = userService.getMyMessages(id );
 		Gson gson = new Gson();
@@ -259,5 +242,4 @@ public class UserAction extends ActionSupport {
 		else
 			return "myMessage";
 	}
-	
 }

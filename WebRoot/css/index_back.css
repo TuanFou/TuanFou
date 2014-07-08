@@ -1,4 +1,4 @@
-﻿body{
+body{
 	margin: 0;
 }
 
@@ -12,7 +12,7 @@
 	width: 980px;
 	padding: 10px 0 65px;
 	margin: 0 auto;
-	/*font-family:'黑体';*/
+	font-family:'黑体';
 }
 button{
 
@@ -24,52 +24,39 @@ button:hover{
 	/*height: 1290px;*/
 	float: left;
 	width: 680px;
-	/*border:2px solid #EEEEEE;*/
+	border:2px solid #EEEEEE;
 }
-img#adImg {
-	margin-left:28px;
-	}
-/*#main-right{
-	height: 1290px;	
+#main-right{
+	/*height: 1290px;*/
 	float: right;
 	width: 265px;
-	border:2px solid #EEEEEE;
+/*	border:2px solid #EEEEEE;*/
 	padding-bottom: 15px;
-}*/
+}
 .site-info{
 	background-image: url("../imgs/footer.png");
-	height: 50px;
+	height: 160px;
 	margin-top: 50px;
-	
 }
-.filter {
-	/*outline:1px solid red;*/
-	width:625px;
-	margin:0 auto;
-	}
 .filter-section{
 	display: block;
 }
 .filter-type{
 	padding-top:3px;
-	/*padding-left: 20px;*/
+	padding-left: 20px;
 	font-size: 13px;
-	font-weight:bold;
-	font:'微软雅黑';
-	color:#bd6037;
+	font-weight: 600;
 	position: absolute;
 }
 ul.inline-block-list{
 	display: block;
 	list-style-type: none;
-	margin-left:35px;
+	margin-left: 50px;
 }
 li{
 	display: inline-block;
+	font-size: 13px;
 	margin: 2px;
-	color:#bd6037;
-	font-family:'微软雅黑';
-	font-size:7px;
 }
 .show-type{
 	border:2px solid #EEEEEE;
@@ -79,15 +66,14 @@ li{
 }
 .group-item{
 	height: 165px;
-	width:280px;
+	width:305px;
 	/*border:1px solid #EEEEEE;*/
-	margin: 15px 30px;
+	margin: 15px;
 	float: left;
-	/*outline:1px solid red;*/
 }
 
 div.group-item:hover{
-	 box-shadow: 1px 1px 2px  #888888;	
+	 box-shadow: 2px 2px 3px  #888888;	
 }
 .film-img,.item-price,.item-name,.item-tag,.film-cinema,.join-info{
 	float: left;
@@ -97,38 +83,10 @@ div.group-item:hover{
 .item-name,.item-tag,.film-cinema,.join-info{
 	overflow: hidden;
 }
-.item-name {
-	margin-top:40px;
-	margin-left:10px;
-	font-size:24px;
-	color:#613b3a;
-	font-family:'微软雅黑';
-	font-weight:bold;
-	}
-/*.film-cinema {
-	font-size:14px;
-	color:#1c4154;
-	}*/
-.cinema-name {
-	font-size:14px;
-	color:#1c4154;
-	}
-.item-price {
-	margin-top:30px;
-	/*outline:1px solid red;*/
+.item-price{
+	padding: 5px;
+	margin-left: 100px;
 }
-.prime-price {
-	font-size:12px;
-	text-decoration:line-through;
-	color:#999999;
-	}
-.current-price {
-	margin-left:35px;
-	font-size:18px;
-	color:#613b3a;
-	font-weight:bold;
-	font-family:Arial;
-	}
 .film-img{
 	height: 160px;
 }
@@ -158,6 +116,33 @@ a{
 	font-size: 12px;
 	padding-right: 22px;
 }
+#main-right-title{
+	background-image: url("../imgs/waiting.png");
+	height: 110px;
+    color: #FFFFFF;
+}
+#group-range{
+	margin-top: 40px;
+	border-right: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+}
+.range-item{
+	margin-left: 10px;
+	margin-right: 10px;
+	clear: both;
+}
+.range-num{
+
+}
+.range-film-img img{
+ 	width: 90px;
+ 	height: 125px;
+ 	float: left;
+ }
+div.range-item-info {
+	width:100px;
+	font-size: 13px;
+}
 .clear{
 	clear: both;
 }
@@ -173,14 +158,4 @@ a{
 }
 div.loadMore:hover{
 	background-color: #EEEEEE
-}
-/*菜单样式*/
-#recommend:hover,#shopping:hover,#myTF:hover,#aboutUs:hover{
-	/*border-radius: 2px;
-	color: white;
-	background: blue;*/
-	cursor:pointer;
-}
-.filter-section li{
-	cursor:pointer;
 }
