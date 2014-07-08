@@ -1,17 +1,13 @@
 body{
 	margin:0;
 }
-#header{
-	background-color: #000000;
-	min-width:980px;
-	height: 160px;
-	margin-bottom: 30px;
-}
+
 #bg{
 	width: 980px;
 	padding: 10px 0 65px;
-	margin: 0 auto;
-	font-family:'黑体';
+	margin: 80px auto;
+	margin-bottom: 20px;
+	/*font-family:'黑体';*/
 }
 #main-left{
 	/*height: 1290px;*/
@@ -93,4 +89,12 @@ ul{
 	margin: 50px auto;
 	margin-left: 50px;
 	margin-right: 50px
+}
+.clear{
+	clear: both;
+}
+.site-info{
+	background-image: url("../imgs/footer.png") ;
+	height: 50px;
+	margin-top: 50px;
 }

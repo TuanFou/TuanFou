@@ -70,9 +70,14 @@ $(document).ready(function(){
 		// text += "<div class='loadMore clear' id='loadMore'>加载更多</div>";
 		$('#group-range').html(text);
 	}
+	var tags = [];
+    var area = '全部';
+    var status = '全部';
+	tags.push('全部');
 	 $.ajax({
 	 	url: 'GroupFilmAction!loadMore?page=1&pageSize=8',
 	 	type: 'get',
+	 	data:{'area':area,'status':status,'tags':tags},
 	 	datatype:"json",
 	 	success:function(data){
 		        showInfo(data);
@@ -101,6 +106,7 @@ $(document).ready(function(){
 		$.ajax({
 		 	url: "GroupFilmAction!loadMore?page="+page+"&pageSize=8",
 		 	type: 'get',
+		 	data:{'area':area,'status':status,'tags':tags},
 		 	datatype:"json",
 		 	success:function(data){
 			        showInfo(data);
@@ -143,4 +149,7 @@ $(document).ready(function(){
 		/* Act on the event */
 		$('#login_link').click();
 	});
+
+	/*过滤*/
+	
 });

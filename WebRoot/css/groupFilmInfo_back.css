@@ -4,9 +4,6 @@ hr{
 body{
 	position: relative;
 }
-a{
-	color: #bd6037;
-}
 .groupfilm-info{
 	width:610px;
 /*    border:2px solid #EEEEEE;*/
@@ -16,24 +13,14 @@ a{
 	width: 180px;
 	height:250px;
 }
-#buying_bt,#login_bt{
+#buying_bt{
 	position: absolute;
-	margin-left: 40px;
-	margin-top: -50px;
-	width: 100px;
-	font-size:16px;
-	font-family:'微软雅黑';
-	font-weight:bold;
+	margin-left: -130px;
+	margin-top: 190px;
+	width: 80px;
 	background: yellow;
 	color: black;
 }
-.light-text-51 {
-	font-size:45px;
-	font-family:'微软雅黑';
-	font-weight:bold;
-	color:#613b3a;
-	
-	}
 .float-left{
 	float:left;
 }
@@ -47,10 +34,7 @@ a{
 	/*padding-top: 20px;*/
 	padding-left: 30px;
 	height: 58px;
-	width:60px;
-	font-family:'微软雅黑';
-	font-size:10px;
-	text-decoration:underline;
+	width:100px;
 }
 .float-right{
 	float:right;
@@ -58,39 +42,20 @@ a{
 .top-info{
 	padding-top: 30px;
 }
-
 .bg-blue{
-	background-color: #bd6037;
-	text-align:center;
-	font-family:'微软雅黑';
+	background-color: #00238c;
 	margin-bottom: 5px;
 	border-radius: 5px;
 	width: 150px;
-	font-size: 12px;
+	font-size: 16px;
 	padding: 2px;
 	color: white;
 }
-.line-block-infoName {
-	font-family:'微软雅黑';
-	color:#bd6037;
-	font-weight:bold;
-	}
-.line-block-infoTime {
-	margin-top:10px;
-	color:#bd6037;
-	font-family:'微软雅黑';
-	}
-.line-block-crew {
-	font-size:7px;
-	margin-top:5px;
-	color:#bd6037;
-	font-family:'微软雅黑';
-	}
 .detial-info{
-	border:1px solid #f2dfd7;
+	border: 2px solid #EEEEEE;
 	padding:15px;
 	height: 120px;
-	width: 375px;
+	width: 390px;
 	font-size: 13px;
 	line-height: 1.3;
 }
@@ -105,11 +70,7 @@ a{
 	height: 80px;
 	width: 138px;
 	padding: 15px;
-	font-size:16px;
-	font-family:'微软雅黑';
-	font-weight:bold;
-	color:#bd6037;
-	/*border:  1px solid #EEEEEE;*/
+	border:  1px solid #EEEEEE;
 }
 .film-introduce{
 	/*height: 80px;*/
@@ -117,13 +78,8 @@ a{
 	overflow: hidden;
 	padding: 15px;
 	margin-left: 10px;
-	border-left:1px dotted #f2dfd7;
+	border:  1px solid #EEEEEE;
 }
-#film-content {
-	font-size:10px;
-	line-height:20px;
-	color:#bd6037;
-	}
 /*鑿滃崟*/
 #nav-menu-area{
 	width:610px;
@@ -134,59 +90,48 @@ ul.nav-menu {
 	 padding: 0;
 	 margin: 0 auto;
 }
-.selected-menu{
-	background-color:#bd6037;
-	color:white!important;
-}
 ul.nav-menu li:hover{
-	background-color: #bd6037;
+	background-color: blue;
 	color:white;
 }
 ul.nav-menu li{
 	width:150px;
  	height: 30px;
  	text-align: center;
- 	border: 1px solid #bd6037;
- 	line-height:30px ;
-	color:#bd6037;
-	padding-top:6px;
+ 	border: 1px solid #000000;
+ 	line-height:30px 
 
 }
 .ads-area{
-	margin-left:18px;
-	}
-/*.ads-area{
 	width: 603px;
 	height:100px;
-	background-color: #bd6037;
+	background-color: blue;
 	margin: 15px auto;
-}*/
+}
+.selected-menu{
+	background-color: blue;
+	color:white;
+}
 /*绛変綘鍏ヤ紮*/
 #parter-info{
 	margin: 0 auto;
 	width:600px;
 }
-.parter-title{
-	display:block;
-	width:605;
-	border-bottom:5px solid #bd6037;
-	margin-top:40px;
-	margin-left:35px;
-	font-family:'微软雅黑';
-	font-weight:bold;
-	color:#bd6037;
+#parter-title{
+	margin-left: 50px;
+	margin-bottom: 10px;
 }
 .waiting-parter-film{
 	width:248px;
-	margin-left:50px;
+	margin-left: 50px;
 	height:190px;
-	border: 1px solid #bd6037;
-	background-color: #bd6037;
+	border: 1px solid #EEEEEE;
+	background-color: #EEEEEE;
 }
 .invite-area{
 	width:248px;
 	height:140px;
-	border: 1px solid #bd6037;
+	border: 1px solid #EEEEEE;
 	padding: 25px;
 }
 .relative-film-img{
@@ -196,60 +141,40 @@ ul.nav-menu li{
 	 height: 160px;
 }
 .parter-film-name{
-	border-bottom: 3px solid #dcbb48;
-	color:#dcbb48;
-	font-family:'微软雅黑';
-	font-size:15px;
-	font-weight:bold;
+	border-bottom: 3px solid #00218C;
 }
 .parter-film-info{
 	margin-top: 20px;
 	margin-left: 20px;
 }
 .parter-film-cinema{
-	text-align:right;
-	background:#dcbb48;
-	font-family:'微软雅黑';
-	font-size:10px;
-	color:white;
+	text-align: right;
 }
 .parter-film-wn,.parter-film-cinema,.parter-film-name,.parter-film-addr{
 	width:150px;
 }
-.parter-film-addr{
-	margin-top:5px;
-	font-size:10px;
-	color:ddbf49;
-	line-height:20px;
-	}
 ul.parter-list{
 	list-style-type: none;
 	padding: 0px;
 }
 ul.parter-list li{
-	color:#bd6037;
-	font-size:14px;
 	margin: 2px;
 }
-ul.parter-list li .float-right{
-	font-size:12px;
-	color:#bd6037;
-	}
 /*鍟嗗淇℃伅*/
 #merchant-info{
 	width: 600px;
-	margin: 0px;
+	margin: 0 auto;
+
 	margin-top: 50px;
 	/*border: 1px solid #EEEEEE;*/
 }
 .merchant-info-title,.notice-info-title{
-	border-bottom: 5px solid #bd6037;
+	border-bottom: 3px solid #00218C;
 }
 #merchant-detial-info{
-	margin-left:20px;
+	background-color: #F3F3F3;
 	height: 125px;
 	padding: 20px;
-	width:606px;
 }
 #map{
 	background-color: #AAAAAA;
@@ -257,71 +182,46 @@ ul.parter-list li .float-right{
 	height: 120px;
 }
 #merchant-info-area{
-	width:360px;
+	width:365px;
 	font-size: 14px;
-	margin-left: 45px;
+	margin-left: 15px;
 }
-.line-block-cinemaName {
-	font-size:15px;
-	line-height:30px;
-	font-family:"微软雅黑";
-	font-weight:bold;
-	font-style:italic;
-	color:#bd6037;
-	}
-.line-block-content {
-	font-size:10px;
-	line-height:18px;
-	}
 /*璐拱椤荤煡*/
 #buying-notice{
-	width: 606px;
-	margin-left:0px;
+	width: 600px;
+	margin: 0 auto;
 	margin-top: 50px;
 /*	border: 1px solid #EEEEEE;*/
 }
 #notice-info-table{
-	border-top:1px solid #f2dfd7;
-	border-bottom: 1px solid #f2dfd7;
+	border-top:1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	border-left:none;
 	border-right: none;
 	border-collapse: collapse;
 	line-height: 2.5;
 	text-indent:5px;
-	color:#bd6037;
+	color:#868686;
 	font-size: 15px;
-	margin-left:35px;
-	width:605px;
-	font-family:"微软雅黑";
-	font-size:13px;
 }
 td{
-	border-top:1px solid #f2dfd7;
-	border-bottom:1px solid #f2dfd7;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
 }
 td.left-title{
 	width: 80px;
-	border-right: 1px solid #f2dfd7;
+	border-right: 1px solid #ccc;
 }
 
 /*璇勪环璇︽儏*/
-.link-block-comment{
-	font-size:14px;
-	font-family:'微软雅黑';
-	line-height:35px;
-	}
-.link-block-Pcomment {
-	font-size:14px;
-	font-family:'微软雅黑';
-	line-height:27px;
-	
-	}
 #comment-info{
-	width: 606px;
+	width: 600px;
+	margin: 0 auto;
 	margin-top: 50px;
+/*	border: 1px solid #EEEEEE;*/
 }
 .comment-info-title{
-	border-bottom: 5px solid #bd6037;
+	border-bottom:1px solid #ccc;
 	text-align: bottom;
 }
 .comment-left,.comment-mid,.comment-right{
@@ -353,16 +253,10 @@ td.left-title{
 /*评论区*/
 .comment-type{
 	display: block;
-	margin-top: 50px;
-	margin-left:35px;
-	width:606px;
+	margin-top: 50px
 }
 .type-title{
 	position: absolute;
-	font-size:15px;
-	font-family:"微软雅黑";
-	font-weight:bold;
-	color:#bd6037;
 }
 ul.type{
 	list-style-type: none;
@@ -371,22 +265,14 @@ ul.type{
 ul.type li{
 	float:left;
 	margin-right: 10px;
-	border: 1px solid #bd6037;
+	border: 2px solid #0040ff;
 	padding: 2px;
 	margin-bottom: 2px;
 	font-size: 13px;
-	color:#bd6037;
 }
 /* 品论内容*/
-.mark-red{
-	font-size:13px;
-	font-family:'微软雅黑';
-	color:#bd6037;
-	}
 #all-comments{
 	margin-top: 20px;
-	margin-left:35px;
-	width:605px;
 }
 .comments-title{
 	background-color: #F3F3F3;
@@ -395,7 +281,6 @@ ul.type li{
 }
 .comments-centent{
 	padding: 20px;
-	color:#888888;
 	border: 1px solid #EEEEEE;
 }
 .comment{
@@ -422,7 +307,7 @@ div.loadMore:hover{
 	background-color: #EEEEEE
 }
 /*鍙充晶淇℃伅*/
-/*#group-range{
+#group-range{
 	margin-top: 40px;
 	border-right: 1px solid #EEEEEE;
 	border-left: 1px solid #EEEEEE;
@@ -443,7 +328,7 @@ div.loadMore:hover{
 div.range-item-info {
 	width:100px;
 	font-size: 13px;
-}*/
+}
 /*购买弹窗*/
 .buying-info{
 	background: #EEEEEE;

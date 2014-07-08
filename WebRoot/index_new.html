@@ -14,7 +14,62 @@
 	<script src="./js/jquery.js" type="text/javascript"></script>
 	<script src="./js/index.js" type="text/javascript"></script>
   </head>
-  
+  <style>
+  .selected{
+  		background: blue;
+  		border-radius: 2px;
+
+  }
+  .unselected{
+
+  }
+  </style>
+  <script>
+
+  function checkSelect(){
+  	    //地区选项 id="area-filter" 
+  	    var area = '';
+  	    $.each($('#area-filter').children('li'), function(index, val) {
+  	    	 /* iterate through array or object */
+  	    	 if($('#'+val.id).attr('class')=='selected')
+  	    	 	  area = $('#'+val.id).text().split('(',1);
+  	    });
+  	    alert(area);
+  	    //影片类型 id="type-filter" 
+  	    var tags = [];
+  	    $.each($('#type-filter').children('li'), function(index, val) {
+  	    	 /* iterate through array or object */
+  	    		if($('#'+val.id).attr('class') == 'selected'){
+  	    			tags.push($('#'+val.id).text().split('(',1));
+  	    		}
+  	    });
+  	    alert(tags);
+  	    //上映状态
+  	    var status = '';
+  	    $.each($('#status-filter').children('li'), function(index, val) {
+  	    	 /* iterate through array or object */
+  	    		 if($('#'+val.id).attr('class')=='selected')
+  	    	 	    status = $('#'+val.id).text().split('(',1);
+  	    });
+        alert(status);
+  }
+  function requestFilter(ele){
+  	if($('#'+ele.id).attr('class') == 'selected'){
+  		$('#'+ele.id).attr('class', '');
+  		return ;
+  	}
+  	if($('#'+ele.id).parent("ul").attr('id') != "type-filter" ){
+  		//设置其他节点为选择
+  		$('#'+ele.id).attr('class', 'selected');
+	  	$.each($('#'+ele.id).siblings('li'), function(index, val) {
+	  		 /* iterate through array or object */
+	  		 $('#'+val.id).attr('class', '');
+	  	});
+  	}
+ 	$('#'+ele.id).attr('class', 'selected');
+ 	checkSelect();
+  }
+  </script>
   <body>
 	<div id="middle-background">
         <div id="header">
@@ -30,8 +85,8 @@
                 <span id="myTF">我的团否</span>
                 <span id="aboutUs">关于团否</span>
 	        </div>
-            <div id="breakline"></div>
-       
+	        <div class="clear"></div>
+            <div id="breakline"></div>       
     </div>
 	<div id="bg">
 		<div id="main-left">
@@ -44,32 +99,32 @@
 				</div>
 				<div class="filter-section">
 					<div class="filter-type">所在区域:</div>
-					<ul class="inline-block-list">
-						<li>全部(20)</li>
-						<li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
-                        <li>洪山区(20)</li>
+					<ul id="area-filter" class="inline-block-list">
+						<li id="0" onclick="requestFilter(this)">全部(20)</li>
+						<li id="1" onclick="requestFilter(this)">洪山区(20)</li>
+                        <li id="2" onclick="requestFilter(this)">洪山区(20)</li>
+                        <li id="3" onclick="requestFilter(this)">洪山区(20)</li>
+                        <li id="4" onclick="requestFilter(this)">洪山区(20)</li>
+                        <li id="5" onclick="requestFilter(this)">洪山区(20)</li>
+                        <li id="6" onclick="requestFilter(this)">洪山区(20)</li>
 					</ul>
 				</div>
-			  	<div class="filter-section">
+			  	<div  class="filter-section">
 					<div class="filter-type">影片类型:</div>
-					<ul class="inline-block-list">
-						<li>全部(20)</li>
-						<li>爱情(20)</li>
-						<li>喜剧(20)</li>
-						<li>动画(20)</li>
-						<li>科幻(20)</li>
-						<li>剧情(20)</li>
-						<li>奇幻(20)</li>
-						<li>剧情(20)</li>
+					<ul id="type-filter" class="inline-block-list">
+						<li id="type_1" onclick="requestFilter(this)" >全部(20)</li>
+						<li id="type_2" onclick="requestFilter(this)">爱情(20)</li>
+						<li id="type_3" onclick="requestFilter(this)">喜剧(20)</li>
+						<li id="type_4" onclick="requestFilter(this)">动画(20)</li>
+						<li id="type_5" onclick="requestFilter(this)">科幻(20)</li>
+						<li id="type_6" onclick="requestFilter(this)">剧情(20)</li>
+						<li id="type_7" onclick="requestFilter(this)">奇幻(20)</li>
+						<li id="type_8" onclick="requestFilter(this)">剧情(20)</li>
 					</ul>
 				</div>
-			    <div  class="filter-section">
+			    <div   class="filter-section">
 					<div class="filter-type">国家/地区:</div>
-					<ul class="inline-block-list">
+					<ul id="city-filter" class="inline-block-list">
 						<li>全国(20)</li>
 						<li>中国大陆(20)</li>
 						<li>中国香港(20)</li>
@@ -81,10 +136,10 @@
 				</div>
 				<div class="filter-section">
 					<div class="filter-type">发布时间:</div>
-					<ul class="inline-block-list">
-						<li>全部(20)</li>
-						<li>正在上映(20)</li>
-						<li>即将上映(20)</li>
+					<ul id="status-filter"  class="inline-block-list">
+						<li id="status_1" onclick="requestFilter(this)">全部(20)</li>
+						<li id="status_2" onclick="requestFilter(this)">正在上映(20)</li>
+						<li id="status_3" onclick="requestFilter(this)">即将上映(20)</li>
 					</ul>
 				</div>
 		    </div>

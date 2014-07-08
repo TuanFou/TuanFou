@@ -84,8 +84,6 @@ button:hover{
 .line-block{
 	display: block;
 	overflow: hidden;
-	line-height:20px;
-	
 }
 .line-block-film {
 	width:220px;
@@ -169,7 +167,8 @@ button:hover{
  	 margin-right: auto;
  }
  .blue-font{
- 	color: blue;
+ 	color:#bd6037;
+	font-family:'微软雅黑';
  	font-weight: bold;
  	margin: 2px;
  }
