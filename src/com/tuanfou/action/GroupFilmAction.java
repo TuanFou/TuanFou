@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -110,9 +111,10 @@ public class GroupFilmAction extends ActionSupport {
 		String status = req.getParameter("status");
 		System.out.println(status);
 		String  tags = req.getParameter("tags");
-		System.out.println(tags);
+		Pattern comma = Pattern.compile(",");
+		String[] tagString = comma.split(tags);
 		List<String> tagList = new ArrayList<String>();
-		List<String> list = java.util.Arrays.asList(tags);
+		List<String> list = java.util.Arrays.asList(tagString);
 		for(String str:list){
 			if(str.equals("全部")){
 				tagList.clear();

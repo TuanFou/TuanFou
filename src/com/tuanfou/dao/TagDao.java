@@ -125,7 +125,7 @@ public class TagDao {
 				TagInfo tagInfo = new TagInfo();
 				tagInfo.setTagId(tag.getId());
 				tagInfo.setTagName(tag.getTagName());
-				tagInfo.setFilmNum(tag.getFilmNum());
+				//tagInfo.setFilmNum(tag.getFilmNum());
 				tagInfoList.add(tagInfo);
 			}
 			System.out.println("Success");
