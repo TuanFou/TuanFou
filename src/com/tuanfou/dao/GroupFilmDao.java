@@ -285,6 +285,7 @@ public class GroupFilmDao {
 	 * @param groupFilmId
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private int getCountComments(int groupFilmId){
 		int i = 0;
 		try{

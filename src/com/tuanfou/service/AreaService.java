@@ -33,6 +33,12 @@ public class AreaService {
 			areaInfo.setFilmNumber(number);
 			areaInfoList.add(areaInfo);
 		}
+		AreaInfo areaInfo = new AreaInfo();
+		int total = groupFilmDao.getTotalGroupFilmNum();
+		areaInfo.setAreaId(0);
+		areaInfo.setAreaName("全部");
+		areaInfo.setFilmNumber(total);
+		areaInfoList.add(0, areaInfo);
 		return areaInfoList;		
 	}
 }
