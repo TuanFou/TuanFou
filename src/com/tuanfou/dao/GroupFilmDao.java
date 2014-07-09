@@ -493,10 +493,12 @@ public class GroupFilmDao {
 		 try{
 			 session = HibernateUtil.getSession();
 			 GroupFilm groupFilm = (GroupFilm) session.get(GroupFilm.class, groupFilmId);
+			 session.beginTransaction();
 			 User user = new User();
 			 user.setId(userId);
 			 groupFilm.getUsers().add(user);
 			 session.update(groupFilm);
+			 session.getTransaction().commit();
 		 }catch(Exception e){
 			 e.printStackTrace();
 			 return false;

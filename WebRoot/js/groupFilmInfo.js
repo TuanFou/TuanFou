@@ -59,4 +59,70 @@ $(document).ready(function(){
 		/* Act on the event */
 		$('#login_link').click();
 	});
+
+	//点击入伙
+	$('#joinGroup').bind('click', function(event) {
+		/* Act on the event */
+		if($("#username").length==0){
+			$('#login_link').click();
+			return ;
+		}
+		//用户id
+		//alert($("#username").attr('class'));
+		var userId = $("#username").attr('class');
+		var groupFilmId =document.groupFilmForm.groupFilmId.value;
+		$.ajax({
+		 	url: 'GroupFilmAction!addHeartUser?groupFilmId='+groupFilmId+"&userId="+userId,
+		 	type: 'get',
+		 	datatype:"json",
+		 	success:function(data){
+		 		// alert(data);
+			     if(data=="success"){
+			     	window.location.reload();
+			     }else{
+			     	alert('入伙失败');
+			     }
+		 	},
+		 	error:function(error) {
+		 		/* Act on the event */
+		 		alert("入伙失败!");
+		 	}
+		}); 
+		//groupFilmId
+		//alert(document.groupFilmForm.groupFilmId.value);
+	});
+	/*
+	  添加评论
+	*/
+	$('#addComment').bind('click', function(event) {
+		//用户没有登录不能评论
+		if($("#username").length==0){
+			$('#login_link').click();
+			return ;
+		}
+		var groupFilmId = document.commentForm.groupFilmId.value;
+		var userId = document.commentForm.userId.value;
+		var data = document.commentForm.myComment.value;
+		alert(groupFilmId);
+		alert(userId);
+		alert(data);
+		$.ajax({
+		 	url: 'UserAction!addComment?groupFilmId='+groupFilmId+"&userId="+userId,
+		 	type: 'post',
+		 	data:{'content':data,"star":"4"},
+		 	datatype:"json",
+		 	success:function(data){
+		 		// alert(data);
+			     if(data=="success"){
+			     	window.location.reload();
+			     }else{
+			     	alert('评论失败');
+			     }
+		 	},
+		 	error:function(error) {
+		 		/* Act on the event */
+		 		alert("评论失败!");
+		 	}
+		}); 
+	});
 });

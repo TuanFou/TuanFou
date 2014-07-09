@@ -13,6 +13,7 @@ import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 import com.tuanfou.dto.GroupFilmForm;
+import com.tuanfou.dto.InvitedMember;
 import com.tuanfou.dto.RecommendFilm;
 
 import com.tuanfou.pojo.GroupFilm;
@@ -60,19 +61,27 @@ public class GroupFilmDaoTest {
 //		System.out.println(result);
 		//groupfilmDetailedInfoTest();
  
-		GroupFilmForm groupFilmForm= new GroupFilmForm();
-		groupFilmForm.setMerchantId(1);
-		groupFilmForm.setFilmId(5);
-		groupFilmForm.setCinemaId(319010101);
-		groupFilmForm.setCurrentPrice(18.5f);
-		groupFilmForm.setOriginalPrice(25.0f);
-		groupFilmForm.setStartDate(new java.sql.Date(new java.util.Date().getTime()));
-		groupFilmForm.setEndDate(new java.sql.Date(new java.util.Date().getTime()));
-		groupFilmForm.setRemark("不错的电影");
-		groupFilmForm.setPhotoUrl("./imgs/1.png");
-		
+//		GroupFilmForm groupFilmForm= new GroupFilmForm();
+//		groupFilmForm.setMerchantId(1);
+//		groupFilmForm.setFilmId(5);
+//		groupFilmForm.setCinemaId(319010101);
+//		groupFilmForm.setCurrentPrice(18.5f);
+//		groupFilmForm.setOriginalPrice(25.0f);
+//		groupFilmForm.setStartDate(new java.sql.Date(new java.util.Date().getTime()));
+//		groupFilmForm.setEndDate(new java.sql.Date(new java.util.Date().getTime()));
+//		groupFilmForm.setRemark("不错的电影");
+//		groupFilmForm.setPhotoUrl("./imgs/1.png");
+//		
+//		GroupFilmService groupFilmService = new GroupFilmService();
+//		groupFilmService.addGroupFilm(groupFilmForm);
+		/*
+		 * 测试想看人员
+		 */
 		GroupFilmService groupFilmService = new GroupFilmService();
-		groupFilmService.addGroupFilm(groupFilmForm);
+		List<InvitedMember> list = groupFilmService.getJoinMember(1, 0, 5);
+		Gson gson = new Gson();
+		String str = gson.toJson(list);
+		System.out.println(str);
 	}
 	public static void groupfilmBriefInfoTest(){
 //		private int id;

@@ -23,6 +23,7 @@ import com.tuanfou.dto.CommentInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 import com.tuanfou.dto.GroupFilmForm;
+import com.tuanfou.dto.InvitedMember;
 import com.tuanfou.dto.RecommendFilm;
 import com.tuanfou.service.CommentService;
 import com.tuanfou.service.GroupFilmService;
@@ -37,11 +38,19 @@ public class GroupFilmAction extends ActionSupport {
 	private HttpServletRequest req;
 	private HttpServletResponse response;
 	private GroupFilmDetailedInfo groupFilmDetailInfo;
+	List<InvitedMember> invitedMembers; //指定电影的想看人
 	private List<CommentInfo> commentList;
 	private GroupFilmForm groupFilmForm;//团购电影申请信息
 	private File filmFile;//上传的电影海报
     private String fileName; //上传文件名
-    
+	public List<InvitedMember> getInvitedMembers() {
+		return invitedMembers;
+	}
+
+
+	public void setInvitedMembers(List<InvitedMember> invitedMembers) {
+		this.invitedMembers = invitedMembers;
+	}
     public void setFilmFileFileName(String fileName)  {
         System.out.println("FileName : " + fileName);
            this .fileName = fileName;
@@ -78,8 +87,10 @@ public class GroupFilmAction extends ActionSupport {
 		try{
 			GroupFilmService gs = new GroupFilmService();
 			CommentService commentService = new CommentService();
+			invitedMembers = gs.getJoinMember(id, 0, 5);
 			groupFilmDetailInfo = gs.getGroupFilmDetailInfo(id);
 			commentList = commentService.getCommentList(id, 1, 5);
+			
 			return "detailInfo";
 		}catch(Exception e){
 			e.printStackTrace();

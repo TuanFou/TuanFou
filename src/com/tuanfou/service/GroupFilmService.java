@@ -13,6 +13,7 @@ import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
 import com.tuanfou.dto.GroupFilmForm;
+import com.tuanfou.dto.InvitedMember;
 import com.tuanfou.dto.RecommendFilm;
 import com.tuanfou.pojo.Area;
 import com.tuanfou.pojo.Cinema;
@@ -146,8 +147,18 @@ public class GroupFilmService {
 			return false;
 		}
 	}
+	/*
+	 * 添加想看的用户
+	 */
 	public boolean addHeartUser(int groupFilmId,int userId){
 		GroupFilmDao groupFilmDao = new GroupFilmDao();
 		return groupFilmDao.addHartUser(userId, groupFilmId);
+	}
+	/*
+	 * 李处指定团购电影的想看用户
+	 */
+	public List<InvitedMember> getJoinMember(int groupFilmId,int firstResult,int maxResult){
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		return groupFilmDao.getInvitedMembers(groupFilmId, firstResult, maxResult);
 	}
 }

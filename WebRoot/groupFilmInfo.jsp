@@ -31,7 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 #tinybox{position:absolute; display:none; /*padding:10px*/; background:#ffffff url(image/preload.gif) no-repeat 50% 50%; border:10px solid #e3e3e3; z-index:2000;}
 #tinymask{position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000000; z-index:1500;}
 #tinycontent{background:#ffffff; font-size:1.1em;}
-
+#joinGroup:hover {
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 function registClick(){
@@ -89,6 +91,12 @@ function regSubmit(obj){
 		}
 	});
  }
+ function addComment(){
+ 		if($("#username").length==0){
+			$('#login_link').click();
+			return ;
+		}
+ }
  </script>
 <body>
 	<div id="middle-background">
@@ -101,7 +109,7 @@ function regSubmit(obj){
            	   			<span  class="header-regist"><a  id="reg_link" >注册</a></span>
                 	</c:when>
                 	<c:otherwise>
-                		<span id="username">${sessionScope.userName}</span>
+                		<span id="username" class="${sessionScope.userId}">${sessionScope.userName}</span>
                 		<span id="exit">退出登录</span>
                 	</c:otherwise>
                 </c:choose>     
@@ -129,7 +137,7 @@ function regSubmit(obj){
 		<!--购票窗口*/ -->
 		<div id="hidden">
 			<div class="buying-info">
-				<form method="post" action="orderInfo.jsp">
+				<form name="groupFilmForm" method="post" action="orderInfo.jsp">
 					<input name="groupFilmId" type="hidden" value="${groupFilmDetailInfo.groupFilmId}" /> 
 					<input name="filmName" type="hidden" value="${groupFilmDetailInfo.filmName}" /> 
 					<input name="cinemaAddress" type="hidden" value="${groupFilmDetailInfo.cinemaAddress}" /> 
@@ -167,13 +175,13 @@ function regSubmit(obj){
 				</div>
 				<div class="top-info">
 					<span class="float-left price-area"><font size="1" family="微软雅黑" color="#613b3a">￥</font><span class="light-text-51">${groupFilmDetailInfo.currentPrice}</span><font size="1" family="微软雅黑" color="#613b3a">元</font></span>
-					<span class="float-left join-group">入伙(${groupFilmDetailInfo.partnerNum})</span>
+					<span class="float-left join-group" id="joinGroup">入伙(${groupFilmDetailInfo.partnerNum})</span>
 					<div class="">
 						<span class="float-left bg-blue" >3D/IMAX3D/中国巨幕</span>
 						<span class="float-left bg-blue line-block">${groupFilmDetailInfo.cinemaName}</span>
 					</div>
 				</div>
-				<div class="detial-info float-left">
+				<div class="detial-info float-left" id="${groupFilmDetailInfo.groupFilmId}">
 					<span class="line-block line-block-infoName"><font size="5"> ${groupFilmDetailInfo.filmName}</font></span>
 					<span class="line-block line-block-infoTime"><font size="3">${groupFilmDetailInfo.period}分钟&nbsp&nbsp&nbsp${groupFilmDetailInfo.realeaseDate}中国上映</font></span>
 					<span class="line-block line-block-crew" >导演：${groupFilmDetailInfo.director}</span>
@@ -218,13 +226,11 @@ function regSubmit(obj){
 					</div>
 				</div>
 				<div class="float-left invite-area">
-					<span><font family="微软雅黑" size="3" color="#bd6037">已入伙(200)</font></span>
+					<span><font family="微软雅黑" size="3" color="#bd6037">已入伙(${groupFilmDetailInfo.partnerNum})</font></span>
 					<ul class="parter-list">
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
+					 <c:forEach items="${invitedMembers}" var="info">
+						<li id="user_${info.userId}">${info.userName} <a class="float-right" href="#">发送邀请</a></li>
+					 </c:forEach> 
 					</ul>
 					<span class="float-right" id="change-parters"><font size="1" ><a href="#">换一批</a></font></span>
 				</div>
@@ -338,7 +344,17 @@ function regSubmit(obj){
 							</span>
 					 	  </div> 
 					   </c:forEach>
-						<div class="loadMore">加载更多</div>
+						<div class="add-comment">
+						    <div>我要评价:</div></br>
+							<form name="commentForm" method="post" action="#">
+							    <input name="userId" type="hidden" value="${sessionScope.userId}"/>
+							    <input name="groupFilmId" type="hidden" value="${groupFilmDetailInfo.groupFilmId}"/>
+								<textarea rows="5" cols="77" name="myComment">
+									
+								</textarea>
+							</form>
+								<button id="addComment">提交</button>
+						</div>
 					</div>
 				</div>
 			</div>

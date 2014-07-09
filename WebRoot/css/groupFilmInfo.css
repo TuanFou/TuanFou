@@ -409,14 +409,14 @@ ul.type li{
 	line-height: 1.5;
 	margin-top: 5px;
 }
-.loadMore{
+.add-comment{
 	border: 1px solid #EEEEEE;
-	width:200px;
 	text-align: center;
 	margin: 0 auto;
 	padding:5px;
-	font-size: 15px;
-	border-radius: 2px;
+}
+#addComment{
+	margin-left: 500px;
 }
 div.loadMore:hover{
 	background-color: #EEEEEE

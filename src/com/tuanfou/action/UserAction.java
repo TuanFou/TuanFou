@@ -21,6 +21,7 @@ import com.tuanfou.dto.MyCommentInfo;
 import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.City;
 import com.tuanfou.pojo.User;
+import com.tuanfou.service.CommentService;
 import com.tuanfou.service.OrderService;
 import com.tuanfou.service.UserService;;
 
@@ -241,5 +242,26 @@ public class UserAction extends ActionSupport {
 			return "error";
 		else
 			return "myMessage";
+	}
+	/*
+	 * 用户发表评论
+	 */
+	public void addComment() throws IOException{
+		session = ActionContext.getContext().getSession();
+		req = ServletActionContext.getRequest();
+		response =  ServletActionContext.getResponse();
+		response.setCharacterEncoding("utf-8");
+		PrintWriter  out = response.getWriter();
+		
+		int userId = (Integer) session.get("userId");
+		int groupFilmId = Integer.valueOf(req.getParameter("groupFilmId"));
+		String content = req.getParameter("content");
+		int star = Integer.valueOf(req.getParameter("star"));
+		CommentService commentService = new CommentService();
+		if(commentService.postComment(groupFilmId, userId, content, star)){
+			out.print("success");		
+		}else{
+			out.print("error");
+		}
 	}
 }
