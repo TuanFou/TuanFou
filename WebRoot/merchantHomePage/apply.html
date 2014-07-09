@@ -17,8 +17,14 @@
     padding: 2px;
   }
   #photo{
-    height: 500px;
-    width:100px;
+    height: 200px;
+    width:200px;
+    text-align: center;
+    margin-right: 20px;
+  }
+  #photo img {
+    width:130px;
+    height:180px;
   }
   #preson-info{
     margin-left: 100px;
@@ -34,16 +40,21 @@
     margin-left: 150px;
   }
   </style>
+  <script>
+ 
+</script>
+ 
   <body>
   <div  class="bg">
       <span><font size="5">申请发布</font></span>
       <div id="info-area">
         <div id="photo" class="floet-left" >
-          <img   src="../imgs/girl2.jpg" alt="用户头像" />
-          <input type="file" ></input>
+        <form name="applyform" method="post" action="GroupFilmAction!applyGroupFilm" enctype="multipart/form-data">
+          <img   id="uploadImg" src="../imgs/girl2.jpg" alt="用户头像" />
+          <input type="file" name="filmFile" ></input>
         </div>
         <div id="preson-info" class="float-left">
-          <form>
+        
             <span class="line-block">电&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp影&nbsp&nbsp<input type="text" value="kdf5000" ></input></span>
             <span class="line-block">电&nbsp&nbsp影&nbsp&nbsp院&nbsp&nbsp
                 <select>

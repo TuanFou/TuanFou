@@ -34,7 +34,7 @@ function submitForm (){
         <div id="header">
              <div id="banner">
                 <span id="logo">团否网</span>
-                <span id="username">KDF5000</span>
+                <span id="username">${sessionScope.userName}</span>
                 <span id="exit">退出登录</span>
             </div>
             <img id="logo-img" src="./imgs/logo_tuanfou.png"/>

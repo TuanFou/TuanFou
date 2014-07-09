@@ -1,8 +1,16 @@
 package com.tuanfou.action;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +33,21 @@ public class GroupFilmAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private static final int BUFFER_SIZE = 16*1024;//缓冲区大小
 	private HttpServletRequest req;
 	private HttpServletResponse response;
 	private GroupFilmDetailedInfo groupFilmDetailInfo;
 	private List<CommentInfo> commentList;
 	private GroupFilmForm groupFilmForm;//团购电影申请信息
+	private File filmFile;//上传的电影海报
+    private String fileName; //上传文件名
+    
+    public void setFilmFileFileName(String fileName)  {
+        System.out.println("FileName : " + fileName);
+           this .fileName = fileName;
+    } 
+          
+ 
 	public GroupFilmDetailedInfo getGroupFilmDetailInfo() {
 		return groupFilmDetailInfo;
 	}
@@ -48,6 +65,12 @@ public class GroupFilmAction extends ActionSupport {
 	}
 	public void setGroupFilmForm(GroupFilmForm groupFilmForm) {
 		this.groupFilmForm = groupFilmForm;
+	}
+	public File getFilmFile() {
+		return filmFile;
+	}
+	public void setFilmFile(File filmFile) {
+		this.filmFile = filmFile;
 	}
 	public String showGroupFilmDetail(){
 		req = ServletActionContext.getRequest();
@@ -75,7 +98,7 @@ public class GroupFilmAction extends ActionSupport {
 		System.out.println(area);
 		String status = req.getParameter("status");
 		System.out.println(status);
-		String[] tags = req.getParameterValues("tags[]");
+		String  tags = req.getParameter("tags");
 		System.out.println(tags);
 		List<String> tagList = new ArrayList<String>();
 		List<String> list = java.util.Arrays.asList(tags);
@@ -140,10 +163,45 @@ public class GroupFilmAction extends ActionSupport {
 		}
 	}
 	/*
+	 * copy上传文件到指定目录
+	 */
+	private void copy(File src, File dst)  {
+	    try  {
+	       InputStream in = null ;
+	       OutputStream out = null ;
+	        try  {                
+	           in = new BufferedInputStream( new FileInputStream(src), BUFFER_SIZE);
+	           out = new BufferedOutputStream( new FileOutputStream(dst), BUFFER_SIZE);
+	            byte [] buffer = new byte [BUFFER_SIZE];
+	            while (in.read(buffer) > 0 )  {
+	               out.write(buffer);
+	           } 
+	        } finally  {
+	            if ( null != in)  {
+	               in.close();
+	           } 
+	             if ( null != out)  {
+	               out.close();
+	           } 
+	       } 
+	    } catch (Exception e)  {
+	       e.printStackTrace();
+	   } 
+	} 
+	
+	private String getExtention(String fileName)  {
+	    int pos = fileName.lastIndexOf(".");
+	    return fileName.substring(pos);
+	} 
+	/*
 	 * 上架团购电影
 	 */
 	public String applyGroupFilm(){
 		GroupFilmService groupFilmService = new GroupFilmService();
+		String imageFileName = new Date().getTime() + getExtention(fileName);
+	    File imageFile = new File(ServletActionContext.getServletContext().getRealPath("/imgs" ) + "/" + imageFileName);
+	    copy(filmFile, imageFile);
+	    groupFilmForm.setPhotoUrl(ServletActionContext.getServletContext().getRealPath("/imgs" ) + "/" + imageFileName);
 		if(groupFilmService.addGroupFilm(groupFilmForm)){
 			return "success";
 		}

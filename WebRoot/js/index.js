@@ -77,7 +77,7 @@ $(document).ready(function(){
 	 $.ajax({
 	 	url: 'GroupFilmAction!loadMore?page=1&pageSize=8',
 	 	type: 'get',
-	 	data:{'area':area,'status':status,'tags':tags},
+	 	data:{'area':area,'status':status,'tags':tags.toString()},
 	 	datatype:"json",
 	 	success:function(data){
 		        showInfo(data);
@@ -106,7 +106,7 @@ $(document).ready(function(){
 		$.ajax({
 		 	url: "GroupFilmAction!loadMore?page="+page+"&pageSize=8",
 		 	type: 'get',
-		 	data:{'area':area,'status':status,'tags':tags},
+		 	data:{'area':area,'status':status,'tags':tags.toString()},
 		 	datatype:"json",
 		 	success:function(data){
 			        showInfo(data);
@@ -141,6 +141,13 @@ $(document).ready(function(){
 	/*
 	菜单选择
 	*/
+	var currentMenuId = 'shopping'; 
+	// function changeMenu(id){
+	// 	//var id = $(this).attr("id");
+	// 	$(currentMenuId).attr("class","");
+	// 	currentMenuId = "#"+id;
+	// 	$(currentMenuId).attr("class","current-select");
+	// }
 	$('#myTF').bind('click', function(event) {
 		/* Act on the event */
 		window.location.href = "UserAction!ShowProfilePage";
@@ -149,7 +156,10 @@ $(document).ready(function(){
 		/* Act on the event */
 		$('#login_link').click();
 	});
-
+	$('#shopping').bind('click', function(event) {
+		/* Act on the event */
+		window.location.href = "FilterAction!getFilterTags";
+	});
 	/*过滤*/
 	
 });
