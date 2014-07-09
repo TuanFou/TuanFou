@@ -149,4 +149,33 @@ public class GroupFilmAction extends ActionSupport {
 		}
 		return "error";
 	}
+	/*
+	 * 添加想看用户
+	 */
+	public void addHeartUser(){
+		req = ServletActionContext.getRequest();
+		String gid = req.getParameter("groupFilmId");
+		String uid = req.getParameter("userId");
+		try {
+			response = ServletActionContext.getResponse();
+			PrintWriter out = response.getWriter();
+			if(gid == null || gid == null){
+				out.print("error");
+				return ;
+			}
+			int groupFilmId = Integer.parseInt(gid);
+			int userId = Integer.parseInt(uid);
+			GroupFilmService groupFilmServie = new GroupFilmService();
+			if(groupFilmServie.addHeartUser(groupFilmId, userId)){
+				out.print("success");
+			}
+			else{
+				out.print("error");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

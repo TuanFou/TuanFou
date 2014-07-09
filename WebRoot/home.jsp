@@ -224,6 +224,8 @@ function loginSubmit(obj){
 	 	success:function(data){
 	 		if(data=="success"){//登录成功
 	 			window.location.reload();
+	 		}else{
+	 			alert('账号和密码不匹配');
 	 		}
 	 	},
 	 	error:function(error) {

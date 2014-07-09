@@ -136,45 +136,9 @@ public class GroupFilmDao {
 			}
 		}
 	}
-//	public List<GroupFilmBriefInfo> getGroupFilmsBriefInfo(int firstResult,int maxResult){
-//		List<GroupFilmBriefInfo> list = new ArrayList<GroupFilmBriefInfo>();
-//		try{
-//			session = HibernateUtil.getSession();
-//			String hql = "from GroupFilm groupFilm";
-//			Query q = session.createQuery(hql);
-//			q.setFirstResult(firstResult);
-//			q.setMaxResults(maxResult);
-//			@SuppressWarnings("unchecked")
-//			List<GroupFilm> groupFilms  = q.list();
-//			Iterator<GroupFilm> it = groupFilms.iterator();
-//			while(it.hasNext()){
-//				GroupFilm groupFilm = it.next();
-//				GroupFilmBriefInfo briefInfo = new GroupFilmBriefInfo();
-//				briefInfo.setCinemaName(groupFilm.getCinema().getCinemaName());
-//				briefInfo.setCurrentPrice(groupFilm.getCurrentPrice());
-//				briefInfo.setOriginalPrice(groupFilm.getOriginalPrice());
-//				briefInfo.setGroupFilmId(groupFilm.getId());
-//				//锟斤拷取锟斤拷影锟斤拷锟斤拷息
-//				Film film = groupFilm.getFilm();
-//				briefInfo.setFilmName(film.getFilmName());
-//				briefInfo.setHeartNum(groupFilm.getUsers().size());
-//				briefInfo.setFilmPhotoUrl(groupFilm.getPicUrl());
-//				//锟斤拷取锟斤拷签
-//				Set<Tag> tags = film.getTags();
-//				List<String> tagList = new ArrayList<String>();
-//				for(Tag tag:tags){
-//					tagList.add(tag.getTagName());
-//				}
-//				briefInfo.setTags(tagList);
-//				list.add(briefInfo);			
-//			}
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//	HibernateUtil.closeSession();
-//}
-//		return list;
-//	}
+    /*
+     * 获取电影的详细信息
+     */
 	public GroupFilmDetailedInfo getGroupFilmDetailedInfo(int id){
 		GroupFilmDetailedInfo groupFilmDetailedInfo = new GroupFilmDetailedInfo();
 		try{
@@ -521,6 +485,23 @@ public class GroupFilmDao {
 			invitedMembers.add(invitedMember);
 		}
 		return invitedMembers;
+	}
+	/*
+	 * 添加想看的人
+	 */
+	public boolean addHartUser(int  userId, int groupFilmId){
+		 try{
+			 session = HibernateUtil.getSession();
+			 GroupFilm groupFilm = (GroupFilm) session.get(GroupFilm.class, groupFilmId);
+			 User user = new User();
+			 user.setId(userId);
+			 groupFilm.getUsers().add(user);
+			 session.update(groupFilm);
+		 }catch(Exception e){
+			 e.printStackTrace();
+			 return false;
+		 }
+		 return true;
 	}
 }
 

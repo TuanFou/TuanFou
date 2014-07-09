@@ -146,5 +146,8 @@ public class GroupFilmService {
 			return false;
 		}
 	}
-	
+	public boolean addHeartUser(int groupFilmId,int userId){
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		return groupFilmDao.addHartUser(userId, groupFilmId);
+	}
 }

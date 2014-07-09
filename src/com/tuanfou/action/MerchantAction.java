@@ -19,7 +19,6 @@ import com.tuanfou.dto.MerchantInfo;
 import com.tuanfou.pojo.Cinema;
 import com.tuanfou.pojo.Film;
 import com.tuanfou.pojo.Merchant;
-import com.tuanfou.pojo.User;
 import com.tuanfou.service.FilmService;
 import com.tuanfou.service.MerchantService;
 import com.tuanfou.utils.HibernateUtil;
