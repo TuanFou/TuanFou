@@ -49,10 +49,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!--<span id="myTF" >我的团否</span>-->
              <c:choose>
                 <c:when test="${empty sessionScope.userId}">
-                    <span id="login_TF" >我的团否</span>
+                    <span id="login_TF" class="menu-selected">我的团否</span>
                 </c:when>
                 <c:otherwise>
-                    <span id="myTF" >我的团否</span>
+                    <span id="myTF" class="menu-selected">我的团否</span>
                 </c:otherwise>
             </c:choose>   
             <span id="aboutUs">关于团否</span>

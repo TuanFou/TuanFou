@@ -194,3 +194,9 @@ button:hover{
 	height: 50px;
 	margin-top: 50px;
 }
+.menu-selected{
+	border-radius: 2px;
+	color: white!important;
+	background: #1c4154; 
+	cursor:pointer;
+}

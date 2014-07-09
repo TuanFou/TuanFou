@@ -49,10 +49,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!--<span id="myTF" >我的团否</span>-->
              <c:choose>
                 <c:when test="${empty sessionScope.userId}">
-                    <span id="login_TF" >我的团否</span>
+                    <span id="login_TF" class="menu-selected">我的团否</span>
                 </c:when>
                 <c:otherwise>
-                    <span id="myTF" >我的团否</span>
+                    <span id="myTF" class="menu-selected">我的团否</span>
                 </c:otherwise>
             </c:choose>   
             <span id="aboutUs">关于团否</span>
@@ -70,10 +70,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<span class="line-block"><font size="5">${merchantInfo.merchantName }</font></span>
                     </div>
                 </div>
-                <div class="float-left" id="account-info">
+                <!-- <div class="float-left" id="account-info">
                     <span class="line-block" ><font size="4">余额 10000</font></span>
                     <span class="line-block"  ><button id="add-balance">充值</button></span>
-                </div>
+                </div> -->
             </div>
             <div id="menu-bottom">
                     <ul>

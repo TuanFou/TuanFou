@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="./js/tinybox.js"></script>
 	<script src="./js/index.js" type="text/javascript"></script>
 	<script src="./js/reg_login.js" type="text/javascript"></script>
+	<script src="./js/menuManage.js" type="text/javascript"></script>
 	<style>
 	#tinybox{position:absolute; display:none; /*padding:10px;*/ background:#ffffff url(image/preload.gif) no-repeat 50% 50%; border:10px solid #e3e3e3; z-index:2000;}
 	#tinymask{position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000000; z-index:1500;}
@@ -37,7 +38,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 <style>
 .selected{
-	background: blue;
+	background: #db8067;
+	color: white;
+	font-weight: bold;
 	border-radius: 2px;
 }
 
@@ -87,7 +90,7 @@ function showFirstPage(data){
 			$.ajax({
 			 	url: "GroupFilmAction!loadMore?page="+page+"&pageSize=8",
 			 	type: 'get',
-			 	data:{'area':area,'status':status,'tags':tags},
+			 	data:{'area':area,'status':status,'tags':tags.toString()},
 			 	datatype:"json",
 			 	success:function(data){
 				        showInfo(data);
@@ -160,16 +163,15 @@ function checkSelect(){
     	if(tags.length==0){
     		tags.push('全部');
     	}
+		// alert(tags);
+		// alert(area); 
+		// alert(status);
 
-		alert(tags);
-		alert(area);
-		var area1 = area;
-		alert(status);
     	/*向后台请求数据*/
     	 $.ajax({
-		 	url: 'GroupFilmAction!loadMore?page=1&pageSize=8',
+		 	url: 'GroupFilmAction!loadMore?page=1&pageSize=8&area='+area+"&status="+status,
 		 	type: 'get',
-		 	data:{'area':area, 'status':status,'tags':tags},
+		 	data:{'tags':tags.toString()},
 		 	datatype:"json",
 		 	success:function(data){
 		 		alert(data);
@@ -266,6 +268,7 @@ function regSubmit(obj){
      	<div id="header">
              <div id="banner">
                 <span id="logo">团否网</span>
+                
                 <c:choose>
                 	<c:when test="${empty sessionScope.userName}">
                 		<span class="header-login"><a id="login_link"  >登录</a></span>
@@ -275,12 +278,13 @@ function regSubmit(obj){
                 		<span id="username">${sessionScope.userName}</span>
                 		<span id="exit">退出登录</span>
                 	</c:otherwise>
-                </c:choose>                
+                </c:choose>  
+                <span id="merchantCenter"><a href="MerchantAction!login">商家中心</a></span>             
             </div>
             <img id="logo-img" src="./imgs/logo_tuanfou.png"/>
             <div id="catagory">
                 <span id="recommend">推荐</span>
-                <span id="shopping">团购首页</span>
+                <span id="shopping" class="menu-selected">团购首页</span>
                 <!--<span id="myTF" >我的团否</span>-->
                  <c:choose>
                 	<c:when test="${empty sessionScope.userId}">
