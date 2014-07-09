@@ -27,6 +27,7 @@
 		<action name="GroupFilmAction" class="com.tuanfou.action.GroupFilmAction">
 			<result name="detailInfo">/groupFilmInfo.jsp</result>
 			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
 		</action>
 		<!-- 过滤器操作 -->
 		<action name="FilterAction"
@@ -39,6 +40,18 @@
 	<package name="CityPackage" namespace="/"
 		extends="struts-default">
 		<action name="CityAction" class="com.tuanfou.action.CityAction">
+		</action>
+	</package>
+	
+	<package name="MerchantPack" namespace="/"  extends="struts-default">
+		<action name="MerchantAction"  class="com.tuanfou.action.MerchantAction">
+			<result name="merchantHome">/merchantHome.jsp</result>
+			
+			<result name="apply">/merchantHomePage/apply.jsp</result>
+			<result name="merchant_login">/merchantLogin.html</result>
+		</action>
+		<action name="FilmAction"  class="com.tuanfou.action.FilmAction">
+			<result name="apply">/merchantHomePage/apply.jsp</result>
 		</action>
 	</package>
 </struts>    

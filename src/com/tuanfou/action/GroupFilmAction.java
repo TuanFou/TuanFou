@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.tuanfou.dto.CommentInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.GroupFilmForm;
 import com.tuanfou.dto.RecommendFilm;
 import com.tuanfou.service.CommentService;
 import com.tuanfou.service.GroupFilmService;
@@ -29,14 +30,25 @@ public class GroupFilmAction extends ActionSupport {
 	private HttpServletResponse response;
 	private GroupFilmDetailedInfo groupFilmDetailInfo;
 	private List<CommentInfo> commentList;
-	
+	private GroupFilmForm groupFilmForm;//团购电影申请信息
 	public GroupFilmDetailedInfo getGroupFilmDetailInfo() {
 		return groupFilmDetailInfo;
 	}
 	public void setGroupFilmDetailInfo(GroupFilmDetailedInfo groupFilmDetailInfo) {
 		this.groupFilmDetailInfo = groupFilmDetailInfo;
 	}
-	
+	public List<CommentInfo> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<CommentInfo> commentList) {
+		this.commentList = commentList;
+	}
+	public GroupFilmForm getGroupFilmForm() {
+		return groupFilmForm;
+	}
+	public void setGroupFilmForm(GroupFilmForm groupFilmForm) {
+		this.groupFilmForm = groupFilmForm;
+	}
 	public String showGroupFilmDetail(){
 		req = ServletActionContext.getRequest();
 		int id = Integer.parseInt(req.getParameter("groupFilmId"));
@@ -60,8 +72,11 @@ public class GroupFilmAction extends ActionSupport {
 		int page = Integer.parseInt( req.getParameter("page"));
 		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
 		String area = req.getParameter("area");
+		System.out.println(area);
 		String status = req.getParameter("status");
+		System.out.println(status);
 		String[] tags = req.getParameterValues("tags[]");
+		System.out.println(tags);
 		List<String> tagList = new ArrayList<String>();
 		List<String> list = java.util.Arrays.asList(tags);
 		for(String str:list){
@@ -124,10 +139,14 @@ public class GroupFilmAction extends ActionSupport {
 			return "error";
 		}
 	}
-	public List<CommentInfo> getCommentList() {
-		return commentList;
-	}
-	public void setCommentList(List<CommentInfo> commentList) {
-		this.commentList = commentList;
+	/*
+	 * 上架团购电影
+	 */
+	public String applyGroupFilm(){
+		GroupFilmService groupFilmService = new GroupFilmService();
+		if(groupFilmService.addGroupFilm(groupFilmForm)){
+			return "success";
+		}
+		return "error";
 	}
 }

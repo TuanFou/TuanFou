@@ -45,10 +45,10 @@ public class MerchantDaoTest {
 			System.out.println("申请成功");
 		else
 			System.out.println("申请失败");*/
-		if(merchantService.updateProfile(1, "123", "123456"))
-			System.out.println("更新成功");
-		else
-			System.out.println("更新失败");
+//		if(merchantService.updateProfile(1, "123", "123456"))
+//			System.out.println("更新成功");
+//		else
+//			System.out.println("更新失败");
 		
 		/*ApplyFilmInfo afilm = new ApplyFilmInfo();
 		afilm.setActor("巩俐");
@@ -70,7 +70,7 @@ public class MerchantDaoTest {
 		else
 			System.out.println("申请失败");*/
 		
-		getGroupFilmOrderInfos();
+//		getGroupFilmOrderInfos();
 		
 		
 //		Session session = null;
@@ -110,6 +110,9 @@ public class MerchantDaoTest {
 //			MGFOList.add(MGFOinfo);
 //		}
 //		System.out.println(MGFOList.get(0).getId());
+		MerchantService ms = new MerchantService();
+		MerchantInfo merchantInfo = ms.getMerchantInfo(3);
+		System.out.println(merchantInfo);
 		
 	}
 	

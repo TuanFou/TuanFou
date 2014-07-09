@@ -199,6 +199,7 @@ public class MerchantService {
 		MerchantDao merchantDao = new MerchantDao();
 		MerchantInfo merchantInfo = new MerchantInfo();
 		Merchant merchant = merchantDao.getMerchant(merchantId);
+		merchantInfo.setPhotoUrl(merchant.getPhotoUrl());
 		Set<Cinema> cinemas = merchantDao.getCinema(merchantId);
 		merchantInfo.setMerchantId(merchantId);
 		merchantInfo.setCinemas(cinemas);
@@ -226,5 +227,12 @@ public class MerchantService {
 		}
 		else
 			return false;    //密码错误
+	}
+	/*
+	 * 获取商家拥有的电影院
+	 */
+	public Set<Cinema> getMerchantCinemas(int merchantId){
+		MerchantDao merchantDao = new MerchantDao();
+		return merchantDao.getCinema(merchantId);
 	}
 }

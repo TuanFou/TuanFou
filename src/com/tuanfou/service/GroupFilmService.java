@@ -1,16 +1,24 @@
 package com.tuanfou.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import com.tuanfou.dao.CinemaDao;
 import com.tuanfou.dao.CommentDao;
 import com.tuanfou.dao.GroupFilmDao;
 import com.tuanfou.dto.FilmStatusInfo;
 import com.tuanfou.dto.GroupFilmBriefInfo;
 import com.tuanfou.dto.GroupFilmDetailedInfo;
+import com.tuanfou.dto.GroupFilmForm;
 import com.tuanfou.dto.RecommendFilm;
+import com.tuanfou.pojo.Area;
+import com.tuanfou.pojo.Cinema;
+import com.tuanfou.pojo.Film;
+import com.tuanfou.pojo.GroupFilm;
+import com.tuanfou.pojo.Merchant;
 import com.tuanfou.utils.ComparatorFilm;
 
 public class GroupFilmService {
@@ -85,6 +93,58 @@ public class GroupFilmService {
 				break;
 		}
 		return recommendFilms;
+	}
+	/*
+	 * 添加团购电影
+	 * 	private int id;
+	private Film  film;
+	private Merchant merchant;
+	private Area area;
+	private Cinema cinema;
+	private float currentPrice;//���ۺ�ļ۸�
+	private float originalPrice;//����ǰ�ļ۸�
+	private Date startDate;
+	private Date endDate;
+	private int status;  //0:�����У�1:���ϼܣ�2���¼�
+	private String remark;//��ע
+	private int type;//0:�Ѿ���ӳ, 1��������ӳ��2���¼�
+	private String picUrl;//图片路径
+	 */
+	public boolean addGroupFilm(GroupFilmForm groupFilmForm){
+		GroupFilm groupFilm = new GroupFilm();
+		Film film = new Film();
+		film.setId(groupFilmForm.getFilmId());
+		
+		Merchant merchant = new Merchant();
+		merchant.setId(groupFilmForm.getMerchantId());
+		
+		Cinema cinema = new Cinema();
+		cinema.setId(groupFilmForm.getCinemaId());
+		
+		Area area = new Area();
+		int id = new CinemaDao().getCinema(groupFilmForm.getCinemaId()).getArea().getId();
+		area.setId(id);
+		
+		groupFilm.setFilm(film);
+		groupFilm.setCinema(cinema);
+		groupFilm.setMerchant(merchant);
+		groupFilm.setArea(area);
+		groupFilm.setCurrentPrice(groupFilmForm.getCurrentPrice());
+		groupFilm.setOriginalPrice(groupFilmForm.getOriginalPrice());
+		groupFilm.setStartDate(groupFilmForm.getStartDate());
+		groupFilm.setEndDate(groupFilmForm.getEndDate());
+		groupFilm.setPicUrl(groupFilmForm.getPhotoUrl());
+		groupFilm.setRemark(groupFilmForm.getRemark());
+		groupFilm.setStatus(1);//设置为上架状态
+		groupFilm.setType(groupFilmForm.getType());
+		
+		film.setId(groupFilmForm.getFilmId());
+		GroupFilmDao groupFilmDao = new GroupFilmDao();
+		if(groupFilmDao.addGroupFilm(groupFilm)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 }

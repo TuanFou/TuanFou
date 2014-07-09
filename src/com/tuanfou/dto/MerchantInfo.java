@@ -14,6 +14,7 @@ public class MerchantInfo {
 	private String merchantName;
 	private String password;
 	private Set<Cinema> cinemas;
+	private String photoUrl;
 	public int getMerchantId() {
 		return merchantId;
 	}
@@ -37,5 +38,11 @@ public class MerchantInfo {
 	}
 	public void setCinemas(Set<Cinema> cinemas) {
 		this.cinemas = cinemas;
+	}
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	
 }

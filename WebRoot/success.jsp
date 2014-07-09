@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <%=session.getAttribute("userName")
-   %>
+  	success;
   </body>
 </html>

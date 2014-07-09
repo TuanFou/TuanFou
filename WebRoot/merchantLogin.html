@@ -6,7 +6,18 @@
 <link rel="stylesheet" type="text/css" href="./css/header.css">
 <link rel="stylesheet" type="text/css" href="./css/common.css">
 <link rel="stylesheet" type="text/css" href="./css/orderInfo.css">
+<link rel="stylesheet" type="text/css" href="./css/reg_log.css">
 </head>
+<style>
+.login_content{
+	margin: 50px auto;
+}
+</style>
+<script type="text/javascript">
+function submitForm (){
+    orderForm.submit();
+}
+</script>
 <body>
     <div id="middle-background">
         <div id="header">
@@ -27,38 +38,32 @@
         </div>
         <div id="bg">
         	<div class="content">
-        	    <span class="cotent-title"><font size="5" color="#BD6037">订单详情</font></span>
-        		<div class="order-item">
-        			<div class="item-title">
-	        			<span class="item">团购</span>
-	        			<span class="price">单价</span>
-	        			<span class="amount">数量</span>
-	        			<span class="total-price">总价(元)</span>
-	        		</div>
-	        		<div class="clear"></div>
-					<div class="item-info">
-						<span class="item">
-							<span class="line-block ">沉睡魔咒</span>
-							<span class="line-block">洪山天河国际影院</span>
-						</span>
-	        			<span class="price top-margin">19.9</span>
-	        			<span class="amount top-margin"><input type="text" value="2"></input></span>
-	        			<span class="total-price top-margin">30.8</span>
+        	    <div id="login">
+					<div class="login_content">
+						<span class="form-title line-block"><font size="5" color="#466474">团否.MOVIE - 登录</font></span>
+						<div  class='login-form' >
+							<form name="login_form"  action="MerchantAction!login" method="post">
+								<span class="line-block">用户名:<input name="merchantname" type="text" name="userName"/></span>
+								<span class="line-block">密&nbsp;&nbsp;码:<input name="password" type="password" name="password" /></span>
+								<span class="line-block">
+									<span><font size="1" color="#DEAF9B">如果还没有注册？点击<a href="#">直接注册</a></font></span>
+									<span><button class="login-bt">登录</button></span>
+								</span>
+							</form>
+						</div>
 					</div>
-					<div class="clear"></div>
-        		</div>
-        		<div class="cal-price">
-        			   <span class="float-right">您需要支付：￥39.98</span>
-        		</div>
-				<div class="submit-bt">
-					<button >提交订单</button>
 				</div>
-        	<div>
-        </div>
-        <div class="clear"></div>
-<!--         <div class="site-info">
-            
-        </div> -->
+        	</div>
+        	<div class="clear"></div>
+        
+       		<div class="site-info">
+        
+   			</div>
+    	</div>
     </div>
+   </div>
 </body>
 </html>
+      
+        
+        

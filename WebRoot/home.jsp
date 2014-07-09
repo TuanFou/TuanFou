@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <title>首页</title>
 	<meta http-equiv="pragma" content="no-cache">
+	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
@@ -159,18 +160,16 @@ function checkSelect(){
     	if(tags.length==0){
     		tags.push('全部');
     	}
-    	var tags1 = [];
-	    var area1 = area;
-	    var status1 = status;
-		tags1.push('全部');
-		alert(tags1);
-		alert(area1);
-		alert(status1);
+
+		alert(tags);
+		alert(area);
+		var area1 = area;
+		alert(status);
     	/*向后台请求数据*/
     	 $.ajax({
 		 	url: 'GroupFilmAction!loadMore?page=1&pageSize=8',
 		 	type: 'get',
-		 	data:{'area':"青山区",'status':status1,'tags':tags1},
+		 	data:{'area':area, 'status':status,'tags':tags},
 		 	datatype:"json",
 		 	success:function(data){
 		 		alert(data);

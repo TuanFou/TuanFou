@@ -44,6 +44,7 @@ function submitForm (){
                 <span id="myTF">我的团否</span>
                 <span id="aboutUs">关于团否</span>
             </div>
+            <div class="clear"></div>
             <div id="breakline"></div>
         </div>
         <div id="bg">
@@ -86,10 +87,10 @@ function submitForm (){
         	<div>
         </div>
         <div class="clear"></div>
-       <!-- <div class="site-info">
-            
-        </div> -->
     </div>
+    </div>
+    <div class="site-info">
+        
     </div>
    </div>
 </body>

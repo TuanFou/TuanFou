@@ -121,6 +121,7 @@ function regSubmit(obj){
                 </c:choose>   
                 <span id="aboutUs">关于团否</span>
 	        </div>
+	        <div class="clear"></div>
             <div id="breakline"></div>
     </div>
 	<div id="bg">

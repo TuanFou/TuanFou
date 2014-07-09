@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Struts2Diagram version="2.0">
-  <package name="userPackage" location="10,10" size="215,296">
-    <action name="UserAction" location="62,77" size="150,146">
+  <package name="userPackage" location="10,10" size="257,338">
+    <action name="UserAction" location="99,114" size="150,209">
       <result name="userHome">
         <resourceEdge source="userHome" routing="0" target="userHome.jsp" />
       </result>
@@ -14,6 +14,15 @@
       <result name="login_success">
         <resourceEdge source="login_success" routing="0" target="success.jsp" />
       </result>
+      <result name="myComment">
+        <resourceEdge source="myComment" routing="0" target="myComment.jsp" />
+      </result>
+      <result name="myComplaint">
+        <resourceEdge source="myComplaint" routing="0" target="myComplaint.jsp" />
+      </result>
+      <result name="myMessage">
+        <resourceEdge source="myMessage" routing="0" target="myMessage.jsp" />
+      </result>
       <result name="error">
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
@@ -21,7 +30,7 @@
         <resourceEdge source="success" routing="0" target="error.jsp" />
       </result>
     </action>
-    <action name="OrderAction" location="39,189" size="150,104">
+    <action name="OrderAction" location="76,226" size="150,104">
       <result name="error">
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
@@ -36,8 +45,8 @@
       </result>
     </action>
   </package>
-  <package name="GroupFilm" location="375,172" size="258,137">
-    <action name="GroupFilmAction" location="105,65" size="150,62">
+  <package name="GroupFilm" location="375,172" size="300,179">
+    <action name="GroupFilmAction" location="142,102" size="150,62">
       <result name="detailInfo">
         <resourceEdge source="detailInfo" routing="0" target="groupFilmInfo.jsp" />
       </result>
@@ -45,12 +54,27 @@
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
     </action>
-    <action name="FilterAction" location="49,72" size="150,62">
+    <action name="FilterAction" location="86,109" size="150,62">
       <result name="home">
         <resourceEdge source="home" routing="0" target="home.jsp" />
       </result>
       <result name="error">
         <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+  <package name="CityPackage" location="661,92" size="284,140">
+    <action name="CityAction" location="127,93" size="150,40" />
+  </package>
+  <package name="MerchantPack" location="693,266" size="247,103">
+    <action name="MerchantAction" location="94,59" size="150,41">
+      <result name="merchantHome">
+        <resourceEdge source="merchantHome" routing="0" target="merchantHome.jsp" />
+      </result>
+    </action>
+    <action name="FilmAction" location="135,36" size="150,40">
+      <result name="apply">
+        <resourceEdge source="apply" routing="0" target="apply.html" />
       </result>
     </action>
   </package>
@@ -64,8 +88,10 @@
   <webResource name="pay.jsp" path="/pay.jsp" location="350,650" size="150,55" />
   <webResource name="paySuccess.html" path="/paySuccess.html" location="50,800" size="150,55" />
   <webResource name="home.jsp" path="/home.jsp" location="350,800" size="150,55" />
-  <package name="CityPackage" location="661,92" size="170,70">
-    <action name="CityAction" location="90,56" size="150,40" />
-  </package>
+  <webResource name="myComment.jsp" path="/userHomePage/myComment.jsp" location="50,950" size="150,55" />
+  <webResource name="myComplaint.jsp" path="/userHomePage/myComplaint.jsp" location="350,950" size="150,55" />
+  <webResource name="myMessage.jsp" path="/userHomePage/myMessage.jsp" location="50,1100" size="150,55" />
+  <webResource name="merchantHome.jsp" path="/merchantHome.jsp" location="350,1100" size="150,55" />
+  <webResource name="apply.html" path="/merchantHomePage/apply.html" location="0,0" size="150,55" />
 </Struts2Diagram>
 
