@@ -32,12 +32,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <div id="banner">
             <span id="logo">团否网</span>
             <c:choose>
-                <c:when test="${empty sessionScope.userName}">
+                <c:when test="${empty sessionScope.merchantName}">
                     <span class="header-login"><a id="login_link"  >登录</a></span>
                     <span  class="header-regist"><a  id="reg_link" >注册</a></span>
                 </c:when>
                 <c:otherwise>
-                    <span id="username">${sessionScope.userName}</span>
+                    <span id="username">${sessionScope.merchantName}</span>
                     <span id="exit">退出登录</span>
                 </c:otherwise>
             </c:choose>             
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span id="shopping">团购首页</span>
             <!--<span id="myTF" >我的团否</span>-->
              <c:choose>
-                <c:when test="${empty sessionScope.userId}">
+                <c:when test="${empty sessionScope.merchantId}">
                     <span id="login_TF" class="menu-selected">我的团否</span>
                 </c:when>
                 <c:otherwise>
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="main-left">
      	    <div id="menu-up">
             	<div id="personalData">
-                    <span ><img id="photo" src="<%=path %>${merchantInfo.photoUrl }" alt="用户头像" /></span>
+                    <span ><img id="photo" src="${merchantInfo.photoUrl }" alt="用户头像" /></span>
                     <div id="data">
                     	<span class="line-block"><font size="5">${merchantInfo.merchantName }</font></span>
                     </div>
@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
     	</div>
     	<div id="main-right">
-    			<iframe id="detail-info" src=""  ></iframe>
+    			<iframe id="detail-info" src="./merchantHomePage/personalInfo.html"  ></iframe>
     	</div>
     </div>
 	<div class="clear"></div>

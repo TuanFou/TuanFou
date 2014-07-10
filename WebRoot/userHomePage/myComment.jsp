@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <%
@@ -55,7 +56,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   width:80px;
 }
 .comment-film-info{
-  width:160px;
+  width:152px;
+  margin-left: 8px;
 }
 .comment-content{
   width: 240px;

@@ -7,17 +7,32 @@ body{
 a{
 	color: #bd6037;
 }
+#bg{
+	padding-bottom: 0px;
+}
 .groupfilm-info{
 	width:610px;
 /*    border:2px solid #EEEEEE;*/
     margin:5px auto;
 }
-.groupfilm-img img{
+/*.groupfilm-img img{
+	width: 180px;
+	height:250px;
+}*/
+.film-img{
+/*	background-image: url('../imgs/img-bg.png');*/
 	width: 180px;
 	height:250px;
 }
+.film-img img{
+	width: 160px;
+	height:230px;
+	box-shadow: 2px 2px 2px #888888; 
+	margin-left: 8px;
+	margin-top: 8px;
+}
 #buying_bt,#login_bt{
-	position: absolute;
+/*	position: absolute;*/
 	margin-left: 40px;
 	margin-top: -50px;
 	width: 100px;
@@ -208,7 +223,7 @@ ul.nav-menu li{
 }
 .parter-film-cinema{
 	text-align:right;
-	background:#dcbb48;
+/*	background:#dcbb48;*/
 	font-family:'微软雅黑';
 	font-size:10px;
 	color:white;
@@ -253,6 +268,10 @@ ul.parter-list li .float-right{
 }
 #map{
 	background-color: #AAAAAA;
+	width:175px;
+	height: 120px;
+}
+#map img{
 	width:175px;
 	height: 120px;
 }
@@ -410,8 +429,7 @@ ul.type li{
 	margin-top: 5px;
 }
 .add-comment{
-	border: 1px solid #EEEEEE;
-	text-align: center;
+/*	border: 1px solid #EEEEEE;*/
 	margin: 0 auto;
 	padding:5px;
 }
@@ -451,4 +469,9 @@ div.range-item-info {
 }
 #hidden{
 	display: none;
+}
+/*星星*/
+.star-img{
+	width: 65px;
+	height: 15px;
 }

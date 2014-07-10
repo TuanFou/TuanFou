@@ -51,7 +51,7 @@ public class CommentService {
 		Comment comment = new Comment();
 		
 		comment.setContent(content);
-		comment.setId(star);
+		comment.setStar(star);
 		Date date = new Date(new java.util.Date().getTime());
 		comment.setCreateTime(date);
 		GroupFilm groupFilm = groupFilmDao.getGroupFilm(groupFilmId);

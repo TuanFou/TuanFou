@@ -22,7 +22,7 @@
 .order-item table{
 	border-collapse: collapse;
 	line-height: 2.5;
-	color: #C2C2C2;
+	/*color: #C2C2C2;*/
 }
 td{
 	border: 1px solid #eeeeee;

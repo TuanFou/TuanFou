@@ -57,7 +57,6 @@ public class GroupFilmAction extends ActionSupport {
            this .fileName = fileName;
     } 
           
- 
 	public GroupFilmDetailedInfo getGroupFilmDetailInfo() {
 		return groupFilmDetailInfo;
 	}
@@ -90,7 +89,7 @@ public class GroupFilmAction extends ActionSupport {
 			CommentService commentService = new CommentService();
 			invitedMembers = gs.getJoinMember(id, 0, 5);
 			groupFilmDetailInfo = gs.getGroupFilmDetailInfo(id);
-			commentList = commentService.getCommentList(id, 1, 5);
+			commentList = commentService.getCommentList(id, 1, Integer.MAX_VALUE);
 			
 			return "detailInfo";
 		}catch(Exception e){
@@ -111,6 +110,7 @@ public class GroupFilmAction extends ActionSupport {
 		String status = req.getParameter("status");
 		System.out.println(status);
 		String  tags = req.getParameter("tags");
+		System.out.println(tags);
 		Pattern comma = Pattern.compile(",");
 		String[] tagString = comma.split(tags);
 		List<String> tagList = new ArrayList<String>();
@@ -214,11 +214,12 @@ public class GroupFilmAction extends ActionSupport {
 		String imageFileName = new Date().getTime() + getExtention(fileName);
 	    File imageFile = new File(ServletActionContext.getServletContext().getRealPath("/imgs" ) + "/" + imageFileName);
 	    copy(filmFile, imageFile);
-	    groupFilmForm.setPhotoUrl(ServletActionContext.getServletContext().getRealPath("/imgs" ) + "/" + imageFileName);
+	    System.out.println(ServletActionContext.getServletContext());
+	    groupFilmForm.setPhotoUrl("/TuanFou/imgs" + "/" + imageFileName);
 		if(groupFilmService.addGroupFilm(groupFilmForm)){
-			return "success";
+			return "apply_success";
 		}
-		return "error";
+		return "apply_error";
 	}
 	/*
 	 * 添加想看用户

@@ -15,9 +15,9 @@ $(document).ready(function($) {
 				"<div class='reg-info'>"+
 					"<div class='img-area float-left'>"+
 						"<span ><img width='120px' height='120px' src='./imgs/girl2.jpg'/></span>"+
-						"<span class='line-block'><input type='file' value='上传'></input></span>"+
+						"<span class='line-block'><input type='file' name='filmFile' value='上传'></input></span>"+
 					"</div>"+
-					"<div class='detail-info float-left'><form name='regForm' >"+
+					"<div class='detail-info float-left'><form class='reg_form' name='regForm' >"+
 							"<span class='reg-line-block'>&nbsp;&nbsp;用户名<input name='userName' type='text'></input></span>"+
 							"<span class='reg-line-block'>&nbsp;&nbsp;&nbsp;&nbsp;密码<input name='password' type='text'></input></"+"span>"+
 							"<span class='reg-line-block'>密码确认<input name='confirm_password' type='text'></input></span>"+
@@ -37,7 +37,7 @@ $(document).ready(function($) {
 	});
 	var loginHtml = "<div class='login_content'>"+
 						"<span class='form-title line-block'><font size='5' color='#466474'>团否.MOVIE - 登录</font></span>"+
-						"<div  class='login-form'><form name='loginForm'  >"+
+						"<div  class='login-form'><form class='login_form'name='loginForm'  >"+
 							"<span class='line-block'>用户名:<input type='text' name='userName'/></span>"+
 							"<span class='line-block'>密&nbsp;&nbsp;码:<input type='password' name='password' /></span></form>"+
 							"<span class='line-block'>"+

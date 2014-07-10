@@ -52,13 +52,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style> 
 <script>
 function FileUploadOnselect(){
-    alert(document.applyform.filmFile.value);
+    //alert(document.applyform.filmFile.value);
 }
 </script>
  
 </head>
-  </head>
-  
   <body>
     <div  class="bg">
       <span><font size="5">申请发布</font></span>
@@ -83,8 +81,8 @@ function FileUploadOnselect(){
                   </c:forEach>
                 </select>
             </span>
-            <span class="line-block" >开始时间&nbsp;&nbsp;&nbsp;&nbsp;<input name="groupFilmForm.startDate" type="text" ></input></span>
-            <span class="line-block" >结束日期&nbsp;&nbsp;&nbsp;&nbsp;<input name="groupFilmForm.endDate" type="text" ></input></span>
+            <span class="line-block" >开始时间&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="2014-07-10" name="groupFilmForm.startDate" type="text" ></input></span>
+            <span class="line-block" >结束日期&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="2014-07-15" name="groupFilmForm.endDate" type="text" ></input></span>
             <span class="line-block" >单价&nbsp;/原价&nbsp;&nbsp;<input name="groupFilmForm.currentPrice" type="text" ></input></span>
             <span class="line-block" >单价&nbsp;/现价&nbsp;&nbsp;<input name="groupFilmForm.originalPrice" type="text" ></input></span>
             <span class="line-block"  >电影类型&nbsp;&nbsp;&nbsp; 
@@ -93,7 +91,7 @@ function FileUploadOnselect(){
                 <option value="1">即将上映</option>
               </select>
             </span>
-            <span class="line-block" name="groupFilmForm.remark">备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea type="text" ></textarea></span>
+            <span class="line-block">备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea type="text"  name="groupFilmForm.remark"></textarea></span>
             <span class="line-block"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="update-submit" type="submit" value="发布"></input></span>
           </form>
         </div>

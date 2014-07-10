@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <%
@@ -9,6 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>订单信息</title>
+<script src="./js/jquery.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="./css/header.css">
 <link rel="stylesheet" type="text/css" href="./css/common.css">
 <link rel="stylesheet" type="text/css" href="./css/orderInfo.css">
@@ -27,6 +29,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <script type="text/javascript">
 function submitForm (){
     orderForm.submit();
+}
+function changeAmount(value){
+	  document.orderForm.amount.value = value;
+	  var price =  $('#s_price').text();
+	  $('#t_price').text(value*price);
+	  $('#need_pay').text(value*price);
+	  document.orderForm.totalPrice.value = value*price;
 }
 </script>
 <body>
@@ -63,15 +72,15 @@ function submitForm (){
 								<span class="line-block "><%=filmName  %></span>
 								<span class="line-block"><%=cinemaAddress  %></span>
 							</span>
-		        			<span class="price top-margin"><%=price  %></span>
-		        			<span class="amount top-margin"><input type="text" value="<%=amount%>"></input></span>
-		        			<span class="total-price top-margin"><%=totalPrice %></span>
+		        			<span class="price top-margin" id="s_price"><%=price  %></span>
+		        			<span class="amount top-margin"><input type="text" value="<%=amount%>" onkeyup="changeAmount(this.value)"></input></span>
+		        			<span id="t_price"class="total-price top-margin"><%=totalPrice %></span>
 						</div>
 			 
 						<div class="clear"></div>
 	        		</div>
 	        		<div class="cal-price">
-	        			   <span class="float-right">您需要支付：￥<%=totalPrice %></span>
+	        			   <span class="float-right">您需要支付：￥<span id="need_pay"><%=totalPrice %></span></span>
 	        		</div>
 					<div class="submit-bt">
 						<form name="orderForm" action="OrderAction!addOrder" method="post">

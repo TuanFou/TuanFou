@@ -59,7 +59,10 @@ $(document).ready(function(){
 		/* Act on the event */
 		$('#login_link').click();
 	});
-
+	$('#shopping').bind('click',function(event) {
+		/* Act on the event */
+		window.location.href = "FilterAction!getFilterTags";
+	});
 	//点击入伙
 	$('#joinGroup').bind('click', function(event) {
 		/* Act on the event */
@@ -78,7 +81,7 @@ $(document).ready(function(){
 		 	success:function(data){
 		 		// alert(data);
 			     if(data=="success"){
-			     	window.location.reload();
+			     	window.location.reload(true);
 			     }else{
 			     	alert('入伙失败');
 			     }
@@ -103,18 +106,20 @@ $(document).ready(function(){
 		var groupFilmId = document.commentForm.groupFilmId.value;
 		var userId = document.commentForm.userId.value;
 		var data = document.commentForm.myComment.value;
-		alert(groupFilmId);
-		alert(userId);
-		alert(data);
+		var star = document.commentForm.star.value;
+		// alert(groupFilmId);
+		// alert(userId);
+		// alert(data);
+		alert(star);
 		$.ajax({
 		 	url: 'UserAction!addComment?groupFilmId='+groupFilmId+"&userId="+userId,
 		 	type: 'post',
-		 	data:{'content':data,"star":"4"},
+		 	data:{'content':data,"star":star},
 		 	datatype:"json",
 		 	success:function(data){
 		 		// alert(data);
 			     if(data=="success"){
-			     	window.location.reload();
+			     	window.location.reload(true);
 			     }else{
 			     	alert('评论失败');
 			     }
@@ -124,5 +129,49 @@ $(document).ready(function(){
 		 		alert("评论失败!");
 		 	}
 		}); 
+	});
+		/*
+		退出登录
+	*/
+	$('#exit').bind('click', function(event) {
+		/* Act on the event */
+		$.ajax({
+			url: 'UserAction!logout',
+			type: 'get',
+			success:function(data){
+				if(data=="success")
+					window.location.reload();
+				else
+					alert("退出失败");
+			},
+			error:function(){
+				alert('退出失败');
+			}
+		});
+	});
+	/*
+	菜单选择
+	*/
+	var currentMenuId = "#wait-join-menu";
+	var url = window.location.href;
+	$(".nav-menu li").bind('click',function(event){
+		var id = $(this).attr("id");
+		$(currentMenuId).attr("class","");
+		currentMenuId = "#"+id;
+		$(currentMenuId).attr("class","selected-menu");
+		switch(id){
+			case 'wait-join-menu':
+				window.location.href = url+"#parter-info";
+				break;
+			case 'mechant-info-menu':
+				window.location.href = url+"#merchant-info";
+				break;
+			case 'buying-info-menu':
+				window.location.href = url+"#buying-notice";
+				break;
+			case 'comment-info-menu':
+				window.location.href = url+"#all-comments";
+				break;
+		}
 	});
 });

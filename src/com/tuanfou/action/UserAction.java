@@ -1,5 +1,6 @@
 package com.tuanfou.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -46,6 +47,14 @@ public class UserAction extends ActionSupport {
 	@SuppressWarnings("unused")
 	private List<User>  userList;
 	private List<MyHeartGroupFilmInfo> myHeartFilm;
+//	private File filmFile;//上传的头像
+//    private String fileName; //上传文件名
+//    
+//    public void setFilmFileFileName(String fileName)  {
+//        System.out.println("FileName : " + fileName);
+//           this .fileName = fileName;
+//    } 
+//          
 	
 	public List<MyHeartGroupFilmInfo> getMyHeartFilm() {
 		return myHeartFilm;
@@ -126,7 +135,7 @@ public class UserAction extends ActionSupport {
 		user.setPassword(password);
 		user.setEmail(email);
 		user.setDescription(description);
-		
+		user.setPhotoUrl("/TuanFou/imgs/girl2.jpg");
 		UserService userService = new UserService();
 		if(userService.addUser(user)){
 			session = ActionContext.getContext().getSession();
@@ -256,7 +265,8 @@ public class UserAction extends ActionSupport {
 		int userId = (Integer) session.get("userId");
 		int groupFilmId = Integer.valueOf(req.getParameter("groupFilmId"));
 		String content = req.getParameter("content");
-		int star = Integer.valueOf(req.getParameter("star"));
+		int star = Integer.parseInt(req.getParameter("star"));
+		System.out.println(star+";"+groupFilmId);
 		CommentService commentService = new CommentService();
 		if(commentService.postComment(groupFilmId, userId, content, star)){
 			out.print("success");		

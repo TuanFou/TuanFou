@@ -33,7 +33,8 @@ public class OrderAction extends ActionSupport {
 	 */
 	public String getUserOrders(){
 		//通过session获取用户id
-		int id = 302010010;
+		session = ActionContext.getContext().getSession();
+		int id =  (Integer) session.get("userId");
 		OrderService orderService = new OrderService();
 		orderInfoList = orderService.getUserOrdersById(id);
 		if(orderInfoList==null)
@@ -85,7 +86,7 @@ public class OrderAction extends ActionSupport {
 		if(orderService.pay(orderId)){
 			return "pay_success";
 		}else{
-			return ERROR;
+			return "pay_error";
 		}
 	}
 }

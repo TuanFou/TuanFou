@@ -13,7 +13,10 @@
 #tinybox{position:absolute; display:none; /*padding:10px*/; background:#ffffff url(image/preload.gif) no-repeat 50% 50%; border:10px solid #e3e3e3; z-index:2000;}
 #tinymask{position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000000; z-index:1500;}
 #tinycontent{background:#ffffff; font-size:1.1em;}
-
+.star-img{
+	width: 65px;
+	height: 15px;
+}
 </style>
 <body>
 	<div id="header"></div>
@@ -42,7 +45,7 @@
 		<div id="main-left">
 			<div class="groupfilm-info">
 				<div class="groupfilm-img float-left ">
-					<img src="./imgs/1.png"/>
+					<img  src="./imgs/1.png"/>
 					<button id="buying_bt">购买</button>
 				</div>
 				<div class="top-info">
@@ -65,7 +68,7 @@
 			<div class="film-info">
 				<div class="float-left film-star-info ">
 					<span class="line-block">电影评分：</span>
-					<span class="line-block">&nbsp&nbsp&nbsp********7.4</span>
+					<span class="line-block">&nbsp&nbsp&nbsp<img class="star-img" src="./imgs/star/2.png"/>7.4</span>
 					<span class="line-block">我要评分：</span>
 					<span class="line-block">&nbsp&nbsp&nbsp********</span>
 				</div>

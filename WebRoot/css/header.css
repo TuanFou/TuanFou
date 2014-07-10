@@ -39,7 +39,7 @@ div#header div#banner span#logo {
 	/*outline:1px solid red;*/
 	}
 div#header div#banner span#username {
-	margin-left:760px;
+	margin-left:700px;
 }
 #banner a{
 	text-decoration: none;
@@ -48,7 +48,7 @@ div#header div#banner span#username {
 	 cursor: pointer;
 }
 .header-login{
-	margin-left:760px;
+	margin-left:750px;
 }
 .header-regist{
 	margin-left:20px;
@@ -88,4 +88,13 @@ div#header div#breakline {
 }
 #catagory{
 	
+}
+#recommend:hover,#shopping:hover,#myTF:hover,#login_TF:hover,#aboutUs:hover{
+	border-radius: 2px;
+	color: white!important;
+	background: #1c4154; 
+	cursor:pointer;
+}
+#exit:hover{
+	cursor: pointer;
 }

@@ -31,8 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
   <body>
   	<div class="success-info">
-  		<img src="/TuanFou/imgs/finish.png"/>
-  		<h3>操作成功</h3>
+  		<img src="/TuanFou/imgs/finish_fail.png"/>
+  		<h3>发布成功</h3>
   	</div>
   </body>
 </html>

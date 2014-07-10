@@ -6,20 +6,20 @@ body{
 	width: 980px;
 	padding: 10px 0 65px;
 	margin: 80px auto;
-	margin-bottom: 20px;
+/*	margin-bottom: 20px;*/
 	/*font-family:'黑体';*/
 }
 #main-left{
 	/*height: 1290px;*/
 	float: left;
-	width: 200px;
+	width: 200px!important;
 	height:600px;
 	border:2px solid #EEEEEE;
 }
 #main-right{
 	/*float: right;*/
-	width: 760px;
-	height: 600px;
+	width: 740px!important;
+	height: 700px;
 	border:2px solid #EEEEEE;
 	float: right;
 }
@@ -66,11 +66,11 @@ ul{
 	font-size: 18px;
 }
 #menu-bottom ul li:hover{
-	background-color: #0080FF;
+	background-color: #bd8037;
 	color: white;
 }
 .current-select{
-	background-color: #0080FF;
+	background-color: #bd8037;
 	color: white;
 }
 .float-left{

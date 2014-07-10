@@ -26,10 +26,10 @@
 	width: 70px;
 	height: 20px;
 }
-form input{
+.login_form input,.reg_form input{
 	width: 170px;
 }
-form span{
+.login_form span,.reg_form span{
 	margin-top: 10px;
 }
 /*注册界面*/

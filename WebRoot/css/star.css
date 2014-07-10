@@ -1,0 +1,14 @@
+.i-rate-hover-click, .i-rate-hover{
+	display: block;
+	float: left;
+	width: 15px;
+	height: 15px;
+	background-image: url('../imgs/star.png');
+}
+.i-rate{
+	display: block;
+	float: left;
+	width: 15px;
+	height: 15px;
+	background-image: url('../imgs/star_blank.png');
+}

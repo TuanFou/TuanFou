@@ -84,13 +84,13 @@ function showFirstPage(data){
 		$('#groupFilm_load').text("加载更多");
 		$("#groupFilm_load").unbind();
 		$("#groupFilm_load").bind('click', function(){ 
-			alert(area);
-			alert(status);
-			alert(tags);
+			// alert(area);
+			// alert(status);
+			// alert(tags); 
 			$.ajax({
-			 	url: "GroupFilmAction!loadMore?page="+page+"&pageSize=8",
+			 	url: "GroupFilmAction!loadMore?page="+page+"&pageSize=8&area="+area+"&status="+status,
 			 	type: 'get',
-			 	data:{'area':area,'status':status,'tags':tags.toString()},
+			 	data:{'tags':tags.toString()},
 			 	datatype:"json",
 			 	success:function(data){
 				        showInfo(data);
@@ -174,13 +174,11 @@ function checkSelect(){
 		 	data:{'tags':tags.toString()},
 		 	datatype:"json",
 		 	success:function(data){
-		 		alert(data);
 			    showFirstPage(data);
 		 	},
 		 	error:function(error) {
 		 		/* Act on the event */
 		 		for(var index in error){
-
 		 			alert(error[index]);
 		 		}
 		 	}
@@ -312,20 +310,35 @@ function regSubmit(obj){
 					<div class="filter-section">
 						<div class="filter-type">所在区域:</div>
 						<ul id="area-filter" class="inline-block-list">
-							<c:forEach items="${areas}" var="area">
-								<li id="area_${area.areaId}" onclick="requestFilter(this)">${area.areaName}(${area.filmNumber})</li>
+							<c:forEach items="${areas}" var="area" varStatus="idxStatus">
+							    <c:choose>
+				                	<c:when test="${idxStatus.index == 0}">
+				                		<li class="selected" id="area_${area.areaId}" onclick="requestFilter(this)">${area.areaName}(${area.filmNumber})</li>
+				                	</c:when>
+				                	<c:otherwise>
+				                		<li id="area_${area.areaId}" onclick="requestFilter(this)">${area.areaName}(${area.filmNumber})</li>
+				                	</c:otherwise>
+				                </c:choose> 
 							</c:forEach>
 						</ul>
 					</div>
 				  	<div class="filter-section">
 						<div class="filter-type">影片类型:</div>
 						<ul id="type-filter" class="inline-block-list">
-						    <c:forEach items="${filmTags}" var="tag">
-								<li id="tag_${tag.tagId}" onclick="requestFilter(this)">${tag.tagName}(${tag.filmNum})</li>
+						    <c:forEach items="${filmTags}" var="tag" varStatus="idxStatus">
+							    <c:choose>
+				                	<c:when test="${idxStatus.index == 0}">
+				                		<li class="selected" id="tag_${tag.tagId}" onclick="requestFilter(this)">${tag.tagName}(${tag.filmNum})</li>
+				                	</c:when>
+				                	<c:otherwise>
+				                		<li id="tag_${tag.tagId}" onclick="requestFilter(this)">${tag.tagName}(${tag.filmNum})</li>
+				                	</c:otherwise>
+				                </c:choose> 
+								
 							</c:forEach>
 						</ul>
 					</div>
-				    <div  class="filter-section">
+<!-- 				    <div  class="filter-section">
 						<div class="filter-type">国家/地区:</div>
 						<ul id="city-filter"  class="inline-block-list">
 							<li class="selected">全部(20)</li>
@@ -336,12 +349,19 @@ function regSubmit(obj){
 							<li>日韩(20)</li>
 							<li>其他(20)</li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="filter-section">
 						<div class="filter-type">发布时间:</div>
 						<ul id="status-filter"  class="inline-block-list">
 							<c:forEach items="${filmStatusInfo}" var="info" varStatus="idx" >
-								<li id="status_${idx.index}" onclick="requestFilter(this)">${info.status}(${info.filmNum})</li>
+								 <c:choose>
+				                	<c:when test="${idx.index == 0}">
+				                		<li class="selected" id="status_${idx.index}" onclick="requestFilter(this)">${info.status}(${info.filmNum})</li>
+				                	</c:when>
+				                	<c:otherwise>
+				                		<li id="status_${idx.index}" onclick="requestFilter(this)">${info.status}(${info.filmNum})</li>
+				                	</c:otherwise>
+				                </c:choose> 
 							</c:forEach>
 						</ul>
 					</div>

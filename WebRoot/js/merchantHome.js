@@ -24,4 +24,23 @@ $(document).ready(function(){
 				break;	
 		}
 	});
+	/*
+	菜单选择
+	*/
+	$('#myTF').bind('click', function(event) {
+		/* Act on the event */
+		window.location.reload();
+	});
+	$('#login_TF').bind('click',function(event) {
+		/* Act on the event */
+		$('#login_link').click();
+	});
+	$('#login_bt').bind('click',function(event) {
+		/* Act on the event */
+		$('#login_link').click();
+	});
+	$('#shopping').bind('click',function(event) {
+		/* Act on the event */
+		window.location.href = "FilterAction!getFilterTags";
+	});
 });

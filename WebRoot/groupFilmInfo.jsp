@@ -21,10 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="./css/groupFilmInfo.css">
 	<link rel="stylesheet" type="text/css" href="./css/header.css">
 	<link rel="stylesheet" type="text/css" href="./css/reg_log.css">
+	<link rel="stylesheet" type="text/css" href="./css/star.css">
 	<script src="./js/jquery.js" type="text/javascript"></script>
 	<script type="text/javascript" src="./js/tinybox.js"></script>
 	<script type="text/javascript" src="./js/groupFilmInfo.js"></script>
 	<script src="./js/reg_login.js" type="text/javascript"></script>
+	<script src="./js/star.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
 
@@ -57,6 +59,8 @@ function loginSubmit(obj){
 	 	success:function(data){
 	 		if(data=="success"){//登录成功
 	 			window.location.reload();
+	 		}else{
+	 			alert('请检查用户名和密码是否正确');
 	 		}
 	 	},
 	 	error:function(error) {
@@ -97,7 +101,7 @@ function regSubmit(obj){
 			return ;
 		}
  }
- </script>
+</script>
 <body>
 	<div id="middle-background">
         <div id="header">
@@ -113,6 +117,7 @@ function regSubmit(obj){
                 		<span id="exit">退出登录</span>
                 	</c:otherwise>
                 </c:choose>     
+                <span id="merchantCenter"><a href="MerchantAction!login">商家中心</a></span>   
             </div>
             <img id="logo-img" src="./imgs/logo_tuanfou.png"/>
             <div id="catagory">
@@ -148,7 +153,7 @@ function regSubmit(obj){
 					<hr>
 					<span class="line-block font-20" >
 						<span>已售${groupFilmDetailInfo.orderNum} </span>
-						<span class="comment-star">*****${groupFilmDetailInfo.groupfilmStar}</span>
+						<span class="comment-star"><img class="star-img" src="./imgs/star/${groupFilmDetailInfo.groupfilmStar}.png"/>${groupFilmDetailInfo.groupfilmStar}</span>
 						<span class="float-right">${groupFilmDetailInfo.commentNum}人评价</span>
 					</span>
 					<span class="line-block font-20 ">
@@ -162,8 +167,8 @@ function regSubmit(obj){
 		
 		<div id="main-left">
 			<div class="groupfilm-info">
-				<div class="groupfilm-img float-left ">
-					<img src="./imgs/1.png"/>
+				<div class="film-img float-left ">
+					<img src="${groupFilmDetailInfo.photpUrl}"/>
 					<c:choose>
                 		<c:when test="${empty sessionScope.userId}">
                 			<button id="login_bt">购买</button>
@@ -183,7 +188,7 @@ function regSubmit(obj){
 				</div>
 				<div class="detial-info float-left" id="${groupFilmDetailInfo.groupFilmId}">
 					<span class="line-block line-block-infoName"><font size="5"> ${groupFilmDetailInfo.filmName}</font></span>
-					<span class="line-block line-block-infoTime"><font size="3">${groupFilmDetailInfo.period}分钟&nbsp&nbsp&nbsp${groupFilmDetailInfo.realeaseDate}中国上映</font></span>
+					<span class="line-block line-block-infoTime"><font size="3">${groupFilmDetailInfo.period}分钟&nbsp&nbsp&nbsp;${groupFilmDetailInfo.realeaseDate}中国上映</font></span>
 					<span class="line-block line-block-crew" >导演：${groupFilmDetailInfo.director}</span>
 					<span class="line-block line-block-crew" >主演：罗伯特·斯托姆伯格</span>
 					<span class="line-block line-block-crew" >标签：${groupFilmDetailInfo.tags}</span>
@@ -193,9 +198,9 @@ function regSubmit(obj){
 			<div class="film-info">
 				<div class="float-left film-star-info ">
 					<span class="line-block">电影评分：</span>
-					<span class="line-block">&nbsp&nbsp&nbsp********${groupFilmDetailInfo.filmStar}</span>
+					<span class="line-block">&nbsp&nbsp&nbsp<img class="star-img" src="./imgs/star/${groupFilmDetailInfo.groupfilmStar}.png"/>${groupFilmDetailInfo.filmStar}</span>
 					<span class="line-block">我要评分：</span>
-					<span class="line-block">&nbsp&nbsp&nbsp********</span>
+					<span class="line-block">&nbsp&nbsp&nbsp<img class="star-img" src="./imgs/star/2.png"/></span>
 				</div>
 				<div class="float-left film-introduce">
 					<span class="line-block blue-font">剧情介绍</span>
@@ -205,10 +210,10 @@ function regSubmit(obj){
 			<div class="clear"></div>
 			<div id="nav-menu-area">
 				<ul class="menu-style nav-menu">
-					<li class="selected-menu">等你入伙</li>
-					<li>商家信息</li>
-					<li>购买须知</li>
-					<li>评价详情</li>
+					<li id="wait-join-menu"class="selected-menu">等你入伙</li>
+					<li id="mechant-info-menu" >商家信息</li>
+					<li id="buying-info-menu">购买须知</li>
+					<li id="comment-info-menu">评价详情</li>
 				</ul>
 			</div>
 			<div class="ads-area  clear"><img class="ads-area" src="./imgs/ad_small.png"></div>
@@ -240,7 +245,7 @@ function regSubmit(obj){
 				<span class="merchant-info-title line-block parter-title"><font size="4" >商家信息</font></span>
 				<div id="merchant-detial-info">
 					<div id="map" class="float-left">
-						
+						<img src="./imgs/map.jpg"/>
 					</div>
 					<div id="merchant-info-area" class="float-left">
 						<span class="line-block line-block-cinemaName">${groupFilmDetailInfo.cinemaName}</span>
@@ -293,18 +298,18 @@ function regSubmit(obj){
 			<div id="comment-info">
 				<span class="comment-info-title line-block parter-title">
 					<font size="4" >商家信息</font>
-					<span class="float-right" ><a href="#"><font size="2" color="#bd6037">我要评价</font></a></span>
+					<span class="float-right" ><a href="#myComment"><font size="2" color="#bd6037">我要评价</font></a></span>
 				</span>
 				<div class="float-left comment-left">
-					<span class="line-block"> <font size="18" color="#bd6037">9.4</font>&nbsp分</span>
-					<span class="line-block">*******</span>
+					<span class="line-block"> <font size="18" color="#bd6037">${groupFilmDetailInfo.groupfilmStar}</font>&nbsp分</span>
+					<span class="line-block"><img class="star-img" src="./imgs/star/${groupFilmDetailInfo.groupfilmStar}.png"/></span>
 					<span class="line-block link-block-comment">半年内共<font color="#bd6037" size="5">${groupFilmDetailInfo.commentNum}</font>人评价</span>
 				</div>
 				<div class="float-left comment-mid">
-					<span class="line-block link-block-comment">试听效果&nbsp<span>******  9.4</span></span>
-					<span class="line-block link-block-comment">&nbsp&nbsp&nbsp&nbsp服务&nbsp<span>******  9.4</span></span>
-					<span class="line-block link-block-comment">&nbsp&nbsp&nbsp&nbsp环境&nbsp<span>******  9.4</span></span></span>
-					<span class="line-block link-block-comment">位置交通&nbsp<span>******  9.4</span></span>
+					<span class="line-block link-block-comment">试听效果&nbsp<span><img class="star-img" src="./imgs/star/2.png"/> 5.0</span></span>
+					<span class="line-block link-block-comment">&nbsp&nbsp&nbsp&nbsp服务&nbsp;&nbsp;<span><img class="star-img" src="./imgs/star/2.png"/> 5.0</span></span>
+					<span class="line-block link-block-comment">&nbsp&nbsp&nbsp&nbsp环境&nbsp&nbsp;<span><img class="star-img" src="./imgs/star/2.png"/>5.0</span></span></span>
+					<span class="line-block link-block-comment">位置交通&nbsp<span><img class="star-img" src="./imgs/star/2.png"/>  5.0</span></span>
 				</div>
 				<div class="float-left comment-right">					
 					 <span class="line-block link-block-Pcomment">5分<span class="five-grade"><img src="./imgs/fiveStar.png"></img></span><span class="float-right">100人</span> </span>
@@ -338,18 +343,27 @@ function regSubmit(obj){
 						  <div class="comment">
 							<span class=" mark-red">${info.userName}</span>
 							<span class=" mark-red">${info.date}</span>
-							<span class="float-right mark-red">*****${info.star}分</span>
+							<span class="float-right mark-red"><img class="star-img" src="./imgs/star/${info.star}.png"/>${info.star}分</span>
 							<span class="line-block content">
 								 ${info.content}
 							</span>
 					 	  </div> 
 					   </c:forEach>
-						<div class="add-comment">
-						    <div>我要评价:</div></br>
+						<div id="myComment" class="add-comment">
+						    <span>我要评价
+								 <span class="star-holder">
+								 	<a class="i-rate"></a>
+								 	<a class="i-rate"></a>
+								 	<a class="i-rate"></a>
+								 	<a class="i-rate"></a>
+								 	<a class="i-rate"></a>
+								 </span>
+						    </span> 
 							<form name="commentForm" method="post" action="#">
+								<input name="star" class="star-value" vlaue="" type="hidden"/>
 							    <input name="userId" type="hidden" value="${sessionScope.userId}"/>
 							    <input name="groupFilmId" type="hidden" value="${groupFilmDetailInfo.groupFilmId}"/>
-								<textarea rows="5" cols="77" name="myComment">
+								<textarea rows="5" cols="75" name="myComment">
 									
 								</textarea>
 							</form>
@@ -397,4 +411,38 @@ function regSubmit(obj){
         T$('buying_bt').onclick = function(){TINY.box.show(hiddenText,0,0,0,1)};
         /*购买商品，下订单*/
     </script>
+<script>
+ /*星星*/
+ function count() {
+    var num = $('.star-holder>.i-rate-hover-click').length;
+    $('.star-value').attr("value", num);
+}
+
+
+	for (i = 0; i < 5; i++) {
+		before();
+		change(i);
+		after(i);
+	}
+    function change(i) {
+        $('.star-holder>.i-rate:eq(' + i + ')').mouseover(function () {
+            $('.star-holder>a:lt(' + (i + 1) + ').i-rate').attr("class", "i-rate-hover");
+        });
+    }
+
+    function after(i) {
+        $('.star-holder>a:eq(' + i + ')').click(function () {
+            $('.star-holder>a:lt(' + (i + 1) + ')').attr("class", "i-rate-hover-click");
+            $('.star-holder>a:gt(' + i + ')').attr("class", "i-rate");
+            count();
+            return false;
+        });
+    }
+
+    function before() {
+        $('.star-holder').mouseout(function () {
+            $('.star-holder >.i-rate-hover').attr("class", "i-rate");
+        });
+    }
+</script>
 </html>

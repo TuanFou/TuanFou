@@ -19,7 +19,8 @@
 			<result name="error">/error.jsp</result>
 			<result name="myOrder">/userHomePage/myOrder.jsp</result>
 			<result name="OrderPay">/pay.jsp</result>
-			<result name="pay_success">/paySuccess.html</result>
+			<result name="pay_success">/paySuccess.jsp</result>
+			<result name="pay_error">/payError.html</result>
 		</action>
 	</package>
 	<package name="GroupFilm" namespace="/" extends="struts-default">
@@ -27,6 +28,8 @@
 		<action name="GroupFilmAction" class="com.tuanfou.action.GroupFilmAction">
 			<result name="detailInfo">/groupFilmInfo.jsp</result>
 			<result name="error">/error.jsp</result>
+			<result name="apply_success">/apply_success.jsp</result>
+						<result name="apply_error">/apply_success.jsp</result>
 			<result name="success">/success.jsp</result>
 		</action>
 		<!-- 过滤器操作 -->

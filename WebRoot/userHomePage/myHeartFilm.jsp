@@ -72,7 +72,7 @@ a{
   </style>
   <body>
    <div  class="bg">
-      <span><font size="5" color="blue">我的伙影</font></span>
+      <span><font size="5">我的伙影</font></span>
       <div id="info-area">
          <table class="table">
             <tr>
