@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tuanfou
 Target Host: localhost
 Target Database: tuanfou
-Date: 2014-7-9 9:24:33
+Date: 2014/7/10 15:28:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -195,6 +195,7 @@ CREATE TABLE `t_order` (
   `createTime` datetime default NULL COMMENT '订单日期',
   `expiredTime` datetime default NULL COMMENT 's失效时间，与groupfilm的下架时间对应',
   `status` int(11) default NULL COMMENT '订单状态,0：失效，1：未支付，2：已经支付',
+  `amount` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -231,7 +232,7 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 INSERT INTO `t_account` VALUES ('1', '1065');
 INSERT INTO `t_account` VALUES ('2', '12220');
-INSERT INTO `t_account` VALUES ('3', '1055555');
+INSERT INTO `t_account` VALUES ('3', '1055233');
 INSERT INTO `t_account` VALUES ('4', '5');
 INSERT INTO `t_account` VALUES ('5', '1089');
 INSERT INTO `t_account` VALUES ('6', '6666');
@@ -261,6 +262,8 @@ INSERT INTO `t_account` VALUES ('32', '0');
 INSERT INTO `t_account` VALUES ('33', '100');
 INSERT INTO `t_account` VALUES ('34', '100');
 INSERT INTO `t_account` VALUES ('35', '100');
+INSERT INTO `t_account` VALUES ('36', '99854');
+INSERT INTO `t_account` VALUES ('37', '60');
 INSERT INTO `t_admin` VALUES ('30601001', '001', '123001');
 INSERT INTO `t_admin` VALUES ('31201002', '007', '123007');
 INSERT INTO `t_area` VALUES ('3010101', '海淀区', '30101');
@@ -327,6 +330,14 @@ INSERT INTO `t_comment` VALUES ('7', '7', '309010006', '2014-07-02 08:54:51', '�
 INSERT INTO `t_comment` VALUES ('8', '10', '304010333', '2014-07-02 08:55:00', '不错额8', '4');
 INSERT INTO `t_comment` VALUES ('9', '7', '307016211', '2014-07-02 08:55:10', '不错额9', '4');
 INSERT INTO `t_comment` VALUES ('10', '9', '304010321', '2014-07-02 08:55:18', '不错额10', '5');
+INSERT INTO `t_comment` VALUES ('11', '1', '302010010', '2014-07-09 00:00:00', 'dabing									\n								', '0');
+INSERT INTO `t_comment` VALUES ('12', '1', '304010321', '2014-07-10 00:00:00', 'hello,this is a good film						', '1');
+INSERT INTO `t_comment` VALUES ('13', '1', '304010321', '2014-07-10 00:00:00', '我是KDF电影很好看									\n								', '5');
+INSERT INTO `t_comment` VALUES ('14', '1', '304010321', '2014-07-10 00:00:00', '给个4分									\n								', '4');
+INSERT INTO `t_comment` VALUES ('15', '1', '326011112', '2014-07-10 00:00:00', 'KDF									\n								', '3');
+INSERT INTO `t_comment` VALUES ('16', '1', '326011112', '2014-07-10 00:00:00', '测试一下			', '4');
+INSERT INTO `t_comment` VALUES ('17', '10', '326011112', '2014-07-10 00:00:00', '霍比特人3真的好帅！								\n								', '4');
+INSERT INTO `t_comment` VALUES ('18', '1', '326011113', '2014-07-10 00:00:00', 'bucuoai									\n								', '4');
 INSERT INTO `t_complaint` VALUES ('1', '1', '304010333', '不好看');
 INSERT INTO `t_complaint` VALUES ('2', '1', '307016211', '环境不好');
 INSERT INTO `t_complaint` VALUES ('3', '1', '307016211', '态度不好');
@@ -367,16 +378,22 @@ INSERT INTO `t_film_tag` VALUES ('17', '8', '5');
 INSERT INTO `t_film_tag` VALUES ('18', '9', '7');
 INSERT INTO `t_film_tag` VALUES ('19', '10', '8');
 INSERT INTO `t_film_tag` VALUES ('20', '10', '13');
-INSERT INTO `t_group_film` VALUES ('1', '1', '3190101', '319010103', '19.99', '80', '2014-07-06 12:59:52', '2014-08-03 13:00:11', '1', '不错的电影1', '0', './imgs/变形金刚4.jpg');
-INSERT INTO `t_group_film` VALUES ('2', '1', '3190101', '319010101', '29.8', '90', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影2', '0', './imgs/变形金刚4.jpg');
-INSERT INTO `t_group_film` VALUES ('3', '1', '3190101', '319010102', '39', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影3', '1', './imgs/变形金刚4.jpg');
-INSERT INTO `t_group_film` VALUES ('4', '4', '3190101', '319010102', '20', '80', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影4', '1', './imgs/白日火焰.jpg');
-INSERT INTO `t_group_film` VALUES ('5', '4', '3190102', '319010201', '30', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影5', '1', './imgs/白日火焰.jpg');
-INSERT INTO `t_group_film` VALUES ('6', '6', '3190102', '301010201', '30', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影6', '0', './imgs/无人区.jpg');
-INSERT INTO `t_group_film` VALUES ('7', '6', '3190102', '319010201', '35', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影7', '0', './imgs/无人区.jpg');
-INSERT INTO `t_group_film` VALUES ('8', '7', '3190103', '319010301', '33', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影8', '1', './imgs/冰雪奇缘.jpg');
-INSERT INTO `t_group_film` VALUES ('9', '7', '3190103', '319010301', '32', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影9', '1', './imgs/冰雪奇缘.jpg');
-INSERT INTO `t_group_film` VALUES ('10', '10', '3190103', '319010301', '31', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影10', '0', './imgs/霍比特人3.jpg');
+INSERT INTO `t_group_film` VALUES ('1', '1', '3190101', '319010103', '19.99', '80', '2014-07-06 12:59:52', '2014-08-03 13:00:11', '1', '不错的电影1', '0', '/TuanFou/imgs/变形金刚4.jpg');
+INSERT INTO `t_group_film` VALUES ('2', '1', '3190101', '319010101', '29.8', '90', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影2', '0', '/TuanFou/imgs/变形金刚4.jpg');
+INSERT INTO `t_group_film` VALUES ('3', '1', '3190101', '319010102', '39', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影3', '1', '/TuanFou/imgs/变形金刚4.jpg');
+INSERT INTO `t_group_film` VALUES ('4', '4', '3190101', '319010102', '20', '80', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影4', '1', '/TuanFou/imgs/白日火焰.jpg');
+INSERT INTO `t_group_film` VALUES ('5', '4', '3190102', '319010201', '30', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影5', '1', '/TuanFou/imgs/白日火焰.jpg');
+INSERT INTO `t_group_film` VALUES ('6', '6', '3190102', '301010201', '30', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影6', '0', '/TuanFou/imgs/无人区.jpg');
+INSERT INTO `t_group_film` VALUES ('7', '6', '3190102', '319010201', '35', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影7', '0', '/TuanFou/imgs/无人区.jpg');
+INSERT INTO `t_group_film` VALUES ('8', '7', '3190103', '319010301', '33', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影8', '1', '/TuanFou/imgs/冰雪奇缘.jpg');
+INSERT INTO `t_group_film` VALUES ('9', '7', '3190103', '319010301', '32', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影9', '1', '/TuanFou/imgs/冰雪奇缘.jpg');
+INSERT INTO `t_group_film` VALUES ('10', '10', '3190103', '319010301', '31', '100', '2014-07-06 12:59:52', '2014-08-03 00:00:00', '1', '不错的电影10', '0', '/TuanFou/imgs/霍比特人3.jpg');
+INSERT INTO `t_group_film` VALUES ('11', '1', '3190101', '319010101', '18.9', '25', '2014-07-15 00:00:00', '2014-07-23 00:00:00', '1', null, '0', '\\TuanFou\\imgs/1404954573405.jpg');
+INSERT INTO `t_group_film` VALUES ('12', '5', '3190101', '319010101', '15.7', '23.3', '2014-07-25 00:00:00', '2014-07-29 00:00:00', '1', '十二生肖', '0', '/TuanFou/imgs/1404956101211.jpg');
+INSERT INTO `t_group_film` VALUES ('13', '3', '3190101', '319010101', '25', '15', '2014-07-18 00:00:00', '2014-07-25 00:00:00', '1', '美国队长2', '0', '/TuanFou/imgs/1404957606824.jpg');
+INSERT INTO `t_group_film` VALUES ('14', '8', '3190101', '319010101', '23', '15', '2014-07-15 00:00:00', '2014-07-29 00:00:00', '1', '窃听风云2', '0', '/TuanFou/imgs/1404958676521.jpg');
+INSERT INTO `t_group_film` VALUES ('15', '10', '3190101', '319010101', '45', '23.3', '2014-07-10 00:00:00', '2014-07-29 00:00:00', '1', '霍比特人3', '0', '/TuanFou/imgs/1404962424850.jpg');
+INSERT INTO `t_group_film` VALUES ('16', '1', '3190101', '319010101', '23', '24', '2014-07-15 00:00:00', '2014-07-29 00:00:00', '1', '不错的电影', '0', '/TuanFou/imgs/1404976264506.jpg');
 INSERT INTO `t_heart` VALUES ('1', '1', '307016211');
 INSERT INTO `t_heart` VALUES ('2', '1', '309010006');
 INSERT INTO `t_heart` VALUES ('3', '1', '309010056');
@@ -387,16 +404,36 @@ INSERT INTO `t_heart` VALUES ('7', '8', '322011654');
 INSERT INTO `t_heart` VALUES ('8', '8', '326011111');
 INSERT INTO `t_heart` VALUES ('9', '10', '302010010');
 INSERT INTO `t_heart` VALUES ('10', '2', '326011111');
-INSERT INTO `t_merchant` VALUES ('1', '孔德飞', '123456', '41048219920213671X', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('2', '赖楠', '123456', '410488199408261111', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('3', '黄灿圳', '123456', '123456789012342222', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('4', '徐玉吉大老板', '123456', '222222222222222222', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('5', '柴炳蔚', '123456', '467623435443434465', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('6', '王毅', '132465', '465434134354354344', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('7', '李二', '123465', '123546546464646464', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('8', 'l刘三', '123456', '354647446546467487', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('9', '章四', '123465', '635487879869543213', 'default.jpg');
-INSERT INTO `t_merchant` VALUES ('10', '徐五', '132465', '135464213246453112', 'default.jpg');
+INSERT INTO `t_heart` VALUES ('11', '2', '302010010');
+INSERT INTO `t_heart` VALUES ('12', '1', '302010010');
+INSERT INTO `t_heart` VALUES ('13', '1', '302010010');
+INSERT INTO `t_heart` VALUES ('14', '1', '302010010');
+INSERT INTO `t_heart` VALUES ('15', '6', '302010010');
+INSERT INTO `t_heart` VALUES ('16', '8', '302010010');
+INSERT INTO `t_heart` VALUES ('17', '8', '304010321');
+INSERT INTO `t_heart` VALUES ('18', '3', '304010321');
+INSERT INTO `t_heart` VALUES ('19', '3', '304010321');
+INSERT INTO `t_heart` VALUES ('20', '3', '304010321');
+INSERT INTO `t_heart` VALUES ('21', '3', '304010321');
+INSERT INTO `t_heart` VALUES ('22', '3', '304010321');
+INSERT INTO `t_heart` VALUES ('23', '3', '304010321');
+INSERT INTO `t_heart` VALUES ('24', '7', '304010321');
+INSERT INTO `t_heart` VALUES ('25', '7', '304010321');
+INSERT INTO `t_heart` VALUES ('26', '1', '326011112');
+INSERT INTO `t_heart` VALUES ('27', '10', '326011112');
+INSERT INTO `t_heart` VALUES ('28', '10', '326011112');
+INSERT INTO `t_heart` VALUES ('29', '1', '326011113');
+INSERT INTO `t_heart` VALUES ('30', '1', '326011113');
+INSERT INTO `t_merchant` VALUES ('1', 'kongdefei', '123456', '41048219920213671X', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('2', '赖楠', '123456', '410488199408261111', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('3', '黄灿圳', '123456', '123456789012342222', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('4', '徐玉吉大老板', '123456', '222222222222222222', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('5', '柴炳蔚', '123456', '467623435443434465', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('6', '王毅', '132465', '465434134354354344', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('7', '李二', '123465', '123546546464646464', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('8', 'l刘三', '123456', '354647446546467487', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('9', '章四', '123465', '635487879869543213', '/TuanFou/imgs/girl2.jpg');
+INSERT INTO `t_merchant` VALUES ('10', '徐五', '132465', '135464213246453112', '/TuanFou/imgs/girl2.jpg');
 INSERT INTO `t_merchant` VALUES ('13', '测试商家', '777777888', '465aaaxaax', 'default.jpg');
 INSERT INTO `t_merchant` VALUES ('14', '测试商家', '777777888', '465aaaxaax', 'default.jpg');
 INSERT INTO `t_merchant` VALUES ('15', '测试商家', '777777888', '465aaaxaax1', 'default.jpg');
@@ -410,16 +447,26 @@ INSERT INTO `t_message` VALUES ('7', '319010023', '304010333', 'hello7', '2014-0
 INSERT INTO `t_message` VALUES ('8', '322011654', '319010023', 'hello8', '2014-07-02 09:25:00', '2');
 INSERT INTO `t_message` VALUES ('9', '326011111', '304010321', 'hello9', '2014-07-02 09:25:06', '2');
 INSERT INTO `t_message` VALUES ('10', '322011654', '319010023', 'hello10', '2014-07-02 09:25:13', '2');
-INSERT INTO `t_order` VALUES ('1', '1', '302010010', '2014-06-28 13:01:33', '2014-08-03 13:00:11', '1');
-INSERT INTO `t_order` VALUES ('2', '1', '304010321', '2014-07-02 09:30:59', '2014-08-03 13:00:11', '1');
-INSERT INTO `t_order` VALUES ('3', '1', '304010333', '2014-07-02 09:35:20', '2014-08-03 13:00:11', '1');
-INSERT INTO `t_order` VALUES ('4', '2', '302010010', '2014-07-02 09:35:29', '2014-08-03 00:00:00', '1');
-INSERT INTO `t_order` VALUES ('5', '2', '304010333', '2014-07-02 09:35:36', '2014-08-03 00:00:00', '1');
-INSERT INTO `t_order` VALUES ('6', '9', '319010023', '2014-07-02 09:35:55', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('7', '3', '304010333', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('8', '4', '309010006', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('9', '10', '309010056', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
-INSERT INTO `t_order` VALUES ('10', '8', '319010001', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2');
+INSERT INTO `t_order` VALUES ('1', '1', '302010010', '2014-06-28 13:01:33', '2014-08-03 13:00:11', '1', '2');
+INSERT INTO `t_order` VALUES ('2', '1', '304010321', '2014-07-02 09:30:59', '2014-08-03 13:00:11', '1', '1');
+INSERT INTO `t_order` VALUES ('3', '1', '304010333', '2014-07-02 09:35:20', '2014-08-03 13:00:11', '1', '3');
+INSERT INTO `t_order` VALUES ('4', '2', '302010010', '2014-07-02 09:35:29', '2014-08-03 00:00:00', '1', '4');
+INSERT INTO `t_order` VALUES ('5', '2', '304010333', '2014-07-02 09:35:36', '2014-08-03 00:00:00', '1', '1');
+INSERT INTO `t_order` VALUES ('6', '9', '319010023', '2014-07-02 09:35:55', '2014-08-03 00:00:00', '2', '3');
+INSERT INTO `t_order` VALUES ('7', '3', '304010333', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '4');
+INSERT INTO `t_order` VALUES ('8', '4', '309010006', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '1');
+INSERT INTO `t_order` VALUES ('9', '10', '309010056', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '4');
+INSERT INTO `t_order` VALUES ('10', '8', '319010001', '2014-07-02 09:36:01', '2014-08-03 00:00:00', '2', '2');
+INSERT INTO `t_order` VALUES ('11', '8', '304010321', '2014-07-09 00:00:00', '2014-08-03 00:00:00', '2', '2');
+INSERT INTO `t_order` VALUES ('12', '7', '304010321', '2014-07-09 00:00:00', '2014-08-03 00:00:00', '2', '2');
+INSERT INTO `t_order` VALUES ('13', '7', '304010321', '2014-07-09 00:00:00', '2014-08-03 00:00:00', '1', '2');
+INSERT INTO `t_order` VALUES ('14', '6', '304010321', '2014-07-09 00:00:00', '2014-08-03 00:00:00', '1', '2');
+INSERT INTO `t_order` VALUES ('15', '10', '304010321', '2014-07-09 00:00:00', '2014-08-03 00:00:00', '1', '5');
+INSERT INTO `t_order` VALUES ('16', '10', '304010321', '2014-07-09 00:00:00', '2014-08-03 00:00:00', '2', '3');
+INSERT INTO `t_order` VALUES ('17', '1', '326011112', '2014-07-10 00:00:00', '2014-08-03 00:00:00', '2', '4');
+INSERT INTO `t_order` VALUES ('18', '10', '326011112', '2014-07-10 00:00:00', '2014-08-03 00:00:00', '1', '2');
+INSERT INTO `t_order` VALUES ('19', '8', '326011112', '2014-07-10 00:00:00', '2014-08-03 00:00:00', '2', '2');
+INSERT INTO `t_order` VALUES ('20', '1', '326011113', '2014-07-10 00:00:00', '2014-08-03 00:00:00', '2', '2');
 INSERT INTO `t_tag` VALUES ('1', '爱情', '0');
 INSERT INTO `t_tag` VALUES ('2', '动作', '0');
 INSERT INTO `t_tag` VALUES ('3', '科幻', '1');
@@ -433,19 +480,15 @@ INSERT INTO `t_tag` VALUES ('10', '伦理', '0');
 INSERT INTO `t_tag` VALUES ('11', '冒险', '0');
 INSERT INTO `t_tag` VALUES ('12', '犯罪', '0');
 INSERT INTO `t_tag` VALUES ('13', '剧情', '0');
-INSERT INTO `t_user` VALUES ('302010010', '2', '李晓峰', '1232', 'kdf5000@163.com', '30201', 'hello2', 'photo.jpg', '1');
-INSERT INTO `t_user` VALUES ('304010321', '3', '黄子龙', '1233', 'kdf@163.com', '30401', 'hello3', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('304010333', '8', '高笑笑', '1238', 'kdf@163.com', '30401', 'h8', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('307016211', '4', '王佳佳', '1234', 'kdf@163.com', '30701', 'hello4', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('309010006', '5', '李师师', '1235', 'kdf@163.com', '30901', 'hello5', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('309010056', '9', '郝歌哥', '1239', 'kdf@163.com', '30701', 'h9', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('319010001', '1', '张大伟', '1231', 'kdf@163.com', '31901', 'hello1', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('319010023', '6', '徐霞客', '1236', 'kdf@163.com', '31901', 'h6', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('322011654', '7', '邓紫棋', '1237', 'kdf@163.com', '32201', 'h7', 'kdf.jpg', '2');
-INSERT INTO `t_user` VALUES ('326011111', '10', '齐大光', '12310', 'kdf@163.com', '32601', 'h10', 'kdf.jpg', '1');
-INSERT INTO `t_user` VALUES ('326011112', '30', 'testAddUser', '5555566666', null, '31901', null, null, null);
-INSERT INTO `t_user` VALUES ('326011113', '31', 'testAddUser', '5555566666', null, '31901', null, null, null);
-INSERT INTO `t_user` VALUES ('326011114', '32', 'testAddUser1', '5555566666', null, '31901', null, null, null);
-INSERT INTO `t_user` VALUES ('326011115', '33', 'woshidoubi', '55555', '1216075682@qq.com', '31901', 'woshidoubi', null, null);
-INSERT INTO `t_user` VALUES ('326011116', '34', 'PL', '55555', '1216075681@qq.com', '30201', 'PPLL', null, null);
-INSERT INTO `t_user` VALUES ('326011117', '35', 'TuanFou', '88888', '1216075645@qq.com', '30101', 'Hao', null, null);
+INSERT INTO `t_user` VALUES ('302010010', '2', 'lixiaofeng', '1232', 'kdf5000@163.com', '30201', 'hello2', '/TuanFou/imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('304010321', '3', '黄子龙', '1233', 'kdf@163.com', '30401', 'hello3', '/TuanFou/imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('304010333', '8', '高笑笑', '1238', 'kdf@163.com', '30401', 'h8', '/TuanFou/imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('307016211', '4', '王佳佳', '1234', 'kdf@163.com', '30701', 'hello4', '/TuanFou/imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('309010006', '5', '李师师', '1235', 'kdf@163.com', '30901', 'hello5', '/TuanFou/imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('309010056', '9', '郝歌哥', '1239', 'kdf@163.com', '30701', 'h9', '/TuanFou/imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('319010001', '1', '张大伟', '1231', 'kdf@163.com', '31901', 'hello1', '/TuanFou/imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('319010023', '6', '徐霞客', '1236', 'kdf@163.com', '31901', 'h6', '/TuanFou/imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('322011654', '7', '邓紫棋', '1237', 'kdf@163.com', '32201', 'h7', '/TuanFou/imgs/girl2.jpg', '2');
+INSERT INTO `t_user` VALUES ('326011111', '10', '齐大光', '12310', 'kdf@163.com', '32601', 'h10', '/TuanFou/imgs/girl2.jpg', '1');
+INSERT INTO `t_user` VALUES ('326011112', '36', 'kdf5000', '123', 'kdf5000@163.com', '31901', 'KDF', '/TuanFou/imgs/girl2.jpg', null);
+INSERT INTO `t_user` VALUES ('326011113', '37', 'xiaoming', '123', 'kdf5000@163.com', '31901', 'xiaoming', '/TuanFou/imgs/girl2.jpg', null);
