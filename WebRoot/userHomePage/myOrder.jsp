@@ -20,6 +20,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+  <script src="<%=basePath%>/js/jquery.js" type="text/javascript"></script>
+<script>
+$(function(){
+  $(".comment_bt").bind('click',function(){
+      var id = $(this).attr("id").substr(10);
+      //window.location.href="GroupFilmAction!showGroupFilmDetail?groupFilmId="+id;
+      window.open("GroupFilmAction!showGroupFilmDetail?groupFilmId="+id+"#all-comments");
+  });
+})
+</script>
  <style>
 .float-left{
   float: left;
@@ -112,12 +122,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 .item-info{
   margin-top: 8px;
 }
+a:hover{
+  cursor: pointer;
+}
 </style>
 </head>
   
 <body>
  <div  class="bg">
-      <span><font size="5" color="blue">我的订单</font></span>
+      <span><font size="5" color="#bd8037">我的订单</font></span>
       <div id="info-area">
          <div class="title">
             <div class="title_1">团购</div>
@@ -132,17 +145,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	         <div class="order-item">
 	            <span class="order-item-title">订单号: ${info.orderId }&nbsp;&nbsp;&nbsp;&nbsp;武汉市洪山区&nbsp;&nbsp;&nbsp;${orderId.orderTime }</span>
 	            <div class="item-info">
-	                <span ><img class="float-left" width="40px" height="60px" src="./imgs/1.png"></span>
+	                <span ><a onclick="javascript:window.open('GroupFilmAction!showGroupFilmDetail?groupFilmId=${info.groupFilmId}#all-comments')"><img class="float-left" width="40px" height="60px" src="${info.filmPhoto}"></a></span>
 	                <div class="float-left heart-film-info" >
 	                    <span class="line-block">${info.filmName }</span>
-	                    <span class="line-block">洪山天河国际影城</span>
+	                    <span class="line-block">${info.cinemaName}</span>
 	                </div>
 	                <span class="float-left price" >${info.curretPrice }</span>
 	                <span class="float-left amount">${info.amount }</span>
 	                <span class="float-left totalPrice">${info.totalPrice }</span>
 	                <span class="float-left status">${info.status }</span>
 	                <span class="float-left operation">
-	                     <span><button>评价</button></span>
+	                     <span><button class="comment_bt" id="groupFilm_${info.groupFilmId}">评价</button></span>
 	                     <span><button>申请投诉</button></span>
 	                </span>
 	            </div>

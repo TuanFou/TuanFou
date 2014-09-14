@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Struts2Diagram version="2.0">
-  <package name="userPackage" location="10,10" size="257,338">
-    <action name="UserAction" location="99,114" size="150,209">
+  <package name="userPackage" location="25,10" size="281,383">
+    <action name="UserAction" location="125,140" size="150,209">
       <result name="userHome">
         <resourceEdge source="userHome" routing="0" target="userHome.jsp" />
       </result>
@@ -30,7 +30,7 @@
         <resourceEdge source="success" routing="0" target="error.jsp" />
       </result>
     </action>
-    <action name="OrderAction" location="76,226" size="150,104">
+    <action name="OrderAction" location="102,252" size="150,125">
       <result name="error">
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
@@ -41,20 +41,32 @@
         <resourceEdge source="OrderPay" routing="0" target="pay.jsp" />
       </result>
       <result name="pay_success">
-        <resourceEdge source="pay_success" routing="0" target="paySuccess.html" />
+        <resourceEdge source="pay_success" routing="0" target="paySuccess.jsp" />
+      </result>
+      <result name="pay_error">
+        <resourceEdge source="pay_error" routing="0" target="payError.html" />
       </result>
     </action>
   </package>
-  <package name="GroupFilm" location="375,172" size="300,179">
-    <action name="GroupFilmAction" location="142,102" size="150,62">
+  <package name="GroupFilm" location="390,172" size="325,260">
+    <action name="GroupFilmAction" location="168,128" size="150,125">
       <result name="detailInfo">
         <resourceEdge source="detailInfo" routing="0" target="groupFilmInfo.jsp" />
       </result>
       <result name="error">
         <resourceEdge source="error" routing="0" target="error.jsp" />
       </result>
+      <result name="apply_success">
+        <resourceEdge source="apply_success" routing="0" target="apply_success.jsp" />
+      </result>
+      <result name="apply_error">
+        <resourceEdge source="apply_error" routing="0" target="apply_success.jsp" />
+      </result>
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="success.jsp" />
+      </result>
     </action>
-    <action name="FilterAction" location="86,109" size="150,62">
+    <action name="FilterAction" location="112,135" size="150,62">
       <result name="home">
         <resourceEdge source="home" routing="0" target="home.jsp" />
       </result>
@@ -63,35 +75,49 @@
       </result>
     </action>
   </package>
-  <package name="CityPackage" location="661,92" size="284,140">
-    <action name="CityAction" location="127,93" size="150,40" />
+  <package name="CityPackage" location="676,92" size="306,162">
+    <action name="CityAction" location="153,119" size="150,40" />
   </package>
-  <package name="MerchantPack" location="693,266" size="247,103">
-    <action name="MerchantAction" location="94,59" size="150,41">
+  <package name="MerchantPack" location="708,266" size="316,174">
+    <action name="MerchantAction" location="120,85" size="150,83">
       <result name="merchantHome">
         <resourceEdge source="merchantHome" routing="0" target="merchantHome.jsp" />
       </result>
-    </action>
-    <action name="FilmAction" location="135,36" size="150,40">
       <result name="apply">
-        <resourceEdge source="apply" routing="0" target="apply.html" />
+        <resourceEdge source="apply" routing="0" target="apply.jsp" />
+      </result>
+      <result name="merchant_login">
+        <resourceEdge source="merchant_login" routing="0" target="merchantLogin.html" />
+      </result>
+    </action>
+    <action name="FilmAction" location="161,62" size="150,41">
+      <result name="apply">
+        <resourceEdge source="apply" routing="0" target="apply.jsp" />
       </result>
     </action>
   </package>
-  <webResource name="success.jsp" path="/success.jsp" location="45,204" size="150,55" />
-  <webResource name="error.jsp" path="/error.jsp" location="355,52" size="150,55" />
-  <webResource name="groupFilmInfo.jsp" path="/groupFilmInfo.jsp" location="50,350" size="150,55" />
-  <webResource name="userHome.jsp" path="/userHome.jsp" location="350,350" size="150,55" />
-  <webResource name="personInfo.jsp" path="/userHomePage/personInfo.jsp" location="50,500" size="150,55" />
-  <webResource name="myHeartFilm.jsp" path="/userHomePage/myHeartFilm.jsp" location="350,500" size="150,55" />
-  <webResource name="myOrder.jsp" path="/userHomePage/myOrder.jsp" location="50,650" size="150,55" />
-  <webResource name="pay.jsp" path="/pay.jsp" location="350,650" size="150,55" />
-  <webResource name="paySuccess.html" path="/paySuccess.html" location="50,800" size="150,55" />
-  <webResource name="home.jsp" path="/home.jsp" location="350,800" size="150,55" />
-  <webResource name="myComment.jsp" path="/userHomePage/myComment.jsp" location="50,950" size="150,55" />
-  <webResource name="myComplaint.jsp" path="/userHomePage/myComplaint.jsp" location="350,950" size="150,55" />
-  <webResource name="myMessage.jsp" path="/userHomePage/myMessage.jsp" location="50,1100" size="150,55" />
-  <webResource name="merchantHome.jsp" path="/merchantHome.jsp" location="350,1100" size="150,55" />
-  <webResource name="apply.html" path="/merchantHomePage/apply.html" location="0,0" size="150,55" />
+  <webResource name="success.jsp" path="/success.jsp" location="60,204" size="150,55" />
+  <webResource name="error.jsp" path="/error.jsp" location="370,52" size="150,55" />
+  <webResource name="groupFilmInfo.jsp" path="/groupFilmInfo.jsp" location="65,350" size="150,55" />
+  <webResource name="userHome.jsp" path="/userHome.jsp" location="365,350" size="150,55" />
+  <webResource name="personInfo.jsp" path="/userHomePage/personInfo.jsp" location="65,500" size="150,55" />
+  <webResource name="myHeartFilm.jsp" path="/userHomePage/myHeartFilm.jsp" location="365,500" size="150,55" />
+  <webResource name="myOrder.jsp" path="/userHomePage/myOrder.jsp" location="65,650" size="150,55" />
+  <webResource name="pay.jsp" path="/pay.jsp" location="365,650" size="150,55" />
+  <webResource name="paySuccess.html" path="/paySuccess.html" location="65,800" size="150,55" />
+  <webResource name="home.jsp" path="/home.jsp" location="365,800" size="150,55" />
+  <webResource name="myComment.jsp" path="/userHomePage/myComment.jsp" location="65,950" size="150,55" />
+  <webResource name="myComplaint.jsp" path="/userHomePage/myComplaint.jsp" location="365,950" size="150,55" />
+  <webResource name="myMessage.jsp" path="/userHomePage/myMessage.jsp" location="65,1100" size="150,55" />
+  <webResource name="merchantHome.jsp" path="/merchantHome.jsp" location="365,1100" size="150,55" />
+  <webResource name="apply.html" path="/merchantHomePage/apply.html" location="65,1250" size="150,55" />
+  <webResource name="paySuccess.jsp" path="/paySuccess.jsp" location="365,1250" size="150,55" />
+  <webResource name="payError.html" path="/payError.html" location="65,1400" size="150,55" />
+  <webResource name="apply_success.jsp" path="/apply_success.jsp" location="350,1400" size="150,55" />
+  <webResource name="apply.jsp" path="/merchantHomePage/apply.jsp" location="50,1550" size="150,55" />
+  <webResource name="merchantLogin.html" path="/merchantLogin.html" location="350,1550" size="150,55" />
+  <package name="Message" location="590,38" size="170,70">
+    <action name="MessageAction" location="58,42" size="150,40" />
+  </package>
 </Struts2Diagram>
 

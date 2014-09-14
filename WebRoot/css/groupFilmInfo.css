@@ -475,3 +475,30 @@ div.range-item-info {
 	width: 65px;
 	height: 15px;
 }
+/*邀请入伙*/
+#invite-info{
+	/*position: absolute;*/
+	margin-left: 300px;
+	margin-top: 60px;
+	width: 300px;
+	height: 80px;
+	display: none;
+}
+#invite-info:hover{
+
+}
+#invite-info textarea{
+	 width:300px;
+	 height:65px;
+}
+.invite-parter{
+	cursor: pointer;
+
+}
+#send-mes,#cancel-bt{
+	background: #777777;
+	margin-left: 3px;
+}
+#send-mes:hover,#cancel-bt:hover{
+	background: #bd6037;
+}

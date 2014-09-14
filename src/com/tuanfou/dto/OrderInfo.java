@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class OrderInfo {
 	 private int orderId;//订单id
+	 private int groupFilmId;
+	 private String cinemaName;
 	 private Date orderTime;
 	 private String filmName;//团购电影名字
 	 private float curretPrice;//团购电影价格
@@ -11,6 +13,7 @@ public class OrderInfo {
 	 private int amount;//购买数量
 	 private float  totalPrice;
 	 private String status;//订单状态订单状态,0：失效，1：未支付，2：已经支付
+	 private String filmPhoto;
 	public int getOrderId() {
 		return orderId;
 	}
@@ -58,6 +61,24 @@ public class OrderInfo {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getFilmPhoto() {
+		return filmPhoto;
+	}
+	public void setFilmPhoto(String filmPhoto) {
+		this.filmPhoto = filmPhoto;
+	}
+	public int getGroupFilmId() {
+		return groupFilmId;
+	}
+	public void setGroupFilmId(int groupFilmId) {
+		this.groupFilmId = groupFilmId;
+	}
+	public String getCinemaName() {
+		return cinemaName;
+	}
+	public void setCinemaName(String cinemaName) {
+		this.cinemaName = cinemaName;
 	}
 	 
 }

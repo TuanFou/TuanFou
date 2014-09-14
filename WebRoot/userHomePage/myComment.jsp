@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 <body>
 <div  class="bg">
-      <span><font size="5" color="blue">我的评论</font></span>
+      <span><font size="5" color="#bd8037">我的评论</font></span>
       <div id="info-area">
          <div class="title">
             <div class="title_1">团购</div>

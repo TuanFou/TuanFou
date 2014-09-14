@@ -21,32 +21,35 @@
 #info-area{
   margin: 20px auto;
 }
-.title_1,.title_2,.title_3,.title_4{
+.title_1,.title_2,.title_3,.title_4,.title_5{
   padding: 5px;
   float: left;
   background: #EEEEEE;
   text-align: center;
 }
 .title_1{
-  width:200px;
+  width:80px;
 }
 .title_2{
-  width:230px;
+  width:80px;
 }
 .title_3{
-  width:80px;
+  width:180px;
 }
 .title_4{
   width:80px;
 }
+.title_5{
+  width:80px;
+}
 
-.receiver-name{
+.receiver-name,.send-name{
   margin-top: 15px;
   margin-left: 20px;
-  width:130px;
+  width:70px;
 }
 .message-content{
-  width: 240px;
+  width: 190px;
 }
 .message-time{
   width:90px;
@@ -82,16 +85,15 @@
       <div id="info-area">
          <div class="title">
             <div class="title_1">发送人</div>
-            <div class="title_2">内容</div>
-            <div class="title_3">时间</div>
-            <div class="title_4">操作</div>
+            <div class="title_2">收信人</div>
+            <div class="title_3">内容</div>
+            <div class="title_4">时间</div>
+            <div class="title_5">操作</div>
          </div>
          <div class="clear"></div>
          <div class="message-item ">
-           <div class="message clear"> 
-              <span class="receive-img" ><img class="float-left receive-img"  src="../imgs/girl.jpg"></span>
-              <span class="line-block float-left receiver-name" >LN_HUST</span>
-           </div>
+            <span class="line-block float-left send-name" >LN_HUST</span>
+            <span class="line-block float-left receiver-name" >LN_HUST</span>
             <span class="line-block  float-left message-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
            <span class="float-left message-time">2014-6-1</span>
            <span class="float-left message-operation">
@@ -100,18 +102,6 @@
            </span>
          </div>
          <div class="clear"></div>
-         <div class="message-item">
-           <div class="message">
-              <span class="receive-img" ><img class="float-left receive-img"  src="../imgs/girl.jpg"></span>
-              <span class="line-block float-left receiver-name" >LN_HUST</span>
-           </div>
-            <span class="line-block  float-left message-content">玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽玛丽</span>
-           <span class="float-left message-time">2014-6-1</span>
-           <span class="float-left message-operation">
-              <span><button>回复</button></span>
-              <span><button>删除</button></span>
-           </span>
-         </div>
   </div>
 </body>
 </html>

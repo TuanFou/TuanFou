@@ -142,6 +142,9 @@ public class OrderDao {
 				 orderInfo.setOrderId(order.getId());
 				 orderInfo.setOrderTime(order.getCreateTime());
 				 orderInfo.setOriginalPrice(order.getGroupFilm().getOriginalPrice());
+				 orderInfo.setFilmPhoto(order.getGroupFilm().getPicUrl());
+				 orderInfo.setGroupFilmId(order.getGroupFilm().getId());
+				 orderInfo.setCinemaName(order.getGroupFilm().getCinema().getCinemaName());
 				 switch(order.getStatus()){
 				 case 0:
 					 orderInfo.setStatus("失效");

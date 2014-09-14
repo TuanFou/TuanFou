@@ -23,7 +23,7 @@ $(document).ready(function(){
 						"<div class='float-left range-item-info'>"+
 							"<span class='line-block line-block-film'>" + recommendFilm['filmName'] + "</span>"+
 							"<span class='line-block line-block-cinema'>"+ recommendFilm['cinemaName'] + "</span>"+
-							"<span class='line-block line-block-join'>已入伙&nbsp<font size='2' color='#FFFF00'>" + recommendFilm['userNum'] + "</font></span>"+
+							"<span class='line-block line-block-join'>已入伙&nbsp<font size='2' color='#bd6037'>" + recommendFilm['userNum'] + "</font></span>"+
 						"</div>"+
 					"</div></a><div class='clear'></div>";	
 		}
@@ -110,7 +110,7 @@ $(document).ready(function(){
 		// alert(groupFilmId);
 		// alert(userId);
 		// alert(data);
-		alert(star);
+		//alert(star);
 		$.ajax({
 		 	url: 'UserAction!addComment?groupFilmId='+groupFilmId+"&userId="+userId,
 		 	type: 'post',

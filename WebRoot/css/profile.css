@@ -19,7 +19,7 @@ body{
 #main-right{
 	/*float: right;*/
 	width: 740px!important;
-	height: 700px;
+/*	height: 700px;*/
 	border:2px solid #EEEEEE;
 	float: right;
 }
@@ -44,7 +44,7 @@ body{
 	/*padding: 20px;*/
 }
 #add-balance{
-	background-color: #0080FF;
+	background-color: #bd8037!important;
 	color: white;
 	border: none;
 	width: 60px;
@@ -84,8 +84,8 @@ ul{
 /*显示界面*/
 #detail-info{
 	border: none;
-	width: 650px;
-	height: 600px;
+	width: 660px;
+	height: 800px;
 	margin: 50px auto;
 	margin-left: 50px;
 	margin-right: 50px

@@ -1,6 +1,8 @@
 package com.tuanfou.pojo;
 
-import java.sql.Date;
+import java.util.Date;
+
+ 
 
 public class Message {
 	private int id;
@@ -8,7 +10,7 @@ public class Message {
 	private int receiverId;
 	private String content;
 	private Date time;
-	private int type;
+	private int type;//0:理员管-商家  1:管理员-会员 2：会员-会员
 	
 	public int getId() {
 		return id;
@@ -37,8 +39,8 @@ public class Message {
 	public Date getTime() {
 		return time;
 	}
-	public void setTime(Date time) {
-		this.time = time;
+	public void setTime(java.util.Date date) {
+		this.time = date;
 	}
 	public int getType() {
 		return type;

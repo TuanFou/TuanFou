@@ -1,6 +1,7 @@
+var currentMenuId = "#my-groupFilm";
 $(document).ready(function(){
 	// $("#detail-info").attr("src","./personInfo.html");
-	var currentMenuId = "#my-groupFilm";
+
 	$("#menu-bottom li").bind('click',function(event) {
 		/* Act on the event */
 		var id = $(this).attr("id");
@@ -61,7 +62,7 @@ $(document).ready(function(){
 			type: 'get',
 			success:function(data){
 				if(data=="success")
-					window.location.reload();
+					window.location.href = "FilterAction!getFilterTags";
 				else
 					alert("退出失败");
 			},

@@ -162,7 +162,8 @@ public class UserDao {
 				MyHeartGroupFilmInfo myInfo = new MyHeartGroupFilmInfo();
 				myInfo.setId(groupFilm.getId());
 				myInfo.setFilmName(groupFilm.getFilm().getFilmName());
-				myInfo.setAddress(groupFilm.getArea().getAreaName());
+				myInfo.setCinameName(groupFilm.getCinema().getCinemaName());
+				myInfo.setFilmPhoto(groupFilm.getPicUrl());
 				myInfoList.add(myInfo);
 			}
 		}catch (Exception e) {
@@ -274,9 +275,10 @@ public class UserDao {
 			session = HibernateUtil.getSession();
 			AdminDao adminDao = new AdminDao();
 			UserDao userDao = new UserDao();
-			String hql = "From Message message where message.receiverId=:userId";
+			String hql = "From Message message where message.receiverId=:userId or message.senderId=:senderId";
 			Query query = session.createQuery(hql);
 			query.setParameter("userId", userId);
+			query.setParameter("senderId", userId);
 			List<Message> messageList = query.list();
 			Iterator<Message> it = messageList.iterator();
 			while(it.hasNext()){

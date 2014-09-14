@@ -14,7 +14,7 @@ import com.tuanfou.utils.HibernateTemplate;
 import com.tuanfou.utils.HibernateUtil;
 
 public class MessageDao {
-	
+	private Session session=null;
 	public boolean add(Message message){
 		Session session = null;
 		try{
@@ -94,5 +94,35 @@ public class MessageDao {
 		hql += temp;
 		List<Message> messages = HibernateTemplate.executeQuery(hql, firstResult, maxResult);
 		return messages;
+	}
+	
+	/*
+	 * 找出用户所有的消息
+	 */
+	public  List<MessageInfo>  getMessagesByUserId(int userId,int type){
+		String hql = "from Message message where (message.senderId=:senderId or message.receiverId=:receiverId) and message.type=:type";
+		List<MessageInfo> list = new ArrayList<MessageInfo>();
+		try{
+			session = HibernateUtil.getSession();
+			Query q = session.createQuery(hql);
+			q.setParameter("senderId", userId);
+			q.setParameter("receiverId", userId);
+			q.setParameter("type", type);
+			Iterator<Message> it = q.list().iterator();
+			while(it.hasNext()){
+				Message msg = it.next();
+				MessageInfo msgInfo= new MessageInfo();
+				msgInfo.setSenderId(msg.getSenderId());
+				msgInfo.setReceiverId(msg.getReceiverId());
+				msgInfo.setContent(msg.getContent());
+				msgInfo.setTime(msg.getTime());
+				list.add(msgInfo);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			HibernateUtil.closeSession();
+		}
+		return list;
 	}
 }

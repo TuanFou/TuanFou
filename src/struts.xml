@@ -57,4 +57,7 @@
 			<result name="apply">/merchantHomePage/apply.jsp</result>
 		</action>
 	</package>
-</struts>    
+	<package name="Message" namespace="/" extends="struts-default">
+		<action name="MessageAction"
+			class="com.tuanfou.action.MessageAction">
+		</action></package></struts>    

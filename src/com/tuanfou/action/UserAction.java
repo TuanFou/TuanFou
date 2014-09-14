@@ -23,6 +23,7 @@ import com.tuanfou.dto.MyHeartGroupFilmInfo;
 import com.tuanfou.pojo.City;
 import com.tuanfou.pojo.User;
 import com.tuanfou.service.CommentService;
+import com.tuanfou.service.MessageService;
 import com.tuanfou.service.OrderService;
 import com.tuanfou.service.UserService;;
 
@@ -242,8 +243,10 @@ public class UserAction extends ActionSupport {
 	public String showMyMessage(){
 		session = ActionContext.getContext().getSession();
 		int id =  (Integer) session.get("userId");
-		UserService userService = new UserService();
-		messages = userService.getMyMessages(id );
+//		UserService userService = new UserService();
+//		messages = userService.getMyMessages(id );
+		MessageService messageService = new MessageService();
+		messages = messageService.getUserMessages(id, 2);
 		Gson gson = new Gson();
 		String result = gson.toJson(messages);
 		System.out.println(result);

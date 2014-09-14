@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/common.css">
 	<link rel="stylesheet" type="text/css" href="./css/groupFilmInfo.css">
 	<script src="./js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./js/inviteParter.js"></script>
 	<script type="text/javascript" src="./js/tinybox.js"></script>
 </head>
 <style type="text/css">
@@ -22,7 +23,7 @@
 	<div id="header"></div>
 	<div id="bg">
 		<!--购票窗口*/ -->
-		<a class="ml20" href="#" id="click_test2">效果预览</a>
+		<div id="username" class="32342"></div>
 		<div id="hidden">
 			<div class="buying-info">
 					<span class="line-block">商家：天河剧院天河剧院天河剧院天河剧院天河剧院| 查看电话/地址</span>
@@ -103,13 +104,18 @@
 				<div class="float-left invite-area">
 					<span><font color="blue" size="2">已入伙(200)</font></span>
 					<ul class="parter-list">
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
-						<li>kdf5000 <a class="float-right" href="#">发送邀请</a></li>
+						<li id="user_1">kdf5000 <a class="float-right invite-parter"  >发送邀请</a></li>
+						<li id="user_2">kdf5000 <a class="float-right invite-parter" >发送邀请</a></li>
+						<li id="user_3">kdf5000 <a class="float-right invite-parter"  >发送邀请</a></li>
+						<li id="user_4">kdf5000 <a class="float-right invite-parter"  >发送邀请</a></li>
+						<li id="user_5">kdf5000 <a class="float-right invite-parter"  >发送邀请</a></li>
 					</ul>
 					<span class="float-right" id="change-parters"><font size="1"><a href="#">换一批</a></font></span>
+				</div>
+				<div id="invite-info">
+					<textarea id="invitemes"></textarea>
+					<button class="float-right" id="send-mes">发送</button>
+					<button class="float-right" id="cancel-bt">取消</button>
 				</div>
 			</div>
 			<div class="clear"></div>

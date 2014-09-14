@@ -1,11 +1,15 @@
 package com.tuanfou.dto;
 
-import java.sql.Date;
+import java.util.Date;
+
+ 
 
 public class MessageInfo {
 	private int messageId;
 	private int senderId;
 	private String senderName;
+	private String receiverName;
+	private int receiverId;
 	private String content;
 	private Date time;
 	private String photoUrl;
@@ -45,4 +49,17 @@ public class MessageInfo {
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
 	}
+	public String getReceiverName() {
+		return receiverName;
+	}
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+	public int getReceiverId() {
+		return receiverId;
+	}
+	public void setReceiverId(int receiverId) {
+		this.receiverId = receiverId;
+	}
+ 
 }

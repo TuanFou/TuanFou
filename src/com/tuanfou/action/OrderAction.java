@@ -35,12 +35,12 @@ public class OrderAction extends ActionSupport {
 		//通过session获取用户id
 		session = ActionContext.getContext().getSession();
 		int id =  (Integer) session.get("userId");
+		System.out.println(id);
 		OrderService orderService = new OrderService();
 		orderInfoList = orderService.getUserOrdersById(id);
 		if(orderInfoList==null)
 			return "error";
-		return "myOrder";
-		
+		return "myOrder";		
 	}
 	/*
 	 * 缓存用户的订单信息

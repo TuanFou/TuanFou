@@ -27,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="./js/groupFilmInfo.js"></script>
 	<script src="./js/reg_login.js" type="text/javascript"></script>
 	<script src="./js/star.js" type="text/javascript"></script>
+	<!--<script src="./js/inviteParter.js" type="text/javascript"></script>-->
 </head>
 <style type="text/css">
 
@@ -234,10 +235,15 @@ function regSubmit(obj){
 					<span><font family="微软雅黑" size="3" color="#bd6037">已入伙(${groupFilmDetailInfo.partnerNum})</font></span>
 					<ul class="parter-list">
 					 <c:forEach items="${invitedMembers}" var="info">
-						<li id="user_${info.userId}">${info.userName} <a class="float-right" href="#">发送邀请</a></li>
+						<li id="user_${info.userId}">${info.userName} <a class="float-right invite-parter">发送邀请</a></li>
 					 </c:forEach> 
 					</ul>
 					<span class="float-right" id="change-parters"><font size="1" ><a href="#">换一批</a></font></span>
+				</div>
+				<div id="invite-info">
+					<textarea id="invitemes"></textarea>
+					<button class="float-right" id="send-mes">发送</button>
+					<button class="float-right" id="cancel-bt">取消</button>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -412,6 +418,48 @@ function regSubmit(obj){
         /*购买商品，下订单*/
     </script>
 <script>
+/*邀请*/
+
+var recieverId = '';
+$(".invite-parter").bind('click',function(){
+	$('#invite-info').toggle(1000);
+	recieverId = $(this).parent('li').attr("id").substr(5);
+});
+$("#cancel-bt").bind('click',function(){
+	$('#invite-info').toggle(1000);
+})
+$('#send-mes').bind('click',function(){
+	if($('#username').length<1){
+		alert('请登录');
+	}
+	else{
+		var senderId = $('#username').attr('class');
+		var content = $('#invitemes').val();
+		//alert(content);
+		var type=2;
+		$.ajax({
+		 	url: 'MessageAction!sendMessage?senderId='+senderId+"&receiverId="+recieverId+
+		 	      "&content="+content+"&type="+type,
+		 	type: 'get',
+		 	success:function(data){
+		 		// alert(data);
+			    if(data=="success"){
+			    	alert('邀请成功！');
+			    	$('#invite-info').toggle();
+			    }else{
+			    	alert("对不起，邀请失败，请稍后再试");
+			    }
+		 	},
+		 	error:function(error) {
+		 		/* Act on the event */
+		 		for(var index in error){
+		 			alert(error[index]);
+		 		}
+		 	}
+		});
+		//alert(senderId+"-->"+recieverId+"-"+type+":"+content);
+	}
+});
  /*星星*/
  function count() {
     var num = $('.star-holder>.i-rate-hover-click').length;
@@ -419,30 +467,30 @@ function regSubmit(obj){
 }
 
 
-	for (i = 0; i < 5; i++) {
-		before();
-		change(i);
-		after(i);
-	}
-    function change(i) {
-        $('.star-holder>.i-rate:eq(' + i + ')').mouseover(function () {
-            $('.star-holder>a:lt(' + (i + 1) + ').i-rate').attr("class", "i-rate-hover");
-        });
-    }
+for (i = 0; i < 5; i++) {
+	before();
+	change(i);
+	after(i);
+}
+function change(i) {
+    $('.star-holder>.i-rate:eq(' + i + ')').mouseover(function () {
+        $('.star-holder>a:lt(' + (i + 1) + ').i-rate').attr("class", "i-rate-hover");
+    });
+}
 
-    function after(i) {
-        $('.star-holder>a:eq(' + i + ')').click(function () {
-            $('.star-holder>a:lt(' + (i + 1) + ')').attr("class", "i-rate-hover-click");
-            $('.star-holder>a:gt(' + i + ')').attr("class", "i-rate");
-            count();
-            return false;
-        });
-    }
+function after(i) {
+    $('.star-holder>a:eq(' + i + ')').click(function () {
+        $('.star-holder>a:lt(' + (i + 1) + ')').attr("class", "i-rate-hover-click");
+        $('.star-holder>a:gt(' + i + ')').attr("class", "i-rate");
+        count();
+        return false;
+    });
+}
 
-    function before() {
-        $('.star-holder').mouseout(function () {
-            $('.star-holder >.i-rate-hover').attr("class", "i-rate");
-        });
-    }
+function before() {
+    $('.star-holder').mouseout(function () {
+        $('.star-holder >.i-rate-hover').attr("class", "i-rate");
+    });
+}
 </script>
 </html>

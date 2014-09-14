@@ -36,32 +36,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 #info-area{
   margin: 20px auto;
 }
-.title_1,.title_2,.title_3,.title_4{
+.title_1,.title_2,.title_3,.title_4,.title_5{
   padding: 5px;
   float: left;
   background: #EEEEEE;
   text-align: center;
 }
 .title_1{
-  width:200px;
+  width:90px;
 }
 .title_2{
-  width:230px;
+  width:90px;
 }
 .title_3{
-  width:80px;
+  width:180px;
 }
 .title_4{
   width:80px;
 }
+.title_5{
+  width:80px;
+}
 
-.receiver-name{
+.receiver-name,.send-name{
   margin-top: 15px;
   margin-left: 20px;
-  width:130px;
+  width:80px;
 }
 .message-content{
-  width: 240px;
+  width: 175px;
+  margin-left: 5px;
 }
 .message-time{
   width:90px;
@@ -86,36 +90,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   height:50px;
   margin-left: 10px;
   border-radius: 50px;
-
 }
 </style>
   </head>
   
 <body>
 <div  class="bg">
-      <span><font size="5" color="blue">我的消息</font></span>
+      <span><font size="5" color="#bd8037">我的消息</font></span>
       <div id="info-area">
          <div class="title">
-            <div class="title_1">发送人</div>
-            <div class="title_2">内容</div>
-            <div class="title_3">时间</div>
-            <div class="title_4">操作</div>
+            <div class="title_1">发信人</div>
+            <div class="title_2">收信人</div>
+            <div class="title_3">内容</div>
+            <div class="title_4">时间</div>
+            <div class="title_5">操作</div>
          </div>
          <div class="clear"></div>
      	 <c:forEach items="${messages}" var="info">
-           <div class="message-item ">
-             <div class="message clear"> 
-                <span class="receive-img" ><img class="float-left receive-img"  src="${info.photoUrl}"></span>
-                <span class="line-block float-left receiver-name" >${info.senderName}</span>
-             </div>
-              <span class="line-block  float-left message-content">${info.content}</span>
-             <span class="float-left message-time">${info.time}</span>
-             <span class="float-left message-operation">
-                <span><button>回复</button></span>
-                <span><button>删除</button></span>
-             </span>
-           </div>
-           <div class="clear"></div>
+         <div class="message-item ">
+            <span class="line-block float-left send-name" >${info.senderName}</span>
+            <span class="line-block float-left receiver-name" >${info.receiverName}</span>
+            <span class="line-block  float-left message-content"> 
+              ${info.content}
+            </span>
+           <span class="float-left message-time">${info.time}</span>
+           <span class="float-left message-operation">
+              <span><button>回复</button></span>
+              <span><button>删除</button></span>
+           </span>
+         </div>
        </c:forEach>
        </div>
   </div>

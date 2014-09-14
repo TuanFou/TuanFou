@@ -48,54 +48,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 td,th{
    border:1px solid #ccc;
+   text-align: center;
+}
+img{
+  margin-left: 20px;
+}
+.film-name{
+  margin-left: 10px;
+  margin-top: 20px;
+  display: block;
+  float: left;
+}
+.film-cinema{
+  display: blcok;
 }
 .left{
-  width: 50%;
-  padding: 10px;
+  width:320px;
 }
-.right{
-  width: 50%;
-}
-td.right ul{
-  list-style: none;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-a{
-  text-decoration: none;
-}
-.heart-film-info{
-  width: 200px;
-  margin-left: 10px;
-  margin-top: 5px;
-}
+
   </style>
   <body>
    <div  class="bg">
-      <span><font size="5">我的伙影</font></span>
+      <span><font size="5" color="#bd8037">我的伙影</font></span>
       <div id="info-area">
          <table class="table">
             <tr>
-              <th>2014-01-01 武汉 洪山区</th>
-              <th>已邀请</th>
+              <th>电影名</th>
+              <th>电影院</th>
             </tr>
             <c:forEach items="${myHeartFilm}" var="info">
-	            <tr>
-	              <td class="left">
-	                <span ><img class="float-left" width="50px" height="60px" src="./imgs/1.png"></span>
-	                <div class="float-left heart-film-info" >
-	                    <span class="line-block">${info.filmName }</span>
-	                    <span class="line-block">${info.address }</span>
-	                </div>
-	              </td>
-	              <td class="right">
-	                <ul >
-	                  <li>kdf5000 <a class="float-right" href="#">重新发送邀请</a></li>
-	                  <li>kdf5000 <a class="float-right" href="#">重新发送邀请</a></li>
-	                  <li>kdf5000 <a class="float-right" href="#">重新发送邀请</a></li>
-	                </ul>
-	              </td>
-	            </tr>
+	           <tr>
+              <td>  
+                <span >
+                  <img class="float-left" width="50px" height="60px" src="${info.filmPhoto}">
+                </span>  
+                <span class="film-name">${info.filmName}</span>
+              </td>
+              <td >
+                <span class="film-cinema">${info.cinameName}</span>
+              </td>
+            </tr>
             </c:forEach>
          </table>
       </div>
